@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="id"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a2147">
 <title>Persuratan BPS Kota Batam</title>
 <style>
-:root{--bg:#f2f5fa;--card:#fff;--tx:#0f1b33;--mut:#66758f;--navy:#0b2a5b;--sky:#1d6fe0;--sky2:#eaf2fe;--bd:#e3e9f3;--err:#d92d20;--up:#0f9d58;--sh:0 1px 2px rgba(16,40,90,.06),0 6px 18px rgba(16,40,90,.07)}
+:root{--bg:#f2f5fa;--card:#fff;--tx:#0f1b33;--mut:#66758f;--navy:#0b2a5b;--sky:#12408f;--sky2:#e8eef9;--bd:#e3e9f3;--err:#d92d20;--up:#0f9d58;--sh:0 1px 2px rgba(16,40,90,.06),0 6px 18px rgba(16,40,90,.07)}
 @media(prefers-color-scheme:dark){:root{--bg:#0b1424;--card:#121f36;--tx:#e8eef7;--mut:#93a5c1;--navy:#9cc8f7;--sky:#4c9bf5;--sky2:#17294a;--bd:#223a5c;--err:#ff8a80;--up:#3ddc97;--sh:none}}
 *{box-sizing:border-box}body{margin:0;font:15px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;background:var(--bg);color:var(--tx)}
 [hidden]{display:none!important}
@@ -11,7 +12,8 @@ h1{margin:0;font-size:26px;letter-spacing:-.02em}h2{margin:0;font-size:17px}
 button,input,select{font:inherit}
 button{cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:9px 16px;border-radius:10px;font-weight:600;transition:transform .1s}
 button:active{transform:scale(.97)}button:disabled{opacity:.5;cursor:default}
-button.p{background:linear-gradient(135deg,#2f84f0,#1559d6);border-color:transparent;color:#fff}
+button.p{background:linear-gradient(135deg,#17428f,#0a2147);border-color:transparent;color:#fff}
+@media(prefers-color-scheme:dark){button.p{background:linear-gradient(135deg,#2a5fc0,#1a4398)}}
 button.d{color:var(--err)}
 :focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 input,select{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx)}
@@ -20,15 +22,15 @@ label{display:block;margin:12px 0 4px;font-weight:600;font-size:13px;color:var(-
 #login{max-width:380px;margin:12vh auto;padding:28px;background:var(--card);box-shadow:var(--sh);border-radius:18px}
 #login h1{font-size:22px;margin-bottom:4px}
 #app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
-nav{background:linear-gradient(180deg,#2478ea,#1250c4);color:#fff;padding:22px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+nav{background:linear-gradient(180deg,#12397a,#0a2147);color:#fff;padding:22px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
 nav b{display:flex;align-items:center;gap:10px;padding:0 8px 22px;font-size:15px;line-height:1.25}
-nav b i{width:36px;height:36px;border-radius:11px;background:#fff;color:#1559d6;display:grid;place-items:center;font-style:normal;font-weight:800;flex:none}
+nav b i{width:36px;height:36px;border-radius:11px;background:#fff;color:#0f2f66;display:grid;place-items:center;font-style:normal;font-weight:800;flex:none}
 nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;color:#dcebff;cursor:pointer;font-weight:600}
 nav a svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
 nav a:hover{background:rgba(255,255,255,.14)}
-nav a.on{background:#fff;color:#1559d6}
+nav a.on{background:#fff;color:#0f2f66}
 nav .sp{flex:1}nav small{padding:0 12px;color:#d6e8ff}
-main{padding:28px;min-width:0;max-width:1100px}
+main{padding:28px 32px;min-width:0}
 .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}
 .bar input{max-width:300px;border-radius:99px;padding-left:16px}.bar .sp{flex:1}
 .yr{display:flex;gap:8px;margin:14px 0}
@@ -44,6 +46,8 @@ main{padding:28px;min-width:0;max-width:1100px}
 .chip{padding:2px 9px;border-radius:99px;font-size:12px;font-weight:700;background:rgba(15,157,88,.12);color:var(--up)}
 .chip.dn{background:rgba(217,45,32,.12);color:var(--err)}.chip small{font-weight:500;opacity:.8}
 .pn{padding:18px 20px;margin:14px 0}
+.dg{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin:14px 0}.dg .pn{margin:0;min-width:0}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}.sg .set{max-width:none;margin:16px 0 0}
 .lg{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 6px;font-size:13px;color:var(--mut)}.lg span{display:flex;align-items:center;gap:6px}
 .li{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd)}.li:last-child{border:0}
 .av{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px;flex:none}
@@ -56,11 +60,12 @@ tbody tr:hover td{background:var(--sky2)}
 td.tg{cursor:cell;white-space:nowrap}td a{color:var(--sky);font-weight:600}
 td.ac{white-space:nowrap}td.ac button{padding:4px 10px;font-size:13px}
 .pgn{display:flex;gap:8px;align-items:center;justify-content:flex-end;margin-top:12px}
-.set{padding:18px;margin:16px 0;max-width:560px}.set h2{font-size:17px}
+.set{padding:18px;margin:16px 0;max-width:560px}
+@media(max-width:1000px){.dg{grid-template-columns:1fr}}.set h2{font-size:17px}
 #modal{position:fixed;inset:0;background:rgba(8,20,40,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
 .box{background:var(--card);border-radius:18px;padding:22px;width:100%;max-width:480px;max-height:92vh;overflow:auto}
 .row{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
-#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#1250c4;color:#fff;padding:11px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:30;max-width:90vw}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#0f2f66;color:#fff;padding:11px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:30;max-width:90vw}
 #toast.show{opacity:1}#toast.err{background:var(--err)}
 .empty{padding:36px;text-align:center;color:var(--mut)}
 @media(max-width:800px){
@@ -68,7 +73,8 @@ td.ac{white-space:nowrap}td.ac button{padding:4px 10px;font-size:13px}
  nav{position:fixed;bottom:0;left:0;right:0;top:auto;height:auto;flex-direction:row;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));gap:2px;z-index:10;border-radius:18px 18px 0 0}
  nav b,nav .sp,nav small,nav .out{display:none}
  nav a{flex:1;flex-direction:column;gap:3px;padding:7px 2px;font-size:11px;text-align:center;border-radius:12px}
- main{padding:16px}h1{font-size:22px}
+ main{padding:calc(16px + env(safe-area-inset-top,0px)) 14px 16px}h1{font-size:22px}
+ .dg,.sg{grid-template-columns:1fr}
  .tw{background:none;box-shadow:none;overflow:visible}
  table,tbody,tr,td{display:block;min-width:0}tr:has(th){display:none}
  tr{background:var(--card);border-radius:14px;box-shadow:var(--sh);padding:8px 14px;margin-bottom:10px}
@@ -137,7 +143,7 @@ $('#login').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.si
 function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');v=='dashboard'?dash():v=='pengaturan'?setelan():load()}
 
 let dy=0;
-const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2f7df6',surat_tugas:'#12b5a6',sk_kpa:'#f5a524'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA'};
+const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2a62c9',surat_tugas:'#12b5a6',sk_kpa:'#f5a524'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA'};
 function chart(m){
  const ks=Object.keys(J),top=Math.ceil(Math.max(4,...ks.flatMap(k=>m[k]))/4)*4,W=720,H=260,L=34,T=14,Bt=28,pw=(W-L)/12,bw=pw/4.2;
  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik jumlah nomor per bulan" style="width:100%;height:auto">`;
@@ -159,8 +165,8 @@ async function dash(){
  <div class="yr">${yrs.map(y=>`<button class="${y==dy?'on':''}" data-y="${y}">${y}</button>`).join('')}</div>
  <div class="cards">${ks.map(k=>{const t=m[k].reduce((x,y)=>x+y,0),d=dy==cy?m[k][bi]-(bi?m[k][bi-1]:0):null;
   return `<div class="card"><div class="ch"><i style="background:${CL[k]}"></i>${J[k].t}</div><div class="cn">${t}</div><div class="cf">${d===null?'<span class="muted">Total '+dy+'</span>':`<span class="chip ${d<0?'dn':''}">${d<0?'▼':'▲'} ${Math.abs(d)} <small>vs bulan lalu</small></span>`}${spark(m[k],CL[k])}</div></div>`}).join('')}</div>
- <div class="pn"><h2>Nomor per bulan, ${dy}</h2><div class="lg">${ks.map(k=>`<span><i style="background:${CL[k]}"></i>${J[k].t}</span>`).join('')}</div>${chart(m)}</div>
- <div class="pn"><h2>Nomor terbaru</h2>${(b.data||[]).map(r=>`<div class="li"><div class="av" style="background:${CL[r.jenis]}">${IN[r.jenis]}</div><div class="lt"><b>${esc(r.nomor)}</b><span>${esc(r.perihal||r.uraian)}</span></div><small class="muted">${tgl(r.tanggal)}</small></div>`).join('')||'<p class="empty">Belum ada nomor yang diambil.</p>'}</div>`;
+ <div class="dg"><div class="pn"><h2>Nomor per bulan, ${dy}</h2><div class="lg">${ks.map(k=>`<span><i style="background:${CL[k]}"></i>${J[k].t}</span>`).join('')}</div>${chart(m)}</div>
+ <div class="pn"><h2>Nomor terbaru</h2>${(b.data||[]).map(r=>`<div class="li"><div class="av" style="background:${CL[r.jenis]}">${IN[r.jenis]}</div><div class="lt"><b>${esc(r.nomor)}</b><span>${esc(r.perihal||r.uraian)}</span></div><small class="muted">${tgl(r.tanggal)}</small></div>`).join('')||'<p class="empty">Belum ada nomor yang diambil.</p>'}</div></div>`;
  $('#main').querySelectorAll('[data-y]').forEach(x=>x.onclick=()=>{dy=+x.dataset.y;dash()});
 }
 async function load(){
@@ -244,13 +250,13 @@ async function setelan(){
  const ad=me.role=='admin';let us=[];
  if(ad){const {data}=await db.from('profiles').select('*').order('email');us=data||[]}
  $('#main').innerHTML=`<h1>Pengaturan</h1>
- <div class="set"><h2>Ubah kata sandi saya</h2><label>Kata sandi baru (minimal 6 karakter)</label><input id="np" type="password" autocomplete="new-password"><div class="row"><button class="p" id="gp">Simpan kata sandi</button></div></div>
+ <div class="sg"><div class="set"><h2>Ubah kata sandi saya</h2><label>Kata sandi baru (minimal 6 karakter)</label><input id="np" type="password" autocomplete="new-password"><div class="row"><button class="p" id="gp">Simpan kata sandi</button></div></div>
  ${ad?`<div class="set"><h2>Tambah pengguna</h2><p class="muted">Kata sandi awal: <b>123456</b>. Minta pengguna menggantinya setelah masuk pertama kali.</p>
  <label>Email (Gmail)</label><input id="ue" type="email" placeholder="nama@gmail.com">
  <label>Nama pegawai</label><select id="un"><option value="">- pilih pegawai -</option>${pg.map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select>
  <label>Peran</label><select id="ur"><option value="pegawai">Pegawai</option><option value="petugas">Petugas Persuratan</option><option value="admin">Administrator</option></select>
- <div class="row"><button class="p" id="tp">Tambah pengguna</button></div></div>
- <h2 style="font-size:17px;margin:22px 0 10px">Daftar pengguna</h2><div class="tw"><table><tr><th>Email</th><th>Nama pegawai (pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td>${esc(u.email)}</td><td><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td><select data-r="${u.id}">${['pegawai','petugas','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${r}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset kata sandi</button></td></tr>`).join('')||'<tr><td colspan="4" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`:''}`;
+ <div class="row"><button class="p" id="tp">Tambah pengguna</button></div></div></div>
+ <h2 style="font-size:17px;margin:22px 0 10px">Daftar pengguna</h2><div class="tw"><table><tr><th>Email</th><th>Nama pegawai (pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td>${esc(u.email)}</td><td><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td><select data-r="${u.id}">${['pegawai','petugas','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${r}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset kata sandi</button></td></tr>`).join('')||'<tr><td colspan="4" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`:'</div>'}`;
  $('#gp').onclick=async()=>{const v=$('#np').value;if(v.length<6)return toast('Kata sandi minimal 6 karakter',1);const {error}=await db.auth.updateUser({password:v});error?toast('Gagal: '+error.message,1):(toast('Kata sandi diperbarui'),$('#np').value='')};
  if(!ad)return;
  $('#tp').onclick=async()=>{const e=$('#ue').value.trim();if(!/^\S+@\S+\.\S+$/.test(e))return toast('Email tidak valid',1);
