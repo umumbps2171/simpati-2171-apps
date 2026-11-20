@@ -134,7 +134,7 @@ async function boot(){
  pg=a.data||[];kl=b.data||[];
  $('#login').hidden=true;$('#app').hidden=false;
  const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
- $('#nav').innerHTML='<b><i>P</i><span>Persuratan<br>BPS Kota Batam</span></b>'+ni('dashboard','Dashboard')+Object.keys(J).map(k=>ni(k,J[k].t)).join('')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
+ $('#nav').innerHTML='<b><i>P</i><span>Aplikasi Persuratan<br>BPS-2171</span></b>'+ni('dashboard','Dashboard')+Object.keys(J).map(k=>ni(k,J[k].t)).join('')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
  $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else go(a.dataset.v)};
  go('dashboard');
 }
