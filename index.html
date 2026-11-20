@@ -143,7 +143,7 @@ nav b i img{width:100%;height:100%;object-fit:contain;padding:4px}
 </div>
 <form id="login" hidden>
  <div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div>
- <h1>Umum BPS-2171 Super Apps</h1><p class="muted">Selamat Datang!<br>Aplikasi ini dibuat oleh Tim Subbagian Umum BPS Kota Batam<br>Semoga Bermanfaat Yaaa! :).</p>
+ <h1>Umum BPS-2171 Super Apps</h1><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
  <label for="em">Username / Email</label><input id="em" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false">
  <label for="pw">Kata Sandi</label><input id="pw" type="password" required autocomplete="current-password">
  <div class="row"><button class="p" type="submit">Masuk</button></div>
@@ -167,7 +167,7 @@ const J={
  surat_keluar:{t:'Surat Keluar',f:['tanggal','klasifikasi','perihal','tim','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
  surat_tugas:{t:'Surat Tugas',f:['tanggal','klasifikasi','perihal','tim','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
  sk_kpa:{t:'SK KPA',f:['tanggal','tim','output','uraian'],c:['tanggal','nomor','output','uraian','tim']},
- form_permintaan:{t:'Form Permintaan BOS',f:['tanggal','tim','perihal'],c:['nomor','pembuat','tim','tanggal','perihal'],lb:{perihal:'Judul Form Permintaan'}}};
+ form_permintaan:{t:'Form Permintaan',f:['tanggal','tim','perihal'],c:['nomor','pembuat','tim','tanggal','perihal'],lb:{perihal:'Judul Form Permintaan'}}};
 const LB={nomor:'Nomor',pembuat:'Nama Pegawai Pembuat',tanggal:'Tanggal Surat',klasifikasi:'Kode Klasifikasi',perihal:'Perihal',tujuan:'Tujuan',tim:'Tim Pembuat',link:'Link Surat (Google Drive)',output:'Output',uraian:'Uraian SK'};
 const sv=p=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';
 const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v-6H3z"/>'),
@@ -191,7 +191,7 @@ const canEdit=()=>['admin','petugas'].includes(me.role);
 const hari=()=>new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jakarta'});
 const tgl=s=>s?new Date(s+'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}):'';
 function toast(m,err){const t=$('#toast');t.textContent=m;t.className=err?'err show':'show';clearTimeout(t.h);t.h=setTimeout(()=>t.className='',3500)}
-function modal(h){const m=$('#modal');m.innerHTML='<div class="box">'+h+'</div>';m.hidden=false}
+function modal(h,w){const m=$('#modal');m.innerHTML='<div class="box"'+(w?' style="max-width:'+w+'px"':'')+'>'+h+'</div>';m.hidden=false}
 function closeM(){$('#modal').hidden=true}
 $('#modal').onclick=e=>{if(e.target.id=='modal')closeM()};
 
@@ -204,7 +204,7 @@ async function boot(){
  pg=a.data||[];kl=b.data||[];
  $('#login').hidden=true;$('#gate').hidden=true;$('#app').hidden=false;
  const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span>${v=='pengajuan'?'<em class="bd">Draft</em>':''}</a>`;
- $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Beranda')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('ruangan','Pemakaian Ruangan Rapat')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
+ $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Dashboard')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('ruangan','Pemakaian Ruangan Rapat')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
  $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else if(a.dataset.g){const g=a.closest('.grp');if(innerWidth<=800)document.querySelectorAll('.grp').forEach(x=>x!=g&&x.classList.remove('open'));g.classList.toggle('open')}else go(a.dataset.v)};
  document.addEventListener('click',e=>{if(innerWidth<=800&&!e.target.closest('.grp'))document.querySelectorAll('.grp').forEach(g=>g.classList.remove('open'))});
  go('dashboard');
@@ -235,16 +235,16 @@ async function dash(){
  const m={},tm={};ks.forEach(k=>m[k]=Array(12).fill(0));TIM.forEach(t=>{tm[t]={};ks.forEach(k=>tm[t][k]=0)});
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++;if(tm[r.tim])tm[r.tim][r.jenis]++});
  const tt=TIM.map(t=>ks.reduce((x,k)=>x+tm[t][k],0)),mx=Math.max(1,...tt),sudah=TIM.filter((t,i)=>tt[i]>0),belum=TIM.filter((t,i)=>!tt[i]),bi=new Date().getMonth();
- $('#main').innerHTML=`<div class="hd"><div><p class="muted" style="margin:0">Halo, ${esc(me.nama)}</p><h1>Dashboard Aplikasi</h1></div><div class="jam"><b id="jt"></b><span id="jd"></span></div></div>
+ $('#main').innerHTML=`<div class="hd"><div><p class="muted" style="margin:0">Halo, ${esc(me.nama)}</p><h1>Dashboard</h1></div><div class="jam"><b id="jt"></b><span id="jd"></span></div></div>
+ <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2>Pemakaian Ruangan Rapat</h2><button id="lr">Lihat semua</button></div>
+ ${rm.error?'<p class="empty">Data pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty">Belum ada pemakaian ruangan hari ini atau yang akan datang.</p>'}</div>
  <div class="yr">${yrs.map(y=>`<button class="${y==dy?'on':''}" data-y="${y}">${y}</button>`).join('')}</div>
  <div class="cards">${ks.map(k=>{const t=m[k].reduce((x,y)=>x+y,0),d=dy==cy?m[k][bi]-(bi?m[k][bi-1]:0):null;
   return `<div class="card"><div class="ch"><i style="background:${CL[k]}"></i>${J[k].t}</div><div class="cn">${t}</div><div class="cf">${d===null?'<span class="muted">Total '+dy+'</span>':`<span class="chip ${d<0?'dn':''}">${d<0?'▼':'▲'} ${Math.abs(d)} <small>vs bulan lalu</small></span>`}${spark(m[k],CL[k])}</div></div>`}).join('')}</div>
  <div class="dg"><div class="pn"><h2>Nomor per Bulan, ${dy}</h2><div class="lg">${ks.map(k=>`<span><i style="background:${CL[k]}"></i>${J[k].t}</span>`).join('')}</div>${chart(m)}</div>
  <div class="pn"><h2>Surat per Tim, ${dy}</h2><div class="lg">${ks.map(k=>`<span><i style="background:${CL[k]}"></i>${J[k].t}</span>`).join('')}</div>
  ${TIM.map((t,i)=>`<div class="tb"><span class="tn">${t}</span><div class="tr">${ks.map(k=>tm[t][k]?`<i style="width:${tm[t][k]/mx*100}%;background:${CL[k]}" title="${J[k].t}: ${tm[t][k]}"></i>`:'').join('')}</div><b>${tt[i]}</b></div>`).join('')}
- <p class="muted" style="font-size:13px;margin:12px 0 0">${sudah.length} dari ${TIM.length} tim sudah membuat surat${belum.length?'. Belum: '+belum.join(', '):''}.</p></div></div>
- <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2>Pemakaian Ruangan Rapat</h2><button id="lr">Lihat semua</button></div>
- ${rm.error?'<p class="empty">Data pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty">Belum ada pemakaian ruangan hari ini atau yang akan datang.</p>'}</div>`;
+ <p class="muted" style="font-size:13px;margin:12px 0 0">${sudah.length} dari ${TIM.length} tim sudah membuat surat${belum.length?'. Belum: '+belum.join(', '):''}.</p></div></div>`;
  const tick=()=>{const t=$('#jt');if(!t){clearInterval(jt);return}const n=new Date();
   t.textContent=n.toLocaleTimeString('en-GB',{hour12:false,timeZone:'Asia/Jakarta'})+' WIB';
   $('#jd').textContent=n.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})};
@@ -265,12 +265,12 @@ function draw(){
  const cell=(r,k)=>{const l=`data-l="${lbl(k)}"`;return k=='tanggal'?`<td class="tg" ${l} ${can(r)?`data-id="${r.id}" title="Klik dua kali untuk ubah tanggal"`:''}>${tgl(r.tanggal)}</td>`:
   k=='link'?`<td ${l}>${/^https?:\/\//.test(r.link||'')?`<a href="${esc(r.link)}" target="_blank" rel="noopener">Buka</a>`:''}</td>`:
   k=='nomor'?`<td ${l}><b>${esc(r.nomor)}</b></td>`:`<td ${l}>${esc(r[k])}</td>`};
- $('#main').innerHTML=`<p class="muted" style="margin:0">${GR.find(g=>g[2].includes(view))[1]}</p><h1>${J1.t}</h1><div class="bar"><input id="cari" type="search" placeholder="Cari nomor, perihal, tim…" value="${esc(q)}"><span class="sp"></span><button id="exp">Ekspor Excel</button><button class="p" id="tambah">Ambil Nomor Baru</button></div>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">${GR.find(g=>g[2].includes(view))[1]}</p><h1>${J1.t}</h1><div class="bar"><input id="cari" type="search" placeholder="Cari nomor, perihal, tim…" value="${esc(q)}"><span class="sp"></span><button id="exp">Ekspor Excel</button><button class="p" id="tambah">Ambil Nomor Baru</button><button id="rw">Riwayat Hapus Data</button></div>
  <div class="tw"><table><tr>${J1.c.map(k=>`<th>${lbl(k)}</th>`).join('')}${ed?'<th>Aksi</th>':''}</tr>
  ${part.map(r=>`<tr>${J1.c.map(k=>cell(r,k)).join('')}${ed?`<td class="ac">${can(r)?`<button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td>`:''}</tr>`).join('')||`<tr><td colspan="9" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada data. Klik “Ambil Nomor Baru” untuk memulai.'}</td></tr>`}</table></div>
  <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
  $('#cari').oninput=e=>{q=e.target.value;page=1;draw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
- $('#tambah').onclick=()=>form();$('#exp').onclick=exportCsv;
+ $('#tambah').onclick=()=>form();$('#exp').onclick=exportCsv;$('#rw').onclick=riwayat;
  $('#pv').onclick=()=>{page--;draw()};$('#nx').onclick=()=>{page++;draw()};
  $('#main').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>form(b.dataset.e));
  $('#main').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>hapus(b.dataset.x));
@@ -320,9 +320,20 @@ async function save(e,id){
  try{await navigator.clipboard.writeText(nomor)}catch(_){}
  closeM();toast('Nomor: '+nomor+' (sudah disalin)');load();
 }
+async function riwayat(){
+ const jd=view,jt=J[jd].t;
+ modal(`<h2>Riwayat Hapus Data, ${jt}</h2><p class="muted">Memuat…</p>`,940);
+ const {data,error}=await db.from('riwayat_hapus').select('*').eq('jenis',jd).order('dihapus_pada',{ascending:false}).limit(200);
+ const tutup=()=>{$('#bt').onclick=closeM};
+ if(error){modal(`<h2>Riwayat Hapus Data, ${jt}</h2><p>Gagal memuat: ${esc(error.message)}</p><div class="row"><button id="bt">Tutup</button></div>`,940);return tutup()}
+ const w=d=>new Date(d).toLocaleString('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})+' WIB';
+ modal(`<h2>Riwayat Hapus Data, ${jt}</h2><p class="muted" style="margin:4px 0 12px">${data.length} data terhapus${data.length==200?' (200 terbaru)':''}.</p>
+ <div class="tw"><table><tr><th>Nomor</th><th>Tanggal</th><th>Perihal / Uraian</th><th>Tim</th><th>Pembuat</th><th>Dihapus Oleh</th><th>Waktu Hapus</th></tr>
+ ${data.map(r=>`<tr><td data-l="Nomor"><b>${esc(r.nomor)}</b></td><td data-l="Tanggal" class="tg">${tgl(r.tanggal)}</td><td data-l="Perihal / Uraian">${esc(r.perihal||r.uraian)}</td><td data-l="Tim">${esc(r.tim)}</td><td data-l="Pembuat">${esc(r.pembuat)}</td><td data-l="Dihapus Oleh"><b>${esc(r.dihapus_oleh)}</b></td><td data-l="Waktu Hapus" class="tg">${w(r.dihapus_pada)}</td></tr>`).join('')||'<tr><td colspan="7" class="empty">Belum ada data yang dihapus.</td></tr>'}</table></div>
+ <div class="row"><button id="bt">Tutup</button></div>`,940);tutup()}
 function hapus(id){
  const r=rows.find(x=>x.id==id);
- modal(`<h2>Hapus data?</h2><p>Nomor <b>${esc(r.nomor)}</b> akan dihapus dan tercatat di audit log. Nomor ini tidak akan dipakai ulang.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Hapus</button></div>`);
+ modal(`<h2>Hapus data?</h2><p>Nomor <b>${esc(r.nomor)}</b> akan dihapus dan masuk ke <b>Riwayat Hapus Data</b> beserta nama Anda sebagai yang menghapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Hapus</button></div>`);
  $('#bt').onclick=closeM;
  $('#ok').onclick=async()=>{const {error}=await db.from('register').delete().eq('id',id);closeM();error?toast('Gagal menghapus: '+error.message,1):(toast('Data dihapus'),load())};
 }
