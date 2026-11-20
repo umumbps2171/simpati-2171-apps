@@ -2,7 +2,7 @@
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a2147">
-<title>Aplikasi Persuratan BPS Kota Batam</title>
+<title>Persuratan BPS Kota Batam</title>
 <style>
 :root{--bg:#f2f5fa;--card:#fff;--tx:#0f1b33;--mut:#66758f;--navy:#0b2a5b;--sky:#12408f;--sky2:#e8eef9;--bd:#e3e9f3;--err:#d92d20;--up:#0f9d58;--sh:0 1px 2px rgba(16,40,90,.06),0 6px 18px rgba(16,40,90,.07)}
 @media(prefers-color-scheme:dark){:root{--bg:#0b1424;--card:#121f36;--tx:#e8eef7;--mut:#93a5c1;--navy:#9cc8f7;--sky:#4c9bf5;--sky2:#17294a;--bd:#223a5c;--err:#ff8a80;--up:#3ddc97;--sh:none}}
@@ -30,6 +30,13 @@ nav a svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;
 nav a:hover{background:rgba(255,255,255,.14)}
 nav a.on{background:#fff;color:#0f2f66}
 nav .sp{flex:1}nav small{padding:0 12px;color:#d6e8ff}
+.grp{display:flex;flex-direction:column;gap:2px}
+.grp>a em{margin-left:auto;font-style:normal;font-size:12px;transition:transform .2s}
+.grp.open>a em{transform:rotate(180deg)}
+.grp.act>a{background:rgba(255,255,255,.16);color:#fff}
+.sub{display:none;flex-direction:column;gap:2px;padding:2px 0 4px 14px}
+.grp.open .sub{display:flex}.sub a{padding:9px 12px;font-size:14px}
+.box ul{padding-left:18px;font-size:13px}.set input[type=file]{margin-top:10px}
 main{padding:28px 32px;min-width:0}
 .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}
 .bar input{max-width:300px;border-radius:99px;padding-left:16px}.bar .sp{flex:1}
@@ -82,11 +89,15 @@ td.ac{white-space:nowrap}td.ac button{padding:4px 10px;font-size:13px}
  td::before{content:attr(data-l);color:var(--mut);font-size:12px;text-align:left;flex:none}
  td.ac::before,td.empty::before{content:none}td.ac{justify-content:flex-end;padding-top:8px}
  tbody tr:hover td{background:none}
+ .grp{flex:1;flex-direction:row}.grp>a{flex:1}.grp>a em{display:none}.grp.act>a{background:#fff;color:#0f2f66}
+ .sub{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.3);padding:8px;z-index:11}
+ nav .sub a{flex-direction:row;font-size:15px;color:var(--tx);text-align:left;padding:13px 14px}
+ nav .sub a.on,nav .sub a:hover{background:var(--sky2);color:var(--sky)}
 }
 </style></head><body>
 
 <form id="login" hidden>
- <h1>Aplikasi Persuratan BPS Kota Batam</h1><p class="muted">Aplikasi Persuratan buatan Tim Subbagian Umum 2171<br>Masuk dengan akun yang diberikan administrator.</p>
+ <h1>Persuratan BPS Kota Batam</h1><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
  <label for="em">Email</label><input id="em" type="email" required autocomplete="username">
  <label for="pw">Kata sandi</label><input id="pw" type="password" required autocomplete="current-password">
  <div class="row"><button class="p" type="submit">Masuk</button></div>
@@ -99,6 +110,7 @@ td.ac{white-space:nowrap}td.ac button{padding:4px 10px;font-size:13px}
 <div id="modal" hidden></div><div id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
 // ===== ISI DUA BARIS INI (Supabase > Project Settings > API) =====
 const SB_URL='https://gqxmaebmujswfurhiijc.supabase.co/rest/v1/', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxeG1hZWJtdWpzd2Z1cmhpaWpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxNjI3OTAsImV4cCI6MjExMDczODc5MH0.IVr2qpyLTH0Zc07xmz3v2mfzJ2MUutVCrOjKhqXy1h4';
@@ -114,6 +126,7 @@ const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v
  surat_keluar:sv('<path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/>'),
  surat_tugas:sv('<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/>'),
  sk_kpa:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h6"/>'),
+ surat:sv('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
 let me=null,view='dashboard',rows=[],page=1,q='',pg=[],kl=[];
 const $=s=>document.querySelector(s);
@@ -134,13 +147,16 @@ async function boot(){
  pg=a.data||[];kl=b.data||[];
  $('#login').hidden=true;$('#app').hidden=false;
  const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
- $('#nav').innerHTML='<b><i>P</i><span>Aplikasi Persuratan<br>BPS-2171</span></b>'+ni('dashboard','Dashboard')+Object.keys(J).map(k=>ni(k,J[k].t)).join('')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
- $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else go(a.dataset.v)};
+ $('#nav').innerHTML='<b><i>P</i><span>Persuratan<br>BPS Kota Batam</span></b>'+ni('dashboard','Dashboard')+'<div class="grp"><a data-g="1">'+IC.surat+'<span>Surat Menyurat</span><em>▾</em></a><div class="sub">'+Object.keys(J).map(k=>ni(k,J[k].t)).join('')+'</div></div>'+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
+ $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else if(a.dataset.g)$('.grp').classList.toggle('open');else go(a.dataset.v)};
+ document.addEventListener('click',e=>{if(innerWidth<=800&&!e.target.closest('.grp'))$('.grp')?.classList.remove('open')});
  go('dashboard');
 }
 $('#login').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.signInWithPassword({email:$('#em').value,password:$('#pw').value});if(error){const m=error.message||'';return toast(/Invalid login/i.test(m)?'Email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
 
-function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');v=='dashboard'?dash():v=='pengaturan'?setelan():load()}
+function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
+ const g=$('.grp');if(g){g.classList.toggle('act',!!J[v]);g.classList.toggle('open',!!J[v]&&innerWidth>800)}
+ v=='dashboard'?dash():v=='pengaturan'?setelan():load()}
 
 let dy=0;
 const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2a62c9',surat_tugas:'#12b5a6',sk_kpa:'#f5a524'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA'};
@@ -182,7 +198,7 @@ function draw(){
  const cell=(r,k)=>{const l=`data-l="${LB[k]}"`;return k=='tanggal'?`<td class="tg" ${l} ${ed?`data-id="${r.id}" title="Klik dua kali untuk ubah tanggal"`:''}>${tgl(r.tanggal)}</td>`:
   k=='link'?`<td ${l}>${/^https?:\/\//.test(r.link||'')?`<a href="${esc(r.link)}" target="_blank" rel="noopener">Buka</a>`:''}</td>`:
   k=='nomor'?`<td ${l}><b>${esc(r.nomor)}</b></td>`:`<td ${l}>${esc(r[k])}</td>`};
- $('#main').innerHTML=`<h1>${J1.t}</h1><div class="bar"><input id="cari" type="search" placeholder="Cari nomor, perihal, tujuan…" value="${esc(q)}"><span class="sp"></span><button id="exp">Ekspor Excel</button><button class="p" id="tambah">Ambil nomor baru</button></div>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Surat Menyurat</p><h1>${J1.t}</h1><div class="bar"><input id="cari" type="search" placeholder="Cari nomor, perihal, tujuan…" value="${esc(q)}"><span class="sp"></span><button id="exp">Ekspor Excel</button><button class="p" id="tambah">Ambil nomor baru</button></div>
  <div class="tw"><table><tr>${J1.c.map(k=>`<th>${LB[k]}</th>`).join('')}${ed?'<th>Aksi</th>':''}</tr>
  ${part.map(r=>`<tr>${J1.c.map(k=>cell(r,k)).join('')}${ed?`<td class="ac"><button data-e="${r.id}">Ubah</button> ${ad?`<button class="d" data-x="${r.id}">Hapus</button>`:''}</td>`:''}</tr>`).join('')||`<tr><td colspan="9" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada data. Klik “Ambil nomor baru” untuk memulai.'}</td></tr>`}</table></div>
  <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
@@ -255,10 +271,13 @@ async function setelan(){
  <label>Email (Gmail)</label><input id="ue" type="email" placeholder="nama@gmail.com">
  <label>Nama pegawai</label><select id="un"><option value="">- pilih pegawai -</option>${pg.map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select>
  <label>Peran</label><select id="ur"><option value="pegawai">Pegawai</option><option value="petugas">Petugas Persuratan</option><option value="admin">Administrator</option></select>
- <div class="row"><button class="p" id="tp">Tambah pengguna</button></div></div></div>
+ <div class="row"><button class="p" id="tp">Tambah pengguna</button></div></div><div class="set"><h2>Unggah pengguna dari Excel</h2><p class="muted">Kolom: <b>Email</b>, <b>Nama Pegawai</b>, <b>Role</b> (admin, petugas, atau pegawai). Kata sandi awal semua pengguna: <b>123456</b>.</p><button id="tm">Unduh template</button><input id="xf" type="file" accept=".xlsx,.xls,.csv"></div></div>
  <h2 style="font-size:17px;margin:22px 0 10px">Daftar pengguna</h2><div class="tw"><table><tr><th>Email</th><th>Nama pegawai (pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td>${esc(u.email)}</td><td><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td><select data-r="${u.id}">${['pegawai','petugas','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${r}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset kata sandi</button></td></tr>`).join('')||'<tr><td colspan="4" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`:'</div>'}`;
  $('#gp').onclick=async()=>{const v=$('#np').value;if(v.length<6)return toast('Kata sandi minimal 6 karakter',1);const {error}=await db.auth.updateUser({password:v});error?toast('Gagal: '+error.message,1):(toast('Kata sandi diperbarui'),$('#np').value='')};
  if(!ad)return;
+ $('#tm').onclick=()=>{if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);const w=XLSX.utils.book_new();XLSX.utils.book_append_sheet(w,XLSX.utils.aoa_to_sheet([['Email','Nama Pegawai','Role'],['contoh@gmail.com','Nama Lengkap Pegawai','pegawai']]),'Pengguna');XLSX.writeFile(w,'template_pengguna.xlsx')};
+ $('#xf').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);
+  try{const w=XLSX.read(await f.arrayBuffer());impor(XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]],{header:1,defval:''}))}catch(_){toast('File tidak bisa dibaca. Gunakan file Excel (.xlsx)',1)}};
  $('#tp').onclick=async()=>{const e=$('#ue').value.trim();if(!/^\S+@\S+\.\S+$/.test(e))return toast('Email tidak valid',1);
   const {error}=await db.rpc('tambah_pengguna',{p_email:e,p_nama:$('#un').value,p_role:$('#ur').value});
   if(error)return toast(error.message,1);toast('Pengguna ditambahkan. Kata sandi awal: 123456');setelan()};
@@ -268,6 +287,25 @@ async function setelan(){
   modal(`<h2>Reset kata sandi?</h2><p>Kata sandi <b>${esc(b.dataset.em)}</b> akan dikembalikan ke 123456.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Reset</button></div>`);
   $('#bt').onclick=closeM;
   $('#ok').onclick=async()=>{const {error}=await db.rpc('reset_sandi',{p_id:b.dataset.rs});closeM();error?toast(error.message,1):toast('Kata sandi dikembalikan ke 123456')}});
+}
+const RL={admin:'admin',administrator:'admin',petugas:'petugas','petugas persuratan':'petugas',pegawai:'pegawai'};
+function impor(a){
+ const hd=(a[0]||[]).map(x=>String(x).toLowerCase()),ix=k=>hd.findIndex(x=>x.includes(k));
+ let c=[ix('email'),ix('nama'),ix('role')>=0?ix('role'):ix('peran')];if(c.some(i=>i<0))c=[0,1,2];
+ const ok=[],bad=[];
+ a.slice(1).forEach((r,i)=>{if(!r.some(x=>String(x).trim()))return;
+  const e=String(r[c[0]]).trim().toLowerCase(),n=String(r[c[1]]).trim(),rt=String(r[c[2]]).trim().toLowerCase()||'pegawai',ro=RL[rt];
+  if(!/^\S+@\S+\.\S+$/.test(e))bad.push('Baris '+(i+2)+': email tidak valid');
+  else if(!ro)bad.push('Baris '+(i+2)+': role "'+rt+'" tidak dikenal');
+  else if(ok.some(x=>x.e==e))bad.push('Baris '+(i+2)+': email ganda di dalam file');
+  else ok.push({e,n,ro})});
+ if(!ok.length&&!bad.length)return toast('File kosong atau formatnya tidak sesuai template',1);
+ modal(`<h2>Impor pengguna</h2><p><b>${ok.length}</b> pengguna siap ditambahkan dengan kata sandi awal 123456.</p>${bad.length?`<p class="muted">${bad.length} baris dilewati:</p><ul>${bad.slice(0,10).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="row"><button id="bt">Batal</button><button class="p" id="ok" ${ok.length?'':'disabled'}>Tambahkan</button></div>`);
+ $('#bt').onclick=closeM;
+ $('#ok').onclick=async()=>{const b=$('#ok'),gl=[];b.disabled=true;let n=0;
+  for(const u of ok){b.textContent='Memproses '+(++n)+'/'+ok.length+'…';const {error}=await db.rpc('tambah_pengguna',{p_email:u.e,p_nama:u.n,p_role:u.ro});if(error)gl.push(u.e+': '+error.message)}
+  modal(`<h2>Impor selesai</h2><p><b>${ok.length-gl.length}</b> pengguna berhasil ditambahkan.</p>${gl.length?`<p class="muted">${gl.length} gagal:</p><ul>${gl.slice(0,15).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="row"><button class="p" id="bt2">Tutup</button></div>`);
+  $('#bt2').onclick=()=>{closeM();setelan()}};
 }
 boot();
 </script></body></html>
