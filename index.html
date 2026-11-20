@@ -122,6 +122,10 @@ td.ac{white-space:nowrap}td.ac button{padding:4px 10px;font-size:13px}
  nav .sub .bd{background:#fff3d6;color:#8a5a00}
  nav .sub a.on,nav .sub a:hover{background:var(--sky2);color:var(--sky)}
 }
+.tb{display:grid;grid-template-columns:84px 1fr 32px;gap:10px;align-items:center;margin:12px 0}
+.tn{font-size:13px;color:var(--mut)}.tb b{text-align:right}
+.tr{display:flex;height:16px;background:var(--sky2);border-radius:99px;overflow:hidden}.tr i{display:block;height:100%;transition:width .5s}
+@media(max-width:800px){nav a[data-v=ruangan] span{font-size:10px;line-height:1.1}}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -131,7 +135,7 @@ td.ac{white-space:nowrap}td.ac button{padding:4px 10px;font-size:13px}
 </div>
 <form id="login" hidden>
  <h1>Umum BPS-2171 Super Apps</h1><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
- <label for="em">Email</label><input id="em" type="email" required autocomplete="username">
+ <label for="em">Username / Email</label><input id="em" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false">
  <label for="pw">Kata Sandi</label><input id="pw" type="password" required autocomplete="current-password">
  <div class="row"><button class="p" type="submit">Masuk</button></div>
  <p class="warn"><b>Lupa kata sandi?</b> Hubungi Administrator untuk mengubah kata sandi.</p>
@@ -154,7 +158,7 @@ const J={
  surat_keluar:{t:'Surat Keluar',f:['tanggal','klasifikasi','perihal','tim','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
  surat_tugas:{t:'Surat Tugas',f:['tanggal','klasifikasi','perihal','tim','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
  sk_kpa:{t:'SK KPA',f:['tanggal','tim','output','uraian'],c:['tanggal','nomor','output','uraian','tim']},
- form_permintaan:{t:'Form Permintaan',f:['tanggal','perihal'],c:['nomor','pembuat','tanggal','perihal'],lb:{perihal:'Judul Form Permintaan'}}};
+ form_permintaan:{t:'Form Permintaan',f:['tanggal','tim','perihal'],c:['nomor','pembuat','tim','tanggal','perihal'],lb:{perihal:'Judul Form Permintaan'}}};
 const LB={nomor:'Nomor',pembuat:'Nama Pegawai Pembuat',tanggal:'Tanggal Surat',klasifikasi:'Kode Klasifikasi',perihal:'Perihal',tujuan:'Tujuan',tim:'Tim Pembuat',link:'Link Surat (Google Drive)',output:'Output',uraian:'Uraian SK'};
 const sv=p=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';
 const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v-6H3z"/>'),
@@ -164,6 +168,7 @@ const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v
  keuangan:sv('<rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/>'),
  form_permintaan:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M12 12v6M9 15h6"/>'),
  pengajuan:sv('<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>'),
+ ruangan:sv('<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15h3"/>'),
  surat:sv('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
 const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan']]];
@@ -189,17 +194,18 @@ async function boot(){
  pg=a.data||[];kl=b.data||[];
  $('#login').hidden=true;$('#gate').hidden=true;$('#app').hidden=false;
  const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span>${v=='pengajuan'?'<em class="bd">Draft</em>':''}</a>`;
- $('#nav').innerHTML='<b><i>U</i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Dashboard')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
+ $('#nav').innerHTML='<b><i>U</i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Dashboard')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('ruangan','Pemakaian Ruangan Rapat')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
  $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else if(a.dataset.g){const g=a.closest('.grp');if(innerWidth<=800)document.querySelectorAll('.grp').forEach(x=>x!=g&&x.classList.remove('open'));g.classList.toggle('open')}else go(a.dataset.v)};
  document.addEventListener('click',e=>{if(innerWidth<=800&&!e.target.closest('.grp'))document.querySelectorAll('.grp').forEach(g=>g.classList.remove('open'))});
  go('dashboard');
 }
 $('#gb').onclick=()=>{const g=$('#gate');g.classList.add('open');setTimeout(()=>{g.hidden=true;$('#em').focus()},950)};
-$('#login').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.signInWithPassword({email:$('#em').value,password:$('#pw').value});if(error){const m=error.message||'';return toast(/Invalid login/i.test(m)?'Email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
+$('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();if(!em.includes('@')){const {data:x,error:ex}=await db.rpc('login_email',{p_id:em});if(ex)return toast('Login dengan username belum aktif: '+ex.message,1);if(!x)return toast('Username tidak ditemukan',1);em=x}
+ const {error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
 
 function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
  document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth>800)});
- v=='dashboard'?dash():v=='pengaturan'?setelan():v=='pengajuan'?draftPage():load()}
+ v=='dashboard'?dash():v=='pengaturan'?setelan():v=='pengajuan'?draftPage():v=='ruangan'?ruangPage():load()}
 
 let dy=0;
 const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2a62c9',surat_tugas:'#12b5a6',sk_kpa:'#f5a524',form_permintaan:'#8b5cf6'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA',form_permintaan:'FP'};
@@ -213,19 +219,20 @@ function chart(m){
 function spark(a,c){const mx=Math.max(1,...a);return `<svg viewBox="0 0 80 28" width="80" height="28" aria-hidden="true"><polyline points="${a.map((v,i)=>(i*80/11).toFixed(1)+','+(26-v*24/mx).toFixed(1)).join(' ')}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
 async function dash(){
  $('#main').innerHTML='<p class="muted">Memuat…</p>';
- const ks=Object.keys(J),[a,b]=await Promise.all([db.from('register').select('jenis,tahun,tanggal').limit(10000),
-  db.from('register').select('jenis,nomor,perihal,uraian,tanggal').order('dibuat_pada',{ascending:false}).limit(6)]);
- const all=a.data||[],cy=new Date().getFullYear(),yrs=[...new Set([cy,...all.map(r=>r.tahun)])].sort((x,y)=>y-x).slice(0,4);
+ const ks=Object.keys(J),{data}=await db.from('register').select('jenis,tahun,tanggal,tim').limit(10000);
+ const all=data||[],cy=new Date().getFullYear(),yrs=[...new Set([cy,...all.map(r=>r.tahun)])].sort((x,y)=>y-x).slice(0,4);
  if(!yrs.includes(dy))dy=cy;
- const m={};ks.forEach(k=>m[k]=Array(12).fill(0));
- all.filter(r=>r.tahun==dy).forEach(r=>m[r.jenis][+r.tanggal.slice(5,7)-1]++);
- const bi=new Date().getMonth(),first=(me.nama||'').split('@')[0].split(/[ ,]/)[0];
- $('#main').innerHTML=`<p class="muted" style="margin:0">Halo, ${esc(first)}</p><h1>Dashboard</h1>
+ const m={},tm={};ks.forEach(k=>m[k]=Array(12).fill(0));TIM.forEach(t=>{tm[t]={};ks.forEach(k=>tm[t][k]=0)});
+ all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++;if(tm[r.tim])tm[r.tim][r.jenis]++});
+ const tt=TIM.map(t=>ks.reduce((x,k)=>x+tm[t][k],0)),mx=Math.max(1,...tt),sudah=TIM.filter((t,i)=>tt[i]>0),belum=TIM.filter((t,i)=>!tt[i]),bi=new Date().getMonth();
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Halo, ${esc(me.nama)}</p><h1>Dashboard</h1>
  <div class="yr">${yrs.map(y=>`<button class="${y==dy?'on':''}" data-y="${y}">${y}</button>`).join('')}</div>
  <div class="cards">${ks.map(k=>{const t=m[k].reduce((x,y)=>x+y,0),d=dy==cy?m[k][bi]-(bi?m[k][bi-1]:0):null;
   return `<div class="card"><div class="ch"><i style="background:${CL[k]}"></i>${J[k].t}</div><div class="cn">${t}</div><div class="cf">${d===null?'<span class="muted">Total '+dy+'</span>':`<span class="chip ${d<0?'dn':''}">${d<0?'▼':'▲'} ${Math.abs(d)} <small>vs bulan lalu</small></span>`}${spark(m[k],CL[k])}</div></div>`}).join('')}</div>
  <div class="dg"><div class="pn"><h2>Nomor per Bulan, ${dy}</h2><div class="lg">${ks.map(k=>`<span><i style="background:${CL[k]}"></i>${J[k].t}</span>`).join('')}</div>${chart(m)}</div>
- <div class="pn"><h2>Nomor Terbaru</h2>${(b.data||[]).map(r=>`<div class="li"><div class="av" style="background:${CL[r.jenis]}">${IN[r.jenis]}</div><div class="lt"><b>${esc(r.nomor)}</b><span>${esc(r.perihal||r.uraian)}</span></div><small class="muted">${tgl(r.tanggal)}</small></div>`).join('')||'<p class="empty">Belum ada nomor yang diambil.</p>'}</div></div>`;
+ <div class="pn"><h2>Surat per Tim, ${dy}</h2><div class="lg">${ks.map(k=>`<span><i style="background:${CL[k]}"></i>${J[k].t}</span>`).join('')}</div>
+ ${TIM.map((t,i)=>`<div class="tb"><span class="tn">${t}</span><div class="tr">${ks.map(k=>tm[t][k]?`<i style="width:${tm[t][k]/mx*100}%;background:${CL[k]}" title="${J[k].t}: ${tm[t][k]}"></i>`:'').join('')}</div><b>${tt[i]}</b></div>`).join('')}
+ <p class="muted" style="font-size:13px;margin:12px 0 0">${sudah.length} dari ${TIM.length} tim sudah membuat surat${belum.length?'. Belum: '+belum.join(', '):''}.</p></div></div>`;
  $('#main').querySelectorAll('[data-y]').forEach(x=>x.onclick=()=>{dy=+x.dataset.y;dash()});
 }
 async function load(){
@@ -316,9 +323,10 @@ async function setelan(){
  ${ad?`<div class="set"><h2>Tambah Pengguna</h2><p class="muted">Kata sandi awal: <b>123456</b>. Minta pengguna menggantinya setelah masuk pertama kali.</p>
  <label>Email (Gmail)</label><input id="ue" type="email" placeholder="nama@gmail.com">
  <label>Nama pegawai</label><select id="un"><option value="">- pilih pegawai -</option>${pg.map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select>
+ <label>Username (otomatis dari nama awal pegawai, bisa diubah)</label><input id="uu" autocapitalize="none" placeholder="mis. hogan">
  <label>Peran</label><select id="ur"><option value="pegawai">Pegawai</option><option value="petugas">Petugas Persuratan</option><option value="admin">Administrator</option></select>
  <div class="row"><button class="p" id="tp">Tambah Pengguna</button></div></div><div class="set"><h2>Unggah Pengguna dari Excel</h2><p class="muted">Kolom: <b>Email</b>, <b>Nama Pegawai</b>, <b>Role</b> (admin, petugas, atau pegawai). Kata sandi awal semua pengguna: <b>123456</b>.</p><button id="tm">Unduh Template</button><input id="xf" type="file" accept=".xlsx,.xls,.csv"></div></div>
- <h2 style="font-size:17px;margin:22px 0 10px">Daftar Pengguna</h2><div class="tw"><table><tr><th>Email</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td>${esc(u.email)}</td><td><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td><select data-r="${u.id}">${['pegawai','petugas','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${r}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button></td></tr>`).join('')||'<tr><td colspan="4" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`:'</div>'}`;
+ <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:22px 0 10px"><h2 style="font-size:17px">Daftar Pengguna</h2><button id="iu">Isi Username Otomatis</button></div><div class="tw"><table><tr><th>Email</th><th>Username</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td>${esc(u.email)}</td><td><input data-u="${u.id}" value="${esc(u.username||'')}" placeholder="belum diatur" autocapitalize="none" style="min-width:120px"></td><td><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td><select data-r="${u.id}">${['pegawai','petugas','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${r}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`:'</div>'}`;
  $('#gp').onclick=async()=>{const v=$('#np').value;if(v.length<6)return toast('Kata sandi minimal 6 karakter',1);const {error}=await db.auth.updateUser({password:v});error?toast('Gagal: '+error.message,1):(toast('Kata sandi diperbarui'),$('#np').value='')};
  if(!ad)return;
  $('#tm').onclick=()=>{if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);const w=XLSX.utils.book_new();XLSX.utils.book_append_sheet(w,XLSX.utils.aoa_to_sheet([['Email','Nama Pegawai','Role'],['contoh@gmail.com','Nama Lengkap Pegawai','pegawai']]),'Pengguna');XLSX.writeFile(w,'template_pengguna.xlsx')};
@@ -326,7 +334,14 @@ async function setelan(){
   try{const w=XLSX.read(await f.arrayBuffer());impor(XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]],{header:1,defval:''}))}catch(_){toast('File tidak bisa dibaca. Gunakan file Excel (.xlsx)',1)}};
  $('#tp').onclick=async()=>{const e=$('#ue').value.trim();if(!/^\S+@\S+\.\S+$/.test(e))return toast('Email tidak valid',1);
   const {error}=await db.rpc('tambah_pengguna',{p_email:e,p_nama:$('#un').value,p_role:$('#ur').value});
-  if(error)return toast(error.message,1);toast('Pengguna ditambahkan. Kata sandi awal: 123456');setelan()};
+  if(error)return toast(error.message,1);
+  const u=($('#uu').value||'').trim().toLowerCase()||usn($('#un').value);
+  if(u){const {error:e2}=await db.from('profiles').update({username:u}).ilike('email',e);if(e2){setelan();return toast('Pengguna ditambahkan, tetapi username "'+u+'" tidak bisa dipakai (mungkin sudah ada). Ubah di Daftar Pengguna.',1)}}
+  toast('Pengguna ditambahkan. Username: '+(u||'-')+'. Kata sandi awal: 123456');setelan()};
+ $('#un').onchange=()=>{$('#uu').value=usn($('#un').value)};
+ $('#iu').onclick=async()=>{const n=await isiUsername();toast(n+' username diisi');setelan()};
+ $('#main').querySelectorAll('[data-u]').forEach(i=>i.onchange=async()=>{const v=i.value.trim().toLowerCase();if(v&&!/^[a-z0-9._-]{3,}$/.test(v)){toast('Username minimal 3 karakter: huruf kecil, angka, titik, atau strip',1);return setelan()}
+  const {error}=await db.from('profiles').update({username:v||null}).eq('id',i.dataset.u);if(error){toast(error.code=='23505'?'Username sudah dipakai pengguna lain':error.message,1);return setelan()}i.value=v;toast('Username diperbarui')});
  $('#main').querySelectorAll('[data-r]').forEach(s=>s.onchange=async()=>{const {error}=await db.rpc('ubah_peran',{p_id:s.dataset.r,p_role:s.value});error?(toast(error.message,1),setelan()):toast('Peran diperbarui')});
  $('#main').querySelectorAll('[data-n]').forEach(s=>s.onchange=async()=>{const {error}=await db.from('profiles').update({nama:s.value}).eq('id',s.dataset.n);error?toast(error.message,1):toast('Nama pegawai diperbarui')});
  $('#main').querySelectorAll('[data-rs]').forEach(b=>b.onclick=()=>{
@@ -338,6 +353,57 @@ function draftPage(){
  $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Pengajuan Keuangan <span class="chip" style="font-size:13px;vertical-align:middle;background:rgba(245,165,36,.2);color:#b36b00">Draft</span></h1>
  <div class="pn" style="max-width:720px"><h2>Menu Ini Masih Berupa Draft</h2><p class="muted">Belum ada fitur yang berfungsi di halaman ini. Alur dan isian pengajuan perlu dikonfirmasi dulu supaya sesuai kebutuhan kantor:</p>
  <ul style="line-height:1.9"><li>Isian apa saja yang dicatat (nomor, tanggal, uraian, nominal, tim, lampiran)?</li><li>Siapa yang menyetujui, dan berapa tahap persetujuannya?</li><li>Apakah pengajuan terhubung dengan nomor Form Permintaan?</li><li>Status apa saja yang dipakai (diajukan, disetujui, ditolak, dibayar)?</li><li>Siapa saja yang boleh melihat data keuangan?</li></ul></div>`}
+const usn=n=>{const w=String(n||'').split(/[\s,]+/).map(x=>x.replace(/[^A-Za-z]/g,'')).filter(Boolean);return (w.find(x=>x.length>2&&!/^(dr|drs|dra|ir|prof|hj)$/i.test(x))||w[0]||'').toLowerCase()};
+async function isiUsername(){
+ const {data}=await db.from('profiles').select('id,nama,username'),us=data||[],pakai=new Set(us.filter(u=>u.username).map(u=>u.username.toLowerCase()));let n=0;
+ for(const u of us.filter(u=>!u.username)){const b=usn(u.nama);if(!b)continue;let c=b,i=1;while(pakai.has(c))c=b+(++i);pakai.add(c);const {error}=await db.from('profiles').update({username:c}).eq('id',u.id);if(!error)n++}
+ return n}
+const RU=['Ruang Rapat','Ruang PST'];let rr=[];
+const bolehRu=r=>canEdit()||(me.id&&r.dibuat_oleh==me.id);
+async function ruangPage(){
+ $('#main').innerHTML='<p class="muted">Memuat…</p>';
+ const {data,error}=await db.from('ruangan').select('*').order('tanggal',{ascending:false}).order('dibuat_pada',{ascending:false}).limit(5000);
+ if(error)return toast('Gagal memuat data: '+error.message+' (pastikan patch SQL sudah dijalankan)',1);
+ rr=data;ruangDraw()}
+function ruangDraw(){
+ const s=q.toLowerCase(),f=rr.filter(r=>!s||[r.tim,r.pegawai,r.ruangan,r.kegiatan,r.tanggal].join(' ').toLowerCase().includes(s)),tp=Math.max(1,Math.ceil(f.length/10));page=Math.min(page,tp);
+ const part=f.slice((page-1)*10,page*10),C=[['tanggal','Tanggal Pemakaian'],['ruangan','Ruangan'],['kegiatan','Nama Kegiatan'],['tim','Tim Pembuat'],['pegawai','Nama Pegawai']];
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Pemakaian Ruangan Rapat</h1><div class="bar"><input id="cari" type="search" placeholder="Cari kegiatan, tim, ruangan…" value="${esc(q)}"><span class="sp"></span><button class="p" id="tambah">Ajukan Pemakaian</button></div>
+ <div class="tw"><table><tr>${C.map(c=>`<th>${c[1]}</th>`).join('')}<th>Aksi</th></tr>${part.map(r=>`<tr>${C.map(c=>`<td data-l="${c[1]}">${c[0]=='tanggal'?tgl(r.tanggal):c[0]=='kegiatan'?'<b>'+esc(r.kegiatan)+'</b>':esc(r[c[0]])}</td>`).join('')}<td class="ac">${bolehRu(r)?`<button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td></tr>`).join('')||`<tr><td colspan="6" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada pemakaian ruangan. Klik “Ajukan Pemakaian” untuk memulai.'}</td></tr>`}</table></div>
+ <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
+ $('#cari').oninput=e=>{q=e.target.value;page=1;ruangDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
+ $('#tambah').onclick=()=>ruangForm();$('#pv').onclick=()=>{page--;ruangDraw()};$('#nx').onclick=()=>{page++;ruangDraw()};
+ $('#main').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>ruangForm(b.dataset.e));
+ $('#main').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>ruangHapus(b.dataset.x));
+}
+function ruangForm(id){
+ const r=id?rr.find(x=>x.id==id):{tanggal:new Date().toISOString().slice(0,10),pegawai:me.nama};
+ const sel=(n,a,v,ph)=>`<select name="${n}" required><option value="">- ${ph} -</option>${a.map(x=>`<option ${x==v?'selected':''}>${esc(x)}</option>`).join('')}</select>`;
+ const nama=[...new Set([r.pegawai,...pg.map(p=>p.nama)])].filter(Boolean);
+ modal(`<h2>${id?'Ubah':'Ajukan'} Pemakaian Ruangan Rapat</h2><form id="fm"><label>Tim Pembuat</label>${sel('tim',TIM,r.tim,'pilih tim')}
+ <label>Nama Pegawai</label>${sel('pegawai',nama,r.pegawai,'pilih pegawai')}
+ <label>Tanggal Pemakaian Ruangan</label><input name="tanggal" type="date" value="${esc(r.tanggal)}" required>
+ <label>Ruangan yang Dipakai</label>${sel('ruangan',RU,r.ruangan,'pilih ruangan')}
+ <label>Nama Kegiatan</label><input name="kegiatan" value="${esc(r.kegiatan)}" required autocomplete="off">
+ <p id="hint" class="muted" style="font-size:13px;margin:12px 0 0">Semua isian wajib diisi.</p>
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Simpan'}</button></div></form>`);
+ $('#bt').onclick=closeM;$('#fm').onsubmit=e=>ruangSave(e,id);
+ const t=$('#fm [name=tanggal]'),ru=$('#fm [name=ruangan]'),hn=()=>{const b=rr.find(x=>x.id!=id&&x.tanggal==t.value&&x.ruangan==ru.value);
+  $('#hint').textContent=b?ru.value+' sudah dipakai pada tanggal itu untuk “'+b.kegiatan+'” ('+b.tim+'). Pastikan jamnya tidak bentrok.':'Semua isian wajib diisi.'};
+ t.onchange=ru.onchange=hn;
+}
+async function ruangSave(e,id){
+ e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.kegiatan=(d.kegiatan||'').trim();
+ if(['tim','pegawai','tanggal','ruangan','kegiatan'].some(k=>!d[k]))return toast('Semua isian wajib diisi',1);
+ const b=e.submitter;b.disabled=true;
+ const {error}=id?await db.from('ruangan').update(d).eq('id',id):await db.from('ruangan').insert(d);
+ b.disabled=false;if(error)return toast('Gagal menyimpan: '+error.message,1);
+ closeM();toast(id?'Perubahan disimpan':'Pemakaian ruangan tersimpan');ruangPage()}
+function ruangHapus(id){
+ const r=rr.find(x=>x.id==id);
+ modal(`<h2>Hapus pemakaian ruangan?</h2><p><b>${esc(r.kegiatan)}</b> (${esc(r.ruangan)}, ${tgl(r.tanggal)}) akan dihapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Hapus</button></div>`);
+ $('#bt').onclick=closeM;
+ $('#ok').onclick=async()=>{const {error}=await db.from('ruangan').delete().eq('id',id);closeM();error?toast('Gagal menghapus: '+error.message,1):(toast('Data dihapus'),ruangPage())}}
 const RL={admin:'admin',administrator:'admin',petugas:'petugas','petugas persuratan':'petugas',pegawai:'pegawai'};
 function impor(a){
  const hd=(a[0]||[]).map(x=>String(x).toLowerCase()),ix=k=>hd.findIndex(x=>x.includes(k));
@@ -354,6 +420,7 @@ function impor(a){
  $('#bt').onclick=closeM;
  $('#ok').onclick=async()=>{const b=$('#ok'),gl=[];b.disabled=true;let n=0;
   for(const u of ok){b.textContent='Memproses '+(++n)+'/'+ok.length+'…';const {error}=await db.rpc('tambah_pengguna',{p_email:u.e,p_nama:u.n,p_role:u.ro});if(error)gl.push(u.e+': '+error.message)}
+  await isiUsername();
   modal(`<h2>Impor Selesai</h2><p><b>${ok.length-gl.length}</b> pengguna berhasil ditambahkan.</p>${gl.length?`<p class="muted">${gl.length} gagal:</p><ul>${gl.slice(0,15).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="row"><button class="p" id="bt2">Tutup</button></div>`);
   $('#bt2').onclick=()=>{closeM();setelan()}};
 }
