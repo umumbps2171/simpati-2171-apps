@@ -2,7 +2,7 @@
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a2147">
-<title>Persuratan BPS Kota Batam</title>
+<title>Umum BPS-2171 Super Apps</title>
 <style>
 :root{--bg:#f2f5fa;--card:#fff;--tx:#0f1b33;--mut:#66758f;--navy:#0b2a5b;--sky:#12408f;--sky2:#e8eef9;--bd:#e3e9f3;--err:#d92d20;--up:#0f9d58;--sh:0 1px 2px rgba(16,40,90,.06),0 6px 18px rgba(16,40,90,.07)}
 @media(prefers-color-scheme:dark){:root{--bg:#0b1424;--card:#121f36;--tx:#e8eef7;--mut:#93a5c1;--navy:#9cc8f7;--sky:#4c9bf5;--sky2:#17294a;--bd:#223a5c;--err:#ff8a80;--up:#3ddc97;--sh:none}}
@@ -21,6 +21,31 @@ label{display:block;margin:12px 0 4px;font-weight:600;font-size:13px;color:var(-
 .muted{color:var(--mut)}
 #login{max-width:380px;margin:12vh auto;padding:28px;background:var(--card);box-shadow:var(--sh);border-radius:18px}
 #login h1{font-size:22px;margin-bottom:4px}
+#gate{position:fixed;inset:0;z-index:50;overflow:hidden}
+.gh{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(160deg,#12397a,#0a2147);background-size:200% 100%;transition:transform .9s cubic-bezier(.77,0,.18,1)}
+.gl{left:0}.gr{right:0;background-position:100% 0}
+#gate.open .gl{transform:translateX(-101%)}#gate.open .gr{transform:translateX(101%)}
+#gc{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;transition:opacity .5s,transform .6s}
+#gate.open #gc{opacity:0;transform:scale(1.08)}
+.gk{position:relative;z-index:2;padding:24px;animation:rise .9s both}
+.gk h1{font-size:clamp(30px,6vw,56px);line-height:1.1;margin:10px 0 30px;background:linear-gradient(90deg,#fff,#8fc5f2,#fff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.gk small{letter-spacing:.22em;text-transform:uppercase;color:#a9c8ee}
+.gm{width:72px;height:72px;margin:0 auto 16px;border-radius:22px;background:#fff;color:#0f2f66;display:grid;place-items:center;font-size:34px;font-weight:800;animation:bob 3s ease-in-out infinite}
+#gb{padding:14px 36px;font-size:17px;border-radius:99px;border:0;background:#fff;color:#0f2f66;font-weight:800;animation:pulse 2s infinite}
+#gb:hover{transform:translateY(-2px)}
+.o{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;animation:drift 12s ease-in-out infinite alternate}
+.o1{width:340px;height:340px;background:#2a62c9;top:-80px;left:-60px}
+.o2{width:300px;height:300px;background:#1b8fd6;bottom:-90px;right:-40px;animation-delay:-4s}
+.o3{width:220px;height:220px;background:#5b7fe0;top:45%;left:60%;animation-delay:-8s}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+@keyframes shine{to{background-position:-200% 0}}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 18px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.15)}}
+@media(prefers-reduced-motion:reduce){#gate *{animation:none!important}}
+body:has(#login:not([hidden])){background:linear-gradient(160deg,#12397a,#0a2147) fixed;min-height:100vh}
+.warn{margin:16px 0 0;padding:10px 12px;border-radius:10px;background:#fff6e0;color:#7a4b00;font-size:13px;border:1px solid #f3d894}
+@media(prefers-color-scheme:dark){.warn{background:#3a2f12;color:#ffd98a;border-color:#6b5320}}
 #app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
 nav{background:linear-gradient(180deg,#12397a,#0a2147);color:#fff;padding:22px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
 nav b{display:flex;align-items:center;gap:10px;padding:0 8px 22px;font-size:15px;line-height:1.25}
@@ -35,7 +60,9 @@ nav .sp{flex:1}nav small{padding:0 12px;color:#d6e8ff}
 .grp.open>a em{transform:rotate(180deg)}
 .grp.act>a{background:rgba(255,255,255,.16);color:#fff}
 .sub{display:none;flex-direction:column;gap:2px;padding:2px 0 4px 14px}
-.grp.open .sub{display:flex}.sub a{padding:9px 12px;font-size:14px}
+.grp.open .sub{display:flex}
+.bd{margin-left:auto;font-style:normal;font-size:10px;font-weight:700;padding:1px 8px;border-radius:99px;background:rgba(255,184,0,.28);color:#ffe29a}
+nav .sub .bd{display:inline-block}.sub a{padding:9px 12px;font-size:14px}
 .box ul{padding-left:18px;font-size:13px}.set input[type=file]{margin-top:10px}
 main{padding:28px 32px;min-width:0}
 .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}
@@ -92,15 +119,22 @@ td.ac{white-space:nowrap}td.ac button{padding:4px 10px;font-size:13px}
  .grp{flex:1;flex-direction:row}.grp>a{flex:1}.grp>a em{display:none}.grp.act>a{background:#fff;color:#0f2f66}
  .sub{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.3);padding:8px;z-index:11}
  nav .sub a{flex-direction:row;font-size:15px;color:var(--tx);text-align:left;padding:13px 14px}
+ nav .sub .bd{background:#fff3d6;color:#8a5a00}
  nav .sub a.on,nav .sub a:hover{background:var(--sky2);color:var(--sky)}
 }
 </style></head><body>
 
+<div id="gate" hidden>
+ <div class="gh gl"></div><div class="gh gr"></div>
+ <div id="gc"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i>
+  <div class="gk"><div class="gm">U</div><small>BPS Kota Batam</small><h1>Umum BPS-2171 Super Apps</h1><button id="gb" type="button">Login Disini!</button></div></div>
+</div>
 <form id="login" hidden>
- <h1>Persuratan BPS Kota Batam</h1><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
+ <h1>Umum BPS-2171 Super Apps</h1><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
  <label for="em">Email</label><input id="em" type="email" required autocomplete="username">
- <label for="pw">Kata sandi</label><input id="pw" type="password" required autocomplete="current-password">
+ <label for="pw">Kata Sandi</label><input id="pw" type="password" required autocomplete="current-password">
  <div class="row"><button class="p" type="submit">Masuk</button></div>
+ <p class="warn"><b>Lupa kata sandi?</b> Hubungi Administrator untuk mengubah kata sandi.</p>
 </form>
 
 <div id="app" hidden>
@@ -117,17 +151,25 @@ const SB_URL='https://gqxmaebmujswfurhiijc.supabase.co/rest/v1/', SB_KEY='eyJhbG
 // =================================================================
 const db=supabase.createClient(new URL(SB_URL.trim()).origin,SB_KEY.trim());
 const J={
- surat_keluar:{t:'Surat Keluar',f:['tanggal','klasifikasi','perihal','tujuan','link'],c:['nomor','pembuat','tanggal','perihal','tujuan','link']},
- surat_tugas:{t:'Surat Tugas',f:['tanggal','klasifikasi','perihal','tujuan','link'],c:['nomor','pembuat','tanggal','perihal','tujuan','link']},
- sk_kpa:{t:'SK KPA',f:['tanggal','output','uraian'],c:['tanggal','nomor','output','uraian']}};
-const LB={nomor:'Nomor',pembuat:'Nama Pegawai Pembuat',tanggal:'Tanggal Surat',klasifikasi:'Kode Klasifikasi',perihal:'Perihal',tujuan:'Tujuan',link:'Link Surat (Google Drive)',output:'Output',uraian:'Uraian SK'};
+ surat_keluar:{t:'Surat Keluar',f:['tanggal','klasifikasi','perihal','tim','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
+ surat_tugas:{t:'Surat Tugas',f:['tanggal','klasifikasi','perihal','tim','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
+ sk_kpa:{t:'SK KPA',f:['tanggal','tim','output','uraian'],c:['tanggal','nomor','output','uraian','tim']},
+ form_permintaan:{t:'Form Permintaan',f:['tanggal','perihal'],c:['nomor','pembuat','tanggal','perihal'],lb:{perihal:'Judul Form Permintaan'}}};
+const LB={nomor:'Nomor',pembuat:'Nama Pegawai Pembuat',tanggal:'Tanggal Surat',klasifikasi:'Kode Klasifikasi',perihal:'Perihal',tujuan:'Tujuan',tim:'Tim Pembuat',link:'Link Surat (Google Drive)',output:'Output',uraian:'Uraian SK'};
 const sv=p=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';
 const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v-6H3z"/>'),
  surat_keluar:sv('<path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/>'),
  surat_tugas:sv('<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/>'),
  sk_kpa:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h6"/>'),
+ keuangan:sv('<rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/>'),
+ form_permintaan:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M12 12v6M9 15h6"/>'),
+ pengajuan:sv('<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>'),
  surat:sv('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
+const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan']]];
+const nm=v=>J[v]?J[v].t:'Pengajuan Keuangan';
+const TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'];
+const lbl=k=>((J[view]||{}).lb||{})[k]||LB[k];
 let me=null,view='dashboard',rows=[],page=1,q='',pg=[],kl=[];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -140,31 +182,32 @@ $('#modal').onclick=e=>{if(e.target.id=='modal')closeM()};
 
 async function boot(){
  const {data:{session}}=await db.auth.getSession();
- if(!session){$('#app').hidden=true;$('#login').hidden=false;return}
+ if(!session){$('#app').hidden=true;$('#login').hidden=false;$('#gate').hidden=false;return}
  const {data:p}=await db.from('profiles').select('*').eq('id',session.user.id).single();
  me=p||{role:'pegawai',nama:session.user.email};
  const [a,b]=await Promise.all([db.from('pegawai').select('nama').eq('aktif',true).order('nama'),db.from('klasifikasi').select('*').order('kode')]);
  pg=a.data||[];kl=b.data||[];
- $('#login').hidden=true;$('#app').hidden=false;
- const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
- $('#nav').innerHTML='<b><i>P</i><span>Persuratan<br>BPS Kota Batam</span></b>'+ni('dashboard','Dashboard')+'<div class="grp"><a data-g="1">'+IC.surat+'<span>Surat Menyurat</span><em>▾</em></a><div class="sub">'+Object.keys(J).map(k=>ni(k,J[k].t)).join('')+'</div></div>'+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
- $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else if(a.dataset.g)$('.grp').classList.toggle('open');else go(a.dataset.v)};
- document.addEventListener('click',e=>{if(innerWidth<=800&&!e.target.closest('.grp'))$('.grp')?.classList.remove('open')});
+ $('#login').hidden=true;$('#gate').hidden=true;$('#app').hidden=false;
+ const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span>${v=='pengajuan'?'<em class="bd">Draft</em>':''}</a>`;
+ $('#nav').innerHTML='<b><i>U</i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Dashboard')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
+ $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else if(a.dataset.g){const g=a.closest('.grp');if(innerWidth<=800)document.querySelectorAll('.grp').forEach(x=>x!=g&&x.classList.remove('open'));g.classList.toggle('open')}else go(a.dataset.v)};
+ document.addEventListener('click',e=>{if(innerWidth<=800&&!e.target.closest('.grp'))document.querySelectorAll('.grp').forEach(g=>g.classList.remove('open'))});
  go('dashboard');
 }
+$('#gb').onclick=()=>{const g=$('#gate');g.classList.add('open');setTimeout(()=>{g.hidden=true;$('#em').focus()},950)};
 $('#login').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.signInWithPassword({email:$('#em').value,password:$('#pw').value});if(error){const m=error.message||'';return toast(/Invalid login/i.test(m)?'Email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
 
 function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
- const g=$('.grp');if(g){g.classList.toggle('act',!!J[v]);g.classList.toggle('open',!!J[v]&&innerWidth>800)}
- v=='dashboard'?dash():v=='pengaturan'?setelan():load()}
+ document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth>800)});
+ v=='dashboard'?dash():v=='pengaturan'?setelan():v=='pengajuan'?draftPage():load()}
 
 let dy=0;
-const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2a62c9',surat_tugas:'#12b5a6',sk_kpa:'#f5a524'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA'};
+const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2a62c9',surat_tugas:'#12b5a6',sk_kpa:'#f5a524',form_permintaan:'#8b5cf6'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA',form_permintaan:'FP'};
 function chart(m){
- const ks=Object.keys(J),top=Math.ceil(Math.max(4,...ks.flatMap(k=>m[k]))/4)*4,W=720,H=260,L=34,T=14,Bt=28,pw=(W-L)/12,bw=pw/4.2;
+ const ks=Object.keys(J),top=Math.ceil(Math.max(4,...ks.flatMap(k=>m[k]))/4)*4,W=720,H=260,L=34,T=14,Bt=28,pw=(W-L)/12,bw=pw/(ks.length+1.2);
  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik jumlah nomor per bulan" style="width:100%;height:auto">`;
  for(let i=0;i<=4;i++){const y=T+(H-T-Bt)*(1-i/4);s+=`<line x1="${L}" x2="${W}" y1="${y}" y2="${y}" stroke="var(--bd)"/><text x="${L-6}" y="${y+4}" text-anchor="end" font-size="11" fill="var(--mut)">${top*i/4}</text>`}
- BL.forEach((b,i)=>{const x0=L+i*pw+pw/2-bw*1.5;ks.forEach((k,j)=>{const v=m[k][i],h=(H-T-Bt)*v/top;s+=`<rect x="${x0+j*bw}" y="${H-Bt-h}" width="${bw-1.5}" height="${h}" rx="3" fill="${CL[k]}"><title>${J[k].t} ${b}: ${v}</title></rect>`});
+ BL.forEach((b,i)=>{const x0=L+i*pw+pw/2-bw*ks.length/2;ks.forEach((k,j)=>{const v=m[k][i],h=(H-T-Bt)*v/top;s+=`<rect x="${x0+j*bw}" y="${H-Bt-h}" width="${bw-1.5}" height="${h}" rx="3" fill="${CL[k]}"><title>${J[k].t} ${b}: ${v}</title></rect>`});
   s+=`<text x="${L+i*pw+pw/2}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--mut)">${b}</text>`});
  return s+'</svg>'}
 function spark(a,c){const mx=Math.max(1,...a);return `<svg viewBox="0 0 80 28" width="80" height="28" aria-hidden="true"><polyline points="${a.map((v,i)=>(i*80/11).toFixed(1)+','+(26-v*24/mx).toFixed(1)).join(' ')}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
@@ -181,8 +224,8 @@ async function dash(){
  <div class="yr">${yrs.map(y=>`<button class="${y==dy?'on':''}" data-y="${y}">${y}</button>`).join('')}</div>
  <div class="cards">${ks.map(k=>{const t=m[k].reduce((x,y)=>x+y,0),d=dy==cy?m[k][bi]-(bi?m[k][bi-1]:0):null;
   return `<div class="card"><div class="ch"><i style="background:${CL[k]}"></i>${J[k].t}</div><div class="cn">${t}</div><div class="cf">${d===null?'<span class="muted">Total '+dy+'</span>':`<span class="chip ${d<0?'dn':''}">${d<0?'▼':'▲'} ${Math.abs(d)} <small>vs bulan lalu</small></span>`}${spark(m[k],CL[k])}</div></div>`}).join('')}</div>
- <div class="dg"><div class="pn"><h2>Nomor per bulan, ${dy}</h2><div class="lg">${ks.map(k=>`<span><i style="background:${CL[k]}"></i>${J[k].t}</span>`).join('')}</div>${chart(m)}</div>
- <div class="pn"><h2>Nomor terbaru</h2>${(b.data||[]).map(r=>`<div class="li"><div class="av" style="background:${CL[r.jenis]}">${IN[r.jenis]}</div><div class="lt"><b>${esc(r.nomor)}</b><span>${esc(r.perihal||r.uraian)}</span></div><small class="muted">${tgl(r.tanggal)}</small></div>`).join('')||'<p class="empty">Belum ada nomor yang diambil.</p>'}</div></div>`;
+ <div class="dg"><div class="pn"><h2>Nomor per Bulan, ${dy}</h2><div class="lg">${ks.map(k=>`<span><i style="background:${CL[k]}"></i>${J[k].t}</span>`).join('')}</div>${chart(m)}</div>
+ <div class="pn"><h2>Nomor Terbaru</h2>${(b.data||[]).map(r=>`<div class="li"><div class="av" style="background:${CL[r.jenis]}">${IN[r.jenis]}</div><div class="lt"><b>${esc(r.nomor)}</b><span>${esc(r.perihal||r.uraian)}</span></div><small class="muted">${tgl(r.tanggal)}</small></div>`).join('')||'<p class="empty">Belum ada nomor yang diambil.</p>'}</div></div>`;
  $('#main').querySelectorAll('[data-y]').forEach(x=>x.onclick=()=>{dy=+x.dataset.y;dash()});
 }
 async function load(){
@@ -195,12 +238,12 @@ function draw(){
  const J1=J[view],s=q.toLowerCase(),f=rows.filter(r=>!s||Object.values(r).join(' ').toLowerCase().includes(s));
  const tp=Math.max(1,Math.ceil(f.length/10));page=Math.min(page,tp);
  const part=f.slice((page-1)*10,page*10),ed=canEdit(),ad=me.role=='admin';
- const cell=(r,k)=>{const l=`data-l="${LB[k]}"`;return k=='tanggal'?`<td class="tg" ${l} ${ed?`data-id="${r.id}" title="Klik dua kali untuk ubah tanggal"`:''}>${tgl(r.tanggal)}</td>`:
+ const cell=(r,k)=>{const l=`data-l="${lbl(k)}"`;return k=='tanggal'?`<td class="tg" ${l} ${ed?`data-id="${r.id}" title="Klik dua kali untuk ubah tanggal"`:''}>${tgl(r.tanggal)}</td>`:
   k=='link'?`<td ${l}>${/^https?:\/\//.test(r.link||'')?`<a href="${esc(r.link)}" target="_blank" rel="noopener">Buka</a>`:''}</td>`:
   k=='nomor'?`<td ${l}><b>${esc(r.nomor)}</b></td>`:`<td ${l}>${esc(r[k])}</td>`};
- $('#main').innerHTML=`<p class="muted" style="margin:0">Surat Menyurat</p><h1>${J1.t}</h1><div class="bar"><input id="cari" type="search" placeholder="Cari nomor, perihal, tujuan…" value="${esc(q)}"><span class="sp"></span><button id="exp">Ekspor Excel</button><button class="p" id="tambah">Ambil nomor baru</button></div>
- <div class="tw"><table><tr>${J1.c.map(k=>`<th>${LB[k]}</th>`).join('')}${ed?'<th>Aksi</th>':''}</tr>
- ${part.map(r=>`<tr>${J1.c.map(k=>cell(r,k)).join('')}${ed?`<td class="ac"><button data-e="${r.id}">Ubah</button> ${ad?`<button class="d" data-x="${r.id}">Hapus</button>`:''}</td>`:''}</tr>`).join('')||`<tr><td colspan="9" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada data. Klik “Ambil nomor baru” untuk memulai.'}</td></tr>`}</table></div>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">${GR.find(g=>g[2].includes(view))[1]}</p><h1>${J1.t}</h1><div class="bar"><input id="cari" type="search" placeholder="Cari nomor, perihal, tim…" value="${esc(q)}"><span class="sp"></span><button id="exp">Ekspor Excel</button><button class="p" id="tambah">Ambil Nomor Baru</button></div>
+ <div class="tw"><table><tr>${J1.c.map(k=>`<th>${lbl(k)}</th>`).join('')}${ed?'<th>Aksi</th>':''}</tr>
+ ${part.map(r=>`<tr>${J1.c.map(k=>cell(r,k)).join('')}${ed?`<td class="ac"><button data-e="${r.id}">Ubah</button> ${ad?`<button class="d" data-x="${r.id}">Hapus</button>`:''}</td>`:''}</tr>`).join('')||`<tr><td colspan="9" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada data. Klik “Ambil Nomor Baru” untuk memulai.'}</td></tr>`}</table></div>
  <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
  $('#cari').oninput=e=>{q=e.target.value;page=1;draw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
  $('#tambah').onclick=()=>form();$('#exp').onclick=exportCsv;
@@ -219,16 +262,17 @@ function editTgl(td){
 }
 function fld(k,v){v=v??'';
  if(k=='pembuat')return `<select name="pembuat"><option value="">- pilih pegawai -</option>${pg.map(p=>`<option ${p.nama==v?'selected':''}>${esc(p.nama)}</option>`).join('')}</select>`;
+ if(k=='tim')return `<select name="tim" required><option value="">- pilih tim -</option>${TIM.map(t=>`<option ${t==v?'selected':''}>${t}</option>`).join('')}</select>`;
  if(k=='klasifikasi')return `<input name="klasifikasi" list="kl" value="${esc(v)}" placeholder="Ketik kode, mis. VS.330" autocomplete="off" required>`;
- return `<input name="${k}" type="${k=='tanggal'?'date':k=='link'?'url':'text'}" value="${esc(v)}" ${k=='tanggal'?'required':''}>`}
+ return `<input name="${k}" type="${k=='tanggal'?'date':k=='link'?'url':'text'}" value="${esc(v)}" ${k=='link'?'':'required'}>`}
 function form(id){
  const r=id?rows.find(x=>x.id==id):{tanggal:new Date().toISOString().slice(0,10)};
  const f=J[view].f.filter(k=>!(id&&k=='klasifikasi'));
- modal(`<h2>${id?'Ubah':'Ambil nomor'} ${J[view].t}</h2><form id="fm">${id?`<label>Nomor</label><input value="${esc(r.nomor)}" disabled>`:''}
- ${f.map(k=>`<label>${LB[k]}</label>${fld(k,r[k])}`).join('')}
+ modal(`<h2>${id?'Ubah':'Ambil Nomor'} ${J[view].t}</h2><form id="fm">${id?`<label>Nomor</label><input value="${esc(r.nomor)}" disabled>`:''}
+ ${f.map(k=>`<label>${lbl(k)}</label>${fld(k,r[k])}`).join('')}
  ${!id?'<p id="hint" class="muted" style="font-size:13px;margin:12px 0 0"></p>':''}
  <datalist id="kl">${kl.map(k=>`<option value="${esc(k.kode)}">${esc(k.uraian)}</option>`).join('')}</datalist>
- <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan perubahan':'Simpan dan ambil nomor'}</button></div></form>`);
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Simpan dan Ambil Nomor'}</button></div></form>`);
  $('#bt').onclick=closeM;$('#fm').onsubmit=e=>save(e,id);
  if(!id){const t=$('#fm [name=tanggal]'),hn=()=>{const y=t.value.slice(0,4),m=rows.filter(x=>String(x.tahun)==y).reduce((a,x)=>x.tanggal>a?x.tanggal:a,'');
   $('#hint').textContent=t.value&&m&&t.value<m?'Tanggal lebih awal dari nomor terakhir ('+tgl(m)+'): sistem otomatis memberi nomor sisipan (A, B, …).':'Nomor diberikan otomatis. Pembuat: '+me.nama};t.onchange=hn;hn()}
@@ -244,11 +288,13 @@ async function save(e,id){
   btn.disabled=false;if(error)return toast('Gagal menyimpan: '+error.message,1);
   closeM();toast('Perubahan disimpan');return load();
  }
- const {data,error}=await db.rpc('ambil_nomor',{p_jenis:view,p_tanggal:d.tanggal,p_perihal:d.perihal??null,p_tujuan:d.tujuan??null,p_klas:d.klasifikasi??null,p_link:d.link??null,p_output:d.output??null,p_uraian:d.uraian??null});
+ const {data,error}=await db.rpc('ambil_nomor',{p_jenis:view,p_tanggal:d.tanggal,p_perihal:d.perihal??null,p_tim:d.tim??null,p_klas:d.klasifikasi??null,p_link:d.link??null,p_output:d.output??null,p_uraian:d.uraian??null});
  btn.disabled=false;
  if(error)return toast(/foreign key/.test(error.message)?'Kode klasifikasi tidak ada dalam daftar':error.message,1);
- try{await navigator.clipboard.writeText(data.nomor)}catch(_){}
- closeM();toast('Nomor: '+data.nomor+' (sudah disalin)');load();
+ let nomor=data.nomor;
+ if(view=='form_permintaan'){const {data:z}=await db.from('register').select('nomor').eq('jenis',view).order('dibuat_pada',{ascending:false}).limit(1);if(z&&z[0])nomor=z[0].nomor}
+ try{await navigator.clipboard.writeText(nomor)}catch(_){}
+ closeM();toast('Nomor: '+nomor+' (sudah disalin)');load();
 }
 function hapus(id){
  const r=rows.find(x=>x.id==id);
@@ -258,7 +304,7 @@ function hapus(id){
 }
 function exportCsv(){
  const c=J[view].c,l=l=>'"'+String(l??'').replace(/"/g,'""')+'"';
- const t='\ufeff'+[c.map(k=>l(LB[k])).join(';'),...rows.map(r=>c.map(k=>l(r[k])).join(';'))].join('\r\n');
+ const t='\ufeff'+[c.map(k=>l(lbl(k))).join(';'),...rows.map(r=>c.map(k=>l(r[k])).join(';'))].join('\r\n');
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv;charset=utf-8'}));
  a.download=view+'_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
 }
@@ -266,13 +312,13 @@ async function setelan(){
  const ad=me.role=='admin';let us=[];
  if(ad){const {data}=await db.from('profiles').select('*').order('email');us=data||[]}
  $('#main').innerHTML=`<h1>Pengaturan</h1>
- <div class="sg"><div class="set"><h2>Ubah kata sandi saya</h2><label>Kata sandi baru (minimal 6 karakter)</label><input id="np" type="password" autocomplete="new-password"><div class="row"><button class="p" id="gp">Simpan kata sandi</button></div></div>
- ${ad?`<div class="set"><h2>Tambah pengguna</h2><p class="muted">Kata sandi awal: <b>123456</b>. Minta pengguna menggantinya setelah masuk pertama kali.</p>
+ <div class="sg"><div class="set"><h2>Ubah Kata Sandi Saya</h2><label>Kata sandi baru (minimal 6 karakter)</label><input id="np" type="password" autocomplete="new-password"><div class="row"><button class="p" id="gp">Simpan Kata Sandi</button></div></div>
+ ${ad?`<div class="set"><h2>Tambah Pengguna</h2><p class="muted">Kata sandi awal: <b>123456</b>. Minta pengguna menggantinya setelah masuk pertama kali.</p>
  <label>Email (Gmail)</label><input id="ue" type="email" placeholder="nama@gmail.com">
  <label>Nama pegawai</label><select id="un"><option value="">- pilih pegawai -</option>${pg.map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select>
  <label>Peran</label><select id="ur"><option value="pegawai">Pegawai</option><option value="petugas">Petugas Persuratan</option><option value="admin">Administrator</option></select>
- <div class="row"><button class="p" id="tp">Tambah pengguna</button></div></div><div class="set"><h2>Unggah pengguna dari Excel</h2><p class="muted">Kolom: <b>Email</b>, <b>Nama Pegawai</b>, <b>Role</b> (admin, petugas, atau pegawai). Kata sandi awal semua pengguna: <b>123456</b>.</p><button id="tm">Unduh template</button><input id="xf" type="file" accept=".xlsx,.xls,.csv"></div></div>
- <h2 style="font-size:17px;margin:22px 0 10px">Daftar pengguna</h2><div class="tw"><table><tr><th>Email</th><th>Nama pegawai (pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td>${esc(u.email)}</td><td><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td><select data-r="${u.id}">${['pegawai','petugas','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${r}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset kata sandi</button></td></tr>`).join('')||'<tr><td colspan="4" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`:'</div>'}`;
+ <div class="row"><button class="p" id="tp">Tambah Pengguna</button></div></div><div class="set"><h2>Unggah Pengguna dari Excel</h2><p class="muted">Kolom: <b>Email</b>, <b>Nama Pegawai</b>, <b>Role</b> (admin, petugas, atau pegawai). Kata sandi awal semua pengguna: <b>123456</b>.</p><button id="tm">Unduh Template</button><input id="xf" type="file" accept=".xlsx,.xls,.csv"></div></div>
+ <h2 style="font-size:17px;margin:22px 0 10px">Daftar Pengguna</h2><div class="tw"><table><tr><th>Email</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td>${esc(u.email)}</td><td><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td><select data-r="${u.id}">${['pegawai','petugas','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${r}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button></td></tr>`).join('')||'<tr><td colspan="4" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`:'</div>'}`;
  $('#gp').onclick=async()=>{const v=$('#np').value;if(v.length<6)return toast('Kata sandi minimal 6 karakter',1);const {error}=await db.auth.updateUser({password:v});error?toast('Gagal: '+error.message,1):(toast('Kata sandi diperbarui'),$('#np').value='')};
  if(!ad)return;
  $('#tm').onclick=()=>{if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);const w=XLSX.utils.book_new();XLSX.utils.book_append_sheet(w,XLSX.utils.aoa_to_sheet([['Email','Nama Pegawai','Role'],['contoh@gmail.com','Nama Lengkap Pegawai','pegawai']]),'Pengguna');XLSX.writeFile(w,'template_pengguna.xlsx')};
@@ -284,10 +330,14 @@ async function setelan(){
  $('#main').querySelectorAll('[data-r]').forEach(s=>s.onchange=async()=>{const {error}=await db.rpc('ubah_peran',{p_id:s.dataset.r,p_role:s.value});error?(toast(error.message,1),setelan()):toast('Peran diperbarui')});
  $('#main').querySelectorAll('[data-n]').forEach(s=>s.onchange=async()=>{const {error}=await db.from('profiles').update({nama:s.value}).eq('id',s.dataset.n);error?toast(error.message,1):toast('Nama pegawai diperbarui')});
  $('#main').querySelectorAll('[data-rs]').forEach(b=>b.onclick=()=>{
-  modal(`<h2>Reset kata sandi?</h2><p>Kata sandi <b>${esc(b.dataset.em)}</b> akan dikembalikan ke 123456.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Reset</button></div>`);
+  modal(`<h2>Reset Kata Sandi?</h2><p>Kata sandi <b>${esc(b.dataset.em)}</b> akan dikembalikan ke 123456.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Reset</button></div>`);
   $('#bt').onclick=closeM;
   $('#ok').onclick=async()=>{const {error}=await db.rpc('reset_sandi',{p_id:b.dataset.rs});closeM();error?toast(error.message,1):toast('Kata sandi dikembalikan ke 123456')}});
 }
+function draftPage(){
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Pengajuan Keuangan <span class="chip" style="font-size:13px;vertical-align:middle;background:rgba(245,165,36,.2);color:#b36b00">Draft</span></h1>
+ <div class="pn" style="max-width:720px"><h2>Menu Ini Masih Berupa Draft</h2><p class="muted">Belum ada fitur yang berfungsi di halaman ini. Alur dan isian pengajuan perlu dikonfirmasi dulu supaya sesuai kebutuhan kantor:</p>
+ <ul style="line-height:1.9"><li>Isian apa saja yang dicatat (nomor, tanggal, uraian, nominal, tim, lampiran)?</li><li>Siapa yang menyetujui, dan berapa tahap persetujuannya?</li><li>Apakah pengajuan terhubung dengan nomor Form Permintaan?</li><li>Status apa saja yang dipakai (diajukan, disetujui, ditolak, dibayar)?</li><li>Siapa saja yang boleh melihat data keuangan?</li></ul></div>`}
 const RL={admin:'admin',administrator:'admin',petugas:'petugas','petugas persuratan':'petugas',pegawai:'pegawai'};
 function impor(a){
  const hd=(a[0]||[]).map(x=>String(x).toLowerCase()),ix=k=>hd.findIndex(x=>x.includes(k));
@@ -300,11 +350,11 @@ function impor(a){
   else if(ok.some(x=>x.e==e))bad.push('Baris '+(i+2)+': email ganda di dalam file');
   else ok.push({e,n,ro})});
  if(!ok.length&&!bad.length)return toast('File kosong atau formatnya tidak sesuai template',1);
- modal(`<h2>Impor pengguna</h2><p><b>${ok.length}</b> pengguna siap ditambahkan dengan kata sandi awal 123456.</p>${bad.length?`<p class="muted">${bad.length} baris dilewati:</p><ul>${bad.slice(0,10).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="row"><button id="bt">Batal</button><button class="p" id="ok" ${ok.length?'':'disabled'}>Tambahkan</button></div>`);
+ modal(`<h2>Impor Pengguna</h2><p><b>${ok.length}</b> pengguna siap ditambahkan dengan kata sandi awal 123456.</p>${bad.length?`<p class="muted">${bad.length} baris dilewati:</p><ul>${bad.slice(0,10).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="row"><button id="bt">Batal</button><button class="p" id="ok" ${ok.length?'':'disabled'}>Tambahkan</button></div>`);
  $('#bt').onclick=closeM;
  $('#ok').onclick=async()=>{const b=$('#ok'),gl=[];b.disabled=true;let n=0;
   for(const u of ok){b.textContent='Memproses '+(++n)+'/'+ok.length+'…';const {error}=await db.rpc('tambah_pengguna',{p_email:u.e,p_nama:u.n,p_role:u.ro});if(error)gl.push(u.e+': '+error.message)}
-  modal(`<h2>Impor selesai</h2><p><b>${ok.length-gl.length}</b> pengguna berhasil ditambahkan.</p>${gl.length?`<p class="muted">${gl.length} gagal:</p><ul>${gl.slice(0,15).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="row"><button class="p" id="bt2">Tutup</button></div>`);
+  modal(`<h2>Impor Selesai</h2><p><b>${ok.length-gl.length}</b> pengguna berhasil ditambahkan.</p>${gl.length?`<p class="muted">${gl.length} gagal:</p><ul>${gl.slice(0,15).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="row"><button class="p" id="bt2">Tutup</button></div>`);
   $('#bt2').onclick=()=>{closeM();setelan()}};
 }
 boot();
