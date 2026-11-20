@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Persuratan BPS Kota Batam</title>
+<style>
+:root{--bg:#f5f8fc;--card:#fff;--tx:#14213d;--mut:#5b6b85;--navy:#0b2545;--sky:#2f9be0;--sky2:#e6f2fc;--bd:#d9e2ee;--err:#b42318}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1829;--card:#14243b;--tx:#e8eef7;--mut:#9fb0c8;--navy:#8fc5f2;--sky:#4aa8ec;--sky2:#1a3556;--bd:#274463;--err:#ff8a80}}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;background:var(--bg);color:var(--tx)}
+[hidden]{display:none!important}
+h1,h2{margin:0;color:var(--navy);letter-spacing:-.01em}
+button,input,select{font:inherit}
+button{cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 14px;border-radius:6px}
+button.p{background:var(--navy);border-color:var(--navy);color:#fff}
+@media(prefers-color-scheme:dark){button.p{color:#0d1829}}
+button.d{color:var(--err)}
+:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+input,select{width:100%;padding:9px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--card);color:var(--tx)}
+label{display:block;margin:10px 0 4px;font-weight:600;font-size:13px;color:var(--mut)}
+#login{max-width:380px;margin:12vh auto;padding:28px;background:var(--card);border:1px solid var(--bd);border-radius:10px}
+#login h1{font-size:22px;margin-bottom:4px}.muted{color:var(--mut)}
+#app{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+nav{background:var(--navy);color:#fff;padding:20px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+@media(prefers-color-scheme:dark){nav{background:#0a1626}}
+nav b{padding:0 10px 16px;font-size:15px;line-height:1.3}
+nav a{display:block;padding:10px;border-radius:6px;color:#cfe3f7;cursor:pointer;text-decoration:none}
+nav a.on{background:rgba(255,255,255,.14);color:#fff;font-weight:600}
+nav .sp{flex:1}nav small{padding:0 10px;color:#9fb8d4}
+main{padding:24px;min-width:0}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}
+.bar input{max-width:280px}.bar .sp{flex:1}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:16px 0}
+.card{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--sky);border-radius:8px;padding:14px 16px}
+.card b{display:block;font-size:30px;color:var(--navy)}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--bd);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--bd);vertical-align:top}
+th{background:var(--sky2);color:var(--navy);font-size:13px;white-space:nowrap}
+td.tg{cursor:cell;white-space:nowrap}td a{color:var(--sky)}
+td.ac{white-space:nowrap}td.ac button{padding:4px 9px;font-size:13px}
+.pgn{display:flex;gap:8px;align-items:center;justify-content:flex-end;margin-top:12px}
+#modal{position:fixed;inset:0;background:rgba(8,20,40,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
+.box{background:var(--card);border-radius:10px;padding:22px;width:100%;max-width:480px;max-height:92vh;overflow:auto}
+.row{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+#toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:30;max-width:90vw}
+#toast.show{opacity:1}#toast.err{background:var(--err)}
+.empty{padding:36px;text-align:center;color:var(--mut)}
+@media(max-width:800px){
+ #app{display:block;padding-bottom:64px}
+ nav{position:fixed;bottom:0;left:0;right:0;top:auto;height:auto;flex-direction:row;padding:6px;z-index:10;gap:2px}
+ nav b,nav .sp,nav small,nav .out{display:none}
+ nav a{flex:1;text-align:center;padding:9px 2px;font-size:12px}
+ main{padding:16px}
+}
+</style></head><body>
+
+<form id="login" hidden>
+ <h1>Persuratan BPS Kota Batam</h1><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
+ <label for="em">Email</label><input id="em" type="email" required autocomplete="username">
+ <label for="pw">Kata sandi</label><input id="pw" type="password" required autocomplete="current-password">
+ <div class="row"><button class="p" type="submit">Masuk</button></div>
+</form>
+
+<div id="app" hidden>
+ <nav id="nav"></nav>
+ <main id="main"></main>
+</div>
+<div id="modal" hidden></div><div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+// ===== ISI DUA BARIS INI (Supabase > Project Settings > API) =====
+const SB_URL='https://gqxmaebmujswfurhiijc.supabase.co/rest/v1/', SB_KEY='sb_publishable_KoVY6x4X0DEBO5jN9P7tSw_AxU1Dl-9';
+// =================================================================
+const db=supabase.createClient(SB_URL,SB_KEY);
+const J={
+ surat_keluar:{t:'Surat Keluar',f:['pembuat','tanggal','klasifikasi','perihal','tujuan','link'],c:['nomor','pembuat','tanggal','perihal','tujuan','link']},
+ surat_tugas:{t:'Surat Tugas',f:['pembuat','tanggal','klasifikasi','perihal','tujuan','link'],c:['nomor','pembuat','tanggal','perihal','tujuan','link']},
+ sk_kpa:{t:'SK KPA',f:['tanggal','output','uraian'],c:['tanggal','nomor','output','uraian']}};
+const LB={nomor:'Nomor',pembuat:'Nama Pegawai Pembuat',tanggal:'Tanggal Surat',klasifikasi:'Kode Klasifikasi',perihal:'Perihal',tujuan:'Tujuan',link:'Link Surat (Google Drive)',output:'Output',uraian:'Uraian SK'};
+let me=null,view='dashboard',rows=[],page=1,q='',pg=[],kl=[];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const canEdit=()=>['admin','petugas'].includes(me.role);
+const tgl=s=>s?new Date(s+'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}):'';
+function toast(m,err){const t=$('#toast');t.textContent=m;t.className=err?'err show':'show';clearTimeout(t.h);t.h=setTimeout(()=>t.className='',3500)}
+function modal(h){const m=$('#modal');m.innerHTML='<div class="box">'+h+'</div>';m.hidden=false}
+function closeM(){$('#modal').hidden=true}
+$('#modal').onclick=e=>{if(e.target.id=='modal')closeM()};
+
+async function boot(){
+ const {data:{session}}=await db.auth.getSession();
+ if(!session){$('#app').hidden=true;$('#login').hidden=false;return}
+ const {data:p}=await db.from('profiles').select('*').eq('id',session.user.id).single();
+ me=p||{role:'pegawai',nama:session.user.email};
+ const [a,b]=await Promise.all([db.from('pegawai').select('nama').eq('aktif',true).order('nama'),db.from('klasifikasi').select('*').order('kode')]);
+ pg=a.data||[];kl=b.data||[];
+ $('#login').hidden=true;$('#app').hidden=false;
+ $('#nav').innerHTML='<b>Persuratan<br>BPS Kota Batam</b><a data-v="dashboard">Dashboard</a>'+Object.keys(J).map(k=>`<a data-v="${k}">${J[k].t}</a>`).join('')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar">Keluar</a>`;
+ $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else go(a.dataset.v)};
+ go('dashboard');
+}
+$('#login').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.signInWithPassword({email:$('#em').value,password:$('#pw').value});if(error){const m=error.message||'';return toast(/Invalid login/i.test(m)?'Email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
+
+function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');v=='dashboard'?dash():load()}
+
+async function dash(){
+ const y=new Date().getFullYear(),ks=Object.keys(J);
+ $('#main').innerHTML='<p class="muted">Memuat…</p>';
+ const [cnt,rec]=await Promise.all([Promise.all(ks.map(k=>db.from('register').select('*',{count:'exact',head:true}).eq('jenis',k).eq('tahun',y))),
+  db.from('register').select('jenis,nomor,perihal,uraian,tanggal').order('dibuat_pada',{ascending:false}).limit(8)]);
+ $('#main').innerHTML=`<h1>Dashboard</h1><p class="muted">Ringkasan tahun ${y}</p><div class="cards">${ks.map((k,i)=>`<div class="card"><b>${cnt[i].count??0}</b>${J[k].t}</div>`).join('')}</div>
+ <h2 style="font-size:17px;margin:22px 0 10px">Nomor terbaru</h2><div class="tw"><table><tr><th>Jenis</th><th>Nomor</th><th>Tanggal</th><th>Keterangan</th></tr>${(rec.data||[]).map(r=>`<tr><td>${J[r.jenis].t}</td><td>${esc(r.nomor)}</td><td>${tgl(r.tanggal)}</td><td>${esc(r.perihal||r.uraian)}</td></tr>`).join('')||'<tr><td colspan=4 class="empty">Belum ada nomor yang diambil.</td></tr>'}</table></div>`;
+}
+
+async function load(){
+ $('#main').innerHTML='<p class="muted">Memuat…</p>';
+ const {data,error}=await db.from('register').select('*').eq('jenis',view).order('tahun',{ascending:false}).order('urut',{ascending:false}).order('sisipan',{ascending:false}).limit(5000);
+ if(error)return toast('Gagal memuat data: '+error.message,1);
+ rows=data;draw();
+}
+function draw(){
+ const J1=J[view],s=q.toLowerCase(),f=rows.filter(r=>!s||Object.values(r).join(' ').toLowerCase().includes(s));
+ const tp=Math.max(1,Math.ceil(f.length/10));page=Math.min(page,tp);
+ const part=f.slice((page-1)*10,page*10),ed=canEdit(),ad=me.role=='admin';
+ const cell=(r,k)=>k=='tanggal'?`<td class="tg" ${ed?`data-id="${r.id}" title="Klik dua kali untuk ubah tanggal"`:''}>${tgl(r.tanggal)}</td>`:
+  k=='link'?`<td>${/^https?:\/\//.test(r.link||'')?`<a href="${esc(r.link)}" target="_blank" rel="noopener">Buka</a>`:''}</td>`:`<td>${esc(r[k])}</td>`;
+ $('#main').innerHTML=`<h1>${J1.t}</h1><div class="bar"><input id="cari" type="search" placeholder="Cari nomor, perihal, tujuan…" value="${esc(q)}"><span class="sp"></span><button id="exp">Ekspor Excel</button><button class="p" id="tambah">Ambil nomor baru</button></div>
+ <div class="tw"><table><tr>${J1.c.map(k=>`<th>${LB[k]}</th>`).join('')}${ed?'<th>Aksi</th>':''}</tr>
+ ${part.map(r=>`<tr>${J1.c.map(k=>cell(r,k)).join('')}${ed?`<td class="ac"><button data-e="${r.id}">Ubah</button> ${ad?`<button class="d" data-x="${r.id}">Hapus</button>`:''}</td>`:''}</tr>`).join('')||`<tr><td colspan="9" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada data. Klik “Ambil nomor baru” untuk memulai.'}</td></tr>`}</table></div>
+ <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
+ $('#cari').oninput=e=>{q=e.target.value;page=1;draw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
+ $('#tambah').onclick=()=>form();$('#exp').onclick=exportCsv;
+ $('#pv').onclick=()=>{page--;draw()};$('#nx').onclick=()=>{page++;draw()};
+ $('#main').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>form(b.dataset.e));
+ $('#main').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>hapus(b.dataset.x));
+ $('#main').querySelectorAll('td.tg[data-id]').forEach(td=>td.ondblclick=()=>editTgl(td));
+}
+function editTgl(td){
+ const r=rows.find(x=>x.id==td.dataset.id),i=document.createElement('input');i.type='date';i.value=r.tanggal;td.innerHTML='';td.appendChild(i);i.focus();
+ const simpan=async()=>{if(!i.value||i.value==r.tanggal)return draw();
+  if(+i.value.slice(0,4)!=r.tahun){toast('Tahun harus sama dengan tahun pada nomor ('+r.tahun+')',1);return draw()}
+  const {error}=await db.from('register').update({tanggal:i.value}).eq('id',r.id);
+  if(error)toast('Gagal menyimpan: '+error.message,1);else{r.tanggal=i.value;toast('Tanggal diperbarui')}draw()};
+ i.onblur=simpan;i.onkeydown=e=>{if(e.key=='Enter')i.blur();if(e.key=='Escape'){i.onblur=null;draw()}};
+}
+function fld(k,v){v=v??'';
+ if(k=='pembuat')return `<select name="pembuat"><option value="">- pilih pegawai -</option>${pg.map(p=>`<option ${p.nama==v?'selected':''}>${esc(p.nama)}</option>`).join('')}</select>`;
+ if(k=='klasifikasi')return `<input name="klasifikasi" list="kl" value="${esc(v)}" placeholder="Ketik kode, mis. VS.330" autocomplete="off" required>`;
+ return `<input name="${k}" type="${k=='tanggal'?'date':k=='link'?'url':'text'}" value="${esc(v)}" ${k=='tanggal'?'required':''}>`}
+function form(id){
+ const r=id?rows.find(x=>x.id==id):{tanggal:new Date().toISOString().slice(0,10)};
+ const f=J[view].f.filter(k=>!(id&&k=='klasifikasi'));
+ modal(`<h2>${id?'Ubah':'Ambil nomor'} ${J[view].t}</h2><form id="fm">${id?`<label>Nomor</label><input value="${esc(r.nomor)}" disabled>`:''}
+ ${f.map(k=>`<label>${LB[k]}</label>${fld(k,r[k])}`).join('')}
+ ${!id&&view!='sk_kpa'?'<label>Nomor sisipan? Isi nomor urut induk (kosongkan untuk nomor baru)</label><input name="sisip_dari" type="number" min="1" placeholder="mis. 2 untuk 002.A">':''}
+ <datalist id="kl">${kl.map(k=>`<option value="${esc(k.kode)}">${esc(k.uraian)}</option>`).join('')}</datalist>
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan perubahan':'Simpan dan ambil nomor'}</button></div></form>`);
+ $('#bt').onclick=closeM;$('#fm').onsubmit=e=>save(e,id);
+}
+async function save(e,id){
+ e.preventDefault();const d=Object.fromEntries(new FormData(e.target));
+ for(const k in d)if(d[k]==='')d[k]=null;
+ const btn=e.submitter;btn.disabled=true;
+ if(id){
+  const o=rows.find(x=>x.id==id);
+  if(+d.tanggal.slice(0,4)!=o.tahun){btn.disabled=false;return toast('Tahun harus sama dengan tahun pada nomor ('+o.tahun+')',1)}
+  const {error}=await db.from('register').update(d).eq('id',id);
+  btn.disabled=false;if(error)return toast('Gagal menyimpan: '+error.message,1);
+  closeM();toast('Perubahan disimpan');return load();
+ }
+ const {data,error}=await db.rpc('ambil_nomor',{p_jenis:view,p_tanggal:d.tanggal,p_pembuat:d.pembuat??null,p_perihal:d.perihal??null,p_tujuan:d.tujuan??null,p_klas:d.klasifikasi??null,p_link:d.link??null,p_output:d.output??null,p_uraian:d.uraian??null,p_sisip_dari:d.sisip_dari?+d.sisip_dari:null});
+ btn.disabled=false;
+ if(error)return toast(/foreign key/.test(error.message)?'Kode klasifikasi tidak ada dalam daftar':error.message,1);
+ try{await navigator.clipboard.writeText(data.nomor)}catch(_){}
+ closeM();toast('Nomor: '+data.nomor+' (sudah disalin)');load();
+}
+function hapus(id){
+ const r=rows.find(x=>x.id==id);
+ modal(`<h2>Hapus data?</h2><p>Nomor <b>${esc(r.nomor)}</b> akan dihapus dan tercatat di audit log. Nomor ini tidak akan dipakai ulang.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Hapus</button></div>`);
+ $('#bt').onclick=closeM;
+ $('#ok').onclick=async()=>{const {error}=await db.from('register').delete().eq('id',id);closeM();error?toast('Gagal menghapus: '+error.message,1):(toast('Data dihapus'),load())};
+}
+function exportCsv(){
+ const c=J[view].c,l=l=>'"'+String(l??'').replace(/"/g,'""')+'"';
+ const t='\ufeff'+[c.map(k=>l(LB[k])).join(';'),...rows.map(r=>c.map(k=>l(r[k])).join(';'))].join('\r\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv;charset=utf-8'}));
+ a.download=view+'_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+}
+boot();
+</script></body></html>
