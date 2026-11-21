@@ -301,21 +301,14 @@ const bangun=(j,u,sis,kl,tg,y)=>{const p=FMT[j];if(!p||!tg)return '';const m=+tg
 function form(id){
  const r=id?rows.find(x=>x.id==id):{tanggal:hari()};
  const f=J[view].f.filter(k=>!(id&&k=='klasifikasi'));
- modal(`<h2>${id?'Ubah':'Ambil Nomor'} ${J[view].t}</h2><form id="fm">${id?`<label>Nomor</label><input value="${esc(r.nomor)}" disabled>`:`<label>Nomor Urut (diisi manual)</label><input name="urut" type="number" min="1" step="1" required inputmode="numeric">`}
+ modal(`<h2>${id?'Ubah':'Ambil Nomor'} ${J[view].t}</h2><form id="fm">${id?`<label>Nomor</label><input value="${esc(r.nomor)}" disabled>`:''}
  ${f.map(k=>`<label>${lbl(k)}</label>${fld(k,r[k])}`).join('')}
  ${!id?'<p id="hint" class="muted" style="font-size:13px;margin:12px 0 0"></p>':''}
  <datalist id="kl">${kl.map(k=>`<option value="${esc(k.kode)}">${esc(k.uraian)}</option>`).join('')}</datalist>
  <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Simpan dan Ambil Nomor'}</button></div></form>`);
  $('#bt').onclick=closeM;$('#fm').onsubmit=e=>save(e,id);
- if(!id){const t=$('#fm [name=tanggal]'),u=$('#fm [name=urut]'),kk=$('#fm [name=klasifikasi]');let man=false;
-  const yr=()=>+t.value.slice(0,4)||+hari().slice(0,4),ada=()=>rows.filter(x=>x.tahun==yr()),saran=()=>Math.max(0,...ada().map(x=>+x.urut))+1,
-  hn=()=>{const A=ada(),n=+u.value,pakai=new Set(A.filter(x=>!x.sisipan).map(x=>+x.urut)),mx=Math.max(0,...A.map(x=>+x.urut));
-   let sis='';if(n>0&&pakai.has(n)){const hs=new Set(A.filter(x=>+x.urut==n).map(x=>x.sisipan));for(let i=0;i<26;i++){const c=String.fromCharCode(65+i);if(!hs.has(c)){sis=c;break}}}
-   const kosong=[];for(let i=1;i<mx;i++)if(!pakai.has(i))kosong.push(i);
-   const pv=n>0?bangun(view,n,sis,kk?kk.value:'',t.value,yr()):'';
-   $('#hint').innerHTML=(pv?'Nomor: <b>'+esc(pv)+'</b>'+(sis?' (nomor '+n+' sudah dipakai, otomatis memakai sisipan '+sis+')':''):FMT[view]?'':'Format nomor belum diatur (Pengaturan > Format Nomor).')
-    +'<br>Nomor terakhir '+yr()+': '+(mx||'-')+(kosong.length?'. Nomor kosong: '+kosong.slice(0,15).join(', ')+(kosong.length>15?'…':''):'')+'. Pembuat: '+esc(me.nama)};
-  u.value=saran();u.oninput=()=>{man=true;hn()};t.onchange=()=>{if(!man)u.value=saran();hn()};if(kk)kk.oninput=hn;hn()}
+ if(!id){const t=$('#fm [name=tanggal]'),hn=()=>{const y=t.value.slice(0,4),m=rows.filter(x=>String(x.tahun)==y).reduce((a,x)=>x.tanggal>a?x.tanggal:a,'');
+  $('#hint').textContent=t.value&&m&&t.value<m?'Tanggal lebih awal dari nomor terakhir ('+tgl(m)+'): sistem otomatis memberi nomor sisipan (A, B, …).':'Nomor diberikan otomatis sesuai tanggal. Pembuat: '+me.nama};t.onchange=hn;hn()}
 }
 async function save(e,id){
  e.preventDefault();const d=Object.fromEntries(new FormData(e.target));
@@ -328,7 +321,7 @@ async function save(e,id){
   btn.disabled=false;if(error)return toast('Gagal menyimpan: '+error.message,1);
   closeM();toast('Perubahan disimpan');return load();
  }
- const {data,error}=await db.rpc('simpan_nomor',{p_jenis:view,p_urut:+d.urut,p_tanggal:d.tanggal,p_perihal:d.perihal??null,p_tim:d.tim??null,p_klas:d.klasifikasi??null,p_link:d.link??null,p_output:d.output??null,p_uraian:d.uraian??null});
+ const {data,error}=await db.rpc('ambil_nomor_auto',{p_jenis:view,p_tanggal:d.tanggal,p_perihal:d.perihal??null,p_tim:d.tim??null,p_klas:d.klasifikasi??null,p_link:d.link??null,p_output:d.output??null,p_uraian:d.uraian??null});
  btn.disabled=false;
  if(error)return toast(/foreign key/.test(error.message)?'Kode klasifikasi tidak ada dalam daftar':error.message,1);
  let nomor=data.nomor;
@@ -348,7 +341,7 @@ async function riwayat(){
  <div class="row"><button id="bt">Tutup</button></div>`,940);tutup()}
 function hapus(id){
  const r=rows.find(x=>x.id==id);
- modal(`<h2>Hapus data?</h2><p>Nomor <b>${esc(r.nomor)}</b> akan dihapus dan masuk ke <b>Riwayat Hapus Data</b> beserta nama Anda sebagai yang menghapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Hapus</button></div>`);
+ modal(`<h2>Peringatan</h2><p><b>Jika Data Dihapus, Maka Nomor Akan Hilang dan Tidak Bisa Dipakai Lagi. Apakah Tetap Melanjutkan Menghapus?</b></p><p class="muted" style="font-size:13px">Nomor: ${esc(r.nomor)}. Data masuk ke Riwayat Hapus Data beserta nama Anda sebagai yang menghapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Ya, Hapus</button></div>`);
  $('#bt').onclick=closeM;
  $('#ok').onclick=async()=>{const {error}=await db.from('register').delete().eq('id',id);closeM();error?toast('Gagal menghapus: '+error.message,1):(toast('Data dihapus'),load())};
 }
