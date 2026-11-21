@@ -215,20 +215,20 @@ const SB_URL='https://gqxmaebmujswfurhiijc.supabase.co', SB_KEY='eyJhbGciOiJIUzI
 // =================================================================
 // ===== PENGUMUMAN BERANDA - EDIT DI SINI =====
 // Setiap pengumuman = satu blok { ... }, dipisah koma. Yang paling atas tampil paling atas.
-//   judul   : Rapat Bulanan
-//   isi     : Perhatian! Rapat Bulanan Bulan Januari 2027 akan dilaksanakan di Ruang Rapat BPS Kota Batam
-//   tanggal : 2026-01-04
-//   jenis   : 'PENTING'
-//   sampai  : [ ]
+//   judul   : judul pengumuman (wajib)
+//   isi     : isi pengumuman. Boleh beberapa baris. Jangan mengetik tanda ` di dalam teks
+//   tanggal : tanggal tampil, format 'TAHUN-BULAN-TANGGAL' (boleh dihapus)
+//   jenis   : 'info' (biasa) atau 'penting' (garis oranye + label Penting)
+//   sampai  : tampil sampai tanggal ini lalu hilang sendiri (boleh dihapus)
 //   link    : alamat tautan https://... (boleh dihapus), teksLink : tulisan tautannya
 // Untuk menyembunyikan semua pengumuman, kosongkan isi kurung siku [ ].
 const PENGUMUMAN=[
  {judul:`Selamat Datang di SIMPATI - 2171`,
   isi:`Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam. Mohon isi setiap data dengan lengkap dan benar.`,
   tanggal:'2026-11-21', jenis:'info'},
- {judul:`Contoh Pengumuman Penting`,
-  isi:`Ini contoh pengumuman penting. Ganti atau hapus blok ini sesuai kebutuhan.`,
-  tanggal:'2026-11-21', jenis:'penting', sampai:'2026-12-31'}
+ {judul:`Rapat Bulanan Pegawai BPS Kota Batam`,
+  isi:`Rapat Bulanan Pegawai bulan Januari 2027 akan dilaksanakan di ruang rapat, jam 08.00. Harap untuk datang tepat waktu yaa, terimakasih :).`,
+  tanggal:'2027-04-07', jenis:'penting', sampai:'2026-12-20'}
 ];
 // =============================================
 const db=supabase.createClient(new URL(SB_URL.trim()).origin,SB_KEY.trim());
