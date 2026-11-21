@@ -27,8 +27,9 @@ input,select{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radi
 label{display:block;margin:12px 0 4px;font-weight:600;font-size:13px;color:var(--mut)}
 .muted{color:var(--mut)}
 #login{max-width:380px;margin:12vh auto;padding:28px;background:var(--card);box-shadow:var(--sh);border-radius:18px}
-#login h1{font-size:20px;margin-bottom:6px;letter-spacing:.01em}
-#login .sb{font-size:12px;line-height:1.5;color:var(--mut);text-align:center;margin:0 0 10px}
+#login h1{font-size:28px;line-height:1.2;margin-bottom:8px;letter-spacing:.01em}
+#login label{font-size:14px}
+#login .sb{font-size:15px;line-height:1.55;color:var(--mut);text-align:center;margin:0 0 20px}
 #login .muted{font-size:13px}#login .pw input{padding-right:92px}#login .eye{font-size:12px;color:var(--sky);top:6px;cursor:pointer}
 #cl{font-size:12px;color:#b36b00;margin:6px 0 0}
 #login h1,#login .muted{text-align:center}
@@ -211,7 +212,7 @@ nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
 </div>
 <form id="login" hidden>
  <div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div>
- <h1>SIMPATI - 2171</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
+ <h1>SIMPATI - 2171</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p>
  <label for="em">Username / Email</label><input id="em" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false">
  <label for="pw">Kata Sandi</label><div class="pw"><input id="pw" type="password" required autocomplete="current-password"><button type="button" class="eye" id="eye">Lihat</button></div><p id="cl" hidden>Caps Lock sedang aktif</p>
  <div class="row"><button class="p" type="submit">Masuk</button></div>
@@ -244,11 +245,11 @@ const SB_URL='https://gqxmaebmujswfurhiijc.supabase.co', SB_KEY='eyJhbGciOiJIUzI
 // Untuk menyembunyikan semua pengumuman, kosongkan isi kurung siku [ ].
 const PENGUMUMAN=[
  {judul:`Selamat Datang di SIMPATI - 2171`,
-  isi:`Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi Badan Pusat Statistik Kota Batam. Mohon setiap data yang Bapak/Ibu isikan dengan lengkap dan benar.`,
+  isi:`Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam. Mohon isi setiap data dengan lengkap dan benar.`,
   tanggal:'2026-11-21', jenis:'info'},
  {judul:`Rapat Bulanan Pegawai BPS Kota Batam bulan Januari 2027`,
   isi:`Rapat ini akan diadakan di ruang rapat, jam 08.00. Harap datang tepat waktu!`,
-  tanggal:'2027-01-07', jenis:'Penting', sampai:'2027-01-07'}
+  tanggal:'2027-01-07', jenis:'Biasa', sampai:'2027-01-07'}
 ];
 // =============================================
 // ===== DATA ANGGARAN BERANDA - EDIT DI SINI =====
@@ -267,6 +268,13 @@ const ANGGARAN={tahun:2026, pembaruan:'2026-11-23', rincian:[
 ]};
 // Pilihan Staf Pengelola Keuangan pada menu Pengajuan Keuangan (ubah/tambah nama di sini)
 const STAF=['Moon','Hogan'];
+// Link submenu "Monumen-PPK" (menu Keuangan). Ganti alamat di antara tanda kutip.
+const MONUMEN='https://s.id/monumen';
+// Link "Panduan Aplikasi" (menu nama pengguna di pojok kanan atas, terbuka di tab baru).
+// GANTI dengan link panduan Anda. Sementara ini masih berisi link folder Drive Format Dokumen.
+const PANDUAN_URL='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0yS0x5SrNCli?usp=sharing';
+// Nama PPK yang tampil pada catatan Pengajuan Keuangan
+const PPK_NAMA='Adi Darmanto, S.E';
 // =================================================
 const db=supabase.createClient(new URL(SB_URL.trim()).origin,SB_KEY.trim());
 const J={
@@ -284,14 +292,15 @@ const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v
  form_permintaan:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M12 12v6M9 15h6"/>'),
  pengajuan:sv('<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>'),
  ruangan:sv('<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15h3"/>'),
+ monumen:sv('<path d="M10 14 21 3M15 3h6v6M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/>'),
  surat:sv('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
  set_pengguna:sv('<circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M17 11a3 3 0 1 0 0-6M22 20c0-3-2-5-4-5.5"/>'),
  set_pegawai:sv('<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="11" r="2.5"/><path d="M5.5 17c.5-2 2-3 3.5-3s3 1 3.5 3M15 9h4M15 13h4"/>'),
  set_nomor:sv('<path d="M5 9h14M5 15h14M10 3 8 21M16 3l-2 18"/>'),
  format:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/>'),
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
-const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan']]];
-const NM={pengajuan:'Pengajuan Keuangan',set_pengguna:'Pengguna',set_pegawai:'Referensi Pegawai',set_nomor:'Setting Penomoran'},nm=v=>J[v]?J[v].t:NM[v];
+const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan','monumen']]];
+const NM={monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',set_pengguna:'Pengguna',set_pegawai:'Referensi Pegawai',set_nomor:'Setting Penomoran'},nm=v=>J[v]?J[v].t:NM[v];
 const DRIVE='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0yS0x5SrNCli?usp=sharing',RLN={admin:'Admin',pegawai:'Pegawai',pegawai_keuangan:'Pegawai Keuangan'};
 const TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'];
 const lbl=k=>((J[view]||{}).lb||{})[k]||LB[k];
@@ -313,8 +322,9 @@ function tickClk(){const n=new Date(),z=ZN[zi][1],p=Object.fromEntries(new Intl.
 function userPanel(){
  $('#um').innerHTML=`<div style="display:flex;gap:12px;align-items:center"><span class="av2" style="width:48px;height:48px;font-size:17px">${ini(me.nama)}</span><div style="min-width:0"><b style="display:block">${esc(me.nama)}</b><span class="rl">${RLN[me.role]||esc(me.role)}</span></div></div>
  <div style="margin:12px 0 0">${[['Username',me.username||'-'],['Email',me.email||'-']].map(x=>`<div class="ur" data-c="${esc(x[1])}" title="Klik untuk menyalin"><span class="muted">${x[0]}</span><b>${esc(x[1])}</b></div>`).join('')}</div>
- <div class="col"><button id="ubs">Ubah Kata Sandi</button><button class="d" id="klr">Keluar</button></div>`;
+ <div class="col"><button id="pnd">Panduan Aplikasi</button><button id="ubs">Ubah Kata Sandi</button><button class="d" id="klr">Keluar</button></div>`;
  $('#um').querySelectorAll('[data-c]').forEach(d=>d.onclick=async()=>{try{await navigator.clipboard.writeText(d.dataset.c);toast('Disalin: '+d.dataset.c)}catch(_){}});
+ $('#pnd').onclick=()=>{$('#um').hidden=true;window.open(PANDUAN_URL,'_blank','noopener')};
  $('#ubs').onclick=()=>{$('#um').hidden=true;ubahSandi()};$('#klr').onclick=()=>db.auth.signOut().then(()=>location.reload())}
 function ubahSandi(){
  modal(`<h2>Ubah Kata Sandi</h2><form id="pf"><label>Kata Sandi Baru</label><div class="pw"><input id="p1" type="password" autocomplete="new-password" required><button type="button" class="eye" data-t="p1">👁</button></div><div class="sm"><i id="sb"></i></div><small id="st" class="muted">Minimal 6 karakter</small>
@@ -350,7 +360,7 @@ async function boot(){
  $('#login').hidden=true;$('#gate').hidden=true;$('#lf').hidden=true;$('#app').hidden=false;
  if(!['admin','pegawai_keuangan'].includes(me.role))me.role='pegawai';me.email=me.email||session.user.email;const ad=me.role=='admin';
  if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_pegawai','set_nomor']]);
- const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
+ const ni=(v,t)=>v=='monumen'?`<a href="${MONUMEN}" target="_blank" rel="noopener" data-x="1">${IC[v]}<span>${t}</span></a>`:`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
  $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span></b>'+ni('dashboard','Beranda')+(gh=>GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+ni('ruangan','Pemakaian Ruangan Rapat')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
   +(ad?'':`<a href="${DRIVE}" target="_blank" rel="noopener" data-x="1">${IC.format}<span>Format Dokumen</span></a>`)
   +`<span class="sp"></span><div id="clk" role="button" tabindex="0" title="Klik untuk mengganti zona waktu"><div class="ct"><span id="ch">--</span><i>:</i><span id="cm">--</span><i>:</i><span id="cs">--</span><b id="cz">WIB</b></div><div class="cd" id="cd"></div><div id="cbar"></div></div><div class="cp">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</div>`;
@@ -533,7 +543,7 @@ async function setPengguna(){
  const {data}=await db.from('profiles').select('*').order('email'),us=data||[];
  $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Pengguna</h1>
   <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:16px 0 10px"><h2>Daftar Pengguna</h2><button id="iu">Isi Username Otomatis</button></div>
- <div class="tw"><table><tr><th>Email</th><th>Username</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td data-l="Email">${esc(u.email)}</td><td data-l="Username"><input data-u="${u.id}" value="${esc(u.username||'')}" placeholder="Belum Diatur" autocapitalize="none" style="min-width:120px"></td><td data-l="Nama Pegawai"><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pgx().filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td data-l="Peran"><select data-r="${u.id}">${['pegawai','pegawai_keuangan','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${RLN[r]}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button> ${u.id==me.id?'':`<button class="d" data-hp="${u.id}" data-em="${esc(u.email)}" data-nm="${esc(u.nama)}">Hapus</button>`}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada pengguna.</td></tr>'}</table></div>
+ <div class="tw"><table><tr><th>Email</th><th>Username</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td data-l="Email">${esc(u.email)}</td><td data-l="Username"><input data-u="${u.id}" value="${esc(u.username||'')}" placeholder="Belum Diatur" autocapitalize="none" style="min-width:120px"></td><td data-l="Nama Pegawai"><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pgx().filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td data-l="Peran"><select data-r="${u.id}">${['pegawai','pegawai_keuangan','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${RLN[r]}</option>`).join('')}</select></td><td class="ac"><button data-ud="${u.id}">Ubah Data</button> <button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button> ${u.id==me.id?'':`<button class="d" data-hp="${u.id}" data-em="${esc(u.email)}" data-nm="${esc(u.nama)}">Hapus</button>`}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada pengguna.</td></tr>'}</table></div>
  <div class="sg"><div class="set"><h2>Tambah Pengguna</h2><p class="muted">Kata sandi awal: <b>123456</b>. Pengguna dapat menggantinya lewat menu nama di pojok kanan atas.</p>
  <label>Email (Gmail)</label><input id="ue" type="email" placeholder="nama@gmail.com">
  <label>Nama Pegawai</label><select id="un"><option value="">- Pilih Pegawai -</option>${pgx().map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select>
@@ -563,6 +573,18 @@ const em=el=>el.closest('tr').children[0].textContent;
    const {error}=await db.rpc('ubah_peran',{p_id:x.dataset.r,p_role:x.value});error?(toast(error.message,1),setPengguna()):toast('Peran diperbarui')},()=>setPengguna()));
  $('#main').querySelectorAll('[data-n]').forEach(x=>x.onchange=()=>konfirmasi('Ubah Nama Pegawai?',`Nama pembuat untuk <b>${esc(em(x))}</b> akan diubah menjadi <b>${esc(x.value)}</b>. Data lama atas nama sebelumnya tidak ikut berubah dan hanya bisa diubah atau dihapus oleh Admin.`,'Ya, Ubah',async()=>{
    const {error}=await db.from('profiles').update({nama:x.value}).eq('id',x.dataset.n);error?(toast(error.message,1),setPengguna()):toast('Nama pegawai diperbarui')},()=>setPengguna()));
+ $('#main').querySelectorAll('[data-ud]').forEach(b=>b.onclick=()=>{const u=us.find(x=>x.id==b.dataset.ud),ln=[...new Set([u.nama,...pg.map(p=>p.nama)])].filter(Boolean);
+  modal(`<h2>Ubah Data Pengguna</h2><form id="fu"><label>Email</label><input id="ue2" type="email" value="${esc(u.email)}" required autocapitalize="none">
+  <label>Username</label><input id="uu2" value="${esc(u.username||'')}" autocapitalize="none" placeholder="mis. hogan">
+  <label>Nama Pegawai</label><select id="un2" required>${ln.map(n=>`<option ${n==u.nama?'selected':''}>${esc(n)}</option>`).join('')}</select>
+  <label>Peran</label><select id="ur2">${['pegawai','pegawai_keuangan','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${RLN[r]}</option>`).join('')}</select>
+  <p class="muted" style="font-size:13px;margin:10px 0 0">Jika email diubah, pengguna harus login memakai email yang baru. Kata sandi tidak berubah.</p>
+  <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">Simpan Perubahan</button></div></form>`);
+  $('#bt').onclick=closeM;
+  $('#fu').onsubmit=async e=>{e.preventDefault();const bs=e.submitter;bs.disabled=true;
+   const {error}=await db.rpc('ubah_pengguna',{p_id:u.id,p_email:$('#ue2').value.trim(),p_nama:$('#un2').value,p_username:$('#uu2').value.trim(),p_role:$('#ur2').value});
+   bs.disabled=false;if(error)return toast(/schema cache|does not exist/.test(error.message)?'Fungsi ubah pengguna belum dipasang. Jalankan SQL terbaru di Supabase.':error.message,1);
+   closeM();toast('Data pengguna diperbarui');setPengguna()}});
  $('#main').querySelectorAll('[data-hp]').forEach(b=>b.onclick=()=>konfirmasi('Hapus Pengguna?',`Akun <b>${esc(b.dataset.em)}</b> (${esc(b.dataset.nm)}) akan dihapus dan tidak bisa login lagi. Data surat yang pernah dibuat tetap tersimpan. Tindakan ini tidak bisa dibatalkan.`,'Ya, Hapus',async()=>{
    const {error}=await db.rpc('hapus_pengguna',{p_id:b.dataset.hp});
    if(error)return toast(/hapus_pengguna/.test(error.message)?'Fungsi hapus pengguna belum dipasang. Jalankan SQL terbaru di Supabase.':error.message,1);
@@ -644,7 +666,7 @@ function pjDraw(){
  const f=act.filter(r=>(!pjf||r.status==pjf)&&(!s||[r.no_urut,r.pegawai,r.tim,r.nama_spj,r.staf,r.metode,r.status].join(' ').toLowerCase().includes(s))),tp=Math.max(1,Math.ceil(f.length/10));page=Math.min(page,tp);
  const part=f.slice((page-1)*10,page*10);
  $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Pengajuan Keuangan</h1>
- <div class="warn" style="margin:10px 0 0"><b>Catatan: Standar Pelayanan</b><ul class="sp2"><li>Pengecekan sampai OTP PPK oleh SPK maksimal <b>5 hari kerja</b> dari tanggal penyerahan ke SPK.</li><li>OTP PPSPM sejak di-OTP PPK maksimal <b>3 hari kerja</b>.</li><li>Penerbitan SP2D maksimal <b>3 hari</b> setelah di-OTP PPSPM.</li></ul></div>
+ <div class="warn" style="margin:10px 0 0"><b>Catatan: Standar Pelayanan</b><ul class="sp2"><li>Pengecekan sampai OTP PPK oleh SPK maksimal <b>5 hari kerja</b> dari tanggal penyerahan ke SPK.</li><li>OTP PPSPM sejak di-OTP PPK maksimal <b>3 hari kerja</b>.</li><li>Penerbitan SP2D maksimal <b>3 hari</b> setelah di-OTP PPSPM.</li></ul><div style="margin-top:8px">Pejabat Pembuat Komitmen (PPK): <b>${esc(PPK_NAMA)}</b></div></div>
  <div class="chips"><button class="${!pjf?'on':''}" data-f="">Semua <b>${act.length}</b></button>${STATUS.map(x=>`<button class="${pjf==x?'on':''}" data-f="${x}" style="--c:${SC[x]}"><i></i>${x} <b>${cnt[x]}</b></button>`).join('')}</div>
  <div class="bar"><input id="cari" type="search" placeholder="Cari nama SPJ, pegawai, tim, staf…" value="${esc(q)}"><span class="sp"></span><button id="arsip">Riwayat Pengajuan${arc?` (${arc})`:''}</button><button class="p" id="tambah">Ajukan Pengajuan</button></div>
  <div class="tw"><table><tr><th>No Urut</th><th>Nama Pegawai</th><th>Tim Pembuat</th><th>Nama SPJ</th><th>Staf Pengelola Keuangan</th><th>Tgl Penyerahan ke SPK</th><th>Metode</th><th>Status Pengajuan</th><th>Batas Layanan</th><th>Aksi</th></tr>
@@ -667,7 +689,7 @@ function pjForm(id,pre){
  const sel=(n,a,v,ph)=>`<select name="${n}" required><option value="">- ${ph} -</option>${a.map(x=>`<option ${x==v?'selected':''}>${esc(x)}</option>`).join('')}</select>`;
  const nama=[...new Set([r.pegawai,...pgx().map(p=>p.nama)])].filter(Boolean);
  modal(`<h2>${id?'Ubah':'Ajukan'} Pengajuan Keuangan</h2><form id="fm">${id?`<label>No Urut</label><input value="${o.no_urut}" disabled>`:''}
- <label>Nama Pegawai yang Mengajukan</label>${sel('pegawai',nama,r.pegawai,'Pilih Pegawai')}
+ <label>Nama Pegawai yang Mengajukan</label><input name="pegawai" value="${esc(id?o.pegawai:me.nama)}" readonly required><small class="muted">Terisi otomatis sesuai akun yang login.</small>
  <label>Tim Pembuat</label>${sel('tim',TIM,r.tim,'Pilih Tim')}
  <label>Nama SPJ</label><input name="nama_spj" value="${esc(r.nama_spj)}" placeholder="Contoh: Honor Pengelola Keuangan Januari 2027" required autocomplete="off">
  <label>Staf Pengelola Keuangan</label>${sel('staf',STAF,r.staf,'Pilih Staf')}
