@@ -152,7 +152,8 @@ nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
  #mb{display:block}#top{justify-content:space-between;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px}.un{display:none}#uc{padding:4px}
  #um{right:14px;left:14px;width:auto}
  main{padding:10px 20px 26px}h1{font-size:23px}.pn,.set,.card{padding:18px}
- .dg,.sg{grid-template-columns:1fr}.bar input{max-width:none;flex:1 1 100%}
+ .dg,.sg{grid-template-columns:1fr}.bar{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bar input{max-width:none;grid-column:1/-1;order:-2}.bar .sp{display:none}
+ .bar #tambah{grid-column:1/-1;order:-1}.bar button{width:100%;text-align:center}.bar>.muted{grid-column:1/-1;text-align:center}
  .tw{background:none;box-shadow:none;overflow:visible}
  table,tbody,tr,td{display:block;min-width:0}tr:has(th){display:none}
  tr{background:var(--card);border-radius:16px;box-shadow:var(--sh);padding:10px 16px;margin-bottom:12px}
@@ -160,6 +161,15 @@ nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
  td::before{content:attr(data-l);color:var(--mut);font-size:12px;text-align:left;flex:none}
  td.ac::before,td.empty::before{content:none}td.ac{justify-content:flex-end;padding-top:8px}tbody tr:hover td{background:none}
  #app>footer{padding:8px 20px 20px}.box{padding:20px}
+}
+@media(min-width:801px){
+ #app{grid-template-rows:1fr auto}
+ nav{grid-row:1/3}
+ #top{grid-row:1;align-self:start;pointer-events:none;background:none;backdrop-filter:none}
+ #top>*{pointer-events:auto}
+ main{grid-row:1;padding-top:12px}
+ #app>footer{grid-row:2}
+ .hd{padding-right:min(300px,28vw)}
 }
 </style></head><body>
 
@@ -190,7 +200,7 @@ nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
 // ===== ISI DUA BARIS INI (Supabase > Project Settings > API) =====
-const SB_URL='https://gqxmaebmujswfurhiijc.supabase.co/rest/v1/', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxeG1hZWJtdWpzd2Z1cmhpaWpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxNjI3OTAsImV4cCI6MjExMDczODc5MH0.IVr2qpyLTH0Zc07xmz3v2mfzJ2MUutVCrOjKhqXy1h4';
+const SB_URL='https://gqxmaebmujswfurhiijc.supabase.co', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxeG1hZWJtdWpzd2Z1cmhpaWpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxNjI3OTAsImV4cCI6MjExMDczODc5MH0.IVr2qpyLTH0Zc07xmz3v2mfzJ2MUutVCrOjKhqXy1h4';
 // =================================================================
 const db=supabase.createClient(new URL(SB_URL.trim()).origin,SB_KEY.trim());
 const J={
