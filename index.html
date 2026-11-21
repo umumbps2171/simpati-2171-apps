@@ -226,9 +226,9 @@ const PENGUMUMAN=[
  {judul:`Selamat Datang di SIMPATI - 2171`,
   isi:`Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam. Mohon isi setiap data dengan lengkap dan benar.`,
   tanggal:'2026-11-21', jenis:'info'},
- {judul:`Rapat Bulanan Pegawai BPS Kota Batam`,
-  isi:`Rapat Bulanan Pegawai bulan Januari 2027 akan dilaksanakan di ruang rapat, jam 08.00. Harap untuk datang tepat waktu yaa, terimakasih :).`,
-  tanggal:'2027-04-07', jenis:'penting', sampai:'2026-12-20'}
+ {judul:`Contoh Pengumuman Penting`,
+  isi:`Ini contoh pengumuman penting. Ganti atau hapus blok ini sesuai kebutuhan.`,
+  tanggal:'2026-11-21', jenis:'penting', sampai:'2026-12-31'}
 ];
 // =============================================
 const db=supabase.createClient(new URL(SB_URL.trim()).origin,SB_KEY.trim());
@@ -292,8 +292,13 @@ function ubahSandi(){
 const hari=()=>new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jakarta'});
 const tgl=s=>s?new Date(s+'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}):'';
 function toast(m,err){const t=$('#toast');t.textContent=m;t.className=err?'err show':'show';clearTimeout(t.h);t.h=setTimeout(()=>t.className='',3500)}
-function modal(h,w){const m=$('#modal');m.innerHTML='<div class="box"'+(w?' style="max-width:'+w+'px"':'')+'>'+h+'</div>';m.hidden=false}
-function closeM(){$('#modal').hidden=true}
+let onTutup=null;
+function modal(h,w){onTutup=null;const m=$('#modal');m.innerHTML='<div class="box"'+(w?' style="max-width:'+w+'px"':'')+'>'+h+'</div>';m.hidden=false}
+function closeM(){$('#modal').hidden=true;const f=onTutup;onTutup=null;if(f)f()}
+function konfirmasi(judul,isi,ok,aksi,batal){
+ modal(`<h2>${judul}</h2><p>${isi}</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">${ok}</button></div>`);
+ onTutup=batal||null;$('#bt').onclick=closeM;
+ $('#ok').onclick=()=>{onTutup=null;closeM();aksi()}}
 $('#modal').onclick=e=>{if(e.target.id=='modal')closeM()};
 
 async function boot(){
@@ -399,8 +404,10 @@ function editTgl(td){
  const r=rows.find(x=>x.id==td.dataset.id),i=document.createElement('input');i.type='date';i.value=r.tanggal;td.innerHTML='';td.appendChild(i);i.focus();
  const simpan=async()=>{if(!i.value||i.value==r.tanggal)return draw();
   if(+i.value.slice(0,4)!=r.tahun){toast('Tahun harus sama dengan tahun pada nomor ('+r.tahun+')',1);return draw()}
-  const {error}=await db.from('register').update({tanggal:i.value}).eq('id',r.id);
-  if(error)toast('Gagal menyimpan: '+error.message,1);else{r.tanggal=i.value;toast('Tanggal diperbarui')}draw()};
+  const tb=i.value;
+  konfirmasi('Ubah Tanggal Surat?',`Tanggal pada nomor <b>${esc(r.nomor)}</b> akan diubah dari <b>${tgl(r.tanggal)}</b> menjadi <b>${tgl(tb)}</b>.`,'Ya, Ubah',async()=>{
+   const {error}=await db.from('register').update({tanggal:tb}).eq('id',r.id);
+   if(error){toast('Gagal menyimpan: '+error.message,1);draw()}else{toast('Tanggal diperbarui');load()}},()=>draw())};
  i.onblur=simpan;i.onkeydown=e=>{if(e.key=='Enter')i.blur();if(e.key=='Escape'){i.onblur=null;draw()}};
 }
 function fld(k,v){v=v??'';
@@ -470,15 +477,15 @@ async function setelan(){
 async function setPengguna(){
  const {data}=await db.from('profiles').select('*').order('email'),us=data||[];
  $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Pengguna</h1>
+  <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:16px 0 10px"><h2>Daftar Pengguna</h2><button id="iu">Isi Username Otomatis</button></div>
+ <div class="tw"><table><tr><th>Email</th><th>Username</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td data-l="Email">${esc(u.email)}</td><td data-l="Username"><input data-u="${u.id}" value="${esc(u.username||'')}" placeholder="Belum Diatur" autocapitalize="none" style="min-width:120px"></td><td data-l="Nama Pegawai"><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td data-l="Peran"><select data-r="${u.id}">${['pegawai','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${RLN[r]}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button> ${u.id==me.id?'':`<button class="d" data-hp="${u.id}" data-em="${esc(u.email)}" data-nm="${esc(u.nama)}">Hapus</button>`}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada pengguna.</td></tr>'}</table></div>
  <div class="sg"><div class="set"><h2>Tambah Pengguna</h2><p class="muted">Kata sandi awal: <b>123456</b>. Pengguna dapat menggantinya lewat menu nama di pojok kanan atas.</p>
  <label>Email (Gmail)</label><input id="ue" type="email" placeholder="nama@gmail.com">
  <label>Nama Pegawai</label><select id="un"><option value="">- Pilih Pegawai -</option>${pg.map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select>
  <label>Username (Otomatis dari Nama Awal Pegawai)</label><input id="uu" autocapitalize="none" placeholder="mis. hogan">
  <label>Peran</label><select id="ur"><option value="pegawai">Pegawai</option><option value="admin">Admin</option></select>
  <div class="row"><button class="p" id="tp">Tambah Pengguna</button></div></div>
- <div class="set"><h2>Unggah Pengguna dari Excel</h2><p class="muted">Kolom: <b>Email</b>, <b>Nama Pegawai</b>, <b>Role</b> (admin atau pegawai). Kata sandi awal semua pengguna: <b>123456</b>.</p><button id="tm">Unduh Template</button><input id="xf" type="file" accept=".xlsx,.xls,.csv"></div></div>
- <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:22px 0 10px"><h2>Daftar Pengguna</h2><button id="iu">Isi Username Otomatis</button></div>
- <div class="tw"><table><tr><th>Email</th><th>Username</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td data-l="Email">${esc(u.email)}</td><td data-l="Username"><input data-u="${u.id}" value="${esc(u.username||'')}" placeholder="Belum Diatur" autocapitalize="none" style="min-width:120px"></td><td data-l="Nama Pegawai"><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td data-l="Peran"><select data-r="${u.id}">${['pegawai','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${RLN[r]}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`;
+ <div class="set"><h2>Unggah Pengguna dari Excel</h2><p class="muted">Kolom: <b>Email</b>, <b>Nama Pegawai</b>, <b>Role</b> (admin atau pegawai). Kata sandi awal semua pengguna: <b>123456</b>.</p><button id="tm">Unduh Template</button><input id="xf" type="file" accept=".xlsx,.xls,.csv"></div></div>`;
  $('#tm').onclick=()=>{if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);const w=XLSX.utils.book_new();XLSX.utils.book_append_sheet(w,XLSX.utils.aoa_to_sheet([['Email','Nama Pegawai','Role'],['contoh@gmail.com','Nama Lengkap Pegawai','pegawai']]),'Pengguna');XLSX.writeFile(w,'template_pengguna.xlsx')};
  $('#xf').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);
   try{const w=XLSX.read(await f.arrayBuffer());impor(XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]],{header:1,defval:''}))}catch(_){toast('File tidak bisa dibaca. Gunakan file Excel (.xlsx)',1)}};
@@ -489,11 +496,22 @@ async function setPengguna(){
   if(u){const {error:e2}=await db.from('profiles').update({username:u}).eq('email',e.toLowerCase());if(e2){setPengguna();return toast('Pengguna ditambahkan, tetapi username "'+u+'" tidak bisa dipakai (mungkin sudah ada). Ubah di Daftar Pengguna.',1)}}
   toast('Pengguna ditambahkan. Username: '+(u||'-')+'. Kata sandi awal: 123456');setPengguna()};
  $('#un').onchange=()=>{$('#uu').value=usn($('#un').value)};
- $('#iu').onclick=async()=>{const n=await isiUsername();toast(n+' username diisi');setPengguna()};
- $('#main').querySelectorAll('[data-u]').forEach(i=>i.onchange=async()=>{const v=i.value.trim().toLowerCase();if(v&&!/^[a-z0-9._-]{3,}$/.test(v)){toast('Username minimal 3 karakter: huruf kecil, angka, titik, atau strip',1);return setPengguna()}
-  const {error}=await db.from('profiles').update({username:v||null}).eq('id',i.dataset.u);if(error){toast(error.code=='23505'?'Username sudah dipakai pengguna lain':error.message,1);return setPengguna()}i.value=v;toast('Username diperbarui')});
- $('#main').querySelectorAll('[data-r]').forEach(x=>x.onchange=async()=>{const {error}=await db.rpc('ubah_peran',{p_id:x.dataset.r,p_role:x.value});error?(toast(error.message,1),setPengguna()):toast('Peran diperbarui')});
- $('#main').querySelectorAll('[data-n]').forEach(x=>x.onchange=async()=>{const {error}=await db.from('profiles').update({nama:x.value}).eq('id',x.dataset.n);error?toast(error.message,1):toast('Nama pegawai diperbarui')});
+const em=el=>el.closest('tr').children[0].textContent;
+ $('#iu').onclick=()=>konfirmasi('Isi Username Otomatis?','Username yang masih kosong akan diisi otomatis dari nama awal pegawai. Username yang sudah ada tidak diubah.','Ya, Isi',async()=>{const n=await isiUsername();toast(n+' username diisi');setPengguna()});
+ $('#main').querySelectorAll('[data-u]').forEach(i=>i.onchange=()=>{const v=i.value.trim().toLowerCase();
+  if(v&&!/^[a-z0-9._-]{3,}$/.test(v)){toast('Username minimal 3 karakter: huruf kecil, angka, titik, atau strip',1);return setPengguna()}
+  konfirmasi('Ubah Username?',`Username <b>${esc(em(i))}</b> akan diubah menjadi <b>${esc(v||'(kosong)')}</b>.`,'Ya, Ubah',async()=>{
+   const {error}=await db.from('profiles').update({username:v||null}).eq('id',i.dataset.u);
+   if(error){toast(error.code=='23505'?'Username sudah dipakai pengguna lain':error.message,1);return setPengguna()}
+   i.value=v;toast('Username diperbarui')},()=>setPengguna())});
+ $('#main').querySelectorAll('[data-r]').forEach(x=>x.onchange=()=>konfirmasi('Ubah Peran?',`Peran <b>${esc(em(x))}</b> akan diubah menjadi <b>${RLN[x.value]}</b>.`,'Ya, Ubah',async()=>{
+   const {error}=await db.rpc('ubah_peran',{p_id:x.dataset.r,p_role:x.value});error?(toast(error.message,1),setPengguna()):toast('Peran diperbarui')},()=>setPengguna()));
+ $('#main').querySelectorAll('[data-n]').forEach(x=>x.onchange=()=>konfirmasi('Ubah Nama Pegawai?',`Nama pembuat untuk <b>${esc(em(x))}</b> akan diubah menjadi <b>${esc(x.value)}</b>. Data lama atas nama sebelumnya tidak ikut berubah dan hanya bisa diubah atau dihapus oleh Admin.`,'Ya, Ubah',async()=>{
+   const {error}=await db.from('profiles').update({nama:x.value}).eq('id',x.dataset.n);error?(toast(error.message,1),setPengguna()):toast('Nama pegawai diperbarui')},()=>setPengguna()));
+ $('#main').querySelectorAll('[data-hp]').forEach(b=>b.onclick=()=>konfirmasi('Hapus Pengguna?',`Akun <b>${esc(b.dataset.em)}</b> (${esc(b.dataset.nm)}) akan dihapus dan tidak bisa login lagi. Data surat yang pernah dibuat tetap tersimpan. Tindakan ini tidak bisa dibatalkan.`,'Ya, Hapus',async()=>{
+   const {error}=await db.rpc('hapus_pengguna',{p_id:b.dataset.hp});
+   if(error)return toast(/hapus_pengguna/.test(error.message)?'Fungsi hapus pengguna belum dipasang. Jalankan SQL terbaru di Supabase.':error.message,1);
+   toast('Pengguna dihapus');setPengguna()}));
  $('#main').querySelectorAll('[data-rs]').forEach(b=>b.onclick=()=>{
   modal(`<h2>Reset Kata Sandi?</h2><p>Kata sandi <b>${esc(b.dataset.em)}</b> akan dikembalikan ke 123456.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Reset</button></div>`);
   $('#bt').onclick=closeM;
@@ -505,11 +523,18 @@ async function setPegawai(){
  $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Referensi Pegawai</h1>
  <div class="set"><h2>Tambah Pegawai</h2><label>Nama Pegawai</label><div style="display:flex;gap:8px"><input id="pn" placeholder="Nama lengkap beserta gelar" autocomplete="off"><button class="p" id="pa">Tambah</button></div><p class="muted" style="font-size:13px;margin:8px 0 0">Daftar ini dipakai pada pilihan nama pegawai di seluruh aplikasi. Huruf awal kata dirapikan otomatis.</p></div>
  <div class="bar"><input id="cari" type="search" placeholder="Cari nama pegawai…"><span class="sp"></span><span class="muted">${L.length} pegawai</span></div>
- <div class="tw"><table id="tp"><tr><th>No</th><th>Nama Pegawai</th><th>Aksi</th></tr>${L.map((p,i)=>`<tr data-n="${esc(p.nama.toLowerCase())}"><td data-l="No">${i+1}</td><td data-l="Nama Pegawai"><b>${esc(p.nama)}</b></td><td class="ac"><button class="d" data-d="${p.id}" data-nm="${esc(p.nama)}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="3" class="empty">Belum ada pegawai.</td></tr>'}</table></div>`;
+ <div class="tw"><table id="tp"><tr><th>No</th><th>Nama Pegawai</th><th>Aksi</th></tr>${L.map((p,i)=>`<tr data-n="${esc(p.nama.toLowerCase())}"><td data-l="No">${i+1}</td><td data-l="Nama Pegawai"><b>${esc(p.nama)}</b></td><td class="ac"><button data-ed="${p.id}" data-nm="${esc(p.nama)}">Ubah</button> <button class="d" data-d="${p.id}" data-nm="${esc(p.nama)}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="3" class="empty">Belum ada pegawai.</td></tr>'}</table></div>`;
  $('#cari').oninput=e=>{const v=e.target.value.toLowerCase();$('#tp').querySelectorAll('tr[data-n]').forEach(t=>t.hidden=!t.dataset.n.includes(v))};
  const tambah=async()=>{const n=proper($('#pn').value);if(!n)return toast('Nama pegawai wajib diisi',1);const {error}=await db.from('pegawai').insert({nama:n});
   if(error)return toast(error.code=='23505'?'Nama pegawai sudah ada':'Gagal menambah: '+error.message,1);await segarPg();toast('Pegawai ditambahkan');setPegawai()};
  $('#pa').onclick=tambah;$('#pn').onkeydown=e=>{if(e.key=='Enter')tambah()};
+$('#main').querySelectorAll('[data-ed]').forEach(b=>b.onclick=()=>{
+  modal(`<h2>Ubah Data Pegawai</h2><form id="fe"><label>Nama Pegawai</label><input id="en" value="${esc(b.dataset.nm)}" autocomplete="off" required><p class="muted" style="font-size:13px;margin:10px 0 0">Perubahan nama hanya mengubah daftar pilihan nama. Data surat yang sudah tercatat dan nama pada akun pengguna tidak ikut berubah.</p><div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">Simpan Perubahan</button></div></form>`);
+  $('#bt').onclick=closeM;$('#en').focus();
+  $('#fe').onsubmit=async e=>{e.preventDefault();const n=proper($('#en').value);if(!n)return toast('Nama pegawai wajib diisi',1);if(n==b.dataset.nm)return closeM();
+   const {error}=await db.from('pegawai').update({nama:n}).eq('id',b.dataset.ed);
+   if(error)return toast(error.code=='23505'?'Nama pegawai sudah ada':'Gagal menyimpan: '+error.message,1);
+   closeM();await segarPg();toast('Data pegawai diperbarui');setPegawai()}});
  $('#main').querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{
   modal(`<h2>Hapus Pegawai?</h2><p><b>${esc(b.dataset.nm)}</b> akan dihapus dari referensi nama pegawai. Akun pengguna dan data yang sudah tercatat tidak ikut terhapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Ya, Hapus</button></div>`);
   $('#bt').onclick=closeM;$('#ok').onclick=async()=>{const {error}=await db.from('pegawai').delete().eq('id',b.dataset.d);closeM();if(error)return toast('Gagal menghapus: '+error.message,1);await segarPg();toast('Pegawai dihapus');setPegawai()}})}
@@ -531,9 +556,10 @@ async function setNomor(y){
  $('#sf').onclick=async()=>{const fm=ks.map(k=>({jenis:k,pola:$('[data-f="'+k+'"]').value.trim()}));
   if(fm.some(x=>!x.pola.includes('{urut')))return toast('Setiap format harus memuat {urut} atau {urut3}',1);
   const cn=ks.filter(k=>$('[data-c="'+k+'"]').value!=='').map(k=>({jenis:k,tahun:y,terakhir:Math.max(0,+$('[data-c="'+k+'"]').value||0)}));
+  konfirmasi('Simpan Setting Penomoran?','Perubahan format hanya berlaku untuk nomor baru. Kolom “Lanjutkan dari Nomor” menentukan nomor berikutnya.','Ya, Simpan',async()=>{
   let r1=await db.from('format_nomor').upsert(fm);if(r1.error)return toast('Gagal menyimpan format: '+r1.error.message,1);
   if(cn.length){const r2=await db.from('nomor_counter').upsert(cn,{onConflict:'jenis,tahun'});if(r2.error)return toast('Gagal menyimpan nomor: '+r2.error.message,1)}
-  fm.forEach(x=>FMT[x.jenis]=x.pola);toast('Setting penomoran disimpan');setNomor(y)}}
+  fm.forEach(x=>FMT[x.jenis]=x.pola);toast('Setting penomoran disimpan');setNomor(y)})}}
 function draftPage(){
  $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Pengajuan Keuangan <span class="chip" style="font-size:13px;vertical-align:middle;background:rgba(245,165,36,.2);color:#b36b00">Draft</span></h1>
  <div class="pn" style="max-width:720px"><h2>Menu Ini Masih Berupa Draft</h2><p class="muted">Belum ada fitur yang berfungsi di halaman ini. Alur dan isian pengajuan perlu dikonfirmasi dulu supaya sesuai kebutuhan kantor:</p>
