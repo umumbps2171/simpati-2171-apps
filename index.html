@@ -2,7 +2,7 @@
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a2147">
-<title>Subbagian Umum BPS Kota Batam<br>Super Apps</title>
+<title>Umum BPS-2171 Super Apps</title>
 <link rel="icon" href="logo-bps.png">
 <script>window.noLogo=function(e){var p=e.parentElement;if(p&&p.classList.contains("lgo"))p.remove();else e.replaceWith("U")}</script>
 <style>
@@ -211,7 +211,7 @@ async function boot(){
  pg=a.data||[];kl=b.data||[];
  $('#login').hidden=true;$('#gate').hidden=true;$('#lf').hidden=true;$('#app').hidden=false;
  const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span>${v=='pengajuan'?'<em class="bd">Draft</em>':''}</a>`;
- $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Beranda')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('ruangan','Pemakaian Ruangan Rapat')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
+ $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Dashboard')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('ruangan','Pemakaian Ruangan Rapat')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
  $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else if(a.dataset.g){const g=a.closest('.grp');if(innerWidth<=800)document.querySelectorAll('.grp').forEach(x=>x!=g&&x.classList.remove('open'));g.classList.toggle('open')}else go(a.dataset.v)};
  document.addEventListener('click',e=>{if(innerWidth<=800&&!e.target.closest('.grp'))document.querySelectorAll('.grp').forEach(g=>g.classList.remove('open'))});
  go('dashboard');
@@ -242,7 +242,7 @@ async function dash(){
  const m={},tm={};ks.forEach(k=>m[k]=Array(12).fill(0));TIM.forEach(t=>{tm[t]={};ks.forEach(k=>tm[t][k]=0)});
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++;if(tm[r.tim])tm[r.tim][r.jenis]++});
  const tt=TIM.map(t=>ks.reduce((x,k)=>x+tm[t][k],0)),mx=Math.max(1,...tt),sudah=TIM.filter((t,i)=>tt[i]>0),belum=TIM.filter((t,i)=>!tt[i]),bi=new Date().getMonth();
- $('#main').innerHTML=`<div class="hd"><div><p class="muted" style="margin:0">Halo, ${esc(me.nama)}</p><h1>Beranda Aplikasi</h1></div><div class="jam"><b id="jt"></b><span id="jd"></span></div></div>
+ $('#main').innerHTML=`<div class="hd"><div><p class="muted" style="margin:0">Halo, ${esc(me.nama)}</p><h1>Dashboard</h1></div><div class="jam"><b id="jt"></b><span id="jd"></span></div></div>
  <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2>Pemakaian Ruangan Rapat</h2><button id="lr">Lihat semua</button></div>
  ${rm.error?'<p class="empty">Data pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Tidak Dipakai</b></p>'}</div>
  <div class="yr">${yrs.map(y=>`<button class="${y==dy?'on':''}" data-y="${y}">${y}</button>`).join('')}</div>
@@ -321,7 +321,7 @@ async function save(e,id){
   btn.disabled=false;if(error)return toast('Gagal menyimpan: '+error.message,1);
   closeM();toast('Perubahan disimpan');return load();
  }
- const {data,error}=await db.rpc('ambil_nomor_auto',{p_jenis:view,p_tanggal:d.tanggal,p_perihal:d.perihal??null,p_tim:d.tim??null,p_klas:d.klasifikasi??null,p_link:d.link??null,p_output:d.output??null,p_uraian:d.uraian??null});
+ const {data,error}=await db.rpc('ambil_nomor',{p_jenis:view,p_tanggal:d.tanggal,p_perihal:d.perihal??null,p_tim:d.tim??null,p_klas:d.klasifikasi??null,p_link:d.link??null,p_output:d.output??null,p_uraian:d.uraian??null});
  btn.disabled=false;
  if(error)return toast(/foreign key/.test(error.message)?'Kode klasifikasi tidak ada dalam daftar':error.message,1);
  let nomor=data.nomor;
@@ -374,7 +374,7 @@ async function setelan(){
   const {error}=await db.rpc('tambah_pengguna',{p_email:e,p_nama:$('#un').value,p_role:$('#ur').value});
   if(error)return toast(error.message,1);
   const u=($('#uu').value||'').trim().toLowerCase()||usn($('#un').value);
-  if(u){const {error:e2}=await db.from('profiles').update({username:u}).ilike('email',e);if(e2){setelan();return toast('Pengguna ditambahkan, tetapi username "'+u+'" tidak bisa dipakai (mungkin sudah ada). Ubah di Daftar Pengguna.',1)}}
+  if(u){const {error:e2}=await db.from('profiles').update({username:u}).eq('email',e.toLowerCase());if(e2){setelan();return toast('Pengguna ditambahkan, tetapi username "'+u+'" tidak bisa dipakai (mungkin sudah ada). Ubah di Daftar Pengguna.',1)}}
   toast('Pengguna ditambahkan. Username: '+(u||'-')+'. Kata sandi awal: 123456');setelan()};
  $('#un').onchange=()=>{$('#uu').value=usn($('#un').value)};
  $('#sf').onclick=async()=>{const arr=[...$('#main').querySelectorAll('[data-f]')].map(i=>({jenis:i.dataset.f,pola:i.value.trim()}));
