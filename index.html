@@ -105,45 +105,62 @@ td.ac{white-space:nowrap}td.ac button{padding:4px 10px;font-size:13px}
 #toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#0f2f66;color:#fff;padding:11px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:30;max-width:90vw}
 #toast.show{opacity:1}#toast.err{background:var(--err)}
 .empty{padding:36px;text-align:center;color:var(--mut)}
-@media(max-width:800px){
- #app{display:block;padding-bottom:84px}
- nav{position:fixed;bottom:0;left:0;right:0;top:auto;height:auto;flex-direction:row;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));gap:2px;z-index:10;border-radius:18px 18px 0 0}
- nav b,nav .sp,nav small,nav .out{display:none}
- nav a{flex:1;flex-direction:column;gap:3px;padding:7px 2px;font-size:11px;text-align:center;border-radius:12px}
- main{padding:calc(16px + env(safe-area-inset-top,0px)) 14px 16px}h1{font-size:22px}
- .dg,.sg{grid-template-columns:1fr}
- .tw{background:none;box-shadow:none;overflow:visible}
- table,tbody,tr,td{display:block;min-width:0}tr:has(th){display:none}
- tr{background:var(--card);border-radius:14px;box-shadow:var(--sh);padding:8px 14px;margin-bottom:10px}
- td{border:0;padding:4px 0;display:flex;justify-content:space-between;gap:14px;text-align:right}
- td::before{content:attr(data-l);color:var(--mut);font-size:12px;text-align:left;flex:none}
- td.ac::before,td.empty::before{content:none}td.ac{justify-content:flex-end;padding-top:8px}
- tbody tr:hover td{background:none}
- .grp{flex:1;flex-direction:row}.grp>a{flex:1}.grp>a em{display:none}.grp.act>a{background:#fff;color:#0f2f66}
- .sub{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.3);padding:8px;z-index:11}
- nav .sub a{flex-direction:row;font-size:15px;color:var(--tx);text-align:left;padding:13px 14px}
- nav .sub .bd{background:#fff3d6;color:#8a5a00}
- nav .sub a.on,nav .sub a:hover{background:var(--sky2);color:var(--sky)}
-}
 .tb{display:grid;grid-template-columns:84px 1fr 32px;gap:10px;align-items:center;margin:12px 0}
 .tn{font-size:13px;color:var(--mut)}.tb b{text-align:right}
 .tr{display:flex;height:16px;background:var(--sky2);border-radius:99px;overflow:hidden}.tr i{display:block;height:100%;transition:width .5s}
-@media(max-width:800px){nav a[data-v=ruangan] span{font-size:10px;line-height:1.1}}
-.gm img{width:100%;height:100%;object-fit:contain;padding:10px}
-nav b i img{width:100%;height:100%;object-fit:contain;padding:4px}
-.lgo{width:64px;height:64px;margin:0 auto 12px}.lgo img{width:100%;height:100%;object-fit:contain}
-.hd{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
-.jam{text-align:right}.jam b{display:block;font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.jam span{color:var(--mut);font-size:13px}
-#app{grid-template-rows:1fr auto}nav{grid-row:1/3}
-#app>footer{grid-column:2;padding:12px 32px 18px;text-align:center;font-size:12px;font-weight:700;font-style:italic;color:var(--mut);opacity:.7}
-#lf{position:fixed;left:0;right:0;bottom:10px;z-index:60;text-align:center;font-size:12px;font-weight:700;font-style:italic;color:rgba(255,255,255,.6);pointer-events:none;padding:0 12px}
-@media(max-width:800px){#app>footer{padding:6px 14px 10px}}
+#app{grid-template-columns:248px 1fr;grid-template-rows:auto 1fr auto}
+nav{grid-row:1/4;padding-bottom:16px}#top,main,#app>footer{grid-column:2}
+#top{position:sticky;top:0;z-index:15;display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 32px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px)}
+#mb{display:none;font-size:24px;line-height:1;padding:4px 12px;border-radius:12px;font-weight:800}
+#uc{display:flex;align-items:center;gap:10px;padding:5px 14px 5px 5px;border-radius:99px;transition:box-shadow .2s,transform .2s}#uc:hover{box-shadow:var(--sh);transform:translateY(-1px)}
+#uc em{font-style:normal;font-size:11px;transition:transform .2s}#uc[aria-expanded=true] em{transform:rotate(180deg)}
+.un{max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.av2{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#2a62c9,#12b5a6);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+#um{position:absolute;right:32px;top:calc(100% - 2px);width:320px;background:var(--card);border-radius:20px;box-shadow:0 18px 50px rgba(8,20,40,.3);padding:18px;transform-origin:top right;animation:pop .2s ease-out;z-index:25}
+@keyframes pop{from{opacity:0;transform:scale(.9) translateY(-8px)}}
+.ur{display:flex;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:10px;cursor:pointer;font-size:14px}.ur:hover{background:var(--sky2)}.ur b{overflow:hidden;text-overflow:ellipsis}
+.rl{display:inline-block;padding:1px 10px;border-radius:99px;font-size:12px;font-weight:700;background:var(--sky2);color:var(--sky)}
+.col{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+#clk{margin:10px 2px 0;padding:12px 14px 14px;border-radius:16px;background:rgba(255,255,255,.1);cursor:pointer;user-select:none;position:relative;overflow:hidden;transition:background .2s,transform .2s}
+#clk:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+.ct{display:flex;align-items:baseline;gap:2px;font-variant-numeric:tabular-nums;font-size:26px;font-weight:800;letter-spacing:-.02em}.ct span{display:inline-block}
+.ct i{font-style:normal;animation:blink 1s steps(2) infinite}.ct b{margin-left:8px;font-size:12px;padding:2px 9px;border-radius:99px;background:rgba(255,255,255,.2);letter-spacing:0}
+.cd{font-size:12px;color:#cfe3ff;margin-top:2px}#cbar{position:absolute;left:0;bottom:0;height:3px;background:#7fc0ff;transition:width 1s linear}
+.flip{animation:flip .35s}@keyframes flip{from{transform:rotateX(90deg);opacity:0}}@keyframes blink{50%{opacity:.25}}
+.pw{position:relative}.eye{position:absolute;right:6px;top:5px;padding:3px 8px;border:0;background:none}
+.sm{height:6px;border-radius:9px;background:var(--sky2);margin:8px 0 4px;overflow:hidden}.sm i{display:block;height:100%;width:0;transition:width .3s,background .3s}
+nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
+.gk h1{color:#fff;background:none;-webkit-text-fill-color:initial;animation:none}
+.gk h1 span{display:inline-block;cursor:pointer;animation:glow 3.2s ease-in-out infinite,wave 3.2s ease-in-out infinite;animation-delay:calc(var(--i)*.09s);transition:transform .2s,color .2s}
+.gk h1 span:hover{transform:translateY(-14px) scale(1.35) rotate(-7deg);color:#ffd36b;animation-play-state:paused}
+@keyframes glow{50%{color:#bfe0ff;text-shadow:0 0 22px rgba(143,197,242,.95)}}@keyframes wave{50%{transform:translateY(-6px)}}
+.ob{position:absolute;inset:0;transition:transform .25s;transform:translate(calc(var(--mx,0)*-34px),calc(var(--my,0)*-24px))}
+.gk{transform:perspective(900px) rotateY(calc(var(--mx,0)*6deg)) rotateX(calc(var(--my,0)*-6deg));transition:transform .2s}
+.spk{position:fixed;width:7px;height:7px;margin:-3px;border-radius:50%;background:#ffd36b;pointer-events:none;animation:spk .7s ease-out forwards;z-index:3}@keyframes spk{to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+#gb:hover{transform:translateY(-3px) scale(1.06)}
+#app>footer{padding:12px 32px 18px;text-align:center;font-size:12px;font-weight:700;font-style:italic;color:var(--mut);opacity:.7}
+@media(max-width:800px){
+ #app{display:block}
+ nav{position:fixed;top:0;left:0;bottom:0;height:auto;width:min(300px,84vw);z-index:40;transform:translateX(-105%);transition:transform .3s cubic-bezier(.3,.8,.3,1);border-radius:0 24px 24px 0;padding:calc(20px + env(safe-area-inset-top,0px)) 16px calc(18px + env(safe-area-inset-bottom,0px));overflow:auto;box-shadow:12px 0 40px rgba(0,0,0,.35)}
+ nav.show{transform:none}#ov{display:block;position:fixed;inset:0;background:rgba(8,20,40,.5);z-index:35;opacity:0;pointer-events:none;transition:opacity .25s}#ov.show{opacity:1;pointer-events:auto}
+ #mb{display:block}#top{justify-content:space-between;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px}.un{display:none}#uc{padding:4px}
+ #um{right:14px;left:14px;width:auto}
+ main{padding:10px 20px 26px}h1{font-size:23px}.pn,.set,.card{padding:18px}
+ .dg,.sg{grid-template-columns:1fr}.bar input{max-width:none;flex:1 1 100%}
+ .tw{background:none;box-shadow:none;overflow:visible}
+ table,tbody,tr,td{display:block;min-width:0}tr:has(th){display:none}
+ tr{background:var(--card);border-radius:16px;box-shadow:var(--sh);padding:10px 16px;margin-bottom:12px}
+ td{border:0;padding:5px 0;display:flex;justify-content:space-between;gap:14px;text-align:right}
+ td::before{content:attr(data-l);color:var(--mut);font-size:12px;text-align:left;flex:none}
+ td.ac::before,td.empty::before{content:none}td.ac{justify-content:flex-end;padding-top:8px}tbody tr:hover td{background:none}
+ #app>footer{padding:8px 20px 20px}.box{padding:20px}
+}
 </style></head><body>
 
 <div id="gate" hidden>
  <div class="gh gl"></div><div class="gh gr"></div>
- <div id="gc"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1>Umum BPS-2171 Super Apps</h1><button id="gb" type="button">Login Disini!</button></div></div>
+ <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
+  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt" aria-label="Umum BPS-2171 Super Apps">Umum BPS-2171 Super Apps</h1><button id="gb" type="button">Login Disini!</button></div></div>
 </div>
 <form id="login" hidden>
  <div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div>
@@ -155,7 +172,8 @@ nav b i img{width:100%;height:100%;object-fit:contain;padding:4px}
 </form>
 
 <div id="app" hidden>
- <nav id="nav"></nav>
+ <nav id="nav"></nav><div id="ov"></div>
+ <header id="top"><button id="mb" aria-label="Menu">⋮</button><button id="uc" aria-expanded="false" aria-haspopup="true"></button><div id="um" hidden></div></header>
  <main id="main"></main>
  <footer>© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</footer>
 </div>
@@ -185,15 +203,47 @@ const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v
  pengajuan:sv('<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>'),
  ruangan:sv('<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15h3"/>'),
  surat:sv('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
+ set_pengguna:sv('<circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M17 11a3 3 0 1 0 0-6M22 20c0-3-2-5-4-5.5"/>'),
+ set_pegawai:sv('<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="11" r="2.5"/><path d="M5.5 17c.5-2 2-3 3.5-3s3 1 3.5 3M15 9h4M15 13h4"/>'),
+ set_nomor:sv('<path d="M5 9h14M5 15h14M10 3 8 21M16 3l-2 18"/>'),
+ format:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/>'),
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
 const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan']]];
-const nm=v=>J[v]?J[v].t:'Pengajuan Keuangan';
+const NM={pengajuan:'Pengajuan Keuangan',set_pengguna:'Pengguna',set_pegawai:'Referensi Pegawai',set_nomor:'Setting Penomoran'},nm=v=>J[v]?J[v].t:NM[v];
+const DRIVE='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0yS0x5SrNCli?usp=sharing',RLN={admin:'Admin',pegawai:'Pegawai'};
 const TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'];
 const lbl=k=>((J[view]||{}).lb||{})[k]||LB[k];
 let me=null,view='dashboard',rows=[],page=1,q='',pg=[],kl=[];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const canEdit=()=>['admin','petugas'].includes(me.role);
+const canEdit=()=>me.role=='admin';
+const KON=new Set(['dan','di','ke','dari','yang','untuk','pada','dengan','atau','serta','oleh','dalam','sebagai','bagi']);
+function proper(s){s=String(s??'').replace(/\s+/g,' ').trim();if(!s)return s;const up=s===s.toUpperCase()&&/[A-Z]/.test(s);
+ return s.split(' ').map((w,i)=>{if(/^(i{1,3}|iv|vi{0,3}|ix|x{1,2}i{0,3})$/i.test(w))return w.toUpperCase();if(i&&KON.has(w.toLowerCase()))return w.toLowerCase();
+  return (up?w.toLowerCase():w).replace(/(^|[-\/(])([a-z])/g,(m,a,b)=>a+b.toUpperCase())}).join(' ')}
+const ini=n=>String(n||'?').replace(/[^A-Za-z ]/g,'').split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'?';
+const ZN=[['WIB','Asia/Jakarta'],['WITA','Asia/Makassar'],['WIT','Asia/Jayapura']];let zi=0,ckt;
+function tickClk(){const n=new Date(),z=ZN[zi][1],p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:z,hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(n).map(x=>[x.type,x.value]));
+ const set=(id,v)=>{const e=$(id);if(e&&e.textContent!=v){e.textContent=v;e.classList.remove('flip');void e.offsetWidth;e.classList.add('flip')}};
+ set('#ch',p.hour);set('#cm',p.minute);set('#cs',p.second);if(!$('#cz'))return;$('#cz').textContent=ZN[zi][0];
+ $('#cd').textContent=n.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:z});$('#cbar').style.width=(+p.second+1)/60*100+'%'}
+function userPanel(){
+ $('#um').innerHTML=`<div style="display:flex;gap:12px;align-items:center"><span class="av2" style="width:48px;height:48px;font-size:17px">${ini(me.nama)}</span><div style="min-width:0"><b style="display:block">${esc(me.nama)}</b><span class="rl">${RLN[me.role]||esc(me.role)}</span></div></div>
+ <div style="margin:12px 0 0">${[['Username',me.username||'-'],['Email',me.email||'-']].map(x=>`<div class="ur" data-c="${esc(x[1])}" title="Klik untuk menyalin"><span class="muted">${x[0]}</span><b>${esc(x[1])}</b></div>`).join('')}</div>
+ <div class="col"><button id="ubs">Ubah Kata Sandi</button><button class="d" id="klr">Keluar</button></div>`;
+ $('#um').querySelectorAll('[data-c]').forEach(d=>d.onclick=async()=>{try{await navigator.clipboard.writeText(d.dataset.c);toast('Disalin: '+d.dataset.c)}catch(_){}});
+ $('#ubs').onclick=()=>{$('#um').hidden=true;ubahSandi()};$('#klr').onclick=()=>db.auth.signOut().then(()=>location.reload())}
+function ubahSandi(){
+ modal(`<h2>Ubah Kata Sandi</h2><form id="pf"><label>Kata Sandi Baru</label><div class="pw"><input id="p1" type="password" autocomplete="new-password" required><button type="button" class="eye" data-t="p1">👁</button></div><div class="sm"><i id="sb"></i></div><small id="st" class="muted">Minimal 6 karakter</small>
+ <label>Ulangi Kata Sandi Baru</label><div class="pw"><input id="p2" type="password" autocomplete="new-password" required><button type="button" class="eye" data-t="p2">👁</button></div><small id="sc" class="muted"></small>
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" id="pk" type="submit" disabled>Simpan Kata Sandi</button></div></form>`);
+ $('#bt').onclick=closeM;$('#modal').querySelectorAll('.eye').forEach(b=>b.onclick=()=>{const i=$('#'+b.dataset.t);i.type=i.type=='password'?'text':'password'});
+ const cek=()=>{const v=$('#p1').value,n=(v.length>=6)+(v.length>=10)+(/[a-z]/.test(v)&&/[A-Z]/.test(v))+/\d/.test(v)+/[^A-Za-z0-9]/.test(v),w=v?Math.max(1,n)*20:0;
+  $('#sb').style.width=w+'%';$('#sb').style.background=n<=2?'#d92d20':n<=3?'#f5a524':'#0f9d58';$('#st').textContent=v?(n<=2?'Lemah':n<=3?'Sedang':'Kuat'):'Minimal 6 karakter';
+  const ok=v.length>=6&&v===$('#p2').value;$('#sc').textContent=$('#p2').value?(v===$('#p2').value?'Kata sandi cocok':'Kata sandi belum sama'):'';$('#pk').disabled=!ok};
+ $('#p1').oninput=$('#p2').oninput=cek;
+ $('#pf').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.updateUser({password:$('#p1').value});if(error)return toast('Gagal: '+error.message,1);closeM();toast('Kata sandi berhasil diperbarui')}}
+
 const hari=()=>new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jakarta'});
 const tgl=s=>s?new Date(s+'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}):'';
 function toast(m,err){const t=$('#toast');t.textContent=m;t.className=err?'err show':'show';clearTimeout(t.h);t.h=setTimeout(()=>t.className='',3500)}
@@ -210,19 +260,33 @@ async function boot(){
  FMT=Object.fromEntries((fx.data||[]).map(x=>[x.jenis,x.pola]));
  pg=a.data||[];kl=b.data||[];
  $('#login').hidden=true;$('#gate').hidden=true;$('#lf').hidden=true;$('#app').hidden=false;
+ if(me.role!='admin')me.role='pegawai';me.email=me.email||session.user.email;const ad=me.role=='admin';
+ if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_pegawai','set_nomor']]);
  const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span>${v=='pengajuan'?'<em class="bd">Draft</em>':''}</a>`;
- $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Dashboard')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('ruangan','Pemakaian Ruangan Rapat')+ni('pengaturan','Pengaturan')+`<span class="sp"></span><small class="out">${esc(me.nama)} (${me.role})</small><a class="out" id="keluar"><span>Keluar</span></a>`;
- $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.id=='keluar'){db.auth.signOut().then(()=>location.reload())}else if(a.dataset.g){const g=a.closest('.grp');if(innerWidth<=800)document.querySelectorAll('.grp').forEach(x=>x!=g&&x.classList.remove('open'));g.classList.toggle('open')}else go(a.dataset.v)};
- document.addEventListener('click',e=>{if(innerWidth<=800&&!e.target.closest('.grp'))document.querySelectorAll('.grp').forEach(g=>g.classList.remove('open'))});
+ $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Beranda')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('ruangan','Pemakaian Ruangan Rapat')
+  +(ad?'':`<a href="${DRIVE}" target="_blank" rel="noopener" data-x="1">${IC.format}<span>Format Dokumen</span></a>`)
+  +`<span class="sp"></span><div id="clk" role="button" tabindex="0" title="Klik untuk mengganti zona waktu"><div class="ct"><span id="ch">--</span><i>:</i><span id="cm">--</span><i>:</i><span id="cs">--</span><b id="cz">WIB</b></div><div class="cd" id="cd"></div><div id="cbar"></div></div>`;
+ const closeNav=()=>{$('#nav').classList.remove('show');$('#ov').classList.remove('show');document.body.classList.remove('lock')};
+ $('#nav').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.dataset.x)return closeNav();if(a.dataset.g)return a.closest('.grp').classList.toggle('open');go(a.dataset.v);closeNav()};
+ $('#mb').onclick=()=>{const o=$('#nav').classList.toggle('show');$('#ov').classList.toggle('show',o);document.body.classList.toggle('lock',o)};$('#ov').onclick=closeNav;
+ $('#uc').innerHTML=`<span class="av2">${ini(me.nama)}</span><span class="un">${esc(me.nama)}</span><em>▾</em>`;
+ $('#uc').onclick=e=>{e.stopPropagation();const o=$('#um').hidden;if(o)userPanel();$('#um').hidden=!o;$('#uc').setAttribute('aria-expanded',o)};
+ const tutupUm=()=>{$('#um').hidden=true;$('#uc').setAttribute('aria-expanded','false')};
+ document.addEventListener('click',e=>{if(!e.target.closest('#um,#uc'))tutupUm()});document.addEventListener('keydown',e=>{if(e.key=='Escape'){tutupUm();closeNav()}});
+ const zc=()=>{zi=(zi+1)%3;tickClk()};$('#clk').onclick=zc;$('#clk').onkeydown=e=>{if(e.key=='Enter'||e.key==' ')zc()};
+ clearInterval(ckt);ckt=setInterval(tickClk,1000);tickClk();
  go('dashboard');
 }
+$('#gt').innerHTML=[...'Umum BPS-2171 Super Apps'].map((c,i)=>c==' '?' ':`<span style="--i:${i}">${c}</span>`).join('');
+$('#gate').onpointermove=e=>{const g=$('#gate');g.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(2));g.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(2))};
+$('#gate').addEventListener('pointerdown',e=>{if(e.target.closest('#gb'))return;for(let i=0;i<10;i++){const p=document.createElement('b'),an=Math.random()*6.28,d=40+Math.random()*60;p.className='spk';p.style.cssText=`left:${e.clientX}px;top:${e.clientY}px;--dx:${Math.cos(an)*d}px;--dy:${Math.sin(an)*d}px`;$('#gate').appendChild(p);setTimeout(()=>p.remove(),700)}});
 $('#gb').onclick=()=>{const g=$('#gate');g.classList.add('open');setTimeout(()=>{g.hidden=true;$('#em').focus()},950)};
 $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();if(!em.includes('@')){const {data:x,error:ex}=await db.rpc('login_email',{p_id:em});if(ex)return toast('Login dengan username belum aktif: '+ex.message,1);if(!x)return toast('Username tidak ditemukan',1);em=x}
  const {error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
 
-function go(v){clearInterval(jt);view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
- document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth>800)});
- v=='dashboard'?dash():v=='pengaturan'?setelan():v=='pengajuan'?draftPage():v=='ruangan'?ruangPage():load()}
+function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
+ document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on)});
+ v=='dashboard'?dash():v.startsWith('set_')?setelan():v=='pengajuan'?draftPage():v=='ruangan'?ruangPage():load()}
 
 let dy=0,jt,FMT={};
 const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2a62c9',surat_tugas:'#12b5a6',sk_kpa:'#f5a524',form_permintaan:'#8b5cf6'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA',form_permintaan:'FP'};
@@ -242,7 +306,7 @@ async function dash(){
  const m={},tm={};ks.forEach(k=>m[k]=Array(12).fill(0));TIM.forEach(t=>{tm[t]={};ks.forEach(k=>tm[t][k]=0)});
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++;if(tm[r.tim])tm[r.tim][r.jenis]++});
  const tt=TIM.map(t=>ks.reduce((x,k)=>x+tm[t][k],0)),mx=Math.max(1,...tt),sudah=TIM.filter((t,i)=>tt[i]>0),belum=TIM.filter((t,i)=>!tt[i]),bi=new Date().getMonth();
- $('#main').innerHTML=`<div class="hd"><div><p class="muted" style="margin:0">Halo, ${esc(me.nama)}</p><h1>Dashboard</h1></div><div class="jam"><b id="jt"></b><span id="jd"></span></div></div>
+ $('#main').innerHTML=`<div class="hd"><div><p class="muted" style="margin:0">Halo, ${esc(me.nama)}</p><h1>Beranda</h1></div></div>
  <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2>Pemakaian Ruangan Rapat</h2><button id="lr">Lihat semua</button></div>
  ${rm.error?'<p class="empty">Data pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Tidak Dipakai</b></p>'}</div>
  <div class="yr">${yrs.map(y=>`<button class="${y==dy?'on':''}" data-y="${y}">${y}</button>`).join('')}</div>
@@ -252,10 +316,6 @@ async function dash(){
  <div class="pn"><h2>Surat per Tim, ${dy}</h2><div class="lg">${ks.map(k=>`<span><i style="background:${CL[k]}"></i>${J[k].t}</span>`).join('')}</div>
  ${TIM.map((t,i)=>`<div class="tb"><span class="tn">${t}</span><div class="tr">${ks.map(k=>tm[t][k]?`<i style="width:${tm[t][k]/mx*100}%;background:${CL[k]}" title="${J[k].t}: ${tm[t][k]}"></i>`:'').join('')}</div><b>${tt[i]}</b></div>`).join('')}
  <p class="muted" style="font-size:13px;margin:12px 0 0">${sudah.length} dari ${TIM.length} tim sudah membuat surat${belum.length?'. Belum: '+belum.join(', '):''}.</p></div></div>`;
- const tick=()=>{const t=$('#jt');if(!t){clearInterval(jt);return}const n=new Date();
-  t.textContent=n.toLocaleTimeString('en-GB',{hour12:false,timeZone:'Asia/Jakarta'})+' WIB';
-  $('#jd').textContent=n.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})};
- clearInterval(jt);jt=setInterval(tick,1000);tick();
  $('#lr').onclick=()=>go('ruangan');
  $('#main').querySelectorAll('[data-y]').forEach(x=>x.onclick=()=>{dy=+x.dataset.y;dash()});
 }
@@ -296,7 +356,7 @@ function fld(k,v){v=v??'';
  if(k=='tim')return `<select name="tim" required><option value="">- pilih tim -</option>${TIM.map(t=>`<option ${t==v?'selected':''}>${t}</option>`).join('')}</select>`;
  if(k=='klasifikasi')return `<input name="klasifikasi" list="kl" value="${esc(v)}" placeholder="Ketik kode, mis. VS.330" autocomplete="off" required>`;
  return `<input name="${k}" type="${k=='tanggal'?'date':k=='link'?'url':'text'}" value="${esc(v)}" ${k=='link'?'':'required'}>`}
-const bangun=(j,u,sis,kl,tg,y)=>{const p=FMT[j];if(!p||!tg)return '';const m=+tg.slice(5,7);
+const bangun=(j,u,sis,kl,tg,y,pl)=>{const p=pl||FMT[j];if(!p||!tg)return '';const m=+tg.slice(5,7);
  return p.replace(/\{urut3\}/g,()=>String(u).padStart(3,'0')).replace(/\{urut\}/g,()=>u).replace(/\{sisipan\}/g,()=>sis||'').replace(/\{klas\}/g,()=>kl||'').replace(/\{bulan2\}/g,()=>String(m).padStart(2,'0')).replace(/\{bulan\}/g,()=>m).replace(/\{tahun\}/g,()=>y)};
 function form(id){
  const r=id?rows.find(x=>x.id==id):{tanggal:hari()};
@@ -313,6 +373,7 @@ function form(id){
 async function save(e,id){
  e.preventDefault();const d=Object.fromEntries(new FormData(e.target));
  for(const k in d)if(d[k]==='')d[k]=null;
+ ['perihal','uraian'].forEach(k=>{if(d[k])d[k]=proper(d[k])});
  const btn=e.submitter;btn.disabled=true;
  if(id){
   const o=rows.find(x=>x.id==id);
@@ -352,21 +413,20 @@ function exportCsv(){
  a.download=view+'_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
 }
 async function setelan(){
- const ad=me.role=='admin';let us=[];
- if(ad){const {data}=await db.from('profiles').select('*').order('email');us=data||[]}
- $('#main').innerHTML=`<h1>Pengaturan</h1>
- <div class="sg"><div class="set"><h2>Ubah Kata Sandi Saya</h2><label>Kata sandi baru (minimal 6 karakter)</label><input id="np" type="password" autocomplete="new-password"><div class="row"><button class="p" id="gp">Simpan Kata Sandi</button></div></div>
- ${ad?`<div class="set"><h2>Tambah Pengguna</h2><p class="muted">Kata sandi awal: <b>123456</b>. Minta pengguna menggantinya setelah masuk pertama kali.</p>
+ if(me.role!='admin')return $('#main').innerHTML='<p class="empty">Menu ini hanya untuk admin.</p>';
+ view=='set_pegawai'?setPegawai():view=='set_nomor'?setNomor():setPengguna()}
+async function setPengguna(){
+ const {data}=await db.from('profiles').select('*').order('email'),us=data||[];
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Pengguna</h1>
+ <div class="sg"><div class="set"><h2>Tambah Pengguna</h2><p class="muted">Kata sandi awal: <b>123456</b>. Pengguna dapat menggantinya lewat menu nama di pojok kanan atas.</p>
  <label>Email (Gmail)</label><input id="ue" type="email" placeholder="nama@gmail.com">
- <label>Nama pegawai</label><select id="un"><option value="">- pilih pegawai -</option>${pg.map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select>
- <label>Username (otomatis dari nama awal pegawai, bisa diubah)</label><input id="uu" autocapitalize="none" placeholder="mis. hogan">
- <label>Peran</label><select id="ur"><option value="pegawai">Pegawai</option><option value="petugas">Petugas Persuratan</option><option value="admin">Administrator</option></select>
- <div class="row"><button class="p" id="tp">Tambah Pengguna</button></div></div><div class="set"><h2>Format Nomor</h2><p class="muted" style="font-size:13px">Pola nomor tiap menu. Kode: <b>{urut}</b> nomor, <b>{urut3}</b> nomor 3 digit, <b>{sisipan}</b> huruf sisipan, <b>{klas}</b> kode klasifikasi, <b>{bulan}</b> atau <b>{bulan2}</b> bulan, <b>{tahun}</b> tahun. Hanya berlaku untuk nomor baru.</p>
- ${Object.keys(J).map(k=>`<label>${J[k].t}</label><input data-f="${k}" value="${esc(FMT[k]||'')}" autocapitalize="none" spellcheck="false">`).join('')}
- <div class="row"><button class="p" id="sf">Simpan Format</button></div></div><div class="set"><h2>Unggah Pengguna dari Excel</h2><p class="muted">Kolom: <b>Email</b>, <b>Nama Pegawai</b>, <b>Role</b> (admin, petugas, atau pegawai). Kata sandi awal semua pengguna: <b>123456</b>.</p><button id="tm">Unduh Template</button><input id="xf" type="file" accept=".xlsx,.xls,.csv"></div></div>
- <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:22px 0 10px"><h2 style="font-size:17px">Daftar Pengguna</h2><button id="iu">Isi Username Otomatis</button></div><div class="tw"><table><tr><th>Email</th><th>Username</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td>${esc(u.email)}</td><td><input data-u="${u.id}" value="${esc(u.username||'')}" placeholder="belum diatur" autocapitalize="none" style="min-width:120px"></td><td><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td><select data-r="${u.id}">${['pegawai','petugas','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${r}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`:'</div>'}`;
- $('#gp').onclick=async()=>{const v=$('#np').value;if(v.length<6)return toast('Kata sandi minimal 6 karakter',1);const {error}=await db.auth.updateUser({password:v});error?toast('Gagal: '+error.message,1):(toast('Kata sandi diperbarui'),$('#np').value='')};
- if(!ad)return;
+ <label>Nama Pegawai</label><select id="un"><option value="">- Pilih Pegawai -</option>${pg.map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select>
+ <label>Username (Otomatis dari Nama Awal Pegawai)</label><input id="uu" autocapitalize="none" placeholder="mis. hogan">
+ <label>Peran</label><select id="ur"><option value="pegawai">Pegawai</option><option value="admin">Admin</option></select>
+ <div class="row"><button class="p" id="tp">Tambah Pengguna</button></div></div>
+ <div class="set"><h2>Unggah Pengguna dari Excel</h2><p class="muted">Kolom: <b>Email</b>, <b>Nama Pegawai</b>, <b>Role</b> (admin atau pegawai). Kata sandi awal semua pengguna: <b>123456</b>.</p><button id="tm">Unduh Template</button><input id="xf" type="file" accept=".xlsx,.xls,.csv"></div></div>
+ <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:22px 0 10px"><h2>Daftar Pengguna</h2><button id="iu">Isi Username Otomatis</button></div>
+ <div class="tw"><table><tr><th>Email</th><th>Username</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td data-l="Email">${esc(u.email)}</td><td data-l="Username"><input data-u="${u.id}" value="${esc(u.username||'')}" placeholder="Belum Diatur" autocapitalize="none" style="min-width:120px"></td><td data-l="Nama Pegawai"><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pg.filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td data-l="Peran"><select data-r="${u.id}">${['pegawai','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${RLN[r]}</option>`).join('')}</select></td><td class="ac"><button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada pengguna.</td></tr>'}</table></div>`;
  $('#tm').onclick=()=>{if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);const w=XLSX.utils.book_new();XLSX.utils.book_append_sheet(w,XLSX.utils.aoa_to_sheet([['Email','Nama Pegawai','Role'],['contoh@gmail.com','Nama Lengkap Pegawai','pegawai']]),'Pengguna');XLSX.writeFile(w,'template_pengguna.xlsx')};
  $('#xf').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);
   try{const w=XLSX.read(await f.arrayBuffer());impor(XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]],{header:1,defval:''}))}catch(_){toast('File tidak bisa dibaca. Gunakan file Excel (.xlsx)',1)}};
@@ -374,23 +434,54 @@ async function setelan(){
   const {error}=await db.rpc('tambah_pengguna',{p_email:e,p_nama:$('#un').value,p_role:$('#ur').value});
   if(error)return toast(error.message,1);
   const u=($('#uu').value||'').trim().toLowerCase()||usn($('#un').value);
-  if(u){const {error:e2}=await db.from('profiles').update({username:u}).eq('email',e.toLowerCase());if(e2){setelan();return toast('Pengguna ditambahkan, tetapi username "'+u+'" tidak bisa dipakai (mungkin sudah ada). Ubah di Daftar Pengguna.',1)}}
-  toast('Pengguna ditambahkan. Username: '+(u||'-')+'. Kata sandi awal: 123456');setelan()};
+  if(u){const {error:e2}=await db.from('profiles').update({username:u}).eq('email',e.toLowerCase());if(e2){setPengguna();return toast('Pengguna ditambahkan, tetapi username "'+u+'" tidak bisa dipakai (mungkin sudah ada). Ubah di Daftar Pengguna.',1)}}
+  toast('Pengguna ditambahkan. Username: '+(u||'-')+'. Kata sandi awal: 123456');setPengguna()};
  $('#un').onchange=()=>{$('#uu').value=usn($('#un').value)};
- $('#sf').onclick=async()=>{const arr=[...$('#main').querySelectorAll('[data-f]')].map(i=>({jenis:i.dataset.f,pola:i.value.trim()}));
-  if(arr.some(x=>!x.pola.includes('{urut')))return toast('Setiap format harus memuat {urut} atau {urut3}',1);
-  const {error}=await db.from('format_nomor').upsert(arr);if(error)return toast('Gagal menyimpan: '+error.message,1);
-  arr.forEach(x=>FMT[x.jenis]=x.pola);toast('Format nomor disimpan')};
- $('#iu').onclick=async()=>{const n=await isiUsername();toast(n+' username diisi');setelan()};
- $('#main').querySelectorAll('[data-u]').forEach(i=>i.onchange=async()=>{const v=i.value.trim().toLowerCase();if(v&&!/^[a-z0-9._-]{3,}$/.test(v)){toast('Username minimal 3 karakter: huruf kecil, angka, titik, atau strip',1);return setelan()}
-  const {error}=await db.from('profiles').update({username:v||null}).eq('id',i.dataset.u);if(error){toast(error.code=='23505'?'Username sudah dipakai pengguna lain':error.message,1);return setelan()}i.value=v;toast('Username diperbarui')});
- $('#main').querySelectorAll('[data-r]').forEach(s=>s.onchange=async()=>{const {error}=await db.rpc('ubah_peran',{p_id:s.dataset.r,p_role:s.value});error?(toast(error.message,1),setelan()):toast('Peran diperbarui')});
- $('#main').querySelectorAll('[data-n]').forEach(s=>s.onchange=async()=>{const {error}=await db.from('profiles').update({nama:s.value}).eq('id',s.dataset.n);error?toast(error.message,1):toast('Nama pegawai diperbarui')});
+ $('#iu').onclick=async()=>{const n=await isiUsername();toast(n+' username diisi');setPengguna()};
+ $('#main').querySelectorAll('[data-u]').forEach(i=>i.onchange=async()=>{const v=i.value.trim().toLowerCase();if(v&&!/^[a-z0-9._-]{3,}$/.test(v)){toast('Username minimal 3 karakter: huruf kecil, angka, titik, atau strip',1);return setPengguna()}
+  const {error}=await db.from('profiles').update({username:v||null}).eq('id',i.dataset.u);if(error){toast(error.code=='23505'?'Username sudah dipakai pengguna lain':error.message,1);return setPengguna()}i.value=v;toast('Username diperbarui')});
+ $('#main').querySelectorAll('[data-r]').forEach(x=>x.onchange=async()=>{const {error}=await db.rpc('ubah_peran',{p_id:x.dataset.r,p_role:x.value});error?(toast(error.message,1),setPengguna()):toast('Peran diperbarui')});
+ $('#main').querySelectorAll('[data-n]').forEach(x=>x.onchange=async()=>{const {error}=await db.from('profiles').update({nama:x.value}).eq('id',x.dataset.n);error?toast(error.message,1):toast('Nama pegawai diperbarui')});
  $('#main').querySelectorAll('[data-rs]').forEach(b=>b.onclick=()=>{
   modal(`<h2>Reset Kata Sandi?</h2><p>Kata sandi <b>${esc(b.dataset.em)}</b> akan dikembalikan ke 123456.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Reset</button></div>`);
   $('#bt').onclick=closeM;
   $('#ok').onclick=async()=>{const {error}=await db.rpc('reset_sandi',{p_id:b.dataset.rs});closeM();error?toast(error.message,1):toast('Kata sandi dikembalikan ke 123456')}});
 }
+const segarPg=async()=>{const x=await db.from('pegawai').select('nama').eq('aktif',true).order('nama');pg=x.data||[]};
+async function setPegawai(){
+ const {data,error}=await db.from('pegawai').select('*').order('nama');if(error)return toast(error.message,1);const L=data||[];
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Referensi Pegawai</h1>
+ <div class="set"><h2>Tambah Pegawai</h2><label>Nama Pegawai</label><div style="display:flex;gap:8px"><input id="pn" placeholder="Nama lengkap beserta gelar" autocomplete="off"><button class="p" id="pa">Tambah</button></div><p class="muted" style="font-size:13px;margin:8px 0 0">Daftar ini dipakai pada pilihan nama pegawai di seluruh aplikasi. Huruf awal kata dirapikan otomatis.</p></div>
+ <div class="bar"><input id="cari" type="search" placeholder="Cari nama pegawai…"><span class="sp"></span><span class="muted">${L.length} pegawai</span></div>
+ <div class="tw"><table id="tp"><tr><th>No</th><th>Nama Pegawai</th><th>Aksi</th></tr>${L.map((p,i)=>`<tr data-n="${esc(p.nama.toLowerCase())}"><td data-l="No">${i+1}</td><td data-l="Nama Pegawai"><b>${esc(p.nama)}</b></td><td class="ac"><button class="d" data-d="${p.id}" data-nm="${esc(p.nama)}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="3" class="empty">Belum ada pegawai.</td></tr>'}</table></div>`;
+ $('#cari').oninput=e=>{const v=e.target.value.toLowerCase();$('#tp').querySelectorAll('tr[data-n]').forEach(t=>t.hidden=!t.dataset.n.includes(v))};
+ const tambah=async()=>{const n=proper($('#pn').value);if(!n)return toast('Nama pegawai wajib diisi',1);const {error}=await db.from('pegawai').insert({nama:n});
+  if(error)return toast(error.code=='23505'?'Nama pegawai sudah ada':'Gagal menambah: '+error.message,1);await segarPg();toast('Pegawai ditambahkan');setPegawai()};
+ $('#pa').onclick=tambah;$('#pn').onkeydown=e=>{if(e.key=='Enter')tambah()};
+ $('#main').querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{
+  modal(`<h2>Hapus Pegawai?</h2><p><b>${esc(b.dataset.nm)}</b> akan dihapus dari referensi nama pegawai. Akun pengguna dan data yang sudah tercatat tidak ikut terhapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Ya, Hapus</button></div>`);
+  $('#bt').onclick=closeM;$('#ok').onclick=async()=>{const {error}=await db.from('pegawai').delete().eq('id',b.dataset.d);closeM();if(error)return toast('Gagal menghapus: '+error.message,1);await segarPg();toast('Pegawai dihapus');setPegawai()}})}
+async function setNomor(y){
+ const cy=new Date().getFullYear();y=y||cy;
+ const [{data:rg},{data:ct}]=await Promise.all([db.from('register').select('jenis,urut').eq('tahun',y).limit(10000),db.from('nomor_counter').select('*').eq('tahun',y)]);
+ const ks=Object.keys(J),mx={},fl={};(rg||[]).forEach(x=>mx[x.jenis]=Math.max(mx[x.jenis]||0,x.urut));(ct||[]).forEach(c=>fl[c.jenis]=c.terakhir);
+ const ex=k=>{const f=$('[data-f="'+k+'"]'),c=$('[data-c="'+k+'"]');return bangun(k,Math.max(mx[k]||0,+(c?c.value:fl[k])||0)+1,'','VS.330',y==cy?hari():y+'-01-01',y,f?f.value:FMT[k])||'-'};
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Setting Penomoran</h1>
+ <div class="pn"><b>Nomor Direset Otomatis Setiap Tahun.</b><p class="muted" style="margin:6px 0 0">Nomor dihitung per jenis dan per tahun surat. Saat tahun berganti, nomor kembali mulai dari 001. Kolom “Lanjutkan dari Nomor” dipakai bila sebagian nomor tahun tersebut sudah terpakai di luar aplikasi.</p></div>
+ <div class="yr">${[cy-2,cy-1,cy,cy+1].map(t=>`<button class="${t==y?'on':''}" data-y="${t}">${t}</button>`).join('')}</div>
+ <div class="tw"><table><tr><th>Jenis</th><th>Format Nomor</th><th>Nomor Terakhir ${y}</th><th>Lanjutkan dari Nomor</th><th>Contoh Nomor Berikutnya</th></tr>
+ ${ks.map(k=>`<tr><td data-l="Jenis"><b>${J[k].t}</b></td><td data-l="Format Nomor"><input data-f="${k}" value="${esc(FMT[k]||'')}" autocapitalize="none" spellcheck="false"></td><td data-l="Nomor Terakhir ${y}">${mx[k]||0}</td><td data-l="Lanjutkan dari Nomor"><input data-c="${k}" type="number" min="0" value="${fl[k]??''}" placeholder="0" style="max-width:110px"></td><td data-l="Contoh" data-ex="${k}"></td></tr>`).join('')}</table></div>
+ <div class="row"><button class="p" id="sf">Simpan Setting Penomoran</button></div>
+ <div class="set" style="max-width:none"><h2>Kode Format</h2><p class="muted" style="margin:6px 0 0"><b>{urut}</b> nomor · <b>{urut3}</b> nomor 3 digit · <b>{sisipan}</b> huruf sisipan · <b>{klas}</b> kode klasifikasi · <b>{bulan}</b> / <b>{bulan2}</b> bulan · <b>{tahun}</b> tahun. Perubahan format hanya berlaku untuk nomor baru.</p></div>`;
+ const seg=()=>ks.forEach(k=>$('[data-ex="'+k+'"]').textContent=ex(k));seg();
+ $('#main').querySelectorAll('[data-f],[data-c]').forEach(i=>i.oninput=seg);
+ $('#main').querySelectorAll('[data-y]').forEach(b=>b.onclick=()=>setNomor(+b.dataset.y));
+ $('#sf').onclick=async()=>{const fm=ks.map(k=>({jenis:k,pola:$('[data-f="'+k+'"]').value.trim()}));
+  if(fm.some(x=>!x.pola.includes('{urut')))return toast('Setiap format harus memuat {urut} atau {urut3}',1);
+  const cn=ks.filter(k=>$('[data-c="'+k+'"]').value!=='').map(k=>({jenis:k,tahun:y,terakhir:Math.max(0,+$('[data-c="'+k+'"]').value||0)}));
+  let r1=await db.from('format_nomor').upsert(fm);if(r1.error)return toast('Gagal menyimpan format: '+r1.error.message,1);
+  if(cn.length){const r2=await db.from('nomor_counter').upsert(cn,{onConflict:'jenis,tahun'});if(r2.error)return toast('Gagal menyimpan nomor: '+r2.error.message,1)}
+  fm.forEach(x=>FMT[x.jenis]=x.pola);toast('Setting penomoran disimpan');setNomor(y)}}
 function draftPage(){
  $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Pengajuan Keuangan <span class="chip" style="font-size:13px;vertical-align:middle;background:rgba(245,165,36,.2);color:#b36b00">Draft</span></h1>
  <div class="pn" style="max-width:720px"><h2>Menu Ini Masih Berupa Draft</h2><p class="muted">Belum ada fitur yang berfungsi di halaman ini. Alur dan isian pengajuan perlu dikonfirmasi dulu supaya sesuai kebutuhan kantor:</p>
@@ -418,8 +509,8 @@ function ruangDraw(){
  $('#main').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>ruangForm(b.dataset.e));
  $('#main').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>ruangHapus(b.dataset.x));
 }
-function ruangForm(id){
- const r=id?rr.find(x=>x.id==id):{tanggal:hari(),pegawai:me.nama};
+function ruangForm(id,pre){
+ const r=pre||(id?rr.find(x=>x.id==id):{tanggal:hari(),pegawai:me.nama});
  const sel=(n,a,v,ph)=>`<select name="${n}" required><option value="">- ${ph} -</option>${a.map(x=>`<option ${x==v?'selected':''}>${esc(x)}</option>`).join('')}</select>`;
  const nama=[...new Set([r.pegawai,...pg.map(p=>p.nama)])].filter(Boolean);
  modal(`<h2>${id?'Ubah':'Ajukan'} Pemakaian Ruangan Rapat</h2><form id="fm"><label>Tim Pembuat</label>${sel('tim',TIM,r.tim,'pilih tim')}
@@ -435,24 +526,24 @@ function ruangForm(id){
  t.onchange=ru.onchange=hn;
 }
 async function ruangSave(e,id){
- e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.kegiatan=(d.kegiatan||'').trim();
+ e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.kegiatan=proper((d.kegiatan||'').trim());
  if(['tim','pegawai','tanggal','ruangan','kegiatan'].some(k=>!d[k]))return toast('Semua isian wajib diisi',1);
- const b=e.submitter;b.disabled=true;
- const {error}=id?await db.from('ruangan').update(d).eq('id',id):await db.from('ruangan').insert(d);
- b.disabled=false;if(error)return toast('Gagal menyimpan: '+error.message,1);
- closeM();toast(id?'Perubahan disimpan':'Pemakaian ruangan tersimpan');ruangPage()}
+ modal(`<h2>Peringatan</h2><p><b>Harap Setelah Mengisi Ini, Konfirmasi ke Kasubbag Umum BPS Kota Batam.</b></p><div class="row"><button id="bt">Kembali</button><button class="p" id="ok">Mengerti, Simpan</button></div>`);
+ $('#bt').onclick=()=>ruangForm(id,d);
+ $('#ok').onclick=async()=>{const b=$('#ok');b.disabled=true;const {error}=id?await db.from('ruangan').update(d).eq('id',id):await db.from('ruangan').insert(d);
+  if(error){b.disabled=false;return toast('Gagal menyimpan: '+error.message,1)}closeM();toast(id?'Perubahan disimpan':'Pemakaian ruangan tersimpan');ruangPage()}}
 function ruangHapus(id){
  const r=rr.find(x=>x.id==id);
- modal(`<h2>Hapus pemakaian ruangan?</h2><p><b>${esc(r.kegiatan)}</b> (${esc(r.ruangan)}, ${tgl(r.tanggal)}) akan dihapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Hapus</button></div>`);
+ modal(`<h2>Hapus Pemakaian Ruangan?</h2><p><b>${esc(r.kegiatan)}</b> (${esc(r.ruangan)}, ${tgl(r.tanggal)}) akan dihapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Hapus</button></div>`);
  $('#bt').onclick=closeM;
  $('#ok').onclick=async()=>{const {error}=await db.from('ruangan').delete().eq('id',id);closeM();error?toast('Gagal menghapus: '+error.message,1):(toast('Data dihapus'),ruangPage())}}
-const RL={admin:'admin',administrator:'admin',petugas:'petugas','petugas persuratan':'petugas',pegawai:'pegawai'};
+const RL={admin:'admin',administrator:'admin',petugas:'pegawai','petugas persuratan':'pegawai',pegawai:'pegawai'};
 function impor(a){
  const hd=(a[0]||[]).map(x=>String(x).toLowerCase()),ix=k=>hd.findIndex(x=>x.includes(k));
  let c=[ix('email'),ix('nama'),ix('role')>=0?ix('role'):ix('peran')];if(c.some(i=>i<0))c=[0,1,2];
  const ok=[],bad=[];
  a.slice(1).forEach((r,i)=>{if(!r.some(x=>String(x).trim()))return;
-  const e=String(r[c[0]]).trim().toLowerCase(),n=String(r[c[1]]).trim(),rt=String(r[c[2]]).trim().toLowerCase()||'pegawai',ro=RL[rt];
+  const e=String(r[c[0]]).trim().toLowerCase(),n=proper(String(r[c[1]]).trim()),rt=String(r[c[2]]).trim().toLowerCase()||'pegawai',ro=RL[rt];
   if(!/^\S+@\S+\.\S+$/.test(e))bad.push('Baris '+(i+2)+': email tidak valid');
   else if(!ro)bad.push('Baris '+(i+2)+': role "'+rt+'" tidak dikenal');
   else if(ok.some(x=>x.e==e))bad.push('Baris '+(i+2)+': email ganda di dalam file');
