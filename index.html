@@ -2,7 +2,7 @@
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a2147">
-<title>Umum BPS-2171 Super Apps</title>
+<title>SIMPATI-2171<br>(Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam)</title>
 <link rel="icon" href="logo-bps.png">
 <script>window.noLogo=function(e){var p=e.parentElement;if(p&&p.classList.contains("lgo"))p.remove();else e.replaceWith("U")}</script>
 <style>
@@ -160,11 +160,11 @@ nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
 <div id="gate" hidden>
  <div class="gh gl"></div><div class="gh gr"></div>
  <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt" aria-label="Umum BPS-2171 Super Apps">Umum BPS-2171 Super Apps</h1><button id="gb" type="button">Login Disini!</button></div></div>
+  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt" aria-label="SIMPATI-2171<br>(Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam)">SIMPATI-2171 (Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi)</h1><button id="gb" type="button">Login Disini!</button></div></div>
 </div>
 <form id="login" hidden>
  <div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div>
- <h1>Umum BPS-2171 Super Apps</h1><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
+ <h1>SIMPATI-2171 (Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi)</h1><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
  <label for="em">Username / Email</label><input id="em" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false">
  <label for="pw">Kata Sandi</label><input id="pw" type="password" required autocomplete="current-password">
  <div class="row"><button class="p" type="submit">Masuk</button></div>
@@ -277,7 +277,7 @@ async function boot(){
  clearInterval(ckt);ckt=setInterval(tickClk,1000);tickClk();
  go('dashboard');
 }
-$('#gt').innerHTML=[...'Umum BPS-2171 Super Apps'].map((c,i)=>c==' '?' ':`<span style="--i:${i}">${c}</span>`).join('');
+$('#gt').innerHTML=[...'SIMPATI-2171 (Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi)'].map((c,i)=>c==' '?' ':`<span style="--i:${i}">${c}</span>`).join('');
 $('#gate').onpointermove=e=>{const g=$('#gate');g.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(2));g.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(2))};
 $('#gate').addEventListener('pointerdown',e=>{if(e.target.closest('#gb'))return;for(let i=0;i<10;i++){const p=document.createElement('b'),an=Math.random()*6.28,d=40+Math.random()*60;p.className='spk';p.style.cssText=`left:${e.clientX}px;top:${e.clientY}px;--dx:${Math.cos(an)*d}px;--dy:${Math.sin(an)*d}px`;$('#gate').appendChild(p);setTimeout(()=>p.remove(),700)}});
 $('#gb').onclick=()=>{const g=$('#gate');g.classList.add('open');setTimeout(()=>{g.hidden=true;$('#em').focus()},950)};
