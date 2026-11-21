@@ -2,7 +2,8 @@
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a2147">
-<title>SIMPATI-2171<br>(Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam)</title>
+<title>SIMPATI - 2171</title>
+<meta name="description" content="SIMPATI - 2171: Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam">
 <link rel="icon" href="logo-bps.png">
 <script>window.noLogo=function(e){var p=e.parentElement;if(p&&p.classList.contains("lgo"))p.remove();else e.replaceWith("U")}</script>
 <style>
@@ -22,7 +23,10 @@ input,select{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radi
 label{display:block;margin:12px 0 4px;font-weight:600;font-size:13px;color:var(--mut)}
 .muted{color:var(--mut)}
 #login{max-width:380px;margin:12vh auto;padding:28px;background:var(--card);box-shadow:var(--sh);border-radius:18px}
-#login h1{font-size:22px;margin-bottom:4px}
+#login h1{font-size:20px;margin-bottom:6px;letter-spacing:.01em}
+#login .sb{font-size:12px;line-height:1.5;color:var(--mut);text-align:center;margin:0 0 10px}
+#login .muted{font-size:13px}#login .pw input{padding-right:92px}#login .eye{font-size:12px;color:var(--sky);top:6px;cursor:pointer}
+#cl{font-size:12px;color:#b36b00;margin:6px 0 0}
 #login h1,#login .muted{text-align:center}
 #gate{position:fixed;inset:0;z-index:50;overflow:hidden}
 .gh{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(160deg,#12397a,#0a2147);background-size:200% 100%;transition:transform .9s cubic-bezier(.77,0,.18,1)}
@@ -30,20 +34,27 @@ label{display:block;margin:12px 0 4px;font-weight:600;font-size:13px;color:var(-
 #gate.open .gl{transform:translateX(-101%)}#gate.open .gr{transform:translateX(101%)}
 #gc{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;transition:opacity .5s,transform .6s}
 #gate.open #gc{opacity:0;transform:scale(1.08)}
-.gk{position:relative;z-index:2;padding:24px;animation:rise .9s both}
-.gk h1{font-size:clamp(36px,7vw,68px);line-height:1.1;margin:10px 0 8px;background:linear-gradient(90deg,#fff,#8fc5f2,#fff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
-.gk small{letter-spacing:.22em;text-transform:uppercase;color:#a9c8ee}
-.gk .sub{font-size:clamp(14px,2vw,22px);line-height:1.4;margin:0 auto 30px;max-width:720px;color:#cfe3ff;font-weight:600;word-break:normal;overflow-wrap:normal}
-.gm{width:72px;height:72px;margin:0 auto 16px;border-radius:22px;background:#fff;color:#0f2f66;display:grid;place-items:center;font-size:34px;font-weight:800;animation:bob 3s ease-in-out infinite}
-#gb{padding:14px 36px;font-size:17px;border-radius:99px;border:0;background:#fff;color:#0f2f66;font-weight:800;animation:pulse 2s infinite}
-#gb:hover{transform:translateY(-2px)}
-.o{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;animation:drift 12s ease-in-out infinite alternate}
+.gk{position:relative;z-index:2;padding:24px;max-width:560px;animation:rise .8s both}
+#gc::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(380px circle at var(--px,50%) var(--py,45%),rgba(143,197,242,.14),transparent 65%)}
+.gk h1{font-size:clamp(26px,4.4vw,40px);line-height:1.15;margin:6px 0 10px;color:#fff;font-weight:700;letter-spacing:.02em}
+.gs{font-size:14px;line-height:1.55;color:#cfe3ff;margin:0 auto 22px;max-width:440px}
+.gn{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:24px 0 0}
+.gn span{font-size:12px;padding:5px 12px;border-radius:99px;background:rgba(255,255,255,.08);color:#dbe9ff;border:1px solid rgba(255,255,255,.14);transition:background .2s,transform .2s}
+.gn span:hover{background:rgba(255,255,255,.18);transform:translateY(-1px)}
+.gt2{margin-top:16px;font-size:12px;color:#9fb8d8}.gt2 b{color:#dbe9ff;font-weight:600}
+@media(hover:none){.kb{display:none}}
+.gk small{letter-spacing:.2em;text-transform:uppercase;color:#a9c8ee;font-size:12px}
+.gm{width:60px;height:60px;margin:0 auto 14px;border-radius:18px;background:#fff;color:#0f2f66;display:grid;place-items:center;font-size:28px;font-weight:800;animation:bob 4s ease-in-out infinite}
+#gb{padding:11px 28px;font-size:15px;border-radius:99px;border:0;background:#fff;color:#0f2f66;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s}
+#gb i{font-style:normal;transition:transform .2s}#gb:hover i{transform:translateX(4px)}
+#gb:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.o{position:absolute;border-radius:50%;filter:blur(60px);opacity:.4;animation:drift 14s ease-in-out infinite alternate}
 .o1{width:340px;height:340px;background:#2a62c9;top:-80px;left:-60px}
 .o2{width:300px;height:300px;background:#1b8fd6;bottom:-90px;right:-40px;animation-delay:-4s}
 .o3{width:220px;height:220px;background:#5b7fe0;top:45%;left:60%;animation-delay:-8s}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}}
 @keyframes shine{to{background-position:-200% 0}}
-@keyframes bob{50%{transform:translateY(-8px)}}
+@keyframes bob{50%{transform:translateY(-4px)}}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 18px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
 @keyframes drift{to{transform:translate(60px,40px) scale(1.15)}}
 @media(prefers-reduced-motion:reduce){#gate *{animation:none!important}}
@@ -131,14 +142,8 @@ nav{grid-row:1/4;padding-bottom:16px}#top,main,#app>footer{grid-column:2}
 .pw{position:relative}.eye{position:absolute;right:6px;top:5px;padding:3px 8px;border:0;background:none}
 .sm{height:6px;border-radius:9px;background:var(--sky2);margin:8px 0 4px;overflow:hidden}.sm i{display:block;height:100%;width:0;transition:width .3s,background .3s}
 nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
-.gk h1{color:#fff;background:none;-webkit-text-fill-color:initial;animation:none}
-.gk h1 span{display:inline-block;cursor:pointer;animation:glow 3.2s ease-in-out infinite,wave 3.2s ease-in-out infinite;animation-delay:calc(var(--i)*.09s);transition:transform .2s,color .2s}
-.gk h1 span:hover{transform:translateY(-14px) scale(1.35) rotate(-7deg);color:#ffd36b;animation-play-state:paused}
-@keyframes glow{50%{color:#bfe0ff;text-shadow:0 0 22px rgba(143,197,242,.95)}}@keyframes wave{50%{transform:translateY(-6px)}}
-.ob{position:absolute;inset:0;transition:transform .25s;transform:translate(calc(var(--mx,0)*-34px),calc(var(--my,0)*-24px))}
-.gk{transform:perspective(900px) rotateY(calc(var(--mx,0)*6deg)) rotateX(calc(var(--my,0)*-6deg));transition:transform .2s}
-.spk{position:fixed;width:7px;height:7px;margin:-3px;border-radius:50%;background:#ffd36b;pointer-events:none;animation:spk .7s ease-out forwards;z-index:3}@keyframes spk{to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
-#gb:hover{transform:translateY(-3px) scale(1.06)}
+.ob{position:absolute;inset:0;transition:transform .4s;transform:translate(calc(var(--mx,0)*-14px),calc(var(--my,0)*-10px))}
+.bn em{display:block;font-style:normal;font-size:11px;font-weight:500;opacity:.8}
 #app>footer{padding:12px 32px 18px;text-align:center;font-size:12px;font-weight:700;font-style:italic;color:var(--mut);opacity:.7}
 @media(max-width:800px){
  #app{display:block}
@@ -161,14 +166,13 @@ nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
 <div id="gate" hidden>
  <div class="gh gl"></div><div class="gh gr"></div>
  <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1>SIMPATI-2171</h1>
-<p class="sub">(Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi)</p><button id="gb" type="button">Login Disini!</button></div></div>
+  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><button id="gb" type="button">Login Disini! <i>→</i></button><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Ruangan Rapat</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
 </div>
 <form id="login" hidden>
  <div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div>
- <h1>SIMPATI-2171 (Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi)</h1><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
+ <h1>SIMPATI - 2171</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><p class="muted">Masuk dengan akun yang diberikan administrator.</p>
  <label for="em">Username / Email</label><input id="em" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false">
- <label for="pw">Kata Sandi</label><input id="pw" type="password" required autocomplete="current-password">
+ <label for="pw">Kata Sandi</label><div class="pw"><input id="pw" type="password" required autocomplete="current-password"><button type="button" class="eye" id="eye">Lihat</button></div><p id="cl" hidden>Caps Lock sedang aktif</p>
  <div class="row"><button class="p" type="submit">Masuk</button></div>
  <p class="warn"><b>Lupa kata sandi?</b> Hubungi Administrator untuk mengubah kata sandi.</p>
 </form>
@@ -186,7 +190,7 @@ nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
 // ===== ISI DUA BARIS INI (Supabase > Project Settings > API) =====
-const SB_URL='https://gqxmaebmujswfurhiijc.supabase.co/rest/v1/', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxeG1hZWJtdWpzd2Z1cmhpaWpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxNjI3OTAsImV4cCI6MjExMDczODc5MH0.IVr2qpyLTH0Zc07xmz3v2mfzJ2MUutVCrOjKhqXy1h4';
+const SB_URL='ISI_PROJECT_URL', SB_KEY='ISI_ANON_PUBLIC_KEY';
 // =================================================================
 const db=supabase.createClient(new URL(SB_URL.trim()).origin,SB_KEY.trim());
 const J={
@@ -265,7 +269,7 @@ async function boot(){
  if(me.role!='admin')me.role='pegawai';me.email=me.email||session.user.email;const ad=me.role=='admin';
  if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_pegawai','set_nomor']]);
  const ni=(v,t)=>`<a data-v="${v}">${IC[v]}<span>${t}</span>${v=='pengajuan'?'<em class="bd">Draft</em>':''}</a>`;
- $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span>Umum BPS-2171<br>Super Apps</span></b>'+ni('dashboard','Beranda')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('ruangan','Pemakaian Ruangan Rapat')
+ $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span></b>'+ni('dashboard','Beranda')+GR.map(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`).join('')+ni('ruangan','Pemakaian Ruangan Rapat')
   +(ad?'':`<a href="${DRIVE}" target="_blank" rel="noopener" data-x="1">${IC.format}<span>Format Dokumen</span></a>`)
   +`<span class="sp"></span><div id="clk" role="button" tabindex="0" title="Klik untuk mengganti zona waktu"><div class="ct"><span id="ch">--</span><i>:</i><span id="cm">--</span><i>:</i><span id="cs">--</span><b id="cz">WIB</b></div><div class="cd" id="cd"></div><div id="cbar"></div></div>`;
  const closeNav=()=>{$('#nav').classList.remove('show');$('#ov').classList.remove('show');document.body.classList.remove('lock')};
@@ -279,10 +283,13 @@ async function boot(){
  clearInterval(ckt);ckt=setInterval(tickClk,1000);tickClk();
  go('dashboard');
 }
-$('#gt').innerHTML=[...'SIMPATI-2171 (Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi)'].map((c,i)=>c==' '?' ':`<span style="--i:${i}">${c}</span>`).join('');
-$('#gate').onpointermove=e=>{const g=$('#gate');g.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(2));g.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(2))};
-$('#gate').addEventListener('pointerdown',e=>{if(e.target.closest('#gb'))return;for(let i=0;i<10;i++){const p=document.createElement('b'),an=Math.random()*6.28,d=40+Math.random()*60;p.className='spk';p.style.cssText=`left:${e.clientX}px;top:${e.clientY}px;--dx:${Math.cos(an)*d}px;--dy:${Math.sin(an)*d}px`;$('#gate').appendChild(p);setTimeout(()=>p.remove(),700)}});
-$('#gb').onclick=()=>{const g=$('#gate');g.classList.add('open');setTimeout(()=>{g.hidden=true;$('#em').focus()},950)};
+const gj=()=>{const d=new Date(),o={timeZone:'Asia/Jakarta'};$('#gjam').textContent=d.toLocaleDateString('id-ID',{...o,weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString('id-ID',{...o,hour:'2-digit',minute:'2-digit'})+' WIB'};gj();setInterval(gj,20000);
+$('#gate').onpointermove=e=>{const g=$('#gate');g.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(2));g.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(2));g.style.setProperty('--px',e.clientX+'px');g.style.setProperty('--py',e.clientY+'px')};
+$('#gb').onclick=()=>{const g=$('#gate');if(g.classList.contains('open'))return;g.classList.add('open');setTimeout(()=>{g.hidden=true;$('#em').focus()},950)};
+document.addEventListener('keydown',e=>{const g=$('#gate');if(e.key=='Enter'&&!g.hidden&&!g.classList.contains('open')){e.preventDefault();$('#gb').click()}});
+$('#eye').onclick=()=>{const p=$('#pw'),s=p.type=='password';p.type=s?'text':'password';$('#eye').textContent=s?'Sembunyikan':'Lihat'};
+$('#pw').addEventListener('keyup',e=>{$('#cl').hidden=!(e.getModifierState&&e.getModifierState('CapsLock'))});
+$('#login').addEventListener('submit',()=>{const b=$('#login .p');b.disabled=true;b.textContent='Memproses…';setTimeout(()=>{b.disabled=false;b.textContent='Masuk'},2500)});
 $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();if(!em.includes('@')){const {data:x,error:ex}=await db.rpc('login_email',{p_id:em});if(ex)return toast('Login dengan username belum aktif: '+ex.message,1);if(!x)return toast('Username tidak ditemukan',1);em=x}
  const {error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
 
