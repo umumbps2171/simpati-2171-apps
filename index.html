@@ -248,8 +248,6 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
 #gb:hover{transform:scale(1.07)}
 @media(prefers-reduced-motion:reduce){#gb,#gb::before,#gb i,.gbw::before,.gbw::after,.gbl span,.hero::before,.hero::after,#nbar{animation:none!important}}
 
-.hero{padding:40px 46px;border-radius:28px;margin:6px 0 18px;min-height:150px}
-.hero h1{font-size:clamp(30px,4.2vw,46px);margin:8px 0 10px}.hero p{font-size:16px}.hsap{font-size:13px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
 .g2>.pn{margin:0;min-width:0;max-height:360px;overflow:auto;border-top:4px solid #f5a524;transition:transform .2s,box-shadow .2s}
 .g2>.pn:last-child{border-top-color:#12b5a6}.g2>.pn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(16,40,90,.14)}
@@ -268,17 +266,8 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
 #gb:hover{transform:none;box-shadow:0 0 28px 6px rgba(173,212,255,.65)}
 .gbw{display:inline-block;margin:18px 0 28px}
 @keyframes gglow{0%,100%{box-shadow:0 0 12px 1px rgba(173,212,255,.35)}50%{box-shadow:0 0 24px 5px rgba(173,212,255,.6)}}
-@media(max-width:900px){.g2{grid-template-columns:1fr}.g2>.pn{max-height:none}.hero{padding:26px 22px}}
+@media(max-width:900px){.g2{grid-template-columns:1fr}.g2>.pn{max-height:none}}
 
-/* ===== Beranda: sapaan ringkas ===== */
-.hero{display:flex;align-items:center;gap:16px;padding:18px 24px;min-height:0;border-radius:22px;margin:6px 0 16px;background:linear-gradient(120deg,#12408f,#2a62c9 55%,#12b5a6);background-size:200% 200%;animation:hbg 14s ease-in-out infinite alternate;box-shadow:0 12px 28px rgba(18,64,143,.25)}
-@keyframes hbg{to{background-position:100% 50%}}
-.hero h1{font-size:clamp(19px,2.1vw,24px);line-height:1.25;margin:2px 0 9px}.hsap{font-size:11px;letter-spacing:.16em}
-.hx{min-width:0;position:relative;z-index:1}
-.hav{position:relative;z-index:1;width:56px;height:56px;border-radius:18px;flex:none;display:grid;place-items:center;font-size:20px;font-weight:800;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.38);box-shadow:inset 0 0 18px rgba(255,255,255,.18)}
-.hpills{display:flex;gap:8px;flex-wrap:wrap}.hpills span{padding:3px 12px;border-radius:99px;background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.22);font-size:12.5px;font-weight:600;color:#fff}
-@media(min-width:801px){#app:not(.nav-off) .hero{margin-top:48px}}
-@media(max-width:900px){.hero{padding:16px 18px;gap:12px}.hav{width:46px;height:46px;font-size:17px;border-radius:15px}}
 /* ===== Link Aplikasi BPS: tiga kolom ===== */
 .lkg{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
 .lkc{border-top:4px solid var(--ac,#2a62c9);padding:18px}.lkc .av{width:46px;height:46px;font-size:17px}
@@ -541,7 +530,7 @@ async function dash(){
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++});
  const bi=new Date().getMonth(),agA=agq.data||[],ty=agA.some(x=>x.tahun==cy)?cy:(agA[0]?agA[0].tahun:cy),agr=agA.filter(x=>x.tahun==ty),
   ag={tahun:ty,rincian:agr,pembaruan:agr.reduce((a,x)=>x.diperbarui&&x.diperbarui>a?x.diperbarui:a,'').slice(0,10)};
- $('#main').innerHTML=`<div class="hero"><div class="hav">${ini(me.nama)}</div><div class="hx"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><div class="hpills"><span>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})}</span><span>${RLN[me.role]||esc(me.role)}</span></div></div></div>
+ $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Semoga harimu menyenangkan.</p></div>
  <div class="g2">${pgmHTML(pmq.data||[],hr)}
  <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 class="ph"><span class="pi" style="--c:#12b5a6">${IC.ruangan}</span>Status Pemakaian Ruangan</h2><button id="lr">Lihat semua</button></div>
  ${rm.error?'<p class="empty">Data status pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Rapat dan PST tidak dipakai</b></p>'}</div></div>
