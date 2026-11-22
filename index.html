@@ -247,12 +247,34 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
 #gb:hover .gbl span{animation-duration:.8s}#gb i{display:inline-block;animation:gba 1.2s ease-in-out infinite}@keyframes gba{50%{transform:translateX(7px)}}
 #gb:hover{transform:scale(1.07)}
 @media(prefers-reduced-motion:reduce){#gb,#gb::before,#gb i,.gbw::before,.gbw::after,.gbl span,.hero::before,.hero::after,#nbar{animation:none!important}}
+
+.hero{padding:40px 46px;border-radius:28px;margin:6px 0 18px;min-height:150px}
+.hero h1{font-size:clamp(30px,4.2vw,46px);margin:8px 0 10px}.hero p{font-size:16px}.hsap{font-size:13px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+.g2>.pn{margin:0;min-width:0;max-height:360px;overflow:auto;border-top:4px solid #f5a524;transition:transform .2s,box-shadow .2s}
+.g2>.pn:last-child{border-top-color:#12b5a6}.g2>.pn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(16,40,90,.14)}
+.ph{display:flex;align-items:center;gap:10px}
+.pi{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;flex:none;color:var(--c);background:color-mix(in srgb,var(--c) 16%,transparent)}
+.pi svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.dl{margin:10px 0 12px;border:1px solid var(--bd);border-radius:12px;overflow:hidden;font-size:14px;font-weight:400}
+.dl>div{display:flex;gap:12px;padding:8px 12px;border-bottom:1px solid var(--bd)}.dl>div:last-child{border:0}
+.dl span:first-child{color:var(--mut);width:42%;flex:none}.dl span:last-child{word-break:break-word}
+.lkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:14px}
+.lkc{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:16px;box-shadow:var(--sh);padding:14px 16px;transition:transform .2s,box-shadow .2s}
+.lkc:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(16,40,90,.14)}.lkc .lt{flex:1;min-width:0}.lkc .lt b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#gb{padding:20px 46px;background:#fff;animation:gglow 3.4s ease-in-out infinite;transition:none}
+#gb::before,.gbw::before,.gbw::after{display:none}
+#gb i,.gbl span{animation:none!important;transform:none!important}
+#gb:hover{transform:none;box-shadow:0 0 28px 6px rgba(173,212,255,.65)}
+.gbw{display:inline-block;margin:18px 0 28px}
+@keyframes gglow{0%,100%{box-shadow:0 0 12px 1px rgba(173,212,255,.35)}50%{box-shadow:0 0 24px 5px rgba(173,212,255,.6)}}
+@media(max-width:900px){.g2{grid-template-columns:1fr}.g2>.pn{max-height:none}.hero{padding:26px 22px}}
 </style></head><body>
 
 <div id="gate" hidden>
  <div class="gh gl"></div><div class="gh gr"></div>
  <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Login Disini!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Ruangan Rapat</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
+  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Login Disini!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Peminjaman Ruangan</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
 </div>
 <form id="login" hidden>
  <div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div>
@@ -314,8 +336,9 @@ const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v
  set_anggaran:sv('<path d="M3 3v18h18M7 15l4-4 3 3 5-6"/>'),
  format:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/>'),
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
+IC.link_app=sv('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>');IC.set_beranda=IC.set_pengumuman;IC.set_link=IC.link_app;
 const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan','monumen']]];
-const NM={monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',set_pengguna:'Pengguna',set_pegawai:'Referensi Pegawai',set_nomor:'Setting Penomoran',set_pengumuman:'Pengumuman',set_anggaran:'Anggaran'},nm=v=>J[v]?J[v].t:NM[v];
+const NM={monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',set_pengguna:'Pengguna',set_pegawai:'Referensi Pegawai',set_nomor:'Setting Penomoran',set_beranda:'Pengumuman dan Anggaran',set_link:'Link Aplikasi BPS'},nm=v=>J[v]?J[v].t:NM[v];
 const DRIVE='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0yS0x5SrNCli?usp=sharing',RLN={admin:'Admin',pegawai:'Pegawai',pegawai_keuangan:'Pegawai Keuangan'};
 const TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'];
 const lbl=k=>((J[view]||{}).lb||{})[k]||LB[k];
@@ -344,7 +367,10 @@ function userPanel(){
  <div class="col"><button id="pnd">Panduan Aplikasi</button><button id="ubs">Ubah Kata Sandi</button><button class="d" id="klr">Keluar</button></div>`;
  $('#um').querySelectorAll('[data-c]').forEach(d=>d.onclick=async()=>{try{await navigator.clipboard.writeText(d.dataset.c);toast('Disalin: '+d.dataset.c)}catch(_){}});
  $('#pnd').onclick=()=>{$('#um').hidden=true;window.open(PANDUAN_URL,'_blank','noopener')};
- $('#ubs').onclick=()=>{$('#um').hidden=true;ubahSandi()};$('#klr').onclick=()=>db.auth.signOut().then(()=>location.reload())}
+ $('#ubs').onclick=()=>{$('#um').hidden=true;ubahSandi()};$('#klr').onclick=async()=>{const k=$('#klr');k.disabled=true;k.textContent='Keluar…';
+  try{await Promise.race([db.auth.signOut({scope:'local'}),new Promise(r=>setTimeout(r,1500))])}catch(_){}
+  try{Object.keys(localStorage).filter(x=>/^sb-.*-auth-token/.test(x)).forEach(x=>localStorage.removeItem(x))}catch(_){}
+  location.reload()}}
 function ubahSandi(){
  modal(`<h2>Ubah Kata Sandi</h2><form id="pf"><label>Kata Sandi Baru</label><div class="pw"><input id="p1" type="password" autocomplete="new-password" required><button type="button" class="eye" data-t="p1">👁</button></div><div class="sm"><i id="sb"></i></div><small id="st" class="muted">Minimal 6 karakter</small>
  <label>Ulangi Kata Sandi Baru</label><div class="pw"><input id="p2" type="password" autocomplete="new-password" required><button type="button" class="eye" data-t="p2">👁</button></div><small id="sc" class="muted"></small>
@@ -362,6 +388,7 @@ function toast(m,err){const t=$('#toast');t.textContent=m;t.className=err?'err s
 let onTutup=null;
 function modal(h,w){onTutup=null;const m=$('#modal');m.innerHTML='<div class="box"'+(w?' style="max-width:'+w+'px"':'')+'>'+h+'</div>';m.hidden=false}
 function closeM(){$('#modal').hidden=true;const f=onTutup;onTutup=null;if(f)f()}
+const rinci=r=>'<div class="dl">'+r.map(x=>`<div><span>${esc(x[0])}</span><span>${esc(x[1]||'-')}</span></div>`).join('')+'</div>';
 function konfirmasi(judul,isi,ok,aksi,batal){
  modal(`<h2>${judul}</h2><p>${isi}</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">${ok}</button></div>`);
  onTutup=batal||null;$('#bt').onclick=closeM;
@@ -378,9 +405,9 @@ async function boot(){
  pg=a.data||[];kl=b.data||[];
  $('#login').hidden=true;$('#gate').hidden=true;$('#lf').hidden=true;$('#app').hidden=false;
  if(!['admin','pegawai_keuangan'].includes(me.role))me.role='pegawai';me.email=me.email||session.user.email;const ad=me.role=='admin';
- if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_pegawai','set_nomor','set_pengumuman','set_anggaran']]);
+ if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_pegawai','set_nomor','set_beranda','set_link']]);
  const ni=(v,t)=>v=='monumen'?`<a href="${MONUMEN}" target="_blank" rel="noopener" data-x="1">${IC[v]}<span>${t}</span></a>`:`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
- $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+ni('dashboard','Beranda')+(gh=>GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+ni('ruangan','Pemakaian Ruangan Rapat')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
+ $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+ni('dashboard','Beranda')+(gh=>GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+ni('ruangan','Peminjaman Ruangan')+ni('link_app','Link Aplikasi BPS')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
   +(ad?'':`<a href="${DRIVE}" target="_blank" rel="noopener" data-x="1">${IC.format}<span>Format Dokumen</span></a>`)
   +`<span class="sp"></span><div id="clk" role="button" tabindex="0" title="Klik untuk mengganti zona waktu"><div class="ct"><span id="ch">--</span><i>:</i><span id="cm">--</span><i>:</i><span id="cs">--</span><b id="cz">WIB</b></div><div class="cd" id="cd"></div><div id="cbar"></div></div><div class="cp">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</div>`;
  const closeNav=()=>{$('#nav').classList.remove('show');$('#ov').classList.remove('show');document.body.classList.remove('lock')};
@@ -410,7 +437,7 @@ $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();i
 
 function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
  document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on)});
- v=='dashboard'?dash():v.startsWith('set_')?setelan():v=='pengajuan'?pengajuanPage():v=='ruangan'?ruangPage():load()}
+ v=='dashboard'?dash():v.startsWith('set_')?setelan():v=='pengajuan'?pengajuanPage():v=='ruangan'?ruangPage():v=='link_app'?linkPage():load()}
 
 let dy=0,jt,FMT={};
 const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2a62c9',surat_tugas:'#12b5a6',sk_kpa:'#f5a524',form_permintaan:'#8b5cf6'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA',form_permintaan:'FP'};
@@ -424,7 +451,7 @@ function chart(m){
 function spark(a,c){const mx=Math.max(1,...a);return `<svg viewBox="0 0 80 28" width="80" height="28" aria-hidden="true"><polyline points="${a.map((v,i)=>(i*80/11).toFixed(1)+','+(26-v*24/mx).toFixed(1)).join(' ')}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
 function pgmHTML(pm,hr){
  const a=pm.filter(p=>p&&p.judul&&p.aktif!==false&&(!p.sampai||p.sampai>=hr)),br=s=>esc(s).replace(/\n/g,'<br>');
- return `<div class="pn"><h2>Pengumuman</h2>`+(a.map(p=>`<div class="an ${p.jenis=='penting'?'penting':''}"><i></i><div><b>${esc(p.judul)}${p.jenis=='penting'?' <span class="chip dn" style="margin-left:6px">Penting</span>':''}</b>${p.tanggal?`<small>${tgl(p.tanggal)}</small>`:''}<p>${br(p.isi||'')}</p>${/^https?:\/\//.test(p.link||'')?`<a href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.teks_link||'Buka tautan')}</a>`:''}</div></div>`).join('')||'<p class="empty">Belum ada pengumuman.</p>')+`</div>`}
+ return `<div class="pn"><h2 class="ph"><span class="pi" style="--c:#f5a524">${IC.set_pengumuman}</span>Pengumuman</h2>`+(a.map(p=>`<div class="an ${p.jenis=='penting'?'penting':''}"><i></i><div><b>${esc(p.judul)}${p.jenis=='penting'?' <span class="chip dn" style="margin-left:6px">Penting</span>':''}</b>${p.tanggal?`<small>${tgl(p.tanggal)}</small>`:''}<p>${br(p.isi||'')}</p>${/^https?:\/\//.test(p.link||'')?`<a href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.teks_link||'Buka tautan')}</a>`:''}</div></div>`).join('')||'<p class="empty">Belum ada pengumuman.</p>')+`</div>`}
 const rp=n=>'Rp '+Number(n||0).toLocaleString('id-ID'),pc=n=>n.toFixed(1).replace('.',',')+'%',
  rpk=n=>{n=Number(n||0);return n>=1e9?'Rp '+(n/1e9).toFixed(2).replace('.',',')+' M':n>=1e6?'Rp '+Math.round(n/1e6).toLocaleString('id-ID')+' jt':rp(n)},
  wp=p=>p>=80?'#0f9d58':p>=40?'#2a62c9':'#f5a524';
@@ -449,10 +476,10 @@ async function dash(){
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++});
  const bi=new Date().getMonth(),agA=agq.data||[],ty=agA.some(x=>x.tahun==cy)?cy:(agA[0]?agA[0].tahun:cy),agr=agA.filter(x=>x.tahun==ty),
   ag={tahun:ty,rincian:agr,pembaruan:agr.reduce((a,x)=>x.diperbarui&&x.diperbarui>a?x.diperbarui:a,'').slice(0,10)};
- $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Welcome to SIMPATI -2171!, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Semangat Bekerja Pegawai BPS Kota Batam.</p></div>
- ${pgmHTML(pmq.data||[],hr)}
- <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2>Pemakaian Ruangan Rapat</h2><button id="lr">Lihat semua</button></div>
- ${rm.error?'<p class="empty">Data pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Tidak Dipakai</b></p>'}</div>
+ $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Semoga harimu menyenangkan.</p></div>
+ <div class="g2">${pgmHTML(pmq.data||[],hr)}
+ <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 class="ph"><span class="pi" style="--c:#12b5a6">${IC.ruangan}</span>Peminjaman Ruangan</h2><button id="lr">Lihat semua</button></div>
+ ${rm.error?'<p class="empty">Data peminjaman ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Tidak Dipakai</b></p>'}</div></div>
  <div class="yr">${yrs.map(y=>`<button class="${y==dy?'on':''}" data-y="${y}">${y}</button>`).join('')}</div>
  <div class="cards">${ks.map(k=>{const t=m[k].reduce((x,y)=>x+y,0),d=dy==cy?m[k][bi]-(bi?m[k][bi-1]:0):null;
   return `<div class="card" data-go="${k}" role="button" tabindex="0" style="--cc:${CL[k]}" title="Buka ${J[k].t}"><div class="ch"><i style="background:${CL[k]}"></i>${J[k].t}</div><div class="cn">${t}</div><div class="cf">${d===null?'<span class="muted">Total '+dy+'</span>':`<span class="chip ${d<0?'dn':''}">${d<0?'▼':'▲'} ${Math.abs(d)} <small>vs bulan lalu</small></span>`}${spark(m[k],CL[k])}</div></div>`}).join('')}</div>
@@ -520,7 +547,8 @@ function form(id,pre){
   $('#hint').textContent=!D?'':(pakai||(nx!==null&&c>=nx))?'Tanggal lebih awal dari nomor sesudahnya: sistem otomatis memberi nomor sisipan (A, B, …).':c<=mx?'Nomor '+c+' sedang kosong dan akan dipakai kembali sesuai urutan tanggal.':'Nomor diberikan otomatis sesuai tanggal. Pembuat: '+me.nama};t.onchange=hn;hn()}
 }
 function konfSimpan(e,id){e.preventDefault();const d=Object.fromEntries(new FormData(e.target));
- modal(`<h2>Peringatan</h2><p><b>Pastikan Isian Data Sudah Benar, Data yang Sudah Diinput Tidak Bisa Dihapus! Apakah Anda Tetap Ingin Melanjutkan?</b></p><div class="row"><button id="bt">Edit Kembali</button><button class="p" id="ok">Simpan</button></div>`);
+ const rs=J[view].f.filter(k=>!(id&&k=='klasifikasi')).map(k=>[lbl(k),k=='tanggal'?tgl(d[k]):(k=='perihal'||k=='uraian')?proper(d[k]||''):d[k]]);
+ modal(`<h2>Peringatan</h2><p>Pastikan Isian Data Sudah Benar, Data yang Sudah Diinput Tidak Bisa Dihapus!</p>${rinci(rs)}<p><b>Apakah Anda Tetap Ingin Melanjutkan?</b></p><div class="row"><button id="bt">Edit Kembali</button><button class="p" id="ok">Simpan</button></div>`);
  $('#bt').onclick=()=>form(id,d);$('#ok').onclick=()=>save(d,id)}
 async function save(d,id){
  d={...d};for(const k in d)if(d[k]==='')d[k]=null;
@@ -565,7 +593,7 @@ function exportCsv(){if(me.role!='admin')return;
 }
 async function setelan(){
  if(me.role!='admin')return $('#main').innerHTML='<p class="empty">Menu ini hanya untuk admin.</p>';
- view=='set_pegawai'?setPegawai():view=='set_nomor'?setNomor():view=='set_pengumuman'?setPengumuman():view=='set_anggaran'?setAnggaran():setPengguna()}
+ view=='set_pegawai'?setPegawai():view=='set_nomor'?setNomor():view=='set_beranda'?setBeranda():view=='set_link'?setLink():setPengguna()}
 async function setPengguna(){
  const {data}=await db.from('profiles').select('*').order('email'),us=data||[];
  $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Pengguna</h1>
@@ -622,11 +650,60 @@ const em=el=>el.closest('tr').children[0].textContent;
   $('#ok').onclick=async()=>{const {error}=await db.rpc('reset_sandi',{p_id:b.dataset.rs});closeM();error?toast(error.message,1):toast('Kata sandi dikembalikan ke 123456')}});
 }
 const segarPg=async()=>{const x=await db.from('pegawai').select('nama').eq('aktif',true).order('nama');pg=x.data||[]};
+let bTab='pengumuman';
+const bTabs=t=>`<div class="yr" style="margin:10px 0 4px"><button class="${t=='pengumuman'?'on':''}" data-bt="pengumuman">Pengumuman</button><button class="${t=='anggaran'?'on':''}" data-bt="anggaran">Anggaran</button></div>`;
+function setBeranda(t){bTab=t||bTab;return bTab=='anggaran'?setAnggaran():setPengumuman()}
+$('#main').addEventListener('click',e=>{const b=e.target.closest('[data-bt]');if(b)setBeranda(b.dataset.bt)});
+
+let lkR=[];const AVC=['#2a62c9','#12b5a6','#8b5cf6','#f5a524','#d92d20','#0f9d58'];
+async function linkPage(){
+ $('#main').innerHTML='<p class="muted">Memuat…</p>';
+ const {data,error}=await db.from('link_aplikasi').select('*').order('urut').order('nama');
+ if(error)return toast('Gagal memuat: '+error.message+' (jalankan SQL terbaru di Supabase)',1);
+ lkR=data||[];lkDraw()}
+function lkDraw(){
+ const s=q.toLowerCase(),f=lkR.filter(r=>!s||String(r.nama).toLowerCase().includes(s));
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Link Aplikasi BPS</h1>
+ <div class="warn" style="margin:10px 0 0">Menu ini untuk memudahkan pegawai mencari link aplikasi BPS, hubungi Admin Aplikasi untuk menambah atau menghapus link. <b>Pastikan VPN sudah tersambung!</b></div>
+ <div class="bar"><input id="cari" type="search" placeholder="Cari nama aplikasi…" value="${esc(q)}"><span class="sp"></span><span class="muted">${f.length} aplikasi</span></div>
+ <div class="lkg">${f.map((r,i)=>`<div class="lkc"><div class="av" style="background:${AVC[i%AVC.length]}">${esc(ini(r.nama))}</div><div class="lt"><b>${esc(r.nama)}</b><span>Klik Buka untuk membuka aplikasi</span></div><button class="p" data-o="${r.id}">Buka</button></div>`).join('')||'<p class="empty" style="grid-column:1/-1">Belum ada link aplikasi. Hubungi Admin Aplikasi untuk menambahkan.</p>'}</div>`;
+ $('#cari').oninput=e=>{q=e.target.value;lkDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
+ $('#main').querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const r=lkR.find(x=>x.id==b.dataset.o);if(r)window.open(r.url,'_blank','noopener')})}
+async function setLink(){
+ const {data,error}=await db.from('link_aplikasi').select('*').order('urut').order('nama');
+ if(error)return toast('Gagal memuat: '+error.message+' (jalankan SQL terbaru di Supabase)',1);lkR=data||[];
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Link Aplikasi BPS</h1>
+ <div class="bar"><span class="muted">Daftar ini tampil di menu Link Aplikasi BPS untuk semua pengguna. Atur urutan dengan tombol panah.</span><span class="sp"></span><button class="p" id="lt">Tambah Link</button></div>
+ <div class="tw"><table><tr><th>No</th><th>Nama Aplikasi</th><th>Link Aplikasi</th><th>Urutan</th><th>Aksi</th></tr>
+ ${lkR.map((r,i)=>`<tr><td data-l="No">${i+1}</td><td data-l="Nama Aplikasi"><b>${esc(r.nama)}</b></td><td data-l="Link Aplikasi" style="word-break:break-all"><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a></td><td data-l="Urutan"><button data-up="${r.id}" ${i?'':'disabled'} title="Naikkan">↑</button> <button data-dn="${r.id}" ${i<lkR.length-1?'':'disabled'} title="Turunkan">↓</button></td><td class="ac"><button data-ed="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada link aplikasi. Klik “Tambah Link”.</td></tr>'}</table></div>`;
+ $('#lt').onclick=()=>lkForm();
+ $('#main').querySelectorAll('[data-ed]').forEach(b=>b.onclick=()=>lkForm(b.dataset.ed));
+ $('#main').querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>lkMove(b.dataset.up,-1));
+ $('#main').querySelectorAll('[data-dn]').forEach(b=>b.onclick=()=>lkMove(b.dataset.dn,1));
+ $('#main').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>{const r=lkR.find(x=>x.id==b.dataset.x);
+  konfirmasi('Hapus Link Aplikasi?',`Link <b>${esc(r.nama)}</b> akan dihapus dari menu Link Aplikasi BPS.`,'Ya, Hapus',async()=>{
+   const {error}=await db.from('link_aplikasi').delete().eq('id',r.id);error?toast(error.message,1):(toast('Link dihapus'),setLink())})})}
+function lkForm(id){
+ const r=id?lkR.find(x=>x.id==id):{};
+ modal(`<h2>${id?'Ubah':'Tambah'} Link Aplikasi BPS</h2><form id="fm"><label>Nama Aplikasi</label><input name="nama" value="${esc(r.nama)}" required autocomplete="off">
+ <label>Link Aplikasi</label><input name="url" value="${esc(r.url)}" placeholder="https://" required autocapitalize="none" spellcheck="false">
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">Simpan</button></div></form>`);
+ $('#bt').onclick=closeM;
+ $('#fm').onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.nama=d.nama.trim();d.url=d.url.trim();
+  if(!d.nama)return toast('Nama aplikasi wajib diisi',1);if(!/^https?:\/\//i.test(d.url))return toast('Link harus diawali https://',1);
+  const b=e.submitter;b.disabled=true;
+  if(!id)d.urut=lkR.reduce((a,x)=>Math.max(a,x.urut||0),0)+1;
+  const {error}=id?await db.from('link_aplikasi').update(d).eq('id',id):await db.from('link_aplikasi').insert(d);b.disabled=false;
+  if(error)return toast('Gagal menyimpan: '+error.message,1);closeM();toast('Link disimpan');setLink()}}
+async function lkMove(id,dir){
+ const a=[...lkR],i=a.findIndex(x=>x.id==id),j=i+dir;if(i<0||j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];
+ const rs=await Promise.all(a.map((x,k)=>db.from('link_aplikasi').update({urut:k+1}).eq('id',x.id)));
+ const er=rs.find(r=>r.error);if(er)return toast(er.error.message,1);setLink()}
 let pmR=[];
 async function setPengumuman(){
  const {data,error}=await db.from('pengumuman').select('*').order('tanggal',{ascending:false}).order('dibuat_pada',{ascending:false});
  if(error)return toast('Gagal memuat: '+error.message+' (jalankan SQL terbaru di Supabase)',1);pmR=data||[];const hr=hari();
- $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Pengumuman</h1>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Pengumuman dan Anggaran</h1>${bTabs('pengumuman')}
  <div class="bar"><span class="muted">Pengumuman tampil di Beranda untuk semua pengguna.</span><span class="sp"></span><button class="p" id="pt">Tambah Pengumuman</button></div>
  <div class="tw"><table><tr><th>Judul</th><th>Jenis</th><th>Tanggal</th><th>Tampil Sampai</th><th>Status</th><th>Aksi</th></tr>
  ${pmR.map(p=>{const kd=p.sampai&&p.sampai<hr;return `<tr><td data-l="Judul"><b>${esc(p.judul)}</b><br><small class="muted">${esc((p.isi||'').slice(0,90))}</small></td><td data-l="Jenis"><span class="chip ${p.jenis=='penting'?'dn':''}">${p.jenis=='penting'?'Penting':'Info'}</span></td><td data-l="Tanggal" class="tg">${p.tanggal?tgl(p.tanggal):'-'}</td><td data-l="Tampil Sampai" class="tg">${p.sampai?tgl(p.sampai):'Tanpa Batas'}</td><td data-l="Status">${!p.aktif?'<span class="muted">Disembunyikan</span>':kd?'<span class="muted">Kedaluwarsa</span>':'<span class="chip">Tampil</span>'}</td><td class="ac"><button data-a="${p.id}">${p.aktif?'Sembunyikan':'Tampilkan'}</button> <button data-e="${p.id}">Ubah</button> <button class="d" data-x="${p.id}">Hapus</button></td></tr>`}).join('')||'<tr><td colspan="6" class="empty">Belum ada pengumuman.</td></tr>'}</table></div>`;
@@ -660,7 +737,7 @@ function agHit(){const P=agR.reduce((a,x)=>a+(+x.pagu||0),0),Z=agR.reduce((a,x)=
  const t=$('#aring');if(t)t.innerHTML=`<div class="kv"><span class="muted">Total Anggaran</span><b>${rp(P)}</b></div><div class="kv"><span class="muted">Total Realisasi</span><b>${rp(Z)}</b></div><div class="kv"><span class="muted">Penyerapan</span><b style="color:${wp(P?Z/P*100:0)}">${pc(P?Z/P*100:0)}</b></div>`}
 function agDraw(){
  const cy=new Date().getFullYear(),yrs=[...new Set([cy-1,cy,cy+1,agT])].sort();
- $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Anggaran</h1>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Pengumuman dan Anggaran</h1>${bTabs('anggaran')}
  <div class="pn"><b>Pagu dan Realisasi Anggaran</b><p class="muted" style="margin:6px 0 0">Data ini tampil sebagai grafik di Beranda. Isi angka saja, tanpa titik atau koma. Persentase penyerapan dihitung otomatis. Ganti tahun sebelum menyimpan akan membuang perubahan yang belum disimpan.</p></div>
  <div class="yr">${yrs.map(t=>`<button class="${t==agT?'on':''}" data-y="${t}">${t}</button>`).join('')}</div>
  <div class="tw"><table><tr><th>Nama Pagu</th><th>Pagu (Rp)</th><th>Realisasi (Rp)</th><th>Penyerapan</th><th>Aksi</th></tr>
@@ -785,7 +862,7 @@ function pjForm(id,pre){
  $('#bt').onclick=closeM;
  $('#fm').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.nama_spj=proper((d.nama_spj||'').trim());
   if(id)return pjSimpan(d,id);
-  modal(`<h2>Peringatan</h2><p><b>Harap Cek Kembali Isian Data, Data yang Sudah Diinput Tidak Bisa Diubah atau Dihapus! Apakah Anda Tetap Ingin Melanjutkan untuk Menyimpan Data?</b></p><div class="row"><button id="bt">Edit Kembali Form</button><button class="p" id="ok">Simpan</button></div>`);
+  modal(`<h2>Peringatan</h2><p>Harap Cek Kembali Isian Data, Data yang Sudah Diinput Tidak Bisa Diubah atau Dihapus!</p>${rinci([['Nama Pegawai',d.pegawai],['Tim Pembuat',d.tim],['Nama SPJ',d.nama_spj],['Staf Pengelola Keuangan',d.staf],['Tanggal Penyerahan ke SPK',tgl(d.tgl_serah)],['Metode Pengajuan',d.metode]])}<p><b>Apakah Anda Tetap Ingin Melanjutkan untuk Menyimpan Data?</b></p><div class="row"><button id="bt">Edit Kembali Form</button><button class="p" id="ok">Simpan</button></div>`);
   $('#bt').onclick=()=>pjForm(null,d);$('#ok').onclick=()=>pjSimpan(d)}}
 async function pjSimpan(d,id){
  const b=$('#ok')||$('#fm .p');if(b)b.disabled=true;
@@ -822,9 +899,9 @@ async function ruangPage(){
  rr=data;ruangDraw()}
 function ruangDraw(){
  const s=q.toLowerCase(),f=rr.filter(r=>!s||[r.tim,r.pegawai,r.ruangan,r.kegiatan,r.tanggal].join(' ').toLowerCase().includes(s)),tp=Math.max(1,Math.ceil(f.length/10));page=Math.min(page,tp);
- const part=f.slice((page-1)*10,page*10),C=[['tanggal','Tanggal Pemakaian'],['ruangan','Ruangan'],['kegiatan','Nama Kegiatan'],['tim','Tim Pembuat'],['pegawai','Nama Pegawai']];
- $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Pemakaian Ruangan Rapat</h1><div class="bar"><input id="cari" type="search" placeholder="Cari kegiatan, tim, ruangan…" value="${esc(q)}"><span class="sp"></span><button class="p" id="tambah">Ajukan Pemakaian</button></div>
- <div class="tw"><table><tr>${C.map(c=>`<th>${c[1]}</th>`).join('')}<th>Aksi</th></tr>${part.map(r=>`<tr>${C.map(c=>`<td data-l="${c[1]}">${c[0]=='tanggal'?tgl(r.tanggal):c[0]=='kegiatan'?'<b>'+esc(r.kegiatan)+'</b>':esc(r[c[0]])}</td>`).join('')}<td class="ac">${bolehRu(r)?`<button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td></tr>`).join('')||`<tr><td colspan="6" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada pemakaian ruangan. Klik “Ajukan Pemakaian” untuk memulai.'}</td></tr>`}</table></div>
+ const part=f.slice((page-1)*10,page*10),C=[['tanggal','Tanggal Peminjaman'],['ruangan','Ruangan'],['kegiatan','Nama Kegiatan'],['tim','Tim Pembuat'],['pegawai','Nama Pegawai']];
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Peminjaman Ruangan</h1><div class="bar"><input id="cari" type="search" placeholder="Cari kegiatan, tim, ruangan…" value="${esc(q)}"><span class="sp"></span><button class="p" id="tambah">Ajukan Peminjaman</button></div>
+ <div class="tw"><table><tr>${C.map(c=>`<th>${c[1]}</th>`).join('')}<th>Aksi</th></tr>${part.map(r=>`<tr>${C.map(c=>`<td data-l="${c[1]}">${c[0]=='tanggal'?tgl(r.tanggal):c[0]=='kegiatan'?'<b>'+esc(r.kegiatan)+'</b>':esc(r[c[0]])}</td>`).join('')}<td class="ac">${bolehRu(r)?`<button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td></tr>`).join('')||`<tr><td colspan="6" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada peminjaman ruangan. Klik “Ajukan Peminjaman” untuk memulai.'}</td></tr>`}</table></div>
  <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
  $('#cari').oninput=e=>{q=e.target.value;page=1;ruangDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
  $('#tambah').onclick=()=>ruangForm();$('#pv').onclick=()=>{page--;ruangDraw()};$('#nx').onclick=()=>{page++;ruangDraw()};
@@ -835,9 +912,9 @@ function ruangForm(id,pre){
  const r=pre||(id?rr.find(x=>x.id==id):{tanggal:hari(),pegawai:KHUSUS.has(String(me.nama).toLowerCase().trim())?'':me.nama});
  const sel=(n,a,v,ph)=>`<select name="${n}" required><option value="">- ${ph} -</option>${a.map(x=>`<option ${x==v?'selected':''}>${esc(x)}</option>`).join('')}</select>`;
  const nama=[...new Set([r.pegawai,...pgx().map(p=>p.nama)])].filter(Boolean);
- modal(`<h2>${id?'Ubah':'Ajukan'} Pemakaian Ruangan Rapat</h2><form id="fm"><label>Tim Pembuat</label>${sel('tim',TIM,r.tim,'pilih tim')}
+ modal(`<h2>${id?'Ubah':'Ajukan'} Peminjaman Ruangan</h2><form id="fm"><label>Tim Pembuat</label>${sel('tim',TIM,r.tim,'pilih tim')}
  <label>Nama Pegawai</label>${sel('pegawai',nama,r.pegawai,'pilih pegawai')}
- <label>Tanggal Pemakaian Ruangan</label><input name="tanggal" type="date" value="${esc(r.tanggal)}" required>
+ <label>Tanggal Peminjaman Ruangan</label><input name="tanggal" type="date" value="${esc(r.tanggal)}" required>
  <label>Ruangan yang Dipakai</label>${sel('ruangan',RU,r.ruangan,'pilih ruangan')}
  <label>Nama Kegiatan</label><input name="kegiatan" value="${esc(r.kegiatan)}" required autocomplete="off">
  <p id="hint" class="muted" style="font-size:13px;margin:12px 0 0">Semua isian wajib diisi.</p>
@@ -850,13 +927,13 @@ function ruangForm(id,pre){
 async function ruangSave(e,id){
  e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.kegiatan=proper((d.kegiatan||'').trim());
  if(['tim','pegawai','tanggal','ruangan','kegiatan'].some(k=>!d[k]))return toast('Semua isian wajib diisi',1);
- modal(`<h2>Peringatan</h2><p><b>Harap Setelah Mengisi Ini, Konfirmasi ke Kasubbag Umum BPS Kota Batam.</b></p><div class="row"><button id="bt">Kembali</button><button class="p" id="ok">Mengerti, Simpan</button></div>`);
+ modal(`<h2>Peringatan</h2><p>Harap Setelah Mengisi Ini, Konfirmasi ke Kasubbag Umum BPS Kota Batam.</p>${rinci([['Tim Pembuat',d.tim],['Nama Pegawai',d.pegawai],['Tanggal Peminjaman Ruangan',tgl(d.tanggal)],['Ruangan yang Dipakai',d.ruangan],['Nama Kegiatan',d.kegiatan]])}<p><b>Apakah Anda Tetap Ingin Melanjutkan?</b></p><div class="row"><button id="bt">Kembali</button><button class="p" id="ok">Mengerti, Simpan</button></div>`);
  $('#bt').onclick=()=>ruangForm(id,d);
  $('#ok').onclick=async()=>{const b=$('#ok');b.disabled=true;const {error}=id?await db.from('ruangan').update(d).eq('id',id):await db.from('ruangan').insert(d);
-  if(error){b.disabled=false;return toast('Gagal menyimpan: '+error.message,1)}closeM();toast(id?'Perubahan disimpan':'Pemakaian ruangan tersimpan');ruangPage()}}
+  if(error){b.disabled=false;return toast('Gagal menyimpan: '+error.message,1)}closeM();toast(id?'Perubahan disimpan':'Peminjaman ruangan tersimpan');ruangPage()}}
 function ruangHapus(id){
  const r=rr.find(x=>x.id==id);
- modal(`<h2>Hapus Pemakaian Ruangan?</h2><p><b>${esc(r.kegiatan)}</b> (${esc(r.ruangan)}, ${tgl(r.tanggal)}) akan dihapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Hapus</button></div>`);
+ modal(`<h2>Hapus Peminjaman Ruangan?</h2><p><b>${esc(r.kegiatan)}</b> (${esc(r.ruangan)}, ${tgl(r.tanggal)}) akan dihapus.</p><div class="row"><button id="bt">Batal</button><button class="p" id="ok">Hapus</button></div>`);
  $('#bt').onclick=closeM;
  $('#ok').onclick=async()=>{const {error}=await db.from('ruangan').delete().eq('id',id);closeM();error?toast('Gagal menghapus: '+error.message,1):(toast('Data dihapus'),ruangPage())}}
 const RL={admin:'admin',administrator:'admin',petugas:'pegawai','petugas persuratan':'pegawai',pegawai:'pegawai','pegawai keuangan':'pegawai_keuangan',pegawai_keuangan:'pegawai_keuangan'};
