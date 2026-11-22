@@ -269,6 +269,68 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
 .gbw{display:inline-block;margin:18px 0 28px}
 @keyframes gglow{0%,100%{box-shadow:0 0 12px 1px rgba(173,212,255,.35)}50%{box-shadow:0 0 24px 5px rgba(173,212,255,.6)}}
 @media(max-width:900px){.g2{grid-template-columns:1fr}.g2>.pn{max-height:none}.hero{padding:26px 22px}}
+
+/* ===== Beranda: sapaan ringkas ===== */
+.hero{display:flex;align-items:center;gap:16px;padding:18px 24px;min-height:0;border-radius:22px;margin:6px 0 16px;background:linear-gradient(120deg,#12408f,#2a62c9 55%,#12b5a6);background-size:200% 200%;animation:hbg 14s ease-in-out infinite alternate;box-shadow:0 12px 28px rgba(18,64,143,.25)}
+@keyframes hbg{to{background-position:100% 50%}}
+.hero h1{font-size:clamp(19px,2.1vw,24px);line-height:1.25;margin:2px 0 9px}.hsap{font-size:11px;letter-spacing:.16em}
+.hx{min-width:0;position:relative;z-index:1}
+.hav{position:relative;z-index:1;width:56px;height:56px;border-radius:18px;flex:none;display:grid;place-items:center;font-size:20px;font-weight:800;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.38);box-shadow:inset 0 0 18px rgba(255,255,255,.18)}
+.hpills{display:flex;gap:8px;flex-wrap:wrap}.hpills span{padding:3px 12px;border-radius:99px;background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.22);font-size:12.5px;font-weight:600;color:#fff}
+@media(min-width:801px){#app:not(.nav-off) .hero{margin-top:48px}}
+@media(max-width:900px){.hero{padding:16px 18px;gap:12px}.hav{width:46px;height:46px;font-size:17px;border-radius:15px}}
+/* ===== Link Aplikasi BPS: tiga kolom ===== */
+.lkg{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.lkc{border-top:4px solid var(--ac,#2a62c9);padding:18px}.lkc .av{width:46px;height:46px;font-size:17px}
+@media(max-width:1100px){.lkg{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.lkg{grid-template-columns:1fr}}
+/* ===== Layar awal: tombol tidak lebih besar dari teks lain ===== */
+#gb{font-size:14px;letter-spacing:.05em;padding:16px 42px;line-height:1.4}#gb i{font-size:14px}
+/* ===== Halaman login lebih hidup ===== */
+body:has(#login:not([hidden]))::before,body:has(#login:not([hidden]))::after{content:"";position:fixed;border-radius:50%;filter:blur(64px);opacity:.5;pointer-events:none;z-index:0;animation:blob 14s ease-in-out infinite alternate}
+body:has(#login:not([hidden]))::before{width:430px;height:430px;left:-120px;top:-110px;background:#2a62c9}
+body:has(#login:not([hidden]))::after{width:370px;height:370px;right:-100px;bottom:-90px;background:#12b5a6;animation-delay:-6s}
+@keyframes blob{to{transform:translate(60px,40px) scale(1.15)}}
+#login{position:relative;z-index:1;isolation:isolate;max-width:410px;margin:15vh auto 8vh;padding:52px 32px 26px;border-radius:26px;border:1px solid rgba(255,255,255,.35);box-shadow:0 24px 60px rgba(5,20,50,.45);animation:lin .7s cubic-bezier(.2,.9,.3,1) backwards}
+@keyframes lin{from{opacity:0;transform:translateY(28px) scale(.96)}}
+#login::before{content:"";position:absolute;inset:-2px;border-radius:28px;z-index:-1;background:linear-gradient(120deg,#2a62c9,#12b5a6,#ffd36b);filter:blur(18px);opacity:.4;animation:lglow 4s ease-in-out infinite alternate}
+@keyframes lglow{to{opacity:.7}}
+#login .lgo{width:76px;height:76px;margin:-92px auto 14px;padding:10px;border-radius:24px;background:#fff;box-shadow:0 10px 26px rgba(18,64,143,.3);animation:bob 4s ease-in-out infinite}
+#login .lw{display:block;text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--sky)}
+#login h1{font-size:26px;margin:4px 0 6px;background:linear-gradient(90deg,#17428f,#2a62c9 55%,#12b5a6);-webkit-background-clip:text;background-clip:text;color:transparent}
+#login .sb{font-size:13.5px;margin:0 0 6px}
+#login label{font-weight:600;font-size:13px;margin-top:14px}
+#login input{height:48px;border-radius:14px;border:1.5px solid var(--bd);background-color:var(--sky2);background-repeat:no-repeat;background-position:14px center;padding-left:44px;transition:box-shadow .2s,border-color .2s,transform .2s,background-color .2s}
+#login input:focus{outline:0;border-color:var(--sky);background-color:var(--card);box-shadow:0 0 0 4px color-mix(in srgb,var(--sky) 20%,transparent);transform:translateY(-1px)}
+#login #em{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%238a97b2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4 4-6 8-6s8 2 8 6'/%3E%3C/svg%3E")}
+#login #pw{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%238a97b2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 8 0v4'/%3E%3C/svg%3E")}
+#login .eye{top:50%;right:10px;transform:translateY(-50%);font-size:12px;font-weight:700;color:var(--sky);background:none;border:0;padding:6px 8px}
+#login .row{display:block}
+#login .p{width:100%;height:50px;margin-top:22px;border-radius:14px;border:0;font-size:15px;font-weight:700;letter-spacing:.04em;color:#fff;background:linear-gradient(120deg,#17428f,#2a62c9 55%,#12b5a6);background-size:200% 100%;box-shadow:0 10px 24px rgba(18,64,143,.35);transition:transform .2s,box-shadow .2s,background-position .6s}
+#login .p::after{content:"→";margin-left:8px;display:inline-block;transition:transform .2s}
+#login .p:hover:not(:disabled){transform:translateY(-2px);background-position:100% 0;box-shadow:0 14px 30px rgba(18,64,143,.45)}#login .p:hover:not(:disabled)::after{transform:translateX(5px)}
+#login .warn{margin-top:18px;font-size:12.5px;text-align:center;border-radius:12px}
+@media(max-width:480px){#login{margin:18vh 16px 8vh;padding:50px 22px 22px}}
+@media(prefers-reduced-motion:reduce){#login,#login::before,#login .lgo,.hero,body::before,body::after{animation:none!important}}
+
+/* ===== Halaman login: sederhana dan elegan (menimpa gaya sebelumnya) ===== */
+body:has(#login:not([hidden])){background:radial-gradient(700px 420px at 88% -6%,color-mix(in srgb,var(--sky) 9%,transparent),transparent),radial-gradient(600px 380px at -6% 106%,color-mix(in srgb,#12b5a6 7%,transparent),transparent),var(--bg) fixed;min-height:100vh}
+body:has(#login:not([hidden]))::before,body:has(#login:not([hidden]))::after{display:none}
+body:has(#gate[hidden]) #lf{display:none}
+#login{max-width:400px;padding:52px 34px 22px;border-radius:22px;border:1px solid var(--bd);box-shadow:0 14px 44px rgba(18,64,143,.10);animation:lin .6s ease-out backwards}
+#login::before{display:none}
+#login .lgo{margin:-90px auto 12px;border:1px solid var(--bd);box-shadow:0 6px 18px rgba(18,64,143,.12);animation:none}
+#login .lw{color:var(--mut);font-size:11px;letter-spacing:.22em}
+#login h1{font-size:23px;color:var(--navy);background:none;-webkit-background-clip:border-box;background-clip:border-box;-webkit-text-fill-color:currentColor}
+#login .sb{font-size:13px;color:var(--mut);margin-bottom:4px}
+#login label{font-size:13px;font-weight:600;color:var(--mut);margin-top:14px}
+#login input{height:46px;border-radius:12px;border:1px solid var(--bd);background-color:var(--card);padding-left:42px}
+#login input:focus{border-color:var(--sky);box-shadow:0 0 0 3px color-mix(in srgb,var(--sky) 16%,transparent);transform:none}
+#login .p{height:48px;margin-top:22px;border-radius:12px;background:#1a4590;background-size:auto;background-position:0 0;box-shadow:0 6px 16px rgba(23,66,143,.22);font-size:15px;letter-spacing:.03em}
+#login .p::after{content:none}
+#login .p:hover:not(:disabled){background:#1f52ab;transform:translateY(-1px);background-position:0 0;box-shadow:0 8px 20px rgba(23,66,143,.28)}
+[data-theme=dark] #login .p{background:#2a5fc0}[data-theme=dark] #login .p:hover:not(:disabled){background:#3470d6}
+#login .warn{background:none;border:0;color:var(--mut);margin-top:18px;padding:0 4px;font-size:12.5px}
+#login .lcp{margin:12px 0 0;padding-top:12px;border-top:1px solid var(--bd);text-align:center;font-size:11.5px;font-weight:700;font-style:italic;color:var(--mut);opacity:.85}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -278,11 +340,13 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
 </div>
 <form id="login" hidden>
  <div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div>
+ <span class="lw">Selamat Datang</span>
  <h1>SIMPATI - 2171</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p>
  <label for="em">Username / Email</label><input id="em" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false">
  <label for="pw">Kata Sandi</label><div class="pw"><input id="pw" type="password" required autocomplete="current-password"><button type="button" class="eye" id="eye">Lihat</button></div><p id="cl" hidden>Caps Lock sedang aktif</p>
  <div class="row"><button class="p" type="submit">Masuk</button></div>
  <p class="warn"><b>Lupa kata sandi?</b> Hubungi Administrator untuk mengubah kata sandi.</p>
+ <p class="lcp">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</p>
 </form>
 
 <div id="app" hidden>
@@ -431,9 +495,10 @@ $('#gb').onclick=()=>{const g=$('#gate');if(g.classList.contains('open'))return;
 document.addEventListener('keydown',e=>{const g=$('#gate');if(e.key=='Enter'&&!g.hidden&&!g.classList.contains('open')){e.preventDefault();$('#gb').click()}});
 $('#eye').onclick=()=>{const p=$('#pw'),s=p.type=='password';p.type=s?'text':'password';$('#eye').textContent=s?'Sembunyikan':'Lihat'};
 $('#pw').addEventListener('keyup',e=>{$('#cl').hidden=!(e.getModifierState&&e.getModifierState('CapsLock'))});
+function shakeLogin(){const f=$('#login');if(f.animate)f.animate([{transform:'translateX(0)'},{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:450,easing:'ease-in-out'})}
 $('#login').addEventListener('submit',()=>{const b=$('#login .p');b.disabled=true;b.textContent='Memproses…';setTimeout(()=>{b.disabled=false;b.textContent='Masuk'},2500)});
 $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();if(!em.includes('@')){const {data:x,error:ex}=await db.rpc('login_email',{p_id:em});if(ex)return toast('Login dengan username belum aktif: '+ex.message,1);if(!x)return toast('Username tidak ditemukan',1);em=x}
- const {error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
+ const {error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';shakeLogin();return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
 
 function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
  document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on)});
@@ -476,10 +541,10 @@ async function dash(){
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++});
  const bi=new Date().getMonth(),agA=agq.data||[],ty=agA.some(x=>x.tahun==cy)?cy:(agA[0]?agA[0].tahun:cy),agr=agA.filter(x=>x.tahun==ty),
   ag={tahun:ty,rincian:agr,pembaruan:agr.reduce((a,x)=>x.diperbarui&&x.diperbarui>a?x.diperbarui:a,'').slice(0,10)};
- $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Semoga harimu menyenangkan.</p></div>
+ $('#main').innerHTML=`<div class="hero"><div class="hav">${ini(me.nama)}</div><div class="hx"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><div class="hpills"><span>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})}</span><span>${RLN[me.role]||esc(me.role)}</span></div></div></div>
  <div class="g2">${pgmHTML(pmq.data||[],hr)}
- <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 class="ph"><span class="pi" style="--c:#12b5a6">${IC.ruangan}</span>Peminjaman Ruangan</h2><button id="lr">Lihat semua</button></div>
- ${rm.error?'<p class="empty">Data peminjaman ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Tidak Dipakai</b></p>'}</div></div>
+ <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 class="ph"><span class="pi" style="--c:#12b5a6">${IC.ruangan}</span>Status Pemakaian Ruangan</h2><button id="lr">Lihat semua</button></div>
+ ${rm.error?'<p class="empty">Data status pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Rapat dan PST tidak dipakai</b></p>'}</div></div>
  <div class="yr">${yrs.map(y=>`<button class="${y==dy?'on':''}" data-y="${y}">${y}</button>`).join('')}</div>
  <div class="cards">${ks.map(k=>{const t=m[k].reduce((x,y)=>x+y,0),d=dy==cy?m[k][bi]-(bi?m[k][bi-1]:0):null;
   return `<div class="card" data-go="${k}" role="button" tabindex="0" style="--cc:${CL[k]}" title="Buka ${J[k].t}"><div class="ch"><i style="background:${CL[k]}"></i>${J[k].t}</div><div class="cn">${t}</div><div class="cf">${d===null?'<span class="muted">Total '+dy+'</span>':`<span class="chip ${d<0?'dn':''}">${d<0?'▼':'▲'} ${Math.abs(d)} <small>vs bulan lalu</small></span>`}${spark(m[k],CL[k])}</div></div>`}).join('')}</div>
@@ -666,7 +731,7 @@ function lkDraw(){
  $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Link Aplikasi BPS</h1>
  <div class="warn" style="margin:10px 0 0">Menu ini untuk memudahkan pegawai mencari link aplikasi BPS, hubungi Admin Aplikasi untuk menambah atau menghapus link. <b>Pastikan VPN sudah tersambung!</b></div>
  <div class="bar"><input id="cari" type="search" placeholder="Cari nama aplikasi…" value="${esc(q)}"><span class="sp"></span><span class="muted">${f.length} aplikasi</span></div>
- <div class="lkg">${f.map((r,i)=>`<div class="lkc"><div class="av" style="background:${AVC[i%AVC.length]}">${esc(ini(r.nama))}</div><div class="lt"><b>${esc(r.nama)}</b><span>Klik Buka untuk membuka aplikasi</span></div><button class="p" data-o="${r.id}">Buka</button></div>`).join('')||'<p class="empty" style="grid-column:1/-1">Belum ada link aplikasi. Hubungi Admin Aplikasi untuk menambahkan.</p>'}</div>`;
+ <div class="lkg">${f.map((r,i)=>`<div class="lkc" style="--ac:${AVC[i%AVC.length]}"><div class="av" style="background:${AVC[i%AVC.length]}">${esc(ini(r.nama))}</div><div class="lt"><b>${esc(r.nama)}</b><span>Klik Buka untuk membuka aplikasi</span></div><button class="p" data-o="${r.id}">Buka</button></div>`).join('')||'<p class="empty" style="grid-column:1/-1">Belum ada link aplikasi. Hubungi Admin Aplikasi untuk menambahkan.</p>'}</div>`;
  $('#cari').oninput=e=>{q=e.target.value;lkDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
  $('#main').querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const r=lkR.find(x=>x.id==b.dataset.o);if(r)window.open(r.url,'_blank','noopener')})}
 async function setLink(){
