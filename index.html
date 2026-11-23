@@ -219,7 +219,7 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
 .icd{font-size:20px;line-height:1;font-weight:900;display:none}
 #tbn{display:flex;flex-direction:column;line-height:1.15;margin-left:12px;min-width:0;white-space:nowrap;animation:tbin .5s both}#tbn b{font-size:16px;color:var(--navy);letter-spacing:.01em}#tbn em{font-style:normal;font-size:10.5px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase}
 @keyframes tbin{from{opacity:0;transform:translateX(-12px)}}
-#nc{position:absolute;top:20px;right:10px;width:30px;height:30px;padding:0;border-radius:50%;background:rgba(255,255,255,.14);border:0;color:#fff;font-size:20px;line-height:1}#nc:hover{background:rgba(255,255,255,.28)}
+#nc{position:absolute;top:10px;right:6px;width:28px;height:28px;padding:0;border-radius:50%;background:rgba(255,255,255,.14);border:0;color:#fff;font-size:18px;line-height:1;z-index:2}#nc:hover{background:rgba(255,255,255,.28)}
 #nbar{position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,#7fc0ff,#12b5a6);transform-origin:left;animation:nb 300s linear forwards}@keyframes nb{to{transform:scaleX(0)}}
 @media(min-width:801px){
  #app{transition:grid-template-columns .4s cubic-bezier(.3,.8,.3,1)}#app.nav-off{grid-template-columns:0 1fr}
@@ -228,7 +228,7 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
  #app:not(.nav-off) #mb,#app:not(.nav-off) #tbn{display:none}.hero{margin-top:40px}#app.nav-off .hero{margin-top:6px}
 }
 @media(max-width:800px){#nc,#nbar{display:none}.icd{display:inline}.ic3{display:none}#tbn{margin-left:10px;max-width:34vw;overflow:hidden;text-overflow:ellipsis}#tbn em{display:none}#tbn b{font-size:15px}#mb{padding:8px 14px 8px 12px}.hero{padding:20px 22px}.hero h1{font-size:24px}}
-/* ===== Tombol Masuk ke Aplikasi! di layar awal ===== */
+/* ===== Tombol Login Disini! di layar awal ===== */
 .gbw{display:inline-block;position:relative;transform:translate(var(--tx,0),var(--ty,0));transition:transform .18s ease-out}
 .gbw::before,.gbw::after{content:"";position:absolute;inset:0;border-radius:99px;border:2px solid rgba(255,255,255,.65);animation:ring 2.6s ease-out infinite;pointer-events:none}.gbw::after{animation-delay:1.3s}
 @keyframes ring{from{transform:scale(1);opacity:.9}to{transform:scale(1.55,1.9);opacity:0}}
@@ -281,16 +281,16 @@ body:has(#gate[hidden]) #lf{display:none}
 .pl li::before{content:counter(n);width:22px;height:22px;border-radius:50%;background:var(--sky2);color:var(--sky);display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
 .pl li span{flex:1;min-width:0;overflow-wrap:anywhere}.pl li b{background:var(--sky2);padding:2px 10px;border-radius:99px;font-size:13px}
 .pf{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:auto}
-.br{display:grid;grid-template-columns:1fr 96px 38px;gap:8px;margin-bottom:8px}.br input{min-width:0}.br button{padding:0}
+.br{display:grid;grid-template-columns:1fr 84px 104px 38px;gap:8px;margin-bottom:8px}.br input{min-width:0}.br button{padding:0}
 
 /* ===== TEMA BARU: hijau lembut + tinta gelap, sidebar kartu putih ===== */
 body{font-family:"DM Sans","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;background:radial-gradient(900px 520px at 100% -8%,rgba(167,150,255,.16),transparent),radial-gradient(760px 460px at -8% 108%,color-mix(in srgb,var(--sky) 14%,transparent),transparent),var(--bg);background-attachment:fixed}
 nav{background:var(--card);color:var(--tx);box-shadow:var(--sh);padding:22px 16px 16px;gap:3px}
 @media(min-width:801px){nav{margin:12px 8px 12px 12px;top:12px;height:calc(100vh - 24px);border-radius:26px}#app.nav-off nav{margin:0}}
-nav b{color:var(--tx);padding:2px 8px 16px;gap:12px}
+nav b{position:relative;color:var(--tx);padding:2px 38px 16px 8px;gap:10px}
 nav b i{width:42px;height:42px;background:none;border-radius:0;color:inherit}
 nav b i img{width:100%;height:100%;object-fit:contain}
-.bn{font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--tx)}
+.bn{font-size:17.5px;font-weight:700;letter-spacing:-.01em;color:var(--tx);line-height:1.2}
 .bn em{font-size:10.5px;font-weight:600;color:var(--mut);opacity:1;letter-spacing:.08em;text-transform:uppercase}
 .nl{padding:16px 14px 6px;font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);opacity:.85}
 nav a{color:var(--tx);font-size:15.5px;font-weight:500;padding:12px 14px;border-radius:14px}
@@ -356,7 +356,7 @@ body:has(#login:not([hidden])){background:radial-gradient(520px 520px at 8% 6%,r
 <div id="gate" hidden>
  <div class="gh gl"></div><div class="gh gr"></div>
  <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Masuk ke Aplikasi!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Peminjaman Ruangan</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
+  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Login Disini!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Peminjaman Ruangan</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
 </div>
 <form id="login" hidden>
  <div class="lv"><i class="bb b1"></i><i class="bb b2"></i><i class="bb b3"></i>
@@ -412,10 +412,10 @@ const PPK_NAMA='Adi Darmanto, S.E';
 // =================================================
 const db=supabase.createClient(new URL(SB_URL.trim()).origin,SB_KEY.trim());
 const J={
- surat_keluar:{t:'Surat Keluar',f:['tanggal','klasifikasi','perihal','tim','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
- surat_tugas:{t:'Surat Tugas',f:['tanggal','klasifikasi','perihal','tim','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
- sk_kpa:{t:'SK KPA',f:['tanggal','tim','output','uraian'],c:['tanggal','nomor','output','uraian','tim']},
- form_permintaan:{t:'Form Permintaan',f:['tanggal','tim','perihal'],c:['nomor','pembuat','tim','tanggal','perihal'],lb:{perihal:'Judul Form Permintaan'}}};
+ surat_keluar:{t:'Surat Keluar',f:['tanggal','klasifikasi','perihal','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
+ surat_tugas:{t:'Surat Tugas',f:['tanggal','klasifikasi','perihal','link'],c:['nomor','pembuat','tanggal','perihal','tim','link']},
+ sk_kpa:{t:'SK KPA',f:['tanggal','output','uraian'],c:['tanggal','nomor','output','uraian','tim']},
+ form_permintaan:{t:'Form Permintaan',f:['tanggal','perihal'],c:['nomor','pembuat','tim','tanggal','perihal'],lb:{perihal:'Judul Form Permintaan'}}};
 const LB={nomor:'Nomor',pembuat:'Nama Pegawai Pembuat',tanggal:'Tanggal Surat',klasifikasi:'Kode Klasifikasi',perihal:'Perihal',tujuan:'Tujuan',tim:'Tim Pembuat',link:'Link Surat (Google Drive)',output:'Output',uraian:'Uraian SK'};
 const sv=p=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';
 const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v-6H3z"/>'),
@@ -441,7 +441,8 @@ IC.link_app=sv('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10
 const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan','monumen']],['bmn','BMN dan Persediaan',['ruangan','kartu_persediaan']]];
 const NM={ruangan:'Peminjaman Ruangan',kartu_persediaan:'Kartu Kendali Persediaan',monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',set_pengguna:'Pengguna',set_pegawai:'Referensi Pegawai',set_nomor:'Setting Penomoran',set_beranda:'Pengumuman dan Anggaran',set_link:'Link Aplikasi BPS'},nm=v=>J[v]?J[v].t:NM[v];
 const DRIVE='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0yS0x5SrNCli?usp=sharing',RLN={admin:'Admin',pegawai:'Pegawai',pegawai_keuangan:'Pegawai Keuangan',pegawai_bmn:'Pegawai BMN dan Persediaan'};
-const TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'];
+let TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'],TIM_ROWS=[];
+const timSaya=()=>{const p=pg.find(x=>String(x.nama||'').toLowerCase().trim()===String(me.nama||'').toLowerCase().trim());return (p&&p.tim)?p.tim:(TIM[0]||'Umum')};
 const lbl=k=>((J[view]||{}).lb||{})[k]||LB[k];
 let me=null,view='dashboard',rows=[],page=1,q='',pg=[],kl=[];
 const $=s=>document.querySelector(s);
@@ -501,12 +502,14 @@ async function boot(){
  if(!session){$('#lf').hidden=false;$('#app').hidden=true;$('#login').hidden=false;$('#gate').hidden=false;return}
  const {data:p}=await db.from('profiles').select('*').eq('id',session.user.id).single();
  me=p||{role:'pegawai',nama:session.user.email};
- const [a,b,fx]=await Promise.all([ambilPg(),db.from('klasifikasi').select('*').order('kode'),db.from('format_nomor').select('*')]);
+ const [a,b,fx,tm]=await Promise.all([ambilPg(),db.from('klasifikasi').select('*').order('kode'),db.from('format_nomor').select('*'),db.from('referensi_tim').select('*').order('id')]);
  FMT=Object.fromEntries((fx.data||[]).map(x=>[x.jenis,x.pola]));
  pg=a||[];kl=b.data||[];
+ if(!tm.error&&tm.data&&tm.data.length){TIM_ROWS=tm.data;TIM=tm.data.map(x=>x.nama)}
  $('#login').hidden=true;$('#gate').hidden=true;$('#lf').hidden=true;$('#app').hidden=false;
  if(!['admin','pegawai_keuangan','pegawai_bmn'].includes(me.role))me.role='pegawai';me.email=me.email||session.user.email;const ad=me.role=='admin';
  if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_pegawai','set_nomor','set_beranda','set_link']]);
+ else if(me.role=='pegawai_keuangan'&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_beranda']]);
  const ni=(v,t)=>v=='monumen'?`<a href="${MONUMEN}" target="_blank" rel="noopener" data-x="1">${IC[v]}<span>${t}</span></a>`:`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
  $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+'<div class="nl">Menu</div>'+ni('dashboard','Beranda')+(gh=>'<div class="nl">Layanan</div>'+GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+'<div class="nl">Lainnya</div>'+ni('link_app','Link Aplikasi BPS')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
   +(ad?'':`<a href="${DRIVE}" target="_blank" rel="noopener" data-x="1">${IC.format}<span>Format Dokumen</span></a>`)
@@ -524,7 +527,7 @@ async function boot(){
  go('dashboard');
 }
 const gj=()=>{const d=new Date(),o={timeZone:'Asia/Jakarta'};$('#gjam').textContent=d.toLocaleDateString('id-ID',{...o,weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString('id-ID',{...o,hour:'2-digit',minute:'2-digit'})+' WIB'};gj();setInterval(gj,20000);
-$('#gbl').innerHTML=[...'Masuk ke Aplikasi!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
+$('#gbl').innerHTML=[...'Login Disini!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
 $('#gate').addEventListener('pointermove',e=>{const gb=$('#gb'),b=gb.getBoundingClientRect(),dx=e.clientX-(b.left+b.width/2),dy=e.clientY-(b.top+b.height/2),d=Math.hypot(dx,dy),w=gb.parentElement,k=d<190?(1-d/190)*.28:0;w.style.setProperty('--tx',dx*k+'px');w.style.setProperty('--ty',dy*k+'px')});
 const burstGb=()=>{const b=$('#gb').getBoundingClientRect();for(let i=0;i<26;i++){const p=document.createElement('b'),an=Math.random()*6.28,d=60+Math.random()*110;p.className='spk';p.style.cssText=`left:${b.left+b.width/2}px;top:${b.top+b.height/2}px;--dx:${Math.cos(an)*d}px;--dy:${Math.sin(an)*d}px;background:${i%3?'#ffd36b':'#fff'}`;$('#gate').appendChild(p);setTimeout(()=>p.remove(),700)}};
 $('#gate').onpointermove=e=>{const g=$('#gate');g.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(2));g.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(2));g.style.setProperty('--px',e.clientX+'px');g.style.setProperty('--py',e.clientY+'px')};
@@ -578,7 +581,7 @@ async function dash(){
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++});
  const bi=new Date().getMonth(),agA=agq.data||[],ty=agA.some(x=>x.tahun==cy)?cy:(agA[0]?agA[0].tahun:cy),agr=agA.filter(x=>x.tahun==ty),
   ag={tahun:ty,rincian:agr,pembaruan:agr.reduce((a,x)=>x.diperbarui&&x.diperbarui>a?x.diperbarui:a,'').slice(0,10)};
- $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Welcome to Integrated Administrative Service Management Information System!.</p></div>
+ $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Semoga harimu menyenangkan.</p></div>
  <div class="g2">${pgmHTML(pmq.data||[],hr)}
  <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 class="ph"><span class="pi" style="--c:#12b5a6">${IC.ruangan}</span>Status Pemakaian Ruangan</h2><button id="lr">Lihat semua</button></div>
  ${rm.error?'<p class="empty">Data status pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Rapat dan PST tidak dipakai</b></p>'}</div></div>
@@ -663,7 +666,7 @@ async function save(d,id){
   off(false);if(error)return toast('Gagal menyimpan: '+error.message,1);
   closeM();toast('Perubahan disimpan');return load();
  }
- const {data,error}=await db.rpc('ambil_nomor',{p_jenis:view,p_tanggal:d.tanggal,p_perihal:d.perihal??null,p_tim:d.tim??null,p_klas:d.klasifikasi??null,p_link:d.link??null,p_output:d.output??null,p_uraian:d.uraian??null});
+ const {data,error}=await db.rpc('ambil_nomor',{p_jenis:view,p_tanggal:d.tanggal,p_perihal:d.perihal??null,p_tim:timSaya(),p_klas:d.klasifikasi??null,p_link:d.link??null,p_output:d.output??null,p_uraian:d.uraian??null});
  off(false);
  if(error)return toast(/foreign key/.test(error.message)?'Kode klasifikasi tidak ada dalam daftar':error.message,1);
  let nomor=data.nomor;
@@ -694,6 +697,7 @@ function exportCsv(){if(me.role!='admin')return;
  a.download=view+'_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
 }
 async function setelan(){
+ if(me.role=='pegawai_keuangan'&&view=='set_beranda')return setBeranda('anggaran');
  if(me.role!='admin')return $('#main').innerHTML='<p class="empty">Menu ini hanya untuk admin.</p>';
  view=='set_pegawai'?setPegawai():view=='set_nomor'?setNomor():view=='set_beranda'?setBeranda():view=='set_link'?setLink():setPengguna()}
 async function setPengguna(){
@@ -751,7 +755,7 @@ const em=el=>el.closest('tr').children[0].textContent;
   $('#bt').onclick=closeM;
   $('#ok').onclick=async()=>{const {error}=await db.rpc('reset_sandi',{p_id:b.dataset.rs});closeM();error?toast(error.message,1):toast('Kata sandi dikembalikan ke 123456')}});
 }
-async function ambilPg(){let x=await db.from('pegawai').select('nama,nip,jabatan').eq('aktif',true).order('nama');if(x.error)x=await db.from('pegawai').select('nama').eq('aktif',true).order('nama');return x.data||[]}
+async function ambilPg(){let x=await db.from('pegawai').select('nama,nip,jabatan,tim').eq('aktif',true).order('nama');if(x.error)x=await db.from('pegawai').select('nama,nip,jabatan').eq('aktif',true).order('nama');if(x.error)x=await db.from('pegawai').select('nama').eq('aktif',true).order('nama');return x.data||[]}
 const segarPg=async()=>{pg=await ambilPg()};
 let bTab='pengumuman';
 const bTabs=t=>`<div class="yr" style="margin:10px 0 4px"><button class="${t=='pengumuman'?'on':''}" data-bt="pengumuman">Pengumuman</button><button class="${t=='anggaran'?'on':''}" data-bt="anggaran">Anggaran</button></div>`;
@@ -838,52 +842,91 @@ function pmForm(id){
   if(d.link&&!/^https?:\/\//i.test(d.link))return toast('Link harus diawali https://',1);
   const b=e.submitter;b.disabled=true;const {error}=id?await db.from('pengumuman').update(d).eq('id',id):await db.from('pengumuman').insert(d);b.disabled=false;
   if(error)return toast('Gagal menyimpan: '+error.message,1);closeM();toast('Pengumuman disimpan');setPengumuman()}}
-let agT=0,agR=[],agDel=[];
+let agT=0,agR=[],agDel=[],agPR=[],agPDel=[],hlR=[];
 async function setAnggaran(y){
  agT=y||agT||new Date().getFullYear();
- const {data,error}=await db.from('anggaran').select('*').eq('tahun',agT).order('urut').order('nama');
- if(error)return toast('Gagal memuat: '+error.message+' (jalankan SQL terbaru di Supabase)',1);
- agR=(data||[]).map(x=>({...x}));agDel=[];agDraw()}
+ const [r1,r2,r3]=await Promise.all([
+  db.from('anggaran').select('*').eq('tahun',agT).order('urut').order('nama'),
+  db.from('anggaran_persediaan').select('*').eq('tahun',agT).order('urut').order('output'),
+  db.from('hari_libur').select('*').order('tanggal')
+ ]);
+ if(r1.error)return toast('Gagal memuat: '+r1.error.message+' (jalankan SQL terbaru di Supabase)',1);
+ agR=(r1.data||[]).map(x=>({...x}));agDel=[];
+ agPR=(r2.data||[]).map(x=>({...x}));agPDel=[];
+ hlR=r3.data||[];
+ agDraw()}
 function agHit(){const P=agR.reduce((a,x)=>a+(+x.pagu||0),0),Z=agR.reduce((a,x)=>a+(+x.realisasi||0),0);
  agR.forEach((x,i)=>{const c=$('#ap'+i);if(c){const p=+x.pagu?(+x.realisasi||0)/+x.pagu*100:0;c.innerHTML=`<b style="color:${wp(p)}">${pc(p)}</b>`}});
- const t=$('#aring');if(t)t.innerHTML=`<div class="kv"><span class="muted">Total Anggaran</span><b>${rp(P)}</b></div><div class="kv"><span class="muted">Total Realisasi</span><b>${rp(Z)}</b></div><div class="kv"><span class="muted">Penyerapan</span><b style="color:${wp(P?Z/P*100:0)}">${pc(P?Z/P*100:0)}</b></div>`}
+ const t=$('#aring');if(t)t.innerHTML=`<div class="kv"><span class="muted">Total Anggaran</span><b>${rp(P)}</b></div><div class="kv"><span class="muted">Total Realisasi</span><b>${rp(Z)}</b></div><div class="kv"><span class="muted">Penyerapan</span><b style="color:${wp(P?Z/P*100:0)}">${pc(P?Z/P*100:0)}</b></div>`;
+ const PP=agPR.reduce((a,x)=>a+(+x.anggaran||0),0),SS=agPR.reduce((a,x)=>a+(+x.sisa_anggaran||0),0);
+ const tp=$('#apring');if(tp)tp.innerHTML=`<div class="kv"><span class="muted">Total Anggaran Persediaan</span><b>${rp(PP)}</b></div><div class="kv"><span class="muted">Total Sisa Anggaran Persediaan</span><b style="color:${SS<0?'#d92d20':'#0f9d58'}">${rp(SS)}</b></div>`}
 function agDraw(){
- const cy=new Date().getFullYear(),yrs=[...new Set([cy-1,cy,cy+1,agT])].sort();
- $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Pengumuman dan Anggaran</h1>${bTabs('anggaran')}
- <div class="pn"><b>Pagu dan Realisasi Anggaran</b><p class="muted" style="margin:6px 0 0">Data ini tampil sebagai grafik di Beranda. Isi angka saja, tanpa titik atau koma. Persentase penyerapan dihitung otomatis. Ganti tahun sebelum menyimpan akan membuang perubahan yang belum disimpan.</p></div>
+ const cy=new Date().getFullYear(),yrs=[...new Set([cy-1,cy,cy+1,agT])].sort(),ad=me.role=='admin';
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>${ad?'Pengumuman dan Anggaran':'Anggaran'}</h1>${ad?bTabs('anggaran'):''}
  <div class="yr">${yrs.map(t=>`<button class="${t==agT?'on':''}" data-y="${t}">${t}</button>`).join('')}</div>
+ <div class="pn" style="margin-top:14px"><b>Anggaran Persediaan (Kartu Kendali Persediaan)</b><p class="muted" style="margin:6px 0 0">Dikelola oleh Pegawai Keuangan. Berisikan kode Output (contoh: 2904), Anggaran, dan Sisa Anggaran yang tampil pada menu Kartu Kendali Persediaan.</p></div>
+ <div class="tw"><table><tr><th>Output</th><th>Anggaran (Rp)</th><th>Sisa Anggaran (Rp)</th><th>Aksi</th></tr>
+ ${agPR.map((x,i)=>`<tr><td data-l="Output"><input data-pk="output" data-i="${i}" value="${esc(x.output)}" placeholder="Contoh: 2904"></td><td data-l="Anggaran (Rp)"><input data-pk="anggaran" data-i="${i}" type="number" min="0" step="1" value="${x.anggaran??''}"></td><td data-l="Sisa Anggaran (Rp)"><input data-pk="sisa_anggaran" data-i="${i}" type="number" min="0" step="1" value="${x.sisa_anggaran??''}"></td><td class="ac"><button class="d" data-pr="${i}">Hapus Baris</button></td></tr>`).join('')||'<tr><td colspan="4" class="empty">Belum ada data anggaran persediaan tahun ini. Klik “Tambah Baris Persediaan”.</td></tr>'}</table></div>
+ <div class="row" style="justify-content:space-between"><button id="apb">Tambah Baris Persediaan</button><button class="p" id="aps">Simpan Anggaran Persediaan</button></div><div class="pn" id="apring"></div>
+ <div class="pn" style="margin-top:24px"><b>Daftar Hari Libur Nasional / Cuti Bersama</b><p class="muted" style="margin:6px 0 0">Digunakan pada Kartu Kendali Persediaan: jika hari Senin minggu depan jatuh pada tanggal merah di daftar ini, ketersediaan barang otomatis bergeser ke hari kerja berikutnya.</p>
+ <div class="row" style="margin-top:10px;justify-content:flex-start"><input id="hlt" type="date" style="width:auto"><input id="hlk" placeholder="Keterangan libur (opsional)" style="max-width:260px"><button type="button" class="p" id="hla">Tambah Tanggal Libur</button></div>
+ ${hlR.length?`<div class="tw" style="margin-top:10px"><table><tr><th>Tanggal</th><th>Keterangan</th><th>Aksi</th></tr>${hlR.map(h=>`<tr><td data-l="Tanggal">${tgl(h.tanggal)}</td><td data-l="Keterangan">${esc(h.keterangan||'-')}</td><td class="ac"><button class="d" data-hld="${h.tanggal}">Hapus</button></td></tr>`).join('')}</table></div>`:''}</div>
+ ${ad?`<div class="pn" style="margin-top:24px"><b>Pagu dan Realisasi Anggaran (Grafik Beranda)</b><p class="muted" style="margin:6px 0 0">Data ini tampil sebagai grafik di Beranda. Isi angka saja, tanpa titik atau koma. Persentase penyerapan dihitung otomatis.</p></div>
  <div class="tw"><table><tr><th>Nama Pagu</th><th>Pagu (Rp)</th><th>Realisasi (Rp)</th><th>Penyerapan</th><th>Aksi</th></tr>
  ${agR.map((x,i)=>`<tr><td data-l="Nama Pagu"><input data-k="nama" data-i="${i}" value="${esc(x.nama)}" placeholder="Mis. Belanja Pegawai"></td><td data-l="Pagu (Rp)"><input data-k="pagu" data-i="${i}" type="number" min="0" step="1" value="${x.pagu??''}"></td><td data-l="Realisasi (Rp)"><input data-k="realisasi" data-i="${i}" type="number" min="0" step="1" value="${x.realisasi??''}"></td><td data-l="Penyerapan" id="ap${i}"></td><td class="ac"><button class="d" data-r="${i}">Hapus Baris</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada data anggaran tahun ini. Klik “Tambah Baris”.</td></tr>'}</table></div>
- <div class="row" style="justify-content:space-between"><button id="ab">Tambah Baris</button><button class="p" id="as">Simpan Anggaran</button></div><div class="pn" id="aring"></div>`;
+ <div class="row" style="justify-content:space-between"><button id="ab">Tambah Baris</button><button class="p" id="as">Simpan Anggaran Beranda</button></div><div class="pn" id="aring"></div>`:''}`;
  agHit();
  $('#main').querySelectorAll('[data-y]').forEach(b=>b.onclick=()=>setAnggaran(+b.dataset.y));
- $('#main').querySelectorAll('input[data-k]').forEach(i=>i.oninput=()=>{agR[+i.dataset.i][i.dataset.k]=i.dataset.k=='nama'?i.value:(i.value===''?0:+i.value);agHit()});
- $('#main').querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{const x=agR.splice(+b.dataset.r,1)[0];if(x.id)agDel.push(x.id);agDraw()});
- $('#ab').onclick=()=>{agR.push({nama:'',pagu:0,realisasi:0});agDraw();const l=$('#main').querySelectorAll('input[data-k=nama]');l[l.length-1].focus()};
- $('#as').onclick=async()=>{
-  if(agR.some(x=>!String(x.nama).trim()))return toast('Nama pagu tidak boleh kosong',1);
-  if(agR.some(x=>x.pagu<0||x.realisasi<0))return toast('Angka tidak boleh negatif',1);
-  const b=$('#as');b.disabled=true;let err=null;
-  if(agDel.length){const r=await db.from('anggaran').delete().in('id',agDel);err=r.error}
-  const baru=agR.map((x,i)=>({...x,urut:i})).filter(x=>!x.id).map(x=>({tahun:agT,nama:proper(String(x.nama).trim()),pagu:+x.pagu||0,realisasi:+x.realisasi||0,urut:x.urut}));
-  if(!err&&baru.length){const r=await db.from('anggaran').insert(baru);err=r.error}
-  if(!err){const up=await Promise.all(agR.map((x,i)=>x.id?db.from('anggaran').update({nama:proper(String(x.nama).trim()),pagu:+x.pagu||0,realisasi:+x.realisasi||0,urut:i,diperbarui:new Date().toISOString()}).eq('id',x.id):null).filter(Boolean));err=(up.find(r=>r.error)||{}).error}
-  b.disabled=false;if(err)return toast('Gagal menyimpan: '+err.message,1);toast('Data anggaran disimpan');setAnggaran(agT)}}
+ $('#main').querySelectorAll('input[data-pk]').forEach(i=>i.oninput=()=>{agPR[+i.dataset.i][i.dataset.pk]=i.dataset.pk=='output'?i.value:(i.value===''?0:+i.value);agHit()});
+ $('#main').querySelectorAll('[data-pr]').forEach(b=>b.onclick=()=>{const x=agPR.splice(+b.dataset.pr,1)[0];if(x.id)agPDel.push(x.id);agDraw()});
+ $('#apb').onclick=()=>{agPR.push({output:'',anggaran:0,sisa_anggaran:0});agDraw();const l=$('#main').querySelectorAll('input[data-pk=output]');l[l.length-1].focus()};
+ $('#aps').onclick=async()=>{
+  if(agPR.some(x=>!String(x.output).trim()))return toast('Kode Output tidak boleh kosong',1);
+  if(agPR.some(x=>x.anggaran<0||x.sisa_anggaran<0))return toast('Angka tidak boleh negatif',1);
+  const b=$('#aps');b.disabled=true;let err=null;
+  if(agPDel.length){const r=await db.from('anggaran_persediaan').delete().in('id',agPDel);err=r.error}
+  const baru=agPR.map((x,i)=>({...x,urut:i})).filter(x=>!x.id).map(x=>({tahun:agT,output:String(x.output).trim(),anggaran:+x.anggaran||0,sisa_anggaran:+x.sisa_anggaran||0,urut:x.urut}));
+  if(!err&&baru.length){const r=await db.from('anggaran_persediaan').insert(baru);err=r.error}
+  if(!err){const up=await Promise.all(agPR.map((x,i)=>x.id?db.from('anggaran_persediaan').update({output:String(x.output).trim(),anggaran:+x.anggaran||0,sisa_anggaran:+x.sisa_anggaran||0,urut:i,diperbarui:new Date().toISOString()}).eq('id',x.id):null).filter(Boolean));err=(up.find(r=>r.error)||{}).error}
+  b.disabled=false;if(err)return toast('Gagal menyimpan: '+err.message+' (pastikan SQL terbaru sudah dijalankan)',1);toast('Anggaran persediaan disimpan');setAnggaran(agT)};
+ $('#hla').onclick=async()=>{const t=$('#hlt').value,k=$('#hlk').value.trim();if(!t)return toast('Pilih tanggal libur terlebih dahulu',1);const {error}=await db.from('hari_libur').upsert({tanggal:t,keterangan:k||null});if(error)return toast('Gagal menyimpan: '+error.message,1);toast('Tanggal libur ditambahkan');setAnggaran(agT)};
+ $('#main').querySelectorAll('[data-hld]').forEach(b=>b.onclick=async()=>{const {error}=await db.from('hari_libur').delete().eq('tanggal',b.dataset.hld);if(error)return toast(error.message,1);toast('Tanggal libur dihapus');setAnggaran(agT)});
+ if(ad){
+  $('#main').querySelectorAll('input[data-k]').forEach(i=>i.oninput=()=>{agR[+i.dataset.i][i.dataset.k]=i.dataset.k=='nama'?i.value:(i.value===''?0:+i.value);agHit()});
+  $('#main').querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{const x=agR.splice(+b.dataset.r,1)[0];if(x.id)agDel.push(x.id);agDraw()});
+  $('#ab').onclick=()=>{agR.push({nama:'',pagu:0,realisasi:0});agDraw();const l=$('#main').querySelectorAll('input[data-k=nama]');l[l.length-1].focus()};
+  $('#as').onclick=async()=>{
+   if(agR.some(x=>!String(x.nama).trim()))return toast('Nama pagu tidak boleh kosong',1);
+   if(agR.some(x=>x.pagu<0||x.realisasi<0))return toast('Angka tidak boleh negatif',1);
+   const b=$('#as');b.disabled=true;let err=null;
+   if(agDel.length){const r=await db.from('anggaran').delete().in('id',agDel);err=r.error}
+   const baru=agR.map((x,i)=>({...x,urut:i})).filter(x=>!x.id).map(x=>({tahun:agT,nama:proper(String(x.nama).trim()),pagu:+x.pagu||0,realisasi:+x.realisasi||0,urut:x.urut}));
+   if(!err&&baru.length){const r=await db.from('anggaran').insert(baru);err=r.error}
+   if(!err){const up=await Promise.all(agR.map((x,i)=>x.id?db.from('anggaran').update({nama:proper(String(x.nama).trim()),pagu:+x.pagu||0,realisasi:+x.realisasi||0,urut:i,diperbarui:new Date().toISOString()}).eq('id',x.id):null).filter(Boolean));err=(up.find(r=>r.error)||{}).error}
+   b.disabled=false;if(err)return toast('Gagal menyimpan: '+err.message,1);toast('Data anggaran disimpan');setAnggaran(agT)}}}
+async function segarTim(){const r=await db.from('referensi_tim').select('*').order('id');if(!r.error&&r.data){TIM_ROWS=r.data;TIM=r.data.map(x=>x.nama)}}
 async function setPegawai(){
- const {data,error}=await db.from('pegawai').select('*').order('nama');if(error)return toast(error.message,1);const L=data||[];
- $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Referensi Pegawai</h1>
- <div class="set"><h2>Tambah Pegawai</h2><label>Nama Pegawai</label><input id="pn" placeholder="Nama lengkap beserta gelar" autocomplete="off"><label>NIP</label><input id="pnip" placeholder="Mis. 199001012015011001" inputmode="numeric" autocomplete="off"><label>Jabatan</label><input id="pjb" placeholder="Mis. Statistisi Ahli Pertama" autocomplete="off"><div class="row"><button class="p" id="pa">Tambah</button></div><p class="muted" style="font-size:13px;margin:8px 0 0">Daftar ini dipakai pada pilihan nama pegawai di seluruh aplikasi. Huruf awal kata dirapikan otomatis.</p></div>
- <div class="bar"><input id="cari" type="search" placeholder="Cari nama, NIP, atau jabatan…"><span class="sp"></span><span class="muted">${L.length} pegawai</span></div>
- <div class="tw"><table id="tp"><tr><th>No</th><th>Nama Pegawai</th><th>NIP</th><th>Jabatan</th><th>Aksi</th></tr>${L.map((p,i)=>`<tr data-n="${esc((p.nama+' '+(p.nip||'')+' '+(p.jabatan||'')).toLowerCase())}"><td data-l="No">${i+1}</td><td data-l="Nama Pegawai"><b>${esc(p.nama)}</b></td><td data-l="NIP">${esc(p.nip||'-')}</td><td data-l="Jabatan">${esc(p.jabatan||'-')}</td><td class="ac"><button data-ed="${p.id}" data-nm="${esc(p.nama)}" data-nip="${esc(p.nip||'')}" data-jb="${esc(p.jabatan||'')}">Ubah</button> <button class="d" data-d="${p.id}" data-nm="${esc(p.nama)}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada pegawai.</td></tr>'}</table></div>`;
+ const [{data,error},tm]=await Promise.all([db.from('pegawai').select('*').order('nama'),db.from('referensi_tim').select('*').order('id')]);
+ if(error)return toast(error.message,1);const L=data||[];
+ if(!tm.error&&tm.data){TIM_ROWS=tm.data;if(tm.data.length)TIM=tm.data.map(x=>x.nama)}
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Referensi Pegawai & Tim</h1>
+ <div class="set"><h2>Referensi Tim Pembuat</h2><p class="muted" style="font-size:13px;margin:4px 0 10px">Tambahkan atau kelola daftar Tim yang digunakan pada profil pegawai dan pengisian otomatis di seluruh menu.</p>
+ <div class="row" style="justify-content:flex-start;margin-bottom:10px"><input id="tnm" placeholder="Nama Tim baru (mis. Humas)" style="max-width:260px" autocomplete="off"><button type="button" class="p" id="ta">Tambah Tim</button></div>
+ <div style="display:flex;flex-wrap:wrap;gap:8px">${(TIM_ROWS.length?TIM_ROWS:TIM.map(n=>({id:null,nama:n}))).map(t=>`<span class="chip" style="padding:6px 10px;font-size:13px">${esc(t.nama)}${t.id?` <button type="button" data-td="${t.id}" data-tn="${esc(t.nama)}" style="border:0;background:none;color:#d92d20;font-weight:700;padding:0 0 0 6px;cursor:pointer" title="Hapus tim">✕</button>`:''}</span>`).join('')}</div></div>
+ <div class="set" style="margin-top:16px"><h2>Tambah Pegawai</h2><label>Nama Pegawai</label><input id="pn" placeholder="Nama lengkap beserta gelar" autocomplete="off"><label>NIP</label><input id="pnip" placeholder="Mis. 199001012015011001" inputmode="numeric" autocomplete="off"><label>Jabatan</label><input id="pjb" placeholder="Mis. Statistisi Ahli Pertama" autocomplete="off"><label>Tim Pembuat</label><select id="ptim"><option value="">- Pilih Tim -</option>${TIM.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('')}</select><div class="row"><button class="p" id="pa">Tambah</button></div><p class="muted" style="font-size:13px;margin:8px 0 0">Tim Pembuat pada setiap pegawai akan otomatis terisi saat pegawai tersebut mengentri data di seluruh menu.</p></div>
+ <div class="bar"><input id="cari" type="search" placeholder="Cari nama, NIP, jabatan, atau tim…"><span class="sp"></span><span class="muted">${L.length} pegawai</span></div>
+ <div class="tw"><table id="tp"><tr><th>No</th><th>Nama Pegawai</th><th>NIP</th><th>Jabatan</th><th>Tim Pembuat</th><th>Aksi</th></tr>${L.map((p,i)=>`<tr data-n="${esc((p.nama+' '+(p.nip||'')+' '+(p.jabatan||'')+' '+(p.tim||'')).toLowerCase())}"><td data-l="No">${i+1}</td><td data-l="Nama Pegawai"><b>${esc(p.nama)}</b></td><td data-l="NIP">${esc(p.nip||'-')}</td><td data-l="Jabatan">${esc(p.jabatan||'-')}</td><td data-l="Tim Pembuat"><span class="chip">${esc(p.tim||'-')}</span></td><td class="ac"><button data-ed="${p.id}" data-nm="${esc(p.nama)}" data-nip="${esc(p.nip||'')}" data-jb="${esc(p.jabatan||'')}" data-tm="${esc(p.tim||'')}">Ubah</button> <button class="d" data-d="${p.id}" data-nm="${esc(p.nama)}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Belum ada pegawai.</td></tr>'}</table></div>`;
+ $('#ta').onclick=async()=>{const nm=proper($('#tnm').value.trim());if(!nm)return toast('Nama tim wajib diisi',1);const {error}=await db.from('referensi_tim').insert({nama:nm});if(error)return toast(error.code=='23505'?'Nama tim sudah ada':'Gagal menambah tim: '+error.message+' (pastikan SQL terbaru sudah dijalankan)',1);await segarTim();toast('Tim ditambahkan');setPegawai()};
+ $('#main').querySelectorAll('[data-td]').forEach(b=>b.onclick=()=>konfirmasi('Hapus Tim?',`Tim <b>${esc(b.dataset.tn)}</b> akan dihapus dari referensi tim.`,'Ya, Hapus',async()=>{const {error}=await db.from('referensi_tim').delete().eq('id',b.dataset.td);if(error)return toast(error.message,1);await segarTim();toast('Tim dihapus');setPegawai()}));
  $('#cari').oninput=e=>{const v=e.target.value.toLowerCase();$('#tp').querySelectorAll('tr[data-n]').forEach(t=>t.hidden=!t.dataset.n.includes(v))};
- const tambah=async()=>{const n=proper($('#pn').value),nip=$('#pnip').value.trim(),jb=proper($('#pjb').value);if(!n)return toast('Nama pegawai wajib diisi',1);if(nip&&!/^[0-9 ]+$/.test(nip))return toast('NIP hanya boleh berisi angka',1);const {error}=await db.from('pegawai').insert({nama:n,nip:nip||null,jabatan:jb||null});
-  if(error)return toast(error.code=='23505'?'Nama pegawai sudah ada':/nip|jabatan/.test(error.message)?'Kolom NIP/Jabatan belum ada. Jalankan SQL terbaru di Supabase.':'Gagal menambah: '+error.message,1);await segarPg();toast('Pegawai ditambahkan');setPegawai()};
+ const tambah=async()=>{const n=proper($('#pn').value),nip=$('#pnip').value.trim(),jb=proper($('#pjb').value),tm=$('#ptim').value||null;if(!n)return toast('Nama pegawai wajib diisi',1);if(nip&&!/^[0-9 ]+$/.test(nip))return toast('NIP hanya boleh berisi angka',1);const {error}=await db.from('pegawai').insert({nama:n,nip:nip||null,jabatan:jb||null,tim:tm});
+  if(error)return toast(error.code=='23505'?'Nama pegawai sudah ada':/nip|jabatan|tim/.test(error.message)?'Kolom NIP/Jabatan/Tim belum ada. Jalankan SQL terbaru di Supabase.':'Gagal menambah: '+error.message,1);await segarPg();toast('Pegawai ditambahkan');setPegawai()};
  $('#pa').onclick=tambah;$('#pn').onkeydown=e=>{if(e.key=='Enter')tambah()};
 $('#main').querySelectorAll('[data-ed]').forEach(b=>b.onclick=()=>{
-  modal(`<h2>Ubah Data Pegawai</h2><form id="fe"><label>Nama Pegawai</label><input id="en" value="${esc(b.dataset.nm)}" autocomplete="off" required><label>NIP</label><input id="enip" value="${esc(b.dataset.nip)}" inputmode="numeric" autocomplete="off"><label>Jabatan</label><input id="ejb" value="${esc(b.dataset.jb)}" autocomplete="off"><p class="muted" style="font-size:13px;margin:10px 0 0">NIP dan Jabatan tampil pada menu pengguna di pojok kanan atas. Perubahan nama hanya mengubah daftar pilihan nama; data surat yang sudah tercatat dan nama pada akun pengguna tidak ikut berubah.</p><div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">Simpan Perubahan</button></div></form>`);
+  modal(`<h2>Ubah Data Pegawai</h2><form id="fe"><label>Nama Pegawai</label><input id="en" value="${esc(b.dataset.nm)}" autocomplete="off" required><label>NIP</label><input id="enip" value="${esc(b.dataset.nip)}" inputmode="numeric" autocomplete="off"><label>Jabatan</label><input id="ejb" value="${esc(b.dataset.jb)}" autocomplete="off"><label>Tim Pembuat</label><select id="etim"><option value="">- Pilih Tim -</option>${TIM.map(t=>`<option value="${esc(t)}" ${t==b.dataset.tm?'selected':''}>${esc(t)}</option>`).join('')}</select><p class="muted" style="font-size:13px;margin:10px 0 0">Tim Pembuat akan otomatis dipakai saat pegawai ini mengentri data di seluruh menu.</p><div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">Simpan Perubahan</button></div></form>`);
   $('#bt').onclick=closeM;$('#en').focus();
-  $('#fe').onsubmit=async e=>{e.preventDefault();const n=proper($('#en').value),nip=$('#enip').value.trim(),jb=proper($('#ejb').value);if(!n)return toast('Nama pegawai wajib diisi',1);if(nip&&!/^[0-9 ]+$/.test(nip))return toast('NIP hanya boleh berisi angka',1);if(n==b.dataset.nm&&nip==(b.dataset.nip||'')&&jb==(b.dataset.jb||''))return closeM();
-   const {error}=await db.from('pegawai').update({nama:n,nip:nip||null,jabatan:jb||null}).eq('id',b.dataset.ed);
+  $('#fe').onsubmit=async e=>{e.preventDefault();const n=proper($('#en').value),nip=$('#enip').value.trim(),jb=proper($('#ejb').value),tm=$('#etim').value||null;if(!n)return toast('Nama pegawai wajib diisi',1);if(nip&&!/^[0-9 ]+$/.test(nip))return toast('NIP hanya boleh berisi angka',1);if(n==b.dataset.nm&&nip==(b.dataset.nip||'')&&jb==(b.dataset.jb||'')&&(tm||'')==(b.dataset.tm||''))return closeM();
+   const {error}=await db.from('pegawai').update({nama:n,nip:nip||null,jabatan:jb||null,tim:tm}).eq('id',b.dataset.ed);
    if(error)return toast(error.code=='23505'?'Nama pegawai sudah ada':'Gagal menyimpan: '+error.message,1);
    closeM();await segarPg();toast('Data pegawai diperbarui');setPegawai()}});
  $('#main').querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{
@@ -960,12 +1003,10 @@ function pjDraw(){
    if(error)return toast('Gagal mengubah status: '+error.message,1);toast('Status diperbarui');pengajuanPage()},()=>pjDraw())});
 }
 function pjForm(id,pre){
- const o=id?pj.find(x=>x.id==id):null,r=pre||o||{pegawai:KHUSUS.has(String(me.nama).toLowerCase().trim())?'':me.nama,tgl_serah:hari(),staf:stafSaya()};
+ const o=id?pj.find(x=>x.id==id):null,r=pre||o||{pegawai:KHUSUS.has(String(me.nama).toLowerCase().trim())?'':me.nama,tgl_serah:hari(),staf:stafSaya(),tim:timSaya()};
  const sel=(n,a,v,ph)=>`<select name="${n}" required><option value="">- ${ph} -</option>${a.map(x=>`<option ${x==v?'selected':''}>${esc(x)}</option>`).join('')}</select>`;
- const nama=[...new Set([r.pegawai,...pgx().map(p=>p.nama)])].filter(Boolean);
  modal(`<h2>${id?'Ubah':'Ajukan'} Pengajuan Keuangan</h2><form id="fm">${id?`<label>No Urut</label><input value="${o.no_urut}" disabled>`:''}
- <label>Nama Pegawai yang Mengajukan</label><input name="pegawai" value="${esc(id?o.pegawai:me.nama)}" readonly required><small class="muted">Terisi otomatis sesuai akun yang login.</small>
- <label>Tim Pembuat</label>${sel('tim',TIM,r.tim,'Pilih Tim')}
+ <label>Nama Pegawai yang Mengajukan</label><input name="pegawai" value="${esc(id?o.pegawai:me.nama)}" readonly required><small class="muted">Terisi otomatis sesuai akun yang login (Tim: ${esc(id?o.tim:timSaya())}).</small>
  <label>Nama SPJ</label><input name="nama_spj" value="${esc(r.nama_spj)}" placeholder="Contoh: Honor Pengelola Keuangan Januari 2027" required autocomplete="off">
  <label>Staf Pengelola Keuangan</label>${sel('staf',STAF,r.staf,'Pilih Staf')}
  <label>Tanggal Penyerahan ke SPK</label><input name="tgl_serah" type="date" value="${esc(r.tgl_serah)}" required>
@@ -973,7 +1014,7 @@ function pjForm(id,pre){
  ${id?`<label>Status Pengajuan</label>${sel('status',STATUS,r.status,'Pilih Status')}`:''}
  <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Simpan'}</button></div></form>`);
  $('#bt').onclick=closeM;
- $('#fm').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.nama_spj=proper((d.nama_spj||'').trim());
+ $('#fm').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.nama_spj=proper((d.nama_spj||'').trim());if(!id)d.tim=timSaya();
   if(id)return pjSimpan(d,id);
   modal(`<h2>Peringatan</h2><p>Harap Cek Kembali Isian Data. Data yang sudah diinput hanya dapat diubah atau dihapus oleh Pegawai Keuangan (dan dihapus oleh Admin)!</p>${rinci([['Nama Pegawai',d.pegawai],['Tim Pembuat',d.tim],['Nama SPJ',d.nama_spj],['Staf Pengelola Keuangan',d.staf],['Tanggal Penyerahan ke SPK',tgl(d.tgl_serah)],['Metode Pengajuan',d.metode]])}<p><b>Apakah Anda Tetap Ingin Melanjutkan untuk Menyimpan Data?</b></p><div class="row"><button id="bt">Edit Kembali Form</button><button class="p" id="ok">Simpan</button></div>`);
   $('#bt').onclick=()=>pjForm(null,d);$('#ok').onclick=()=>pjSimpan(d)}}
@@ -1029,25 +1070,26 @@ function ruangDraw(){
  $('#main').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>ruangForm(b.dataset.e));
  $('#main').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>ruangHapus(b.dataset.x));
 }
+const timPegawai=nm=>{const p=pg.find(x=>String(x.nama||'').toLowerCase().trim()===String(nm||'').toLowerCase().trim());return (p&&p.tim)?p.tim:timSaya()};
 function ruangForm(id,pre){
  const r=pre||(id?rr.find(x=>x.id==id):{tanggal:hari(),pegawai:KHUSUS.has(String(me.nama).toLowerCase().trim())?'':me.nama});
  const sel=(n,a,v,ph)=>`<select name="${n}" required><option value="">- ${ph} -</option>${a.map(x=>`<option ${x==v?'selected':''}>${esc(x)}</option>`).join('')}</select>`;
  const nama=[...new Set([r.pegawai,...pgx().map(p=>p.nama)])].filter(Boolean);
- modal(`<h2>${id?'Ubah':'Ajukan'} Peminjaman Ruangan</h2><form id="fm"><label>Tim Pembuat</label>${sel('tim',TIM,r.tim,'pilih tim')}
+ modal(`<h2>${id?'Ubah':'Ajukan'} Peminjaman Ruangan</h2><form id="fm">
  <label>Nama Pegawai</label>${sel('pegawai',nama,r.pegawai,'pilih pegawai')}
  <label>Tanggal Peminjaman Ruangan</label><input name="tanggal" type="date" value="${esc(r.tanggal)}" required>
  <label>Ruangan yang Dipakai</label>${sel('ruangan',RU,r.ruangan,'pilih ruangan')}
  <label>Nama Kegiatan</label><input name="kegiatan" value="${esc(r.kegiatan)}" required autocomplete="off">
- <p id="hint" class="muted" style="font-size:13px;margin:12px 0 0">Semua isian wajib diisi.</p>
+ <p id="hint" class="muted" style="font-size:13px;margin:12px 0 0">Tim Pembuat terisi otomatis sesuai pegawai yang dipilih.</p>
  <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Simpan'}</button></div></form>`);
  $('#bt').onclick=closeM;$('#fm').onsubmit=e=>ruangSave(e,id);
  const t=$('#fm [name=tanggal]'),ru=$('#fm [name=ruangan]'),hn=()=>{const b=rr.find(x=>x.id!=id&&x.tanggal==t.value&&x.ruangan==ru.value);
-  $('#hint').textContent=b?ru.value+' sudah dipakai pada tanggal itu untuk “'+b.kegiatan+'” ('+b.tim+'). Pastikan jamnya tidak bentrok.':'Semua isian wajib diisi.'};
+  $('#hint').textContent=b?ru.value+' sudah dipakai pada tanggal itu untuk “'+b.kegiatan+'” ('+b.tim+'). Pastikan jamnya tidak bentrok.':'Tim Pembuat terisi otomatis sesuai pegawai yang dipilih.'};
  t.onchange=ru.onchange=hn;
 }
 async function ruangSave(e,id){
- e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.kegiatan=proper((d.kegiatan||'').trim());
- if(['tim','pegawai','tanggal','ruangan','kegiatan'].some(k=>!d[k]))return toast('Semua isian wajib diisi',1);
+ e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.kegiatan=proper((d.kegiatan||'').trim());d.tim=timPegawai(d.pegawai);
+ if(['pegawai','tanggal','ruangan','kegiatan'].some(k=>!d[k]))return toast('Semua isian wajib diisi',1);
  modal(`<h2>Peringatan</h2><p>Harap Setelah Mengisi Ini, Konfirmasi ke Kasubbag Umum BPS Kota Batam.</p>${rinci([['Tim Pembuat',d.tim],['Nama Pegawai',d.pegawai],['Tanggal Peminjaman Ruangan',tgl(d.tanggal)],['Ruangan yang Dipakai',d.ruangan],['Nama Kegiatan',d.kegiatan]])}<p><b>Apakah Anda Tetap Ingin Melanjutkan?</b></p><div class="row"><button id="bt">Kembali</button><button class="p" id="ok">Mengerti, Simpan</button></div>`);
  $('#bt').onclick=()=>ruangForm(id,d);
  $('#ok').onclick=async()=>{const b=$('#ok');b.disabled=true;const {error}=id?await db.from('ruangan').update(d).eq('id',id):await db.from('ruangan').insert(d);
@@ -1059,32 +1101,68 @@ function ruangHapus(id){
  $('#ok').onclick=async()=>{const {error}=await db.from('ruangan').delete().eq('id',id);closeM();error?toast('Gagal menghapus: '+error.message,1):(toast('Data dihapus'),ruangPage())}}
 const PS_ST=['Barang Diajukan oleh Pegawai','Barang Disiapkan oleh Operator','Barang Siap Diambil','Selesai'],
  PS_C={'Barang Diajukan oleh Pegawai':'#2a62c9','Barang Disiapkan oleh Operator':'#f5a524','Barang Siap Diambil':'#12b5a6','Selesai':'#0f9d58'},PS_MAX=30;
-let ps=[],psf='';
+let ps=[],psf='',psAg=[],psLibur=new Set();
 const isBmn=()=>me.role=='pegawai_bmn';
 const arsipP=r=>{if(r.status!='Selesai')return false;const t=tSt(r);return !!t&&Date.now()-t>=3*36e5};
 const wkt=d=>d?new Date(d).toLocaleString('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})+' WIB':'-';
 const tglK=d=>d?new Date(d).toLocaleDateString('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric'}):'-';
+const isSeninWIB=()=>new Date().toLocaleDateString('en-US',{timeZone:'Asia/Jakarta',weekday:'short'})=='Mon';
+function seninDepanKerja(){
+ const d=new Date(hari()+'T00:00:00Z'),day=d.getUTCDay();
+ const diff=day===1?7:((8-day)%7||7);
+ d.setUTCDate(d.getUTCDate()+diff);
+ while(true){
+  const iso=d.toISOString().slice(0,10),w=d.getUTCDay();
+  if(w!==0&&w!==6&&!psLibur.has(iso))return iso;
+  d.setUTCDate(d.getUTCDate()+1);
+ }
+}
 async function persPage(){
  $('#main').innerHTML='<p class="muted">Memuat…</p>';psf='';
- const {data,error}=await db.from('persediaan_permintaan').select('*').order('tgl_ambil',{ascending:false}).order('dibuat_pada',{ascending:false}).limit(3000);
+ const cy=new Date().getFullYear();
+ const [{data,error},agq,hlq]=await Promise.all([
+  db.from('persediaan_permintaan').select('*').order('tgl_ambil',{ascending:false}).order('dibuat_pada',{ascending:false}).limit(3000),
+  db.from('anggaran_persediaan').select('*').eq('tahun',cy).order('urut').order('output'),
+  db.from('hari_libur').select('tanggal')
+ ]);
  if(error)return toast('Gagal memuat data: '+error.message+' (pastikan SQL terbaru sudah dijalankan)',1);
- ps=data;psDraw()}
+ ps=data||[];psAg=agq.data||[];psLibur=new Set((hlq.data||[]).map(x=>x.tanggal));psDraw()}
 const psTot=r=>(r.items||[]).reduce((a,x)=>a+(+x.qty||0),0);
+function psExportExcel(){
+ if(me.role!='admin')return;
+ if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);
+ const rowsX=[['No','Tanggal Pengajuan','Nama Pegawai','Output Anggaran','Nama Barang','Kuantitas','Satuan','Tanggal Tersedia / Ambil','Status']];
+ let no=1;
+ ps.forEach(r=>{
+  (r.items||[]).forEach(it=>{
+   rowsX.push([no++,tglK(r.dibuat_pada),r.pegawai,r.output_anggaran||'-',it.nama,+it.qty||0,it.satuan||'-',tgl(r.tgl_ambil),r.status]);
+  });
+ });
+ const wb=XLSX.utils.book_new();
+ XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rowsX),'Kartu Kendali Persediaan');
+ XLSX.writeFile(wb,'kartu_kendali_persediaan_'+hari()+'.xlsx');
+}
 function psDraw(){
- const s=q.toLowerCase(),bmn=isBmn(),act=ps.filter(r=>!arsipP(r)),cnt={};PS_ST.forEach(x=>cnt[x]=act.filter(r=>r.status==x).length);
- const f=act.filter(r=>(!psf||r.status==psf)&&(!s||[r.pegawai,r.status,(r.items||[]).map(x=>x.nama).join(' ')].join(' ').toLowerCase().includes(s))),tp=Math.max(1,Math.ceil(f.length/6));page=Math.min(page,tp);
+ const s=q.toLowerCase(),bmn=isBmn(),ad=me.role=='admin',senin=isSeninWIB(),act=ps.filter(r=>!arsipP(r)),cnt={};PS_ST.forEach(x=>cnt[x]=act.filter(r=>r.status==x).length);
+ const f=act.filter(r=>(!psf||r.status==psf)&&(!s||[r.pegawai,r.status,r.output_anggaran,(r.items||[]).map(x=>x.nama+' '+(x.satuan||'')).join(' ')].join(' ').toLowerCase().includes(s))),tp=Math.max(1,Math.ceil(f.length/6));page=Math.min(page,tp);
  const part=f.slice((page-1)*6,page*6);
+ const totAg=psAg.reduce((a,x)=>a+(+x.anggaran||0),0),totSisa=psAg.reduce((a,x)=>a+(+x.sisa_anggaran||0),0);
+ const agBox=psAg.length?`<div class="pn" style="margin:12px 0 0"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center"><b>Informasi Anggaran Persediaan (${new Date().getFullYear()})</b><span class="muted" style="font-size:13px">Total Anggaran: <b>${rp(totAg)}</b> · Sisa Anggaran: <b style="color:${totSisa<0?'#d92d20':'#0f9d58'}">${rp(totSisa)}</b></span></div>
+  <div class="tw" style="margin-top:8px"><table><tr><th>Output</th><th>Anggaran</th><th>Sisa Anggaran</th></tr>${psAg.map(x=>`<tr><td data-l="Output"><b>${esc(x.output)}</b></td><td data-l="Anggaran">${rp(x.anggaran)}</td><td data-l="Sisa Anggaran"><b style="color:${+x.sisa_anggaran<0?'#d92d20':'#0f9d58'}">${rp(x.sisa_anggaran)}</b></td></tr>`).join('')}</table></div></div>`:'';
  $('#main').innerHTML=`<p class="muted" style="margin:0">BMN dan Persediaan</p><h1>Kartu Kendali Persediaan</h1>
- <div class="warn" style="margin:10px 0 0"><b>Catatan:</b> pegawai dapat mengajukan hingga ${PS_MAX} jenis barang dalam satu permintaan. Status diperbarui oleh Pegawai BMN dan Persediaan. Permintaan berstatus Selesai dipindahkan ke Riwayat Pengajuan setelah 3 jam.</div>
+ <div class="warn" style="margin:10px 0 0"><b>Ketentuan Pengajuan:</b> Pengajuan barang persediaan hanya dibuka setiap <b>hari Senin</b> (setelah itu ditutup). Barang yang diajukan akan tersedia pada <b>hari Senin minggu depannya</b> (jika hari libur, otomatis bergeser ke hari kerja berikutnya). Pegawai dapat mengajukan hingga ${PS_MAX} jenis barang. ${!senin?'<br><b style="color:#d92d20">Status Hari Ini: Pengajuan ditutup (bukan hari Senin).</b>':''}</div>
+ ${agBox}
  <div class="chips"><button class="${!psf?'on':''}" data-f="">Semua <b>${act.length}</b></button>${PS_ST.map(x=>`<button class="${psf==x?'on':''}" data-f="${x}" style="--c:${PS_C[x]}"><i></i>${x} <b>${cnt[x]}</b></button>`).join('')}</div>
- <div class="bar"><input id="cari" type="search" placeholder="Cari nama pegawai atau nama barang…" value="${esc(q)}"><span class="sp"></span><button id="rp">Riwayat Pengajuan</button><button class="p" id="tambah">Ajukan Barang</button></div>
- <div class="prs">${part.map(r=>`<div class="pr" style="--c:${PS_C[r.status]}"><div class="ph"><div><b>${esc(r.pegawai)}</b><small>Diajukan ${tglK(r.dibuat_pada)} · Diambil ${tgl(r.tgl_ambil)}</small></div>
+ <div class="bar"><input id="cari" type="search" placeholder="Cari pegawai, output, atau nama barang…" value="${esc(q)}"><span class="sp"></span>${ad?'<button id="psExp">Ekspor Excel</button>':''}<button id="rp">Riwayat Pengajuan</button><button class="p" id="tambah" ${senin?'':'disabled title="Pengajuan hanya dibuka pada hari Senin"'}>Ajukan Barang</button></div>
+ <div class="prs">${part.map(r=>`<div class="pr" style="--c:${PS_C[r.status]}"><div class="ph"><div><b>${esc(r.pegawai)}</b> ${r.output_anggaran?`<span class="chip">Output ${esc(r.output_anggaran)}</span>`:''}<small>Diajukan ${tglK(r.dibuat_pada)} · Tersedia/Diambil ${tgl(r.tgl_ambil)}</small></div>
   ${bmn?`<select class="st" data-s="${r.id}" style="--c:${PS_C[r.status]}">${PS_ST.map(x=>`<option ${x==r.status?'selected':''}>${x}</option>`).join('')}</select>`:`<span class="st" style="--c:${PS_C[r.status]}">${esc(r.status)}</span>`}</div>
-  <ol class="pl">${(r.items||[]).map(x=>`<li><span>${esc(x.nama)}</span><b>${esc(x.qty)}</b></li>`).join('')}</ol>
-  <div class="pf"><span class="muted" style="font-size:13px">${(r.items||[]).length} jenis · total ${psTot(r)} item</span><span><button data-h="${r.id}">Riwayat</button>${bmn?` <button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</span></div></div>`).join('')||`<p class="empty" style="grid-column:1/-1">${s||psf?'Tidak ada permintaan yang cocok.':'Belum ada permintaan barang. Klik “Ajukan Barang” untuk memulai.'}</p>`}</div>
+  <ol class="pl">${(r.items||[]).map(x=>`<li><span>${esc(x.nama)}</span><b>${esc(x.qty)} ${esc(x.satuan||'')}</b></li>`).join('')}</ol>
+  <div class="pf"><span class="muted" style="font-size:13px">${(r.items||[]).length} jenis · total ${psTot(r)} item</span><span><button data-h="${r.id}">Riwayat</button>${bmn?` <button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</span></div></div>`).join('')||`<p class="empty" style="grid-column:1/-1">${s||psf?'Tidak ada permintaan yang cocok.':'Belum ada permintaan barang.'}</p>`}</div>
  <div class="pgn"><span class="muted">${f.length} permintaan</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
  $('#cari').oninput=e=>{q=e.target.value;page=1;psDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
- $('#tambah').onclick=()=>psForm();$('#rp').onclick=psArsip;$('#pv').onclick=()=>{page--;psDraw()};$('#nx').onclick=()=>{page++;psDraw()};
+ if($('#psExp'))$('#psExp').onclick=psExportExcel;
+ $('#tambah').onclick=()=>{if(!isSeninWIB())return toast('Pengajuan barang hanya dibuka pada hari Senin',1);psForm()};
+ $('#rp').onclick=psArsip;$('#pv').onclick=()=>{page--;psDraw()};$('#nx').onclick=()=>{page++;psDraw()};
  $('#main').querySelectorAll('.chips [data-f]').forEach(b=>b.onclick=()=>{psf=b.dataset.f;page=1;psDraw()});
  $('#main').querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>psRiwayat(b.dataset.h));
  $('#main').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>psForm(b.dataset.e));
@@ -1096,56 +1174,61 @@ function psDraw(){
    if(error)return toast('Gagal mengubah status: '+error.message,1);toast('Status diperbarui');persPage()},()=>psDraw())});
 }
 function psForm(id,pre){
+ if(!id&&!isSeninWIB())return toast('Pengajuan barang persediaan hanya dibuka setiap hari Senin',1);
  const o=id?ps.find(x=>x.id==id):null,own=pgx().some(p=>p.nama==me.nama)?me.nama:'';
- const r=pre||o||{pegawai:own,tgl_ambil:hari(),items:[{nama:'',qty:1}],status:PS_ST[0]};
+ const tglDefault=seninDepanKerja();
+ const r=pre||o||{pegawai:own,output_anggaran:(psAg[0]?psAg[0].output:''),tgl_ambil:tglDefault,items:[{nama:'',qty:1,satuan:'Pcs'}],status:PS_ST[0]};
  const nama=[...new Set([r.pegawai,...pgx().map(p=>p.nama)])].filter(Boolean);
- const row=x=>`<div class="br"><input class="bn" placeholder="Nama barang" value="${esc(x.nama)}" autocomplete="off"><input class="bq" type="number" min="1" step="1" value="${esc(x.qty)}" aria-label="Kuantitas"><button type="button" class="d" data-rm title="Hapus baris">✕</button></div>`;
+ const outOpts=[...new Set([r.output_anggaran,...psAg.map(x=>x.output)])].filter(Boolean);
+ const row=x=>`<div class="br"><input class="bn" placeholder="Nama barang" value="${esc(x.nama)}" autocomplete="off"><input class="bq" type="number" min="1" step="1" value="${esc(x.qty)}" aria-label="Kuantitas"><input class="bs" placeholder="Satuan (Rim/Pcs)" value="${esc(x.satuan||'')}" autocomplete="off"><button type="button" class="d" data-rm title="Hapus baris">✕</button></div>`;
  modal(`<h2>${id?'Ubah':'Ajukan'} Barang Persediaan</h2><form id="fm">
  <label>Nama Pegawai</label><select name="pegawai" required><option value="">- Pilih Pegawai -</option>${nama.map(n=>`<option ${n==r.pegawai?'selected':''}>${esc(n)}</option>`).join('')}</select>
- <label>Tanggal Pengambilan</label><input name="tgl_ambil" type="date" value="${esc(r.tgl_ambil)}" required>
+ <label>Output Anggaran</label>${outOpts.length?`<select name="output_anggaran" required><option value="">- Pilih Output Anggaran -</option>${outOpts.map(o=>`<option value="${esc(o)}" ${o==r.output_anggaran?'selected':''}>${esc(o)}</option>`).join('')}</select>`:`<input name="output_anggaran" value="${esc(r.output_anggaran)}" placeholder="Contoh: 2904" required autocomplete="off">`}
+ <label>Tanggal Barang Tersedia / Pengambilan</label><input name="tgl_ambil" type="date" value="${esc(r.tgl_ambil)}" ${id?'':'readonly'} required>
+ ${!id?'<small class="muted">Otomatis dijadwalkan pada hari Senin minggu depan (bergeser ke hari kerja berikutnya jika libur).</small>':''}
  ${id?`<label>Status Barang</label><select name="status">${PS_ST.map(x=>`<option ${x==r.status?'selected':''}>${x}</option>`).join('')}</select>`:''}
  <label style="display:flex;justify-content:space-between"><span>Daftar Barang</span><span class="muted" id="bc"></span></label>
- <div class="br" style="margin:0 0 4px"><small class="muted">Nama Barang</small><small class="muted">Kuantitas</small><span></span></div>
- <div id="bl" style="max-height:34vh;overflow:auto;padding-right:4px">${(r.items&&r.items.length?r.items:[{nama:'',qty:1}]).map(row).join('')}</div>
+ <div class="br" style="margin:0 0 4px"><small class="muted">Nama Barang</small><small class="muted">Kuantitas</small><small class="muted">Satuan</small><span></span></div>
+ <div id="bl" style="max-height:34vh;overflow:auto;padding-right:4px">${(r.items&&r.items.length?r.items:[{nama:'',qty:1,satuan:'Pcs'}]).map(row).join('')}</div>
  <button type="button" id="ba" style="margin-top:6px">+ Tambah Barang</button>
- <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Lanjut'}</button></div></form>`,640);
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Lanjut'}</button></div></form>`,680);
  const hit=()=>{const n=$('#bl').children.length;$('#bc').textContent=n+' / '+PS_MAX+' barang';$('#ba').disabled=n>=PS_MAX;$('#bl').querySelectorAll('[data-rm]').forEach(b=>b.disabled=n<=1)};
  $('#bt').onclick=closeM;hit();
- $('#ba').onclick=()=>{if($('#bl').children.length>=PS_MAX)return;$('#bl').insertAdjacentHTML('beforeend',row({nama:'',qty:1}));hit();const i=$('#bl').querySelectorAll('.bn');i[i.length-1].focus();$('#bl').scrollTop=1e5};
+ $('#ba').onclick=()=>{if($('#bl').children.length>=PS_MAX)return;$('#bl').insertAdjacentHTML('beforeend',row({nama:'',qty:1,satuan:'Pcs'}));hit();const i=$('#bl').querySelectorAll('.bn');i[i.length-1].focus();$('#bl').scrollTop=1e5};
  $('#bl').onclick=e=>{const b=e.target.closest('[data-rm]');if(b&&$('#bl').children.length>1){b.parentElement.remove();hit()}};
  $('#fm').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));
   const rows=[...$('#bl').children];let bad=null;
-  d.items=rows.map(x=>({nama:proper(x.querySelector('.bn').value.trim()),qty:Math.floor(+x.querySelector('.bq').value)}));
-  rows.forEach((x,i)=>{const it=d.items[i],ok=it.nama&&it.qty>=1;x.querySelector('.bn').style.borderColor=it.nama?'':'#d92d20';x.querySelector('.bq').style.borderColor=it.qty>=1?'':'#d92d20';if(!ok&&!bad)bad=x});
-  if(bad){bad.scrollIntoView({block:'nearest'});return toast('Nama barang wajib diisi dan kuantitas minimal 1',1)}
+  d.items=rows.map(x=>({nama:proper(x.querySelector('.bn').value.trim()),qty:Math.floor(+x.querySelector('.bq').value),satuan:proper(x.querySelector('.bs').value.trim())}));
+  rows.forEach((x,i)=>{const it=d.items[i],ok=it.nama&&it.qty>=1&&it.satuan;x.querySelector('.bn').style.borderColor=it.nama?'':'#d92d20';x.querySelector('.bq').style.borderColor=it.qty>=1?'':'#d92d20';x.querySelector('.bs').style.borderColor=it.satuan?'':'#d92d20';if(!ok&&!bad)bad=x});
+  if(bad){bad.scrollIntoView({block:'nearest'});return toast('Nama barang, kuantitas (min 1), dan satuan wajib diisi',1)}
   if(id)return psSimpan(d,id);
   psReview(d)}}
 function psReview(d){
  const tot=d.items.reduce((a,x)=>a+x.qty,0);
  modal(`<h2>Periksa Kembali Permintaan Anda</h2><p class="muted" style="margin:2px 0 10px;font-size:13px">Pastikan data sudah benar sebelum disimpan.</p>
- <div class="kv"><span class="muted">Nama Pegawai</span><b>${esc(d.pegawai)}</b></div><div class="kv"><span class="muted">Tanggal Pengambilan</span><b>${tgl(d.tgl_ambil)}</b></div>
- <ol class="pl" style="margin-top:10px;max-height:34vh">${d.items.map(x=>`<li><span>${esc(x.nama)}</span><b>${x.qty}</b></li>`).join('')}</ol>
+ <div class="kv"><span class="muted">Nama Pegawai</span><b>${esc(d.pegawai)}</b></div><div class="kv"><span class="muted">Output Anggaran</span><b>${esc(d.output_anggaran||'-')}</b></div><div class="kv"><span class="muted">Tanggal Tersedia / Pengambilan</span><b>${tgl(d.tgl_ambil)}</b></div>
+ <ol class="pl" style="margin-top:10px;max-height:34vh">${d.items.map(x=>`<li><span>${esc(x.nama)}</span><b>${x.qty} ${esc(x.satuan||'')}</b></li>`).join('')}</ol>
  <p class="muted" style="font-size:13px;margin:8px 0 0">${d.items.length} jenis barang · total ${tot} item</p>
  <div class="row"><button id="bt">Edit Kembali</button><button class="p" id="ok">Simpan</button></div>`,560);
  $('#bt').onclick=()=>psForm(null,d);$('#ok').onclick=()=>psSimpan(d)}
 async function psSimpan(d,id){
  const b=$('#ok')||$('#fm .p');if(b)b.disabled=true;
- const p={pegawai:d.pegawai,tgl_ambil:d.tgl_ambil,items:d.items};if(id&&d.status)p.status=d.status;
+ const p={pegawai:d.pegawai,output_anggaran:d.output_anggaran||null,tgl_ambil:d.tgl_ambil,items:d.items};if(id&&d.status)p.status=d.status;
  const {error}=id?await db.from('persediaan_permintaan').update(p).eq('id',id):await db.from('persediaan_permintaan').insert(p);
  if(error){if(b)b.disabled=false;return toast('Gagal menyimpan: '+error.message,1)}
  closeM();toast(id?'Perubahan disimpan':'Permintaan barang tersimpan');persPage()}
 function psRiwayat(id,back){
  const r=ps.find(x=>x.id==id),rw=r.riwayat||[];
- modal(`<h2>Permintaan ${esc(r.pegawai)}</h2><p class="muted" style="margin:2px 0 10px">Diambil ${tgl(r.tgl_ambil)} · ${(r.items||[]).length} jenis · total ${psTot(r)} item</p>
- <ol class="pl" style="max-height:24vh">${(r.items||[]).map(x=>`<li><span>${esc(x.nama)}</span><b>${esc(x.qty)}</b></li>`).join('')}</ol>
+ modal(`<h2>Permintaan ${esc(r.pegawai)}</h2><p class="muted" style="margin:2px 0 10px">${r.output_anggaran?'Output '+esc(r.output_anggaran)+' · ':''}Diambil ${tgl(r.tgl_ambil)} · ${(r.items||[]).length} jenis · total ${psTot(r)} item</p>
+ <ol class="pl" style="max-height:24vh">${(r.items||[]).map(x=>`<li><span>${esc(x.nama)}</span><b>${esc(x.qty)} ${esc(x.satuan||'')}</b></li>`).join('')}</ol>
  <h2 style="font-size:15px;margin:14px 0 6px">Riwayat Status</h2><div class="tl">${rw.map(x=>`<div class="ti" style="--c:${PS_C[x.status]||'#888'}"><i></i><div><b>${esc(x.status)}</b><small>${tgl(x.tgl)} ${esc(x.jam||'')} · ${esc(x.oleh||'')}</small></div></div>`).join('')}</div>
  <div class="row"><button id="bt">${back?'Kembali':'Tutup'}</button></div>`,560);
  $('#bt').onclick=back?psArsip:closeM}
 function psArsip(){
  const a=ps.filter(arsipP).sort((x,y)=>tSt(y)-tSt(x));
  modal(`<h2>Riwayat Pengajuan</h2><p class="muted" style="margin:2px 0 12px;font-size:13px">Permintaan berstatus Selesai dipindahkan ke sini setelah 3 jam.</p>
- <div class="tw" style="max-height:60vh;overflow:auto"><table><tr><th>Nama Pegawai</th><th>Barang</th><th>Tanggal Pengambilan</th><th>Selesai Pada</th><th>Aksi</th></tr>
- ${a.map(r=>`<tr><td data-l="Nama Pegawai"><b>${esc(r.pegawai)}</b></td><td data-l="Barang">${esc((r.items||[]).map(x=>x.nama+' ('+x.qty+')').join(', '))}</td><td data-l="Tanggal Pengambilan" class="tg">${tgl(r.tgl_ambil)}</td><td data-l="Selesai Pada">${wkt(tSt(r))}</td><td class="ac"><button data-ah="${r.id}">Riwayat</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada permintaan di riwayat.</td></tr>'}</table></div>
+ <div class="tw" style="max-height:60vh;overflow:auto"><table><tr><th>Nama Pegawai</th><th>Output</th><th>Barang</th><th>Tanggal Pengambilan</th><th>Selesai Pada</th><th>Aksi</th></tr>
+ ${a.map(r=>`<tr><td data-l="Nama Pegawai"><b>${esc(r.pegawai)}</b></td><td data-l="Output">${esc(r.output_anggaran||'-')}</td><td data-l="Barang">${esc((r.items||[]).map(x=>x.nama+' ('+x.qty+' '+(x.satuan||'')+')').join(', '))}</td><td data-l="Tanggal Pengambilan" class="tg">${tgl(r.tgl_ambil)}</td><td data-l="Selesai Pada">${wkt(tSt(r))}</td><td class="ac"><button data-ah="${r.id}">Riwayat</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Belum ada permintaan di riwayat.</td></tr>'}</table></div>
  <div class="row"><button id="bt">Tutup</button></div>`,980);
  $('#bt').onclick=closeM;$('#modal').querySelectorAll('[data-ah]').forEach(b=>b.onclick=()=>psRiwayat(b.dataset.ah,true))}
 const RL={admin:'admin',administrator:'admin',petugas:'pegawai','petugas persuratan':'pegawai',pegawai:'pegawai','pegawai keuangan':'pegawai_keuangan',pegawai_keuangan:'pegawai_keuangan','pegawai bmn dan persediaan':'pegawai_bmn','pegawai bmn':'pegawai_bmn',pegawai_bmn:'pegawai_bmn'};
