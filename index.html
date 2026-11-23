@@ -228,7 +228,7 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
  #app:not(.nav-off) #mb,#app:not(.nav-off) #tbn{display:none}.hero{margin-top:40px}#app.nav-off .hero{margin-top:6px}
 }
 @media(max-width:800px){#nc,#nbar{display:none}.icd{display:inline}.ic3{display:none}#tbn{margin-left:10px;max-width:34vw;overflow:hidden;text-overflow:ellipsis}#tbn em{display:none}#tbn b{font-size:15px}#mb{padding:8px 14px 8px 12px}.hero{padding:20px 22px}.hero h1{font-size:24px}}
-/* ===== Tombol Login Disini! di layar awal ===== */
+/* ===== Tombol Masuk ke Aplikasi!! di layar awal ===== */
 .gbw{display:inline-block;position:relative;transform:translate(var(--tx,0),var(--ty,0));transition:transform .18s ease-out}
 .gbw::before,.gbw::after{content:"";position:absolute;inset:0;border-radius:99px;border:2px solid rgba(255,255,255,.65);animation:ring 2.6s ease-out infinite;pointer-events:none}.gbw::after{animation-delay:1.3s}
 @keyframes ring{from{transform:scale(1);opacity:.9}to{transform:scale(1.55,1.9);opacity:0}}
@@ -356,7 +356,7 @@ body:has(#login:not([hidden])){background:radial-gradient(520px 520px at 8% 6%,r
 <div id="gate" hidden>
  <div class="gh gl"></div><div class="gh gr"></div>
  <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Login Disini!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Peminjaman Ruangan</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
+  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Masuk ke Aplikasi!!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Peminjaman Ruangan</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
 </div>
 <form id="login" hidden>
  <div class="lv"><i class="bb b1"></i><i class="bb b2"></i><i class="bb b3"></i>
@@ -524,7 +524,7 @@ async function boot(){
  go('dashboard');
 }
 const gj=()=>{const d=new Date(),o={timeZone:'Asia/Jakarta'};$('#gjam').textContent=d.toLocaleDateString('id-ID',{...o,weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString('id-ID',{...o,hour:'2-digit',minute:'2-digit'})+' WIB'};gj();setInterval(gj,20000);
-$('#gbl').innerHTML=[...'Login Disini!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
+$('#gbl').innerHTML=[...'Masuk ke Aplikasi!!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
 $('#gate').addEventListener('pointermove',e=>{const gb=$('#gb'),b=gb.getBoundingClientRect(),dx=e.clientX-(b.left+b.width/2),dy=e.clientY-(b.top+b.height/2),d=Math.hypot(dx,dy),w=gb.parentElement,k=d<190?(1-d/190)*.28:0;w.style.setProperty('--tx',dx*k+'px');w.style.setProperty('--ty',dy*k+'px')});
 const burstGb=()=>{const b=$('#gb').getBoundingClientRect();for(let i=0;i<26;i++){const p=document.createElement('b'),an=Math.random()*6.28,d=60+Math.random()*110;p.className='spk';p.style.cssText=`left:${b.left+b.width/2}px;top:${b.top+b.height/2}px;--dx:${Math.cos(an)*d}px;--dy:${Math.sin(an)*d}px;background:${i%3?'#ffd36b':'#fff'}`;$('#gate').appendChild(p);setTimeout(()=>p.remove(),700)}};
 $('#gate').onpointermove=e=>{const g=$('#gate');g.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(2));g.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(2));g.style.setProperty('--px',e.clientX+'px');g.style.setProperty('--py',e.clientY+'px')};
@@ -578,7 +578,7 @@ async function dash(){
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++});
  const bi=new Date().getMonth(),agA=agq.data||[],ty=agA.some(x=>x.tahun==cy)?cy:(agA[0]?agA[0].tahun:cy),agr=agA.filter(x=>x.tahun==ty),
   ag={tahun:ty,rincian:agr,pembaruan:agr.reduce((a,x)=>x.diperbarui&&x.diperbarui>a?x.diperbarui:a,'').slice(0,10)};
- $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Semoga harimu menyenangkan.</p></div>
+ $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Welcome to Integrated Administrative Service Management Information System!.</p></div>
  <div class="g2">${pgmHTML(pmq.data||[],hr)}
  <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 class="ph"><span class="pi" style="--c:#12b5a6">${IC.ruangan}</span>Status Pemakaian Ruangan</h2><button id="lr">Lihat semua</button></div>
  ${rm.error?'<p class="empty">Data status pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Rapat dan PST tidak dipakai</b></p>'}</div></div>
