@@ -228,7 +228,7 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
  #app:not(.nav-off) #mb,#app:not(.nav-off) #tbn{display:none}.hero{margin-top:40px}#app.nav-off .hero{margin-top:6px}
 }
 @media(max-width:800px){#nc,#nbar{display:none}.icd{display:inline}.ic3{display:none}#tbn{margin-left:10px;max-width:34vw;overflow:hidden;text-overflow:ellipsis}#tbn em{display:none}#tbn b{font-size:15px}#mb{padding:8px 14px 8px 12px}.hero{padding:20px 22px}.hero h1{font-size:24px}}
-/* ===== Tombol Masuk ke Aplikasi! di layar awal ===== */
+/* ===== Tombol Login Disini! di layar awal ===== */
 .gbw{display:inline-block;position:relative;transform:translate(var(--tx,0),var(--ty,0));transition:transform .18s ease-out}
 .gbw::before,.gbw::after{content:"";position:absolute;inset:0;border-radius:99px;border:2px solid rgba(255,255,255,.65);animation:ring 2.6s ease-out infinite;pointer-events:none}.gbw::after{animation-delay:1.3s}
 @keyframes ring{from{transform:scale(1);opacity:.9}to{transform:scale(1.55,1.9);opacity:0}}
@@ -356,7 +356,7 @@ body:has(#login:not([hidden])){background:radial-gradient(520px 520px at 8% 6%,r
 <div id="gate" hidden>
  <div class="gh gl"></div><div class="gh gr"></div>
  <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Masuk ke Aplikasi!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Peminjaman Ruangan</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
+  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Login Disini!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Peminjaman Ruangan</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
 </div>
 <form id="login" hidden>
  <div class="lv"><i class="bb b1"></i><i class="bb b2"></i><i class="bb b3"></i>
@@ -524,7 +524,7 @@ async function boot(){
  go('dashboard');
 }
 const gj=()=>{const d=new Date(),o={timeZone:'Asia/Jakarta'};$('#gjam').textContent=d.toLocaleDateString('id-ID',{...o,weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString('id-ID',{...o,hour:'2-digit',minute:'2-digit'})+' WIB'};gj();setInterval(gj,20000);
-$('#gbl').innerHTML=[...'Masuk ke Aplikasi!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
+$('#gbl').innerHTML=[...'Login Disini!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
 $('#gate').addEventListener('pointermove',e=>{const gb=$('#gb'),b=gb.getBoundingClientRect(),dx=e.clientX-(b.left+b.width/2),dy=e.clientY-(b.top+b.height/2),d=Math.hypot(dx,dy),w=gb.parentElement,k=d<190?(1-d/190)*.28:0;w.style.setProperty('--tx',dx*k+'px');w.style.setProperty('--ty',dy*k+'px')});
 const burstGb=()=>{const b=$('#gb').getBoundingClientRect();for(let i=0;i<26;i++){const p=document.createElement('b'),an=Math.random()*6.28,d=60+Math.random()*110;p.className='spk';p.style.cssText=`left:${b.left+b.width/2}px;top:${b.top+b.height/2}px;--dx:${Math.cos(an)*d}px;--dy:${Math.sin(an)*d}px;background:${i%3?'#ffd36b':'#fff'}`;$('#gate').appendChild(p);setTimeout(()=>p.remove(),700)}};
 $('#gate').onpointermove=e=>{const g=$('#gate');g.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(2));g.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(2));g.style.setProperty('--px',e.clientX+'px');g.style.setProperty('--py',e.clientY+'px')};
@@ -578,7 +578,7 @@ async function dash(){
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++});
  const bi=new Date().getMonth(),agA=agq.data||[],ty=agA.some(x=>x.tahun==cy)?cy:(agA[0]?agA[0].tahun:cy),agr=agA.filter(x=>x.tahun==ty),
   ag={tahun:ty,rincian:agr,pembaruan:agr.reduce((a,x)=>x.diperbarui&&x.diperbarui>a?x.diperbarui:a,'').slice(0,10)};
- $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Semoga harimu menyenangkan.</p></div>
+ $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Welcome to Integrated Administrative Service Management Information System!.</p></div>
  <div class="g2">${pgmHTML(pmq.data||[],hr)}
  <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 class="ph"><span class="pi" style="--c:#12b5a6">${IC.ruangan}</span>Status Pemakaian Ruangan</h2><button id="lr">Lihat semua</button></div>
  ${rm.error?'<p class="empty">Data status pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.tim)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Rapat dan PST tidak dipakai</b></p>'}</div></div>
@@ -1059,68 +1059,32 @@ function ruangHapus(id){
  $('#ok').onclick=async()=>{const {error}=await db.from('ruangan').delete().eq('id',id);closeM();error?toast('Gagal menghapus: '+error.message,1):(toast('Data dihapus'),ruangPage())}}
 const PS_ST=['Barang Diajukan oleh Pegawai','Barang Disiapkan oleh Operator','Barang Siap Diambil','Selesai'],
  PS_C={'Barang Diajukan oleh Pegawai':'#2a62c9','Barang Disiapkan oleh Operator':'#f5a524','Barang Siap Diambil':'#12b5a6','Selesai':'#0f9d58'},PS_MAX=30;
-let ps=[],psf='',psAg=[],psLibur=new Set();
+let ps=[],psf='';
 const isBmn=()=>me.role=='pegawai_bmn';
 const arsipP=r=>{if(r.status!='Selesai')return false;const t=tSt(r);return !!t&&Date.now()-t>=3*36e5};
 const wkt=d=>d?new Date(d).toLocaleString('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})+' WIB':'-';
 const tglK=d=>d?new Date(d).toLocaleDateString('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric'}):'-';
-const isSeninWIB=()=>new Date().toLocaleDateString('en-US',{timeZone:'Asia/Jakarta',weekday:'short'})=='Mon';
-function seninDepanKerja(){
- const d=new Date(hari()+'T00:00:00Z'),day=d.getUTCDay();
- const diff=day===1?7:((8-day)%7||7);
- d.setUTCDate(d.getUTCDate()+diff);
- while(true){
-  const iso=d.toISOString().slice(0,10),w=d.getUTCDay();
-  if(w!==0&&w!==6&&!psLibur.has(iso))return iso;
-  d.setUTCDate(d.getUTCDate()+1);
- }
-}
 async function persPage(){
  $('#main').innerHTML='<p class="muted">Memuat…</p>';psf='';
- const cy=new Date().getFullYear();
- const [{data,error},agq,hlq]=await Promise.all([
-  db.from('persediaan_permintaan').select('*').order('tgl_ambil',{ascending:false}).order('dibuat_pada',{ascending:false}).limit(3000),
-  db.from('anggaran_persediaan').select('*').eq('tahun',cy).order('urut').order('output'),
-  db.from('hari_libur').select('tanggal')
- ]);
+ const {data,error}=await db.from('persediaan_permintaan').select('*').order('tgl_ambil',{ascending:false}).order('dibuat_pada',{ascending:false}).limit(3000);
  if(error)return toast('Gagal memuat data: '+error.message+' (pastikan SQL terbaru sudah dijalankan)',1);
- ps=data||[];psAg=agq.data||[];psLibur=new Set((hlq.data||[]).map(x=>x.tanggal));psDraw()}
+ ps=data;psDraw()}
 const psTot=r=>(r.items||[]).reduce((a,x)=>a+(+x.qty||0),0);
-function psExportExcel(){
- if(me.role!='admin')return;
- if(typeof XLSX=='undefined')return toast('Pustaka Excel gagal dimuat. Periksa koneksi internet.',1);
- const rowsX=[['No','Tanggal Pengajuan','Nama Pegawai','Output Anggaran','Nama Barang','Kuantitas','Satuan','Tanggal Tersedia / Ambil','Status']];
- let no=1;
- ps.forEach(r=>{
-  (r.items||[]).forEach(it=>{
-   rowsX.push([no++,tglK(r.dibuat_pada),r.pegawai,r.output_anggaran||'-',it.nama,+it.qty||0,it.satuan||'-',tgl(r.tgl_ambil),r.status]);
-  });
- });
- const wb=XLSX.utils.book_new();
- XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rowsX),'Kartu Kendali Persediaan');
- XLSX.writeFile(wb,'kartu_kendali_persediaan_'+hari()+'.xlsx');
-}
 function psDraw(){
- const s=q.toLowerCase(),bmn=isBmn(),ad=me.role=='admin',senin=isSeninWIB(),act=ps.filter(r=>!arsipP(r)),cnt={};PS_ST.forEach(x=>cnt[x]=act.filter(r=>r.status==x).length);
- const f=act.filter(r=>(!psf||r.status==psf)&&(!s||[r.pegawai,r.status,r.output_anggaran,(r.items||[]).map(x=>x.nama+' '+(x.satuan||'')).join(' ')].join(' ').toLowerCase().includes(s))),tp=Math.max(1,Math.ceil(f.length/6));page=Math.min(page,tp);
+ const s=q.toLowerCase(),bmn=isBmn(),act=ps.filter(r=>!arsipP(r)),cnt={};PS_ST.forEach(x=>cnt[x]=act.filter(r=>r.status==x).length);
+ const f=act.filter(r=>(!psf||r.status==psf)&&(!s||[r.pegawai,r.status,(r.items||[]).map(x=>x.nama).join(' ')].join(' ').toLowerCase().includes(s))),tp=Math.max(1,Math.ceil(f.length/6));page=Math.min(page,tp);
  const part=f.slice((page-1)*6,page*6);
- const totAg=psAg.reduce((a,x)=>a+(+x.anggaran||0),0),totSisa=psAg.reduce((a,x)=>a+(+x.sisa_anggaran||0),0);
- const agBox=psAg.length?`<div class="pn" style="margin:12px 0 0"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center"><b>Informasi Anggaran Persediaan (${new Date().getFullYear()})</b><span class="muted" style="font-size:13px">Total Anggaran: <b>${rp(totAg)}</b> · Sisa Anggaran: <b style="color:${totSisa<0?'#d92d20':'#0f9d58'}">${rp(totSisa)}</b></span></div>
-  <div class="tw" style="margin-top:8px"><table><tr><th>Output</th><th>Anggaran</th><th>Sisa Anggaran</th></tr>${psAg.map(x=>`<tr><td data-l="Output"><b>${esc(x.output)}</b></td><td data-l="Anggaran">${rp(x.anggaran)}</td><td data-l="Sisa Anggaran"><b style="color:${+x.sisa_anggaran<0?'#d92d20':'#0f9d58'}">${rp(x.sisa_anggaran)}</b></td></tr>`).join('')}</table></div></div>`:'';
  $('#main').innerHTML=`<p class="muted" style="margin:0">BMN dan Persediaan</p><h1>Kartu Kendali Persediaan</h1>
- <div class="warn" style="margin:10px 0 0"><b>Ketentuan Pengajuan:</b> Pengajuan barang persediaan hanya dibuka setiap <b>hari Senin</b> (setelah itu ditutup). Barang yang diajukan akan tersedia pada <b>hari Senin minggu depannya</b> (jika hari libur, otomatis bergeser ke hari kerja berikutnya). Pegawai dapat mengajukan hingga ${PS_MAX} jenis barang. ${!senin?'<br><b style="color:#d92d20">Status Hari Ini: Pengajuan ditutup (bukan hari Senin).</b>':''}</div>
- ${agBox}
+ <div class="warn" style="margin:10px 0 0"><b>Catatan:</b> pegawai dapat mengajukan hingga ${PS_MAX} jenis barang dalam satu permintaan. Status diperbarui oleh Pegawai BMN dan Persediaan. Permintaan berstatus Selesai dipindahkan ke Riwayat Pengajuan setelah 3 jam.</div>
  <div class="chips"><button class="${!psf?'on':''}" data-f="">Semua <b>${act.length}</b></button>${PS_ST.map(x=>`<button class="${psf==x?'on':''}" data-f="${x}" style="--c:${PS_C[x]}"><i></i>${x} <b>${cnt[x]}</b></button>`).join('')}</div>
- <div class="bar"><input id="cari" type="search" placeholder="Cari pegawai, output, atau nama barang…" value="${esc(q)}"><span class="sp"></span>${ad?'<button id="psExp">Ekspor Excel</button>':''}<button id="rp">Riwayat Pengajuan</button><button class="p" id="tambah" ${senin?'':'disabled title="Pengajuan hanya dibuka pada hari Senin"'}>Ajukan Barang</button></div>
- <div class="prs">${part.map(r=>`<div class="pr" style="--c:${PS_C[r.status]}"><div class="ph"><div><b>${esc(r.pegawai)}</b> ${r.output_anggaran?`<span class="chip">Output ${esc(r.output_anggaran)}</span>`:''}<small>Diajukan ${tglK(r.dibuat_pada)} · Tersedia/Diambil ${tgl(r.tgl_ambil)}</small></div>
+ <div class="bar"><input id="cari" type="search" placeholder="Cari nama pegawai atau nama barang…" value="${esc(q)}"><span class="sp"></span><button id="rp">Riwayat Pengajuan</button><button class="p" id="tambah">Ajukan Barang</button></div>
+ <div class="prs">${part.map(r=>`<div class="pr" style="--c:${PS_C[r.status]}"><div class="ph"><div><b>${esc(r.pegawai)}</b><small>Diajukan ${tglK(r.dibuat_pada)} · Diambil ${tgl(r.tgl_ambil)}</small></div>
   ${bmn?`<select class="st" data-s="${r.id}" style="--c:${PS_C[r.status]}">${PS_ST.map(x=>`<option ${x==r.status?'selected':''}>${x}</option>`).join('')}</select>`:`<span class="st" style="--c:${PS_C[r.status]}">${esc(r.status)}</span>`}</div>
-  <ol class="pl">${(r.items||[]).map(x=>`<li><span>${esc(x.nama)}</span><b>${esc(x.qty)} ${esc(x.satuan||'')}</b></li>`).join('')}</ol>
-  <div class="pf"><span class="muted" style="font-size:13px">${(r.items||[]).length} jenis · total ${psTot(r)} item</span><span><button data-h="${r.id}">Riwayat</button>${bmn?` <button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</span></div></div>`).join('')||`<p class="empty" style="grid-column:1/-1">${s||psf?'Tidak ada permintaan yang cocok.':'Belum ada permintaan barang.'}</p>`}</div>
+  <ol class="pl">${(r.items||[]).map(x=>`<li><span>${esc(x.nama)}</span><b>${esc(x.qty)}</b></li>`).join('')}</ol>
+  <div class="pf"><span class="muted" style="font-size:13px">${(r.items||[]).length} jenis · total ${psTot(r)} item</span><span><button data-h="${r.id}">Riwayat</button>${bmn?` <button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</span></div></div>`).join('')||`<p class="empty" style="grid-column:1/-1">${s||psf?'Tidak ada permintaan yang cocok.':'Belum ada permintaan barang. Klik “Ajukan Barang” untuk memulai.'}</p>`}</div>
  <div class="pgn"><span class="muted">${f.length} permintaan</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
  $('#cari').oninput=e=>{q=e.target.value;page=1;psDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
- if($('#psExp'))$('#psExp').onclick=psExportExcel;
- $('#tambah').onclick=()=>{if(!isSeninWIB())return toast('Pengajuan barang hanya dibuka pada hari Senin',1);psForm()};
- $('#rp').onclick=psArsip;$('#pv').onclick=()=>{page--;psDraw()};$('#nx').onclick=()=>{page++;psDraw()};
+ $('#tambah').onclick=()=>psForm();$('#rp').onclick=psArsip;$('#pv').onclick=()=>{page--;psDraw()};$('#nx').onclick=()=>{page++;psDraw()};
  $('#main').querySelectorAll('.chips [data-f]').forEach(b=>b.onclick=()=>{psf=b.dataset.f;page=1;psDraw()});
  $('#main').querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>psRiwayat(b.dataset.h));
  $('#main').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>psForm(b.dataset.e));
@@ -1132,63 +1096,52 @@ function psDraw(){
    if(error)return toast('Gagal mengubah status: '+error.message,1);toast('Status diperbarui');persPage()},()=>psDraw())});
 }
 function psForm(id,pre){
- if(!id&&!isSeninWIB())return toast('Pengajuan barang persediaan hanya dibuka setiap hari Senin',1);
  const o=id?ps.find(x=>x.id==id):null,own=pgx().some(p=>p.nama==me.nama)?me.nama:'';
- const tglDefault=seninDepanKerja();
- const r=pre||o||{pegawai:own,output_anggaran:(psAg[0]?psAg[0].output:''),tgl_ambil:tglDefault,items:[{nama:'',qty:1,satuan:'Pcs'}],status:PS_ST[0]};
+ const r=pre||o||{pegawai:own,tgl_ambil:hari(),items:[{nama:'',qty:1}],status:PS_ST[0]};
  const nama=[...new Set([r.pegawai,...pgx().map(p=>p.nama)])].filter(Boolean);
- const outOpts=[...new Set([r.output_anggaran,...psAg.map(x=>x.output)])].filter(Boolean);
- const row=x=>`<div class="br"><input class="bn" placeholder="Nama barang" value="${esc(x.nama)}" autocomplete="off"><input class="bq" type="number" min="1" step="1" value="${esc(x.qty)}" aria-label="Kuantitas"><input class="bs" placeholder="Satuan (Rim/Pcs)" value="${esc(x.satuan||'')}" autocomplete="off"><button type="button" class="d" data-rm title="Hapus baris">✕</button></div>`;
+ const row=x=>`<div class="br"><input class="bn" placeholder="Nama barang" value="${esc(x.nama)}" autocomplete="off"><input class="bq" type="number" min="1" step="1" value="${esc(x.qty)}" aria-label="Kuantitas"><button type="button" class="d" data-rm title="Hapus baris">✕</button></div>`;
  modal(`<h2>${id?'Ubah':'Ajukan'} Barang Persediaan</h2><form id="fm">
  <label>Nama Pegawai</label><select name="pegawai" required><option value="">- Pilih Pegawai -</option>${nama.map(n=>`<option ${n==r.pegawai?'selected':''}>${esc(n)}</option>`).join('')}</select>
- <label>Output Anggaran</label>${outOpts.length?`<select name="output_anggaran" required><option value="">- Pilih Output Anggaran -</option>${outOpts.map(o=>`<option value="${esc(o)}" ${o==r.output_anggaran?'selected':''}>${esc(o)}</option>`).join('')}</select>`:`<input name="output_anggaran" value="${esc(r.output_anggaran)}" placeholder="Contoh: 2904" required autocomplete="off">`}
- <label>Tanggal Barang Tersedia / Pengambilan</label><input name="tgl_ambil" type="date" value="${esc(r.tgl_ambil)}" ${id?'':'readonly'} required>
- ${!id?'<small class="muted">Otomatis dijadwalkan pada hari Senin minggu depan (bergeser ke hari kerja berikutnya jika libur).</small>':''}
+ <label>Tanggal Pengambilan</label><input name="tgl_ambil" type="date" value="${esc(r.tgl_ambil)}" required>
  ${id?`<label>Status Barang</label><select name="status">${PS_ST.map(x=>`<option ${x==r.status?'selected':''}>${x}</option>`).join('')}</select>`:''}
  <label style="display:flex;justify-content:space-between"><span>Daftar Barang</span><span class="muted" id="bc"></span></label>
- <div class="br" style="margin:0 0 4px"><small class="muted">Nama Barang</small><small class="muted">Kuantitas</small><small class="muted">Satuan</small><span></span></div>
- <div id="bl" style="max-height:34vh;overflow:auto;padding-right:4px">${(r.items&&r.items.length?r.items:[{nama:'',qty:1,satuan:'Pcs'}]).map(row).join('')}</div>
+ <div class="br" style="margin:0 0 4px"><small class="muted">Nama Barang</small><small class="muted">Kuantitas</small><span></span></div>
+ <div id="bl" style="max-height:34vh;overflow:auto;padding-right:4px">${(r.items&&r.items.length?r.items:[{nama:'',qty:1}]).map(row).join('')}</div>
  <button type="button" id="ba" style="margin-top:6px">+ Tambah Barang</button>
- <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Lanjut'}</button></div></form>`,680);
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Lanjut'}</button></div></form>`,640);
  const hit=()=>{const n=$('#bl').children.length;$('#bc').textContent=n+' / '+PS_MAX+' barang';$('#ba').disabled=n>=PS_MAX;$('#bl').querySelectorAll('[data-rm]').forEach(b=>b.disabled=n<=1)};
  $('#bt').onclick=closeM;hit();
- $('#ba').onclick=()=>{if($('#bl').children.length>=PS_MAX)return;$('#bl').insertAdjacentHTML('beforeend',row({nama:'',qty:1,satuan:'Pcs'}));hit();const i=$('#bl').querySelectorAll('.bn');i[i.length-1].focus();$('#bl').scrollTop=1e5};
+ $('#ba').onclick=()=>{if($('#bl').children.length>=PS_MAX)return;$('#bl').insertAdjacentHTML('beforeend',row({nama:'',qty:1}));hit();const i=$('#bl').querySelectorAll('.bn');i[i.length-1].focus();$('#bl').scrollTop=1e5};
  $('#bl').onclick=e=>{const b=e.target.closest('[data-rm]');if(b&&$('#bl').children.length>1){b.parentElement.remove();hit()}};
  $('#fm').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));
   const rows=[...$('#bl').children];let bad=null;
-  d.items=rows.map(x=>({nama:proper(x.querySelector('.bn').value.trim()),qty:Math.floor(+x.querySelector('.bq').value),satuan:proper(x.querySelector('.bs').value.trim())}));
-  rows.forEach((x,i)=>{const it=d.items[i],ok=it.nama&&it.qty>=1&&it.satuan;x.querySelector('.bn').style.borderColor=it.nama?'':'#d92d20';x.querySelector('.bq').style.borderColor=it.qty>=1?'':'#d92d20';x.querySelector('.bs').style.borderColor=it.satuan?'':'#d92d20';if(!ok&&!bad)bad=x});
-  if(bad){bad.scrollIntoView({block:'nearest'});return toast('Nama barang, kuantitas (min 1), dan satuan wajib diisi',1)}
+  d.items=rows.map(x=>({nama:proper(x.querySelector('.bn').value.trim()),qty:Math.floor(+x.querySelector('.bq').value)}));
+  rows.forEach((x,i)=>{const it=d.items[i],ok=it.nama&&it.qty>=1;x.querySelector('.bn').style.borderColor=it.nama?'':'#d92d20';x.querySelector('.bq').style.borderColor=it.qty>=1?'':'#d92d20';if(!ok&&!bad)bad=x});
+  if(bad){bad.scrollIntoView({block:'nearest'});return toast('Nama barang wajib diisi dan kuantitas minimal 1',1)}
   if(id)return psSimpan(d,id);
   psReview(d)}}
 function psReview(d){
  const tot=d.items.reduce((a,x)=>a+x.qty,0);
  modal(`<h2>Periksa Kembali Permintaan Anda</h2><p class="muted" style="margin:2px 0 10px;font-size:13px">Pastikan data sudah benar sebelum disimpan.</p>
- <div class="kv"><span class="muted">Nama Pegawai</span><b>${esc(d.pegawai)}</b></div><div class="kv"><span class="muted">Output Anggaran</span><b>${esc(d.output_anggaran||'-')}</b></div><div class="kv"><span class="muted">Tanggal Tersedia / Pengambilan</span><b>${tgl(d.tgl_ambil)}</b></div>
- <ol class="pl" style="margin-top:10px;max-height:34vh">${d.items.map(x=>`<li><span>${esc(x.nama)}</span><b>${x.qty} ${esc(x.satuan||'')}</b></li>`).join('')}</ol>
+ <div class="kv"><span class="muted">Nama Pegawai</span><b>${esc(d.pegawai)}</b></div><div class="kv"><span class="muted">Tanggal Pengambilan</span><b>${tgl(d.tgl_ambil)}</b></div>
+ <ol class="pl" style="margin-top:10px;max-height:34vh">${d.items.map(x=>`<li><span>${esc(x.nama)}</span><b>${x.qty}</b></li>`).join('')}</ol>
  <p class="muted" style="font-size:13px;margin:8px 0 0">${d.items.length} jenis barang · total ${tot} item</p>
  <div class="row"><button id="bt">Edit Kembali</button><button class="p" id="ok">Simpan</button></div>`,560);
  $('#bt').onclick=()=>psForm(null,d);$('#ok').onclick=()=>psSimpan(d)}
 async function psSimpan(d,id){
  const b=$('#ok')||$('#fm .p');if(b)b.disabled=true;
- const p={pegawai:d.pegawai,output_anggaran:d.output_anggaran||null,tgl_ambil:d.tgl_ambil,items:d.items};if(id&&d.status)p.status=d.status;
+ const p={pegawai:d.pegawai,tgl_ambil:d.tgl_ambil,items:d.items};if(id&&d.status)p.status=d.status;
  const {error}=id?await db.from('persediaan_permintaan').update(p).eq('id',id):await db.from('persediaan_permintaan').insert(p);
  if(error){if(b)b.disabled=false;return toast('Gagal menyimpan: '+error.message,1)}
  closeM();toast(id?'Perubahan disimpan':'Permintaan barang tersimpan');persPage()}
 function psRiwayat(id,back){
  const r=ps.find(x=>x.id==id),rw=r.riwayat||[];
- modal(`<h2>Permintaan ${esc(r.pegawai)}</h2><p class="muted" style="margin:2px 0 10px">${r.output_anggaran?'Output '+esc(r.output_anggaran)+' · ':''}Diambil ${tgl(r.tgl_ambil)} · ${(r.items||[]).length} jenis · total ${psTot(r)} item</p>
- <ol class="pl" style="max-height:24vh">${(r.items||[]).map(x=>`<li><span>${esc(x.nama)}</span><b>${esc(x.qty)} ${esc(x.satuan||'')}</b></li>`).join('')}</ol>
+ modal(`<h2>Permintaan ${esc(r.pegawai)}</h2><p class="muted" style="margin:2px 0 10px">Diambil ${tgl(r.tgl_ambil)} · ${(r.items||[]).length} jenis · total ${psTot(r)} item</p>
+ <ol class="pl" style="max-height:24vh">${(r.items||[]).map(x=>`<li><span>${esc(x.nama)}</span><b>${esc(x.qty)}</b></li>`).join('')}</ol>
  <h2 style="font-size:15px;margin:14px 0 6px">Riwayat Status</h2><div class="tl">${rw.map(x=>`<div class="ti" style="--c:${PS_C[x.status]||'#888'}"><i></i><div><b>${esc(x.status)}</b><small>${tgl(x.tgl)} ${esc(x.jam||'')} · ${esc(x.oleh||'')}</small></div></div>`).join('')}</div>
  <div class="row"><button id="bt">${back?'Kembali':'Tutup'}</button></div>`,560);
  $('#bt').onclick=back?psArsip:closeM}
 function psArsip(){
- const a=ps.filter(arsipP).sort((x,y)=>tSt(y)-tSt(x));
- modal(`<h2>Riwayat Pengajuan</h2><p class="muted" style="margin:2px 0 12px;font-size:13px">Permintaan berstatus Selesai dipindahkan ke sini setelah 3 jam.</p>
- <div class="tw" style="max-height:60vh;overflow:auto"><table><tr><th>Nama Pegawai</th><th>Output</th><th>Barang</th><th>Tanggal Pengambilan</th><th>Selesai Pada</th><th>Aksi</th></tr>
- ${a.map(r=>`<tr><td data-l="Nama Pegawai"><b>${esc(r.pegawai)}</b></td><td data-l="Output">${esc(r.output_anggaran||'-')}</td><td data-l="Barang">${esc((r.items||[]).map(x=>x.nama+' ('+x.qty+' '+(x.satuan||'')+')').join(', '))}</td><td data-l="Tanggal Pengambilan" class="tg">${tgl(r.tgl_ambil)}</td><td data-l="Selesai Pada">${wkt(tSt(r))}</td><td class="ac"><button data-ah="${r.id}">Riwayat</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Belum ada permintaan di riwayat.</td></tr>'}</table></div>
- <div class="row"><button id="bt">Tutup</button></div>`,980);
- $('#bt').onclick=closeM;$('#modal').querySelectorAll('[data-ah]').forEach(b=>b.onclick=()=>psRiwayat(b.dataset.ah,true))}
  const a=ps.filter(arsipP).sort((x,y)=>tSt(y)-tSt(x));
  modal(`<h2>Riwayat Pengajuan</h2><p class="muted" style="margin:2px 0 12px;font-size:13px">Permintaan berstatus Selesai dipindahkan ke sini setelah 3 jam.</p>
  <div class="tw" style="max-height:60vh;overflow:auto"><table><tr><th>Nama Pegawai</th><th>Barang</th><th>Tanggal Pengambilan</th><th>Selesai Pada</th><th>Aksi</th></tr>
