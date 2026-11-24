@@ -362,6 +362,9 @@ nav b i{width:38px;height:38px}
 .br{grid-template-columns:1fr 74px 98px 38px}
 .pa{display:flex;flex-wrap:wrap;gap:4px 14px;padding:8px 12px;border-radius:12px;background:var(--sky2);font-size:12.5px;color:var(--mut)}.pa b{color:var(--tx)}
 .apn table{min-width:0}.apn td,.apn th{padding:9px 12px}
+@media(min-width:801px){.grp.open .sub{position:fixed;width:240px;padding:10px;gap:3px;background:var(--card);border-radius:20px;box-shadow:0 18px 44px rgba(15,47,102,.2),0 0 0 1px rgba(0,0,0,.06);z-index:70;animation:subin .16s ease-out}.grp>a em{transform:rotate(-90deg)}.grp.open>a em{transform:rotate(-90deg)}.sub a{white-space:normal}}
+@keyframes subin{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+.lka{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.lka button{padding:4px 10px;font-size:12px;border-radius:8px}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -448,9 +451,9 @@ const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v
  set_anggaran:sv('<path d="M3 3v18h18M7 15l4-4 3 3 5-6"/>'),
  format:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/>'),
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
-IC.link_app=sv('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>');IC.set_beranda=IC.set_pengumuman;IC.set_link=IC.link_app;IC.set_tim=IC.set_pengguna;IC.set_libur=IC.ruangan;
+IC.link_app=sv('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>');IC.set_beranda=IC.set_pengumuman;
 const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan','monumen']],['bmn','BMN dan Persediaan',['ruangan','kartu_persediaan']]];
-const NM={ruangan:'Peminjaman Ruangan',kartu_persediaan:'Kartu Kendali Persediaan',monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',set_pengguna:'Pengguna',set_pegawai:'Referensi Pegawai',set_nomor:'Setting Penomoran',set_beranda:'Pengumuman dan Anggaran',set_link:'Link Aplikasi BPS',set_tim:'Referensi Tim',set_libur:'Hari Libur'},nm=v=>J[v]?J[v].t:NM[v];
+const NM={ruangan:'Peminjaman Ruangan',kartu_persediaan:'Kartu Kendali Persediaan',monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',set_pengguna:'Setting Pengguna',set_nomor:'Setting Penomoran',set_beranda:'Pengumuman dan Anggaran'},nm=v=>J[v]?J[v].t:NM[v];
 const DRIVE='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0yS0x5SrNCli?usp=sharing',RLN={admin:'Admin',pegawai:'Pegawai',pegawai_keuangan:'Pegawai Keuangan',pegawai_bmn:'Pegawai BMN dan Persediaan'};
 let TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'];
 const lbl=k=>((J[view]||{}).lb||{})[k]||LB[k];
@@ -517,14 +520,15 @@ async function boot(){
  pg=a||[];kl=b.data||[];TIM=tm;
  $('#login').hidden=true;$('#gate').hidden=true;$('#lf').hidden=true;$('#app').hidden=false;
  if(!['admin','pegawai_keuangan','pegawai_bmn'].includes(me.role))me.role='pegawai';me.email=me.email||session.user.email;const ad=me.role=='admin';
- if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_pegawai','set_tim','set_nomor','set_beranda','set_libur','set_link']]);
+ if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_nomor','set_beranda']]);
  else if(me.role=='pegawai_keuangan'&&!GR.some(g=>g[0]=='pengaturan')){NM.set_beranda='Anggaran Persediaan';GR.push(['pengaturan','Pengaturan',['set_beranda']])}
  const ni=(v,t)=>v=='monumen'?`<a href="${MONUMEN}" target="_blank" rel="noopener" data-x="1">${IC[v]}<span>${t}</span></a>`:`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
  $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+'<div class="nl">Menu</div>'+ni('dashboard','Beranda')+(gh=>'<div class="nl">Layanan</div>'+GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+'<div class="nl">Lainnya</div>'+ni('link_app','Link Aplikasi BPS')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
   +(ad?'':`<a href="${DRIVE}" target="_blank" rel="noopener" data-x="1">${IC.format}<span>Format Dokumen</span></a>`)
   +`<span class="sp"></span><div id="clk" role="button" tabindex="0" title="Klik untuk mengganti zona waktu"><div class="ct"><span id="ch">--</span><i>:</i><span id="cm">--</span><i>:</i><span id="cs">--</span><b id="cz">WIB</b></div><div class="cd" id="cd"></div><div id="cbar"></div></div><div class="cp">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</div>`;
  const closeNav=()=>{$('#nav').classList.remove('show');$('#ov').classList.remove('show');document.body.classList.remove('lock')};
- $('#nav').onclick=e=>{if(e.target.closest('#nc'))return;if(innerWidth>800)setNav(true);const a=e.target.closest('a');if(!a)return;if(a.dataset.x)return closeNav();if(a.dataset.g){const g=a.closest('.grp'),o=g.classList.contains('open');document.querySelectorAll('.grp').forEach(x=>x.classList.remove('open'));return g.classList.toggle('open',!o)}go(a.dataset.v);closeNav()};
+ $('#nav').onclick=e=>{if(e.target.closest('#nc'))return;if(innerWidth>800)setNav(true);const a=e.target.closest('a');if(!a)return;if(a.dataset.x)return closeNav();if(a.dataset.g){const g=a.closest('.grp'),o=g.classList.contains('open');document.querySelectorAll('.grp').forEach(x=>x.classList.remove('open'));g.classList.toggle('open',!o);if(innerWidth>800&&!o){const r=a.getBoundingClientRect(),n=$('#nav').getBoundingClientRect(),s=g.querySelector('.sub');s.style.left=(n.right+8)+'px';s.style.top=Math.max(12,Math.min(r.top,innerHeight-s.offsetHeight-12))+'px'}return}go(a.dataset.v);closeNav()};
+ document.addEventListener('click',e=>{if(innerWidth>800&&!e.target.closest('.grp'))document.querySelectorAll('.grp.open').forEach(g=>g.classList.remove('open'))});
  $('#mb').onclick=()=>{if(innerWidth>800)return setNav(true);const o=$('#nav').classList.toggle('show');$('#ov').classList.toggle('show',o);document.body.classList.toggle('lock',o)};$('#ov').onclick=closeNav;
  $('#uc').innerHTML=`<span class="av2">${ini(me.nama)}</span><span class="un">${esc(me.nama)}</span><em>▾</em>`;
  $('#uc').onclick=e=>{e.stopPropagation();const o=$('#um').hidden;if(o)userPanel();$('#um').hidden=!o;$('#uc').setAttribute('aria-expanded',o)};
@@ -549,8 +553,8 @@ $('#login').addEventListener('submit',()=>{const b=$('#login .p');b.disabled=tru
 $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();if(!em.includes('@')){const {data:x,error:ex}=await db.rpc('login_email',{p_id:em});if(ex)return toast('Login dengan username belum aktif: '+ex.message,1);if(!x)return toast('Username tidak ditemukan',1);em=x}
  const {error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';shakeLogin();return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
 
-function go(v){view=v;page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
- document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on)});
+function go(v){view=v;if(v=='set_pengguna')sTab='pengguna';page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
+ document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth<=800)});
  v=='dashboard'?dash():v.startsWith('set_')?setelan():v=='pengajuan'?pengajuanPage():v=='ruangan'?ruangPage():v=='kartu_persediaan'?persPage():v=='link_app'?linkPage():load()}
 
 let dy=0,jt,FMT={};
@@ -590,7 +594,7 @@ async function dash(){
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++});
  const bi=new Date().getMonth(),agA=agq.data||[],ty=agA.some(x=>x.tahun==cy)?cy:(agA[0]?agA[0].tahun:cy),agr=agA.filter(x=>x.tahun==ty),
   ag={tahun:ty,rincian:agr,pembaruan:agr.reduce((a,x)=>x.diperbarui&&x.diperbarui>a?x.diperbarui:a,'').slice(0,10)};
- $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Welcome to Integrated Administrative Service Management Information System</p></div>
+ $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Semoga harimu menyenangkan.</p></div>
  <div class="g2">${pgmHTML(pmq.data||[],hr)}
  <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 class="ph"><span class="pi" style="--c:#12b5a6">${IC.ruangan}</span>Status Pemakaian Ruangan</h2><button id="lr">Lihat semua</button></div>
  ${rm.error?'<p class="empty">Data status pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Rapat dan PST tidak dipakai</b></p>'}</div></div>
@@ -707,10 +711,12 @@ function exportCsv(){if(me.role!='admin')return;
 }
 async function setelan(){
  if(!(me.role=='admin'||(me.role=='pegawai_keuangan'&&view=='set_beranda')))return $('#main').innerHTML='<p class="empty">Menu ini hanya untuk admin.</p>';
- view=='set_tim'?setTim():view=='set_libur'?setLibur():view=='set_pegawai'?setPegawai():view=='set_nomor'?setNomor():view=='set_beranda'?setBeranda():view=='set_link'?setLink():setPengguna()}
+ view=='set_nomor'?setNomor():view=='set_beranda'?setBeranda():sTab=='pegawai'?setPegawai():sTab=='tim'?setTim():setPengguna()}
+let sTab='pengguna';
+const penTabs=t=>`<div class="yr" style="margin:10px 0 4px">${[['pengguna','Pengguna'],['pegawai','Referensi Pegawai'],['tim','Referensi Tim']].map(x=>`<button class="${t==x[0]?'on':''}" data-pt="${x[0]}">${x[1]}</button>`).join('')}</div>`;
 async function setPengguna(){
  const {data}=await db.from('profiles').select('*').order('email'),us=data||[];
- $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Pengguna</h1>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Setting Pengguna</h1>${penTabs('pengguna')}
   <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:16px 0 10px"><h2>Daftar Pengguna</h2><button id="iu">Isi Username Otomatis</button></div>
  <div class="tw"><table><tr><th>Email</th><th>Username</th><th>Nama Pegawai (Pembuat)</th><th>Peran</th><th>Aksi</th></tr>${us.map(u=>`<tr><td data-l="Email">${esc(u.email)}</td><td data-l="Username"><input data-u="${u.id}" value="${esc(u.username||'')}" placeholder="Belum Diatur" autocapitalize="none" style="min-width:120px"></td><td data-l="Nama Pegawai"><select data-n="${u.id}"><option>${esc(u.nama)}</option>${pgx().filter(p=>p.nama!=u.nama).map(p=>`<option>${esc(p.nama)}</option>`).join('')}</select></td><td data-l="Peran"><select data-r="${u.id}">${['pegawai','pegawai_keuangan','pegawai_bmn','admin'].map(r=>`<option value="${r}" ${r==u.role?'selected':''}>${RLN[r]}</option>`).join('')}</select></td><td class="ac"><button data-ud="${u.id}">Ubah Data</button> <button data-rs="${u.id}" data-em="${esc(u.email)}">Reset Kata Sandi</button> ${u.id==me.id?'':`<button class="d" data-hp="${u.id}" data-em="${esc(u.email)}" data-nm="${esc(u.nama)}">Hapus</button>`}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada pengguna.</td></tr>'}</table></div>
  <div class="sg"><div class="set"><h2>Tambah Pengguna</h2><p class="muted">Kata sandi awal: <b>123456</b>. Pengguna dapat menggantinya lewat menu nama di pojok kanan atas.</p>
@@ -771,7 +777,7 @@ let bTab='pengumuman';
 const bJudul=()=>me.role=='admin'?'Pengumuman dan Anggaran':'Anggaran Persediaan';
 const bTabs=t=>`<div class="yr" style="margin:10px 0 4px">${me.role=='admin'?`<button class="${t=='pengumuman'?'on':''}" data-bt="pengumuman">Pengumuman</button><button class="${t=='anggaran'?'on':''}" data-bt="anggaran">Anggaran</button>`:''}<button class="${t=='persediaan'?'on':''}" data-bt="persediaan">Anggaran Persediaan</button></div>`;
 function setBeranda(t){bTab=me.role=='admin'?(t||bTab):'persediaan';return bTab=='persediaan'?setAngPer():bTab=='anggaran'?setAnggaran():setPengumuman()}
-$('#main').addEventListener('click',e=>{const b=e.target.closest('[data-bt]');if(b)setBeranda(b.dataset.bt)});
+$('#main').addEventListener('click',e=>{const b=e.target.closest('[data-bt]');if(b)setBeranda(b.dataset.bt);const t=e.target.closest('[data-pt]');if(t){sTab=t.dataset.pt;setelan()}});
 
 let lkR=[];const AVC=['#2a62c9','#12b5a6','#8b5cf6','#f5a524','#d92d20','#0f9d58'];
 async function linkPage(){
@@ -784,31 +790,24 @@ function lkDraw(){const ad=me.role=='admin';
  const s=q.toLowerCase(),f=lkR.filter(r=>!s||String(r.nama).toLowerCase().includes(s));
  $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Link Aplikasi BPS</h1>
  <div class="warn" style="margin:10px 0 0">Menu ini untuk memudahkan pegawai mencari link aplikasi BPS, hubungi Admin Aplikasi untuk menambah atau menghapus link. <b>Pastikan VPN sudah tersambung!</b></div>
- <div class="bar"><input id="cari" type="search" placeholder="Cari nama aplikasi…" value="${esc(q)}"><span class="sp"></span><span class="muted">${f.length} aplikasi</span></div>
- <div class="lkg">${f.map((r,i)=>`<div class="lkc"><div class="av">${esc(ini(r.nama))}</div><div class="lt"><b>${esc(r.nama)}</b><span class="ds">${esc(r.deskripsi||'Klik Buka untuk membuka aplikasi')}${ad?`<button type="button" class="pen" data-pn="${r.id}" title="Ubah deskripsi" aria-label="Ubah deskripsi">${PEN}</button>`:''}</span></div><button class="p" data-o="${r.id}">Buka</button></div>`).join('')||'<p class="empty" style="grid-column:1/-1">Belum ada link aplikasi. Hubungi Admin Aplikasi untuk menambahkan.</p>'}</div>`;
+ <div class="bar"><input id="cari" type="search" placeholder="Cari nama aplikasi…" value="${esc(q)}"><span class="sp"></span><span class="muted">${f.length} aplikasi</span>${ad?'<button class="p" id="lt">Tambah Link</button>':''}</div>
+ <div class="lkg">${f.map((r,i)=>`<div class="lkc"><div class="av">${esc(ini(r.nama))}</div><div class="lt"><b>${esc(r.nama)}</b><span class="ds">${esc(r.deskripsi||'Klik Buka untuk membuka aplikasi')}${ad?`<button type="button" class="pen" data-pn="${r.id}" title="Ubah deskripsi" aria-label="Ubah deskripsi">${PEN}</button>`:''}</span>${ad?`<div class="lka"><button type="button" data-ed="${r.id}">Ubah</button><button type="button" data-up="${r.id}" title="Naik">▲</button><button type="button" data-dn="${r.id}" title="Turun">▼</button><button type="button" class="d" data-x="${r.id}">Hapus</button></div>`:''}</div><button class="p" data-o="${r.id}">Buka</button></div>`).join('')||'<p class="empty" style="grid-column:1/-1">Belum ada link aplikasi. Hubungi Admin Aplikasi untuk menambahkan.</p>'}</div>`;
  $('#cari').oninput=e=>{q=e.target.value;lkDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
  $('#main').querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const r=lkR.find(x=>x.id==b.dataset.o);if(r)window.open(r.url,'_blank','noopener')});
- $('#main').querySelectorAll('[data-pn]').forEach(b=>b.onclick=()=>lkDesk(b.dataset.pn))}
+ $('#main').querySelectorAll('[data-pn]').forEach(b=>b.onclick=()=>lkDesk(b.dataset.pn));
+ if(!ad)return;if($('#lt'))$('#lt').onclick=()=>lkForm();
+ $('#main').querySelectorAll('[data-ed]').forEach(b=>b.onclick=()=>lkForm(b.dataset.ed));
+ $('#main').querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>lkMove(b.dataset.up,-1));
+ $('#main').querySelectorAll('[data-dn]').forEach(b=>b.onclick=()=>lkMove(b.dataset.dn,1));
+ $('#main').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>{const r=lkR.find(x=>x.id==b.dataset.x);
+  konfirmasi('Hapus Link Aplikasi?',`Link <b>${esc(r.nama)}</b> akan dihapus dari menu Link Aplikasi BPS.`,'Ya, Hapus',async()=>{
+   const {error}=await db.from('link_aplikasi').delete().eq('id',r.id);error?toast(error.message,1):(toast('Link dihapus'),linkPage())})})}
 function lkDesk(id){const r=lkR.find(x=>x.id==id);if(!r||me.role!='admin')return;
  modal(`<h2>Ubah Deskripsi Menu</h2><p class="muted" style="margin:2px 0 6px">${esc(r.nama)}</p><form id="fm"><label>Deskripsi</label><textarea class="ta" name="d" rows="3" maxlength="160" placeholder="Klik Buka untuk membuka aplikasi">${esc(r.deskripsi||'')}</textarea><small class="muted">Kosongkan untuk memakai deskripsi bawaan.</small><div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">Simpan</button></div></form>`);
  $('#bt').onclick=closeM;$('#fm').onsubmit=async e=>{e.preventDefault();const v=(e.target.d.value||'').trim()||null,b=e.submitter;b.disabled=true;
   const {error}=await db.from('link_aplikasi').update({deskripsi:v}).eq('id',id);b.disabled=false;
   if(error)return toast(/deskripsi/.test(error.message)?'Kolom deskripsi belum ada. Jalankan SQL terbaru di Supabase.':'Gagal menyimpan: '+error.message,1);
   r.deskripsi=v;closeM();toast('Deskripsi diperbarui');lkDraw()}}
-async function setLink(){
- const {data,error}=await db.from('link_aplikasi').select('*').order('urut').order('nama');
- if(error)return toast('Gagal memuat: '+error.message+' (jalankan SQL terbaru di Supabase)',1);lkR=data||[];
- $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Link Aplikasi BPS</h1>
- <div class="bar"><span class="muted">Daftar ini tampil di menu Link Aplikasi BPS untuk semua pengguna. Atur urutan dengan tombol panah.</span><span class="sp"></span><button class="p" id="lt">Tambah Link</button></div>
- <div class="tw"><table><tr><th>No</th><th>Nama Aplikasi</th><th>Link Aplikasi</th><th>Urutan</th><th>Aksi</th></tr>
- ${lkR.map((r,i)=>`<tr><td data-l="No">${i+1}</td><td data-l="Nama Aplikasi"><b>${esc(r.nama)}</b></td><td data-l="Link Aplikasi" style="word-break:break-all"><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a></td><td data-l="Urutan"><button data-up="${r.id}" ${i?'':'disabled'} title="Naikkan">↑</button> <button data-dn="${r.id}" ${i<lkR.length-1?'':'disabled'} title="Turunkan">↓</button></td><td class="ac"><button data-ed="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada link aplikasi. Klik “Tambah Link”.</td></tr>'}</table></div>`;
- $('#lt').onclick=()=>lkForm();
- $('#main').querySelectorAll('[data-ed]').forEach(b=>b.onclick=()=>lkForm(b.dataset.ed));
- $('#main').querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>lkMove(b.dataset.up,-1));
- $('#main').querySelectorAll('[data-dn]').forEach(b=>b.onclick=()=>lkMove(b.dataset.dn,1));
- $('#main').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>{const r=lkR.find(x=>x.id==b.dataset.x);
-  konfirmasi('Hapus Link Aplikasi?',`Link <b>${esc(r.nama)}</b> akan dihapus dari menu Link Aplikasi BPS.`,'Ya, Hapus',async()=>{
-   const {error}=await db.from('link_aplikasi').delete().eq('id',r.id);error?toast(error.message,1):(toast('Link dihapus'),setLink())})})}
 function lkForm(id){
  const r=id?lkR.find(x=>x.id==id):{};
  modal(`<h2>${id?'Ubah':'Tambah'} Link Aplikasi BPS</h2><form id="fm"><label>Nama Aplikasi</label><input name="nama" value="${esc(r.nama)}" required autocomplete="off">
@@ -821,11 +820,11 @@ function lkForm(id){
   const b=e.submitter;b.disabled=true;
   if(!id)d.urut=lkR.reduce((a,x)=>Math.max(a,x.urut||0),0)+1;
   const {error}=id?await db.from('link_aplikasi').update(d).eq('id',id):await db.from('link_aplikasi').insert(d);b.disabled=false;
-  if(error)return toast('Gagal menyimpan: '+error.message,1);closeM();toast('Link disimpan');setLink()}}
+  if(error)return toast('Gagal menyimpan: '+error.message,1);closeM();toast('Link disimpan');linkPage()}}
 async function lkMove(id,dir){
  const a=[...lkR],i=a.findIndex(x=>x.id==id),j=i+dir;if(i<0||j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];
  const rs=await Promise.all(a.map((x,k)=>db.from('link_aplikasi').update({urut:k+1}).eq('id',x.id)));
- const er=rs.find(r=>r.error);if(er)return toast(er.error.message,1);setLink()}
+ const er=rs.find(r=>r.error);if(er)return toast(er.error.message,1);linkPage()}
 let pmR=[];
 async function setPengumuman(){
  const {data,error}=await db.from('pengumuman').select('*').order('tanggal',{ascending:false}).order('dibuat_pada',{ascending:false});
@@ -891,7 +890,7 @@ async function setTim(){
  const [a,b]=await Promise.all([db.from('tim_referensi').select('*').order('urut').order('nama'),db.from('pegawai').select('tim')]);
  if(a.error)return toast('Gagal memuat: '+a.error.message+' (jalankan SQL terbaru di Supabase)',1);
  const L=a.data||[],cnt={};(b.data||[]).forEach(p=>{if(p.tim)cnt[p.tim]=(cnt[p.tim]||0)+1});
- $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Referensi Tim</h1>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Setting Pengguna</h1>${penTabs('tim')}
  <div class="set"><h2>Tambah Tim</h2><label>Nama Tim</label><div style="display:flex;gap:8px"><input id="tn" placeholder="Mis. Nerwilis" autocomplete="off"><button class="p" id="ta">Tambah</button></div><p class="muted" style="font-size:13px;margin:8px 0 0">Daftar tim dipakai pada Referensi Pegawai. Tim Pembuat di semua menu terisi otomatis sesuai tim pegawai yang mengentri.</p></div>
  <div class="tw"><table><tr><th>No</th><th>Nama Tim</th><th>Jumlah Pegawai</th><th>Aksi</th></tr>${L.map((t,i)=>`<tr><td data-l="No">${i+1}</td><td data-l="Nama Tim"><b>${esc(t.nama)}</b></td><td data-l="Jumlah Pegawai">${cnt[t.nama]||0}</td><td class="ac"><button class="d" data-d="${esc(t.nama)}" data-n="${cnt[t.nama]||0}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="4" class="empty">Belum ada tim.</td></tr>'}</table></div>`;
  const tambah=async()=>{const n=$('#tn').value.trim().replace(/\s+/g,' ');if(!n)return toast('Nama tim wajib diisi',1);
@@ -902,16 +901,6 @@ async function setTim(){
  $('#main').querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>konfirmasi('Hapus Tim?',`Tim <b>${esc(b.dataset.d)}</b> akan dihapus dari referensi.`+(+b.dataset.n?` <b>${b.dataset.n} pegawai</b> masih memakai tim ini; atur ulang tim mereka di Referensi Pegawai.`:'')+' Data lama tidak ikut berubah.','Ya, Hapus',async()=>{
   const {error}=await db.from('tim_referensi').delete().eq('nama',b.dataset.d);if(error)return toast('Gagal menghapus: '+error.message,1);
   TIM=await ambilTim();toast('Tim dihapus');setTim()}))}
-async function setLibur(){
- const {data,error}=await db.from('hari_libur').select('*').order('tanggal',{ascending:false});
- if(error)return toast('Gagal memuat: '+error.message+' (jalankan SQL terbaru di Supabase)',1);const L=data||[];
- $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Hari Libur</h1>
- <div class="set"><h2>Tambah Hari Libur</h2><label>Tanggal</label><input id="lt" type="date"><label>Keterangan</label><input id="lk" placeholder="Mis. Cuti Bersama" autocomplete="off"><div class="row"><button class="p" id="la">Tambah</button></div><p class="muted" style="font-size:13px;margin:8px 0 0">Dipakai untuk menentukan tanggal pengambilan barang persediaan: bila Senin minggu depan libur, pengambilan bergeser ke hari kerja berikutnya. Sabtu dan Minggu otomatis dilewati.</p></div>
- <div class="tw"><table><tr><th>Tanggal</th><th>Keterangan</th><th>Aksi</th></tr>${L.map(x=>`<tr><td data-l="Tanggal"><b>${esc(tglH(x.tanggal))}</b></td><td data-l="Keterangan">${esc(x.keterangan||'-')}</td><td class="ac"><button class="d" data-d="${x.tanggal}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="3" class="empty">Belum ada hari libur.</td></tr>'}</table></div>`;
- $('#la').onclick=async()=>{const t=$('#lt').value;if(!t)return toast('Tanggal wajib diisi',1);
-  const {error}=await db.from('hari_libur').insert({tanggal:t,keterangan:$('#lk').value.trim()||null});
-  if(error)return toast(error.code=='23505'?'Tanggal itu sudah ada':'Gagal menambah: '+error.message,1);toast('Hari libur ditambahkan');setLibur()};
- $('#main').querySelectorAll('[data-d]').forEach(b=>b.onclick=async()=>{const {error}=await db.from('hari_libur').delete().eq('tanggal',b.dataset.d);error?toast(error.message,1):(toast('Hari libur dihapus'),setLibur())})}
 let agT=0,agR=[],agDel=[];
 async function setAnggaran(y){
  agT=y||agT||new Date().getFullYear();
@@ -945,7 +934,7 @@ function agDraw(){
   b.disabled=false;if(err)return toast('Gagal menyimpan: '+err.message,1);toast('Data anggaran disimpan');setAnggaran(agT)}}
 async function setPegawai(){
  const {data,error}=await db.from('pegawai').select('*').order('nama');if(error)return toast(error.message,1);const L=data||[];
- $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Referensi Pegawai</h1>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>Setting Pengguna</h1>${penTabs('pegawai')}
  <div class="set"><h2>Tambah Pegawai</h2><label>Nama Pegawai</label><input id="pn" placeholder="Nama lengkap beserta gelar" autocomplete="off"><label>Tim Pembuat</label><select id="ptm"><option value="">- Pilih Tim -</option>${TIM.map(t=>`<option>${esc(t)}</option>`).join('')}</select><label>NIP</label><input id="pnip" placeholder="Mis. 199001012015011001" inputmode="numeric" autocomplete="off"><label>Jabatan</label><input id="pjb" placeholder="Mis. Statistisi Ahli Pertama" autocomplete="off"><div class="row"><button class="p" id="pa">Tambah</button></div><p class="muted" style="font-size:13px;margin:8px 0 0">Daftar ini dipakai pada pilihan nama pegawai di seluruh aplikasi. Huruf awal kata dirapikan otomatis.</p></div>
  <div class="bar"><input id="cari" type="search" placeholder="Cari nama, NIP, atau jabatan…"><span class="sp"></span><span class="muted">${L.length} pegawai</span></div>
  <div class="tw"><table id="tp"><tr><th>No</th><th>Nama Pegawai</th><th>Tim</th><th>NIP</th><th>Jabatan</th><th>Aksi</th></tr>${L.map((p,i)=>`<tr data-n="${esc((p.nama+' '+(p.tim||'')+' '+(p.nip||'')+' '+(p.jabatan||'')).toLowerCase())}"><td data-l="No">${i+1}</td><td data-l="Nama Pegawai"><b>${esc(p.nama)}</b></td><td data-l="Tim">${esc(p.tim||'-')}</td><td data-l="NIP">${esc(p.nip||'-')}</td><td data-l="Jabatan">${esc(p.jabatan||'-')}</td><td class="ac"><button data-ed="${p.id}" data-nm="${esc(p.nama)}" data-nip="${esc(p.nip||'')}" data-jb="${esc(p.jabatan||'')}" data-tim="${esc(p.tim||'')}">Ubah</button> <button class="d" data-d="${p.id}" data-nm="${esc(p.nama)}">Hapus</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Belum ada pegawai.</td></tr>'}</table></div>`;
