@@ -365,6 +365,10 @@ nav b i{width:38px;height:38px}
 @media(min-width:801px){.grp.open .sub{position:fixed;width:240px;padding:10px;gap:3px;background:var(--card);border-radius:20px;box-shadow:0 18px 44px rgba(15,47,102,.2),0 0 0 1px rgba(0,0,0,.06);z-index:70;animation:subin .16s ease-out}.grp>a em{transform:rotate(-90deg)}.grp.open>a em{transform:rotate(-90deg)}.sub a{white-space:normal}}
 @keyframes subin{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
 .lka{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.lka button{padding:4px 10px;font-size:12px;border-radius:8px}
+@media(min-width:801px){nav{z-index:60}#app>footer{display:block;grid-row:3;grid-column:2;opacity:.8}}
+.cp{display:none!important}
+#clk{margin:8px 2px 0;padding:8px 12px 10px;border-radius:14px}.ct{font-size:19px}.ct b{font-size:10px;padding:1px 7px;margin-left:6px}.cd{font-size:11px}
+.lka .dk{display:inline-flex;align-items:center;gap:5px}.lka .dk svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -791,7 +795,7 @@ function lkDraw(){const ad=me.role=='admin';
  $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Link Aplikasi BPS</h1>
  <div class="warn" style="margin:10px 0 0">Menu ini untuk memudahkan pegawai mencari link aplikasi BPS, hubungi Admin Aplikasi untuk menambah atau menghapus link. <b>Pastikan VPN sudah tersambung!</b></div>
  <div class="bar"><input id="cari" type="search" placeholder="Cari nama aplikasi…" value="${esc(q)}"><span class="sp"></span><span class="muted">${f.length} aplikasi</span>${ad?'<button class="p" id="lt">Tambah Link</button>':''}</div>
- <div class="lkg">${f.map((r,i)=>`<div class="lkc"><div class="av">${esc(ini(r.nama))}</div><div class="lt"><b>${esc(r.nama)}</b><span class="ds">${esc(r.deskripsi||'Klik Buka untuk membuka aplikasi')}${ad?`<button type="button" class="pen" data-pn="${r.id}" title="Ubah deskripsi" aria-label="Ubah deskripsi">${PEN}</button>`:''}</span>${ad?`<div class="lka"><button type="button" data-ed="${r.id}">Ubah</button><button type="button" data-up="${r.id}" title="Naik">▲</button><button type="button" data-dn="${r.id}" title="Turun">▼</button><button type="button" class="d" data-x="${r.id}">Hapus</button></div>`:''}</div><button class="p" data-o="${r.id}">Buka</button></div>`).join('')||'<p class="empty" style="grid-column:1/-1">Belum ada link aplikasi. Hubungi Admin Aplikasi untuk menambahkan.</p>'}</div>`;
+ <div class="lkg">${f.map((r,i)=>`<div class="lkc"><div class="av">${esc(ini(r.nama))}</div><div class="lt"><b>${esc(r.nama)}</b><span class="ds">${esc(r.deskripsi||'Klik Buka untuk membuka aplikasi')}${ad?`<button type="button" class="pen" data-pn="${r.id}" title="Ubah deskripsi" aria-label="Ubah deskripsi">${PEN}</button>`:''}</span>${ad?`<div class="lka"><button type="button" class="dk" data-pn="${r.id}" title="Ubah deskripsi menu">${PEN}Deskripsi</button><button type="button" data-ed="${r.id}">Ubah</button><button type="button" data-up="${r.id}" title="Naik">▲</button><button type="button" data-dn="${r.id}" title="Turun">▼</button><button type="button" class="d" data-x="${r.id}">Hapus</button></div>`:''}</div><button class="p" data-o="${r.id}">Buka</button></div>`).join('')||'<p class="empty" style="grid-column:1/-1">Belum ada link aplikasi. Hubungi Admin Aplikasi untuk menambahkan.</p>'}</div>`;
  $('#cari').oninput=e=>{q=e.target.value;lkDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
  $('#main').querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const r=lkR.find(x=>x.id==b.dataset.o);if(r)window.open(r.url,'_blank','noopener')});
  $('#main').querySelectorAll('[data-pn]').forEach(b=>b.onclick=()=>lkDesk(b.dataset.pn));
