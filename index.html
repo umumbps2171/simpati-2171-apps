@@ -228,7 +228,7 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
  #app:not(.nav-off) #mb,#app:not(.nav-off) #tbn{display:none}.hero{margin-top:40px}#app.nav-off .hero{margin-top:6px}
 }
 @media(max-width:800px){#nc,#nbar{display:none}.icd{display:inline}.ic3{display:none}#tbn{margin-left:10px;max-width:34vw;overflow:hidden;text-overflow:ellipsis}#tbn em{display:none}#tbn b{font-size:15px}#mb{padding:8px 14px 8px 12px}.hero{padding:20px 22px}.hero h1{font-size:24px}}
-/* ===== Tombol Login Disini! di layar awal ===== */
+/* ===== Tombol Masuk ke Aplikasi! di layar awal ===== */
 .gbw{display:inline-block;position:relative;transform:translate(var(--tx,0),var(--ty,0));transition:transform .18s ease-out}
 .gbw::before,.gbw::after{content:"";position:absolute;inset:0;border-radius:99px;border:2px solid rgba(255,255,255,.65);animation:ring 2.6s ease-out infinite;pointer-events:none}.gbw::after{animation-delay:1.3s}
 @keyframes ring{from{transform:scale(1);opacity:.9}to{transform:scale(1.55,1.9);opacity:0}}
@@ -432,12 +432,25 @@ h2.ph{justify-content:flex-start;align-items:center}
 #login input{height:44px}#login .p{height:46px;margin-top:20px;font-size:14.5px}
 }
 @media(max-width:800px){#login .lgr{width:52px;height:52px;border-radius:15px;margin-bottom:10px}}
+
+/* ===== Login: lebar 1000px ===== */
+@media(min-width:801px){
+#login{width:min(1000px,94vw);min-height:min(590px,86vh);margin:max(2vh,calc((100vh - min(590px,86vh))/2)) auto}
+#login .ill{width:min(320px,80%)}
+#login .lr{padding:42px 50px 32px 12%}
+}
+
+/* ===== Login: copyright paling bawah (mepet) dengan sedikit jarak dari tepi box ===== */
+#login .lr{justify-content:flex-start;padding-bottom:14px}
+#login .lr>.lgr{margin-top:auto}
+#login .lcp{margin:auto 0 0;padding-top:16px;font-size:11px}
+@media(max-width:800px){#login .lr{padding-bottom:12px}#login .lcp{margin-top:14px}}
 </style></head><body>
 
 <div id="gate" hidden>
  <div class="gh gl"></div><div class="gh gr"></div>
  <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><small>BPS Kota Batam</small><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Login Disini!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>Peminjaman Ruangan</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
+  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi<br>Badan Pusat Statistik Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Masuk ke Aplikasi!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>BMN dan Persediaan</span><span>Link Aplikasi</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
 </div>
 <form id="login" hidden>
  <div class="lv"><i class="bb b1"></i><i class="bb b2"></i><i class="bb b3"></i>
@@ -656,7 +669,7 @@ async function boot(){
  if(pwFlag()&&!sessionStorage.getItem('pwmodal')){try{sessionStorage.setItem('pwmodal','1')}catch(_){}pwModal()}
 }
 const gj=()=>{const d=new Date(),o={timeZone:'Asia/Jakarta'};$('#gjam').textContent=d.toLocaleDateString('id-ID',{...o,weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString('id-ID',{...o,hour:'2-digit',minute:'2-digit'})+' WIB'};gj();setInterval(gj,20000);
-$('#gbl').innerHTML=[...'Login Disini!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
+$('#gbl').innerHTML=[...'Masuk ke Aplikasi!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
 $('#gate').addEventListener('pointermove',e=>{const gb=$('#gb'),b=gb.getBoundingClientRect(),dx=e.clientX-(b.left+b.width/2),dy=e.clientY-(b.top+b.height/2),d=Math.hypot(dx,dy),w=gb.parentElement,k=d<190?(1-d/190)*.28:0;w.style.setProperty('--tx',dx*k+'px');w.style.setProperty('--ty',dy*k+'px')});
 const burstGb=()=>{const b=$('#gb').getBoundingClientRect();for(let i=0;i<26;i++){const p=document.createElement('b'),an=Math.random()*6.28,d=60+Math.random()*110;p.className='spk';p.style.cssText=`left:${b.left+b.width/2}px;top:${b.top+b.height/2}px;--dx:${Math.cos(an)*d}px;--dy:${Math.sin(an)*d}px;background:${i%3?'#ffd36b':'#fff'}`;$('#gate').appendChild(p);setTimeout(()=>p.remove(),700)}};
 $('#gate').onpointermove=e=>{const g=$('#gate');g.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(2));g.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(2));g.style.setProperty('--px',e.clientX+'px');g.style.setProperty('--py',e.clientY+'px')};
