@@ -377,6 +377,50 @@ nav b i{width:38px;height:38px}
 @keyframes rvs{0%{left:-60%}60%,100%{left:130%}}@keyframes rvf{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @media(prefers-reduced-motion:reduce){.rvb,.rvb::after,.rvi{animation:none}}
 .pst .pbt{white-space:nowrap}.pst .pbt button{margin:2px 4px 2px 0;padding:5px 12px;font-size:12.5px;border-radius:99px}.pst td{vertical-align:middle}
+
+/* ===== Revisi: hero lebih besar & turun, judul pengumuman rapat ke ikon, deskripsi menu, peringatan sandi ===== */
+h2.ph{justify-content:flex-start;align-items:center}
+@media(min-width:801px){.hero{margin-top:26px;padding:38px 42px}.hero h1{font-size:34px;margin:6px 0 8px}.hero p{font-size:15.5px}#app.nav-off .hero{margin-top:16px}}
+@media(max-width:800px){.hero{margin-top:50px;padding:28px 24px}#app.nav-off .hero{margin-top:16px}}
+.deskw{margin:10px 0 0;position:relative;line-height:1.55}
+.deskw .sp2{margin:6px 0 0}
+.deskb{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 10px;border-radius:8px;float:right;margin:-2px 0 4px 12px}
+.deskb svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.deskadd{border:1px dashed var(--bd);border-radius:10px;padding:6px 10px;overflow:hidden}.deskadd .deskb{float:none;margin:0}
+.pwb{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 0 14px;padding:12px 16px;border-radius:14px;background:#fdecea;color:#912018;border:1px solid #f4b4ae;font-size:14px}
+:root[data-theme=dark] .pwb{background:#3b1d1a;color:#ffb4ab;border-color:#7a2e27}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .pwb{background:#3b1d1a;color:#ffb4ab;border-color:#7a2e27}}
+
+/* ===== Login: lebih kecil & di tengah layar ===== */
+@media(min-width:801px){
+#login{width:min(880px,92vw);min-height:min(500px,78vh);margin:max(2vh,calc((100vh - min(500px,78vh))/2)) auto;border-radius:30px}
+#login .lv{padding:26px 30px 18px}#login .lgo{width:42px;height:42px}#login .lvn b{font-size:15px}
+#login .ill{width:min(290px,78%)}
+#login .lr{padding:34px 42px 26px 12%}
+#login h1{font-size:29px}#login .sb{font-size:12.5px}
+#login label{font-size:13px;margin:11px 0 5px}
+#login input{height:42px}#login .p{height:44px;margin-top:18px;font-size:14px}
+}
+@media(max-width:800px){#login{margin:5vh auto}}
+
+/* ===== Login: copyright di bawah "Lupa kata sandi", ilustrasi lebih hidup, pill bawah disembunyikan ===== */
+#lf{display:none!important}
+#login .lcp{display:block;margin:12px 0 0;font-size:11.5px;color:#cfe5dc;text-align:center}
+#login .lvn small{letter-spacing:.05em}
+#login .ill{animation:bob2 4.2s ease-in-out infinite}
+@keyframes bob2{0%,100%{transform:translateY(8px) rotate(-1.2deg)}50%{transform:translateY(-14px) rotate(1.2deg)}}
+#login .ill .fa,#login .ill .fb,#login .ill .fc,#login .ill .fd,#login .ill .fh{transform-box:fill-box;transform-origin:center}
+#login .ill .fa{animation:fa 3.2s ease-in-out infinite}
+#login .ill .fb{animation:fb 3.8s ease-in-out infinite -1s}
+#login .ill .fc{animation:fc 2.2s ease-in-out infinite}
+#login .ill .fd{animation:fd 3s ease-in-out infinite}
+#login .ill .fh{animation:fh 4.6s ease-in-out infinite}
+@keyframes fa{0%,100%{transform:translate(0,0) rotate(-4deg)}50%{transform:translate(8px,-18px) rotate(5deg)}}
+@keyframes fb{0%,100%{transform:translate(0,0) rotate(3deg)}50%{transform:translate(-8px,-14px) rotate(-4deg)}}
+@keyframes fc{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+@keyframes fd{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes fh{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@media(prefers-reduced-motion:reduce){#login .ill *{animation:none!important}}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -386,22 +430,21 @@ nav b i{width:38px;height:38px}
 </div>
 <form id="login" hidden>
  <div class="lv"><i class="bb b1"></i><i class="bb b2"></i><i class="bb b3"></i>
-  <div class="lvh"><div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><div class="lvn"><b>SIMPATI - 2171</b><small>BPS Kota Batam</small></div></div>
+  <div class="lvh"><div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><div class="lvn"><b>SIMPATI - 2171</b><small>Badan Pusat Statistik Kota Batam</small></div></div>
   <svg class="ill" viewBox="0 0 360 300" aria-hidden="true">
-   <circle cx="180" cy="152" r="130" fill="#e4f1eb"/><circle cx="180" cy="152" r="94" fill="#d3e8df"/>
+   <g class="fh"><circle cx="180" cy="152" r="130" fill="#e4f1eb"/><circle cx="180" cy="152" r="94" fill="#d3e8df"/></g>
    <rect x="104" y="74" width="112" height="140" rx="12" fill="#fff" stroke="#b7d5c8" stroke-width="2" transform="rotate(-9 160 144)"/>
    <rect x="148" y="60" width="116" height="150" rx="13" fill="#fff" stroke="#2f6b59" stroke-width="2.5"/>
    <rect x="165" y="80" width="54" height="9" rx="4.5" fill="#2f6b59"/>
    <rect x="165" y="102" width="82" height="6" rx="3" fill="#b7d5c8"/><rect x="165" y="118" width="70" height="6" rx="3" fill="#b7d5c8"/><rect x="165" y="134" width="78" height="6" rx="3" fill="#b7d5c8"/>
-   <circle cx="240" cy="192" r="23" fill="#2f6b59"/><path d="M229 192l8 8 14-16" stroke="#fff" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-   <g transform="translate(74 196)"><rect width="80" height="54" rx="10" fill="#fff" stroke="#2f6b59" stroke-width="2.5"/><path d="M5 9l35 25 35-25" fill="none" stroke="#2f6b59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
-   <g transform="translate(262 48)"><rect width="58" height="54" rx="11" fill="#1f4237"/><rect x="8" y="22" width="9" height="9" rx="2.5" fill="#8cc7b5"/><rect x="24" y="22" width="9" height="9" rx="2.5" fill="#fff"/><rect x="40" y="22" width="9" height="9" rx="2.5" fill="#fff"/><rect x="8" y="37" width="9" height="9" rx="2.5" fill="#fff"/><rect x="24" y="37" width="9" height="9" rx="2.5" fill="#fff"/><rect x="16" y="-5" width="5" height="14" rx="2.5" fill="#2f6b59"/><rect x="37" y="-5" width="5" height="14" rx="2.5" fill="#2f6b59"/></g>
-   <circle cx="70" cy="92" r="9" fill="#8cc7b5" opacity=".7"/><circle cx="300" cy="226" r="12" fill="#8cc7b5" opacity=".55"/><circle cx="52" cy="150" r="5" fill="#2f6b59" opacity=".4"/>
+   <g class="fc"><circle cx="240" cy="192" r="23" fill="#2f6b59"/><path d="M229 192l8 8 14-16" stroke="#fff" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+   <g class="fa"><g transform="translate(74 196)"><rect width="80" height="54" rx="10" fill="#fff" stroke="#2f6b59" stroke-width="2.5"/><path d="M5 9l35 25 35-25" fill="none" stroke="#2f6b59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+   <g class="fb"><g transform="translate(262 48)"><rect width="58" height="54" rx="11" fill="#1f4237"/><rect x="8" y="22" width="9" height="9" rx="2.5" fill="#8cc7b5"/><rect x="24" y="22" width="9" height="9" rx="2.5" fill="#fff"/><rect x="40" y="22" width="9" height="9" rx="2.5" fill="#fff"/><rect x="8" y="37" width="9" height="9" rx="2.5" fill="#fff"/><rect x="24" y="37" width="9" height="9" rx="2.5" fill="#fff"/><rect x="16" y="-5" width="5" height="14" rx="2.5" fill="#2f6b59"/><rect x="37" y="-5" width="5" height="14" rx="2.5" fill="#2f6b59"/></g></g>
+   <g class="fd"><circle cx="70" cy="92" r="9" fill="#8cc7b5" opacity=".7"/><circle cx="300" cy="226" r="12" fill="#8cc7b5" opacity=".55"/><circle cx="52" cy="150" r="5" fill="#2f6b59" opacity=".4"/></g>
   </svg>
-  <p class="lvc">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</p>
  </div>
  <div class="lr">
-  <h1>Login</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam</p>
+  <h1>Login</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi Badan Pusat Statistik Kota Batam</p>
   <label for="em">Username / Email</label><input id="em" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Masukkan username atau email">
   <label for="pw">Kata Sandi</label><div class="pw"><input id="pw" type="password" required autocomplete="current-password" placeholder="Masukkan kata sandi"><button type="button" class="eye" id="eye">Lihat</button></div><p id="cl" hidden>Caps Lock sedang aktif</p>
   <div class="row"><button class="p" type="submit">Masuk</button></div>
@@ -507,7 +550,54 @@ function ubahSandi(){
   $('#sb').style.width=w+'%';$('#sb').style.background=n<=2?'#d92d20':n<=3?'#f5a524':'#0f9d58';$('#st').textContent=v?(n<=2?'Lemah':n<=3?'Sedang':'Kuat'):'Minimal 6 karakter';
   const ok=v.length>=6&&v===$('#p2').value;$('#sc').textContent=$('#p2').value?(v===$('#p2').value?'Kata sandi cocok':'Kata sandi belum sama'):'';$('#pk').disabled=!ok};
  $('#p1').oninput=$('#p2').oninput=cek;
- $('#pf').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.updateUser({password:$('#p1').value});if(error)return toast('Gagal: '+error.message,1);closeM();toast('Kata sandi berhasil diperbarui')}}
+ $('#pf').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.updateUser({password:$('#p1').value});if(error)return toast('Gagal: '+error.message,1);closeM();try{localStorage.removeItem('pwdef:'+me.id)}catch(_){}pwBanner();toast('Kata sandi berhasil diperbarui')}}
+
+
+// ===== Deskripsi menu (kotak kuning) - admin dapat mengubah. Disimpan di tabel pengaturan (kunci "desk:<menu>") =====
+// Format teks: **tebal**, baris diawali "- " jadi poin. Kata dalam {kurung} diganti otomatis oleh aplikasi.
+const DESK_DEF={
+ pengajuan:'**Catatan: Standar Pelayanan**\n- Pengecekan sampai OTP PPK oleh SPK maksimal **5 hari kerja** dari tanggal penyerahan ke SPK.\n- OTP PPSPM sejak di-OTP PPK maksimal **3 hari kerja**.\n- Penerbitan SP2D maksimal **3 hari** setelah di-OTP PPSPM.\n\nPejabat Pembuat Komitmen (PPK): **{ppk}**',
+ revisi_anggaran:'Data yang Bapak/Ibu ubah, di sheet nya tolong di warnain dan konfirmasi ke Bang Adi Darmanto',
+ kartu_persediaan:'**Catatan:** pengajuan barang **hanya dibuka setiap hari Senin**{status_pengajuan} Barang tersedia pada Senin minggu depannya (bila hari libur, hari berikutnya). Satu permintaan maksimal {maks} jenis barang. Status diperbarui oleh Pegawai BMN dan Persediaan; permintaan Selesai dipindahkan ke Riwayat Pengajuan setelah 3 jam.',
+ link_app:'Menu ini untuk memudahkan pegawai mencari link aplikasi BPS, hubungi Admin Aplikasi untuk menambah atau menghapus link. **Pastikan VPN sudah tersambung!**'};
+let DESK={};
+const DESK_HELP={pengajuan:'Kata {ppk} diganti nama PPK otomatis.',kartu_persediaan:'Kata {status_pengajuan} diganti otomatis dengan info buka/tutup pengajuan; {maks} diganti batas jenis barang. Sebaiknya jangan dihapus.'};
+function deskHTML(t,tok){
+ const f=x=>esc(x).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\{(\w+)\}/g,(m,k)=>tok&&k in tok?tok[k]:m);
+ let o='',ul=false;
+ String(t).split('\n').forEach(l=>{const li=/^\s*-\s+/.test(l);
+  if(li&&!ul){o+='<ul class="sp2">';ul=true}if(!li&&ul){o+='</ul>';ul=false}
+  o+=li?'<li>'+f(l.replace(/^\s*-\s+/,''))+'</li>':l.trim()?'<div>'+f(l)+'</div>':'<div style="height:8px"></div>'});
+ return o+(ul?'</ul>':'')}
+function deskBox(k,tok){
+ const ad=me.role=='admin',t=String(k in DESK?DESK[k]:(DESK_DEF[k]||'')).trim(),
+  pen=l=>`<button type="button" class="deskb" data-desk="${k}" title="Ubah deskripsi menu">${PEN}${l}</button>`;
+ if(!t)return ad?`<div class="deskw deskadd">${pen('Tambah deskripsi menu')}</div>`:'';
+ return `<div class="warn deskw">${ad?pen('Ubah deskripsi'):''}${deskHTML(t,tok)}</div>`}
+function deskEdit(k){
+ const cur=String(k in DESK?DESK[k]:(DESK_DEF[k]||''));
+ modal(`<h2>Ubah Deskripsi Menu</h2><form id="fm"><label>Deskripsi (kotak kuning di menu ${esc(nm(k)||k)})</label><textarea class="ta" name="t" rows="9" placeholder="Kosongkan untuk menyembunyikan deskripsi">${esc(cur)}</textarea>
+ <small class="muted">Gunakan **teks** untuk huruf tebal, dan awali baris dengan "- " untuk poin. ${DESK_HELP[k]||''}</small>
+ <div class="row"><button type="button" id="bt">Batal</button>${DESK_DEF[k]?'<button type="button" id="df">Kembalikan Bawaan</button>':''}<button class="p" type="submit">Simpan</button></div></form>`,560);
+ $('#bt').onclick=closeM;const key='desk:'+k;
+ if($('#df'))$('#df').onclick=async()=>{const {error}=await db.from('pengaturan').delete().eq('kunci',key);if(error)return toast('Gagal: '+error.message,1);delete DESK[k];closeM();toast('Deskripsi dikembalikan ke bawaan');go(view)};
+ $('#fm').onsubmit=async e=>{e.preventDefault();const v=e.target.t.value.trim();
+  let r=await db.from('pengaturan').update({nilai:v}).eq('kunci',key).select();
+  if(!r.error&&!(r.data||[]).length)r=await db.from('pengaturan').insert({kunci:key,nilai:v});
+  if(r.error)return toast('Gagal menyimpan: '+r.error.message+' (admin harus diizinkan menulis ke tabel pengaturan)',1);
+  DESK[k]=v;closeM();toast('Deskripsi disimpan');go(view)}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-desk]');if(b&&me&&me.role=='admin')deskEdit(b.dataset.desk)});
+
+// ===== Peringatan jika kata sandi belum diganti (masih 123456 saat login) =====
+const pwFlag=()=>{try{return !!me&&localStorage.getItem('pwdef:'+me.id)=='1'}catch(_){return false}};
+function pwBanner(){const m=$('#main');if(!m||!me)return;const el=$('#pwb');
+ if(!pwFlag()){if(el)el.remove();return}
+ if(el&&m.firstElementChild===el)return;if(el)el.remove();
+ m.insertAdjacentHTML('afterbegin','<div id="pwb" class="pwb" role="alert"><div><b>Peringatan keamanan:</b> Anda masih memakai kata sandi awal (<b>123456</b>). Segera ganti kata sandi agar akun Anda aman.</div><button type="button" class="p" id="pwg">Ganti Sekarang</button></div>');
+ $('#pwg').onclick=ubahSandi}
+function pwModal(){modal('<h2>Segera Ganti Kata Sandi</h2><p>Akun Anda masih memakai kata sandi awal (<b>123456</b>) sehingga mudah ditebak orang lain. Ganti kata sandi sekarang untuk menjaga keamanan data.</p><div class="row"><button id="bt">Nanti</button><button class="p" id="ok">Ganti Sekarang</button></div>');
+ $('#bt').onclick=closeM;$('#ok').onclick=()=>{closeM();ubahSandi()}}
+new MutationObserver(pwBanner).observe($('#main'),{childList:true});
 
 const hari=()=>new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Jakarta'});
 const tgl=s=>s?new Date(s+'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}):'';
@@ -526,8 +616,9 @@ async function boot(){
  const {data:{session}}=await db.auth.getSession();
  if(!session){$('#lf').hidden=false;$('#app').hidden=true;$('#login').hidden=false;$('#gate').hidden=false;return}
  const {data:p}=await db.from('profiles').select('*').eq('id',session.user.id).single();
- me=p||{role:'pegawai',nama:session.user.email};
- const [a,b,fx,tm]=await Promise.all([ambilPg(),db.from('klasifikasi').select('*').order('kode'),db.from('format_nomor').select('*'),ambilTim()]);
+ me=p||{role:'pegawai',nama:session.user.email};me.id=session.user.id;
+ const [a,b,fx,tm,dk]=await Promise.all([ambilPg(),db.from('klasifikasi').select('*').order('kode'),db.from('format_nomor').select('*'),ambilTim(),db.from('pengaturan').select('kunci,nilai').like('kunci','desk:%')]);
+ DESK=Object.fromEntries(((dk&&dk.data)||[]).map(x=>[String(x.kunci).slice(5),x.nilai??'']));
  FMT=Object.fromEntries((fx.data||[]).map(x=>[x.jenis,x.pola]));
  pg=a||[];kl=b.data||[];TIM=tm;
  $('#login').hidden=true;$('#gate').hidden=true;$('#lf').hidden=true;$('#app').hidden=false;
@@ -550,6 +641,7 @@ async function boot(){
  clearInterval(ckt);ckt=setInterval(tickClk,1000);tickClk();
  $('#nc').onclick=()=>setNav(false);setNav(true);
  go('dashboard');
+ if(pwFlag()&&!sessionStorage.getItem('pwmodal')){try{sessionStorage.setItem('pwmodal','1')}catch(_){}pwModal()}
 }
 const gj=()=>{const d=new Date(),o={timeZone:'Asia/Jakarta'};$('#gjam').textContent=d.toLocaleDateString('id-ID',{...o,weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString('id-ID',{...o,hour:'2-digit',minute:'2-digit'})+' WIB'};gj();setInterval(gj,20000);
 $('#gbl').innerHTML=[...'Login Disini!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
@@ -563,7 +655,7 @@ $('#pw').addEventListener('keyup',e=>{$('#cl').hidden=!(e.getModifierState&&e.ge
 function shakeLogin(){const f=$('#login');if(f.animate)f.animate([{transform:'translateX(0)'},{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:450,easing:'ease-in-out'})}
 $('#login').addEventListener('submit',()=>{const b=$('#login .p');b.disabled=true;b.textContent='Memproses…';setTimeout(()=>{b.disabled=false;b.textContent='Masuk'},2500)});
 $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();if(!em.includes('@')){const {data:x,error:ex}=await db.rpc('login_email',{p_id:em});if(ex)return toast('Login dengan username belum aktif: '+ex.message,1);if(!x)return toast('Username tidak ditemukan',1);em=x}
- const {error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';shakeLogin();return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}boot()};
+ const {data:sd,error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';shakeLogin();return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}try{localStorage.setItem('pwdef:'+sd.user.id,$('#pw').value=='123456'?'1':'0')}catch(_){}boot()};
 
 function go(v){view=v;if(v=='set_pengguna')sTab='pengguna';page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
  document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth<=800)});
@@ -606,7 +698,7 @@ async function dash(){
  all.filter(r=>r.tahun==dy).forEach(r=>{m[r.jenis][+r.tanggal.slice(5,7)-1]++});
  const bi=new Date().getMonth(),agA=agq.data||[],ty=agA.some(x=>x.tahun==cy)?cy:(agA[0]?agA[0].tahun:cy),agr=agA.filter(x=>x.tahun==ty),
   ag={tahun:ty,rincian:agr,pembaruan:agr.reduce((a,x)=>x.diperbarui&&x.diperbarui>a?x.diperbarui:a,'').slice(0,10)};
- $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Welcome to Integrated Administrative Service Management Information System!.</p></div>
+ $('#main').innerHTML=`<div class="hero"><span class="hsap">Beranda · ${sapa()}</span><h1>Halo, ${esc(me.nama)}!</h1><p>${new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'})} · Welcome to Integrated Administrative Service Management Information System!</p></div>
  <div class="g2">${pgmHTML(pmq.data||[],hr)}
  <div class="pn"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 class="ph"><span class="pi" style="--c:#12b5a6">${IC.ruangan}</span>Status Pemakaian Ruangan</h2><button id="lr">Lihat semua</button></div>
  ${rm.error?'<p class="empty">Data status pemakaian ruangan belum bisa dimuat.</p>':(rm.data||[]).map(r=>`<div class="li"><div class="av" style="background:${r.ruangan=='Ruang PST'?'#12b5a6':'#2a62c9'}">${r.ruangan=='Ruang PST'?'PST':'RR'}</div><div class="lt"><b>${esc(r.kegiatan)}</b><span>${esc(r.ruangan)} · ${esc(r.pegawai)}</span></div>${r.tanggal==hr?'<span class="chip">Hari ini</span>':`<small class="muted">${tgl(r.tanggal)}</small>`}</div>`).join('')||'<p class="empty"><b>Ruangan Rapat dan PST tidak dipakai</b></p>'}</div></div>
@@ -634,7 +726,7 @@ function draw(){
  const cell=(r,k)=>{const l=`data-l="${lbl(k)}"`;return k=='tanggal'?`<td class="tg" ${l} ${can(r)?`data-id="${r.id}" title="Klik dua kali untuk ubah tanggal"`:''}>${tgl(r.tanggal)}</td>`:
   k=='link'?`<td ${l}>${/^https?:\/\//.test(r.link||'')?`<a href="${esc(r.link)}" target="_blank" rel="noopener">Buka</a>`:''}</td>`:
   k=='nomor'?`<td ${l}><b>${esc(r.nomor)}</b></td>`:`<td ${l}>${esc(r[k])}</td>`};
- $('#main').innerHTML=`<p class="muted" style="margin:0">${GR.find(g=>g[2].includes(view))[1]}</p><h1>${J1.t}</h1><div class="bar"><input id="cari" type="search" placeholder="Cari nomor, perihal, tim…" value="${esc(q)}"><span class="sp"></span>${me.role=='admin'?'<button id="exp">Ekspor Excel</button>':''}<button id="rw">Riwayat Hapus Data</button><button class="p" id="tambah">Ambil Nomor Baru</button></div>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">${GR.find(g=>g[2].includes(view))[1]}</p><h1>${J1.t}</h1>${deskBox(view)}<div class="bar"><input id="cari" type="search" placeholder="Cari nomor, perihal, tim…" value="${esc(q)}"><span class="sp"></span>${me.role=='admin'?'<button id="exp">Ekspor Excel</button>':''}<button id="rw">Riwayat Hapus Data</button><button class="p" id="tambah">Ambil Nomor Baru</button></div>
  <div class="tw"><table><tr>${J1.c.map(k=>`<th>${lbl(k)}</th>`).join('')}${ed?'<th>Aksi</th>':''}</tr>
  ${part.map(r=>`<tr>${J1.c.map(k=>cell(r,k)).join('')}${ed?`<td class="ac">${can(r)?`<button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td>`:''}</tr>`).join('')||`<tr><td colspan="9" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada data. Klik “Ambil Nomor Baru” untuk memulai.'}</td></tr>`}</table></div>
  <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
@@ -801,7 +893,7 @@ const PEN='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.
 function lkDraw(){const ad=me.role=='admin';
  const s=q.toLowerCase(),f=lkR.filter(r=>!s||String(r.nama).toLowerCase().includes(s));
  $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Link Aplikasi BPS</h1>
- <div class="warn" style="margin:10px 0 0">Menu ini untuk memudahkan pegawai mencari link aplikasi BPS, hubungi Admin Aplikasi untuk menambah atau menghapus link. <b>Pastikan VPN sudah tersambung!</b></div>
+ ${deskBox('link_app')}
  <div class="bar"><input id="cari" type="search" placeholder="Cari nama aplikasi…" value="${esc(q)}"><span class="sp"></span><span class="muted">${f.length} aplikasi</span>${ad?'<button class="p" id="lt">Tambah Link</button>':''}</div>
  <div class="lkg">${f.map((r,i)=>`<div class="lkc"><div class="av">${esc(ini(r.nama))}</div><div class="lt"><b>${esc(r.nama)}</b><span class="ds">${esc(r.deskripsi||'Klik Buka untuk membuka aplikasi')}${ad?`<button type="button" class="pen" data-pn="${r.id}" title="Ubah deskripsi" aria-label="Ubah deskripsi">${PEN}</button>`:''}</span>${ad?`<div class="lka"><button type="button" class="dk" data-pn="${r.id}" title="Ubah deskripsi menu">${PEN}Deskripsi</button><button type="button" data-ed="${r.id}">Ubah</button><button type="button" data-up="${r.id}" title="Naik">▲</button><button type="button" data-dn="${r.id}" title="Turun">▼</button><button type="button" class="d" data-x="${r.id}">Hapus</button></div>`:''}</div><button class="p" data-o="${r.id}">Buka</button></div>`).join('')||'<p class="empty" style="grid-column:1/-1">Belum ada link aplikasi. Hubungi Admin Aplikasi untuk menambahkan.</p>'}</div>`;
  $('#cari').oninput=e=>{q=e.target.value;lkDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
@@ -841,7 +933,7 @@ async function lkMove(id,dir){
 async function revisiPage(){
  const ad=me.role=='admin',{data}=await db.from('pengaturan').select('nilai').eq('kunci','link_revisi_anggaran').maybeSingle(),u=((data||{}).nilai||'').trim();
  $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Ajukan Revisi Anggaran</h1>
- <div class="warn" style="margin:10px 0 0">Data yang Bapak/Ibu ubah, di sheet nya tolong di warnain dan konfirmasi ke Bang Adi Darmanto</div>
+ ${deskBox('revisi_anggaran')}
  <button type="button" class="rvb" id="rvb"><span class="rvi">${IC.revisi_anggaran}</span><b>Klik Disini untuk melakukan revisi anggaran</b><small>${u?'Akan terbuka di tab baru':'Link belum diatur oleh Admin'}</small></button>
  ${ad?'<div class="row" style="justify-content:flex-start"><button id="rvu">Ubah Link Revisi</button></div>':''}`;
  $('#rvb').onclick=()=>u?window.open(u,'_blank','noopener'):toast('Link revisi anggaran belum diatur. Hubungi Admin.',1);
@@ -1026,7 +1118,7 @@ function pjDraw(){
  const f=act.filter(r=>(!pjf||r.status==pjf)&&(!s||[r.no_urut,r.pegawai,r.tim,r.nama_spj,r.staf,r.metode,r.status].join(' ').toLowerCase().includes(s))),tp=Math.max(1,Math.ceil(f.length/10));page=Math.min(page,tp);
  const part=f.slice((page-1)*10,page*10);
  $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Pengajuan Keuangan</h1>
- <div class="warn" style="margin:10px 0 0"><b>Catatan: Standar Pelayanan</b><ul class="sp2"><li>Pengecekan sampai OTP PPK oleh SPK maksimal <b>5 hari kerja</b> dari tanggal penyerahan ke SPK.</li><li>OTP PPSPM sejak di-OTP PPK maksimal <b>3 hari kerja</b>.</li><li>Penerbitan SP2D maksimal <b>3 hari</b> setelah di-OTP PPSPM.</li></ul><div style="margin-top:8px">Pejabat Pembuat Komitmen (PPK): <b>${esc(PPK_NAMA)}</b></div></div>
+ ${deskBox('pengajuan',{ppk:esc(PPK_NAMA)})}
  <div class="chips"><button class="${!pjf?'on':''}" data-f="">Semua <b>${act.length}</b></button>${STATUS.map(x=>`<button class="${pjf==x?'on':''}" data-f="${x}" style="--c:${SC[x]}"><i></i>${x} <b>${cnt[x]}</b></button>`).join('')}</div>
  <div class="bar"><input id="cari" type="search" placeholder="Cari nama SPJ, pegawai, tim, staf…" value="${esc(q)}"><span class="sp"></span><button id="arsip">Riwayat Pengajuan${arc?` (${arc})`:''}</button><button class="p" id="tambah">Ajukan Pengajuan</button></div>
  <div class="tw"><table><tr><th>No Urut</th><th>Nama Pegawai</th><th>Nama SPJ</th><th>Staf Pengelola Keuangan</th><th>Tgl Penyerahan ke SPK</th><th>Metode</th><th>Status Pengajuan</th><th>Batas Layanan</th><th>Aksi</th></tr>
@@ -1107,7 +1199,7 @@ async function ruangPage(){
 function ruangDraw(){
  const s=q.toLowerCase(),f=rr.filter(r=>!s||[r.tim,r.pegawai,r.ruangan,r.kegiatan,r.tanggal].join(' ').toLowerCase().includes(s)),tp=Math.max(1,Math.ceil(f.length/10));page=Math.min(page,tp);
  const part=f.slice((page-1)*10,page*10),C=[['tanggal','Tanggal Peminjaman'],['ruangan','Ruangan'],['kegiatan','Nama Kegiatan'],['pegawai','Nama Pegawai']];
- $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Peminjaman Ruangan</h1><div class="bar"><input id="cari" type="search" placeholder="Cari kegiatan, tim, ruangan…" value="${esc(q)}"><span class="sp"></span><button class="p" id="tambah">Ajukan Peminjaman</button></div>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Peminjaman Ruangan</h1>${deskBox('ruangan')}<div class="bar"><input id="cari" type="search" placeholder="Cari kegiatan, tim, ruangan…" value="${esc(q)}"><span class="sp"></span><button class="p" id="tambah">Ajukan Peminjaman</button></div>
  <div class="tw"><table><tr>${C.map(c=>`<th>${c[1]}</th>`).join('')}<th>Aksi</th></tr>${part.map(r=>`<tr>${C.map(c=>`<td data-l="${c[1]}">${c[0]=='tanggal'?tgl(r.tanggal):c[0]=='kegiatan'?'<b>'+esc(r.kegiatan)+'</b>':esc(r[c[0]])}</td>`).join('')}<td class="ac">${bolehRu(r)?`<button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td></tr>`).join('')||`<tr><td colspan="5" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada peminjaman ruangan. Klik “Ajukan Peminjaman” untuk memulai.'}</td></tr>`}</table></div>
  <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
  $('#cari').oninput=e=>{q=e.target.value;page=1;ruangDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
@@ -1155,8 +1247,8 @@ const bukaPs=()=>isoDow(hari())==1;
 function tglAmbilPs(){let d=addD(hari(),7);while(isoDow(d)>5||LIB.includes(d))d=addD(d,1);return d}
 function senBerikut(){let d=hari();do{d=addD(d,1)}while(isoDow(d)!=1);return d}
 const apOf=r=>APR.find(a=>String(a.tahun)==String(r.tgl_ambil).slice(0,4)&&a.output==r.output)||APR.find(a=>a.output==r.output);
-function psBanner(){const b=bukaPs();
- return `<div class="warn" style="margin:10px 0 0"><b>Catatan:</b> pengajuan barang <b>hanya dibuka setiap hari Senin</b>${b?`. <b>Hari ini pengajuan dibuka</b>; barang dapat diambil pada <b>${tglH(tglAmbilPs())}</b>.`:`; hari ini ditutup. Pengajuan berikutnya dibuka <b>${tglH(senBerikut())}</b>.`} Barang tersedia pada Senin minggu depannya (bila hari libur, hari berikutnya). Satu permintaan maksimal ${PS_MAX} jenis barang. Status diperbarui oleh Pegawai BMN dan Persediaan; permintaan Selesai dipindahkan ke Riwayat Pengajuan setelah 3 jam.</div>`}
+function psBanner(){const b=bukaPs(),st=b?`. <b>Hari ini pengajuan dibuka</b>; barang dapat diambil pada <b>${tglH(tglAmbilPs())}</b>.`:`; hari ini ditutup. Pengajuan berikutnya dibuka <b>${tglH(senBerikut())}</b>.`;
+ return deskBox('kartu_persediaan',{status_pengajuan:st,maks:String(PS_MAX)})}
 function psAngPanel(){const y=hari().slice(0,4),l=APR.filter(a=>String(a.tahun)==y);if(!l.length)return '';
  return `<div class="pn apn"><h2>Anggaran Persediaan ${y}</h2><div class="tw"><table><tr><th>Output</th><th>Anggaran</th><th>Sisa Anggaran</th></tr>${l.map(a=>`<tr><td data-l="Output"><b>${esc(a.output)}</b></td><td data-l="Anggaran">${rp(a.anggaran)}</td><td data-l="Sisa Anggaran"><b>${rp(a.sisa)}</b></td></tr>`).join('')}</table></div></div>`}
 function psAngLine(r){if(!r.output)return '';const a=apOf(r);return `<div class="pa"><span>Output <b>${esc(r.output)}</b></span>${a?`<span>Anggaran <b>${rp(a.anggaran)}</b></span><span>Sisa <b>${rp(a.sisa)}</b></span>`:''}</div>`}
@@ -1164,7 +1256,7 @@ function psExport(){if(me.role!='admin')return;if(typeof XLSX=='undefined')retur
  const R=[['Nama Pegawai','Tanggal Diajukan','Tanggal Pengambilan','Status','Output Anggaran','Anggaran (Rp)','Sisa Anggaran (Rp)','No','Nama Barang','Kuantitas','Satuan']];
  ps.forEach(r=>{const a=apOf(r)||{};(r.items||[]).forEach((x,i)=>R.push([r.pegawai,tglK(r.dibuat_pada),r.tgl_ambil,r.status,r.output||'',a.anggaran??'',a.sisa??'',i+1,x.nama,+x.qty||0,x.satuan||'']))});
  const w=XLSX.utils.book_new(),s=XLSX.utils.aoa_to_sheet(R);s['!cols']=[26,16,18,28,14,16,18,5,34,10,10].map(n=>({wch:n}));
- XLSX.utils.book_append_sheet(w,s,'Form Permintaan');XLSX.writeFile(w,'kartu_kendali_persediaan_'+hari()+'.xlsx')}
+ XLSX.utils.book_append_sheet(w,s,'Permintaan Persediaan');XLSX.writeFile(w,'form_permintaan_persediaan_'+hari()+'.xlsx')}
 const isBmn=()=>me.role=='pegawai_bmn';
 const arsipP=r=>{if(r.status!='Selesai')return false;const t=tSt(r);return !!t&&Date.now()-t>=3*36e5};
 const wkt=d=>d?new Date(d).toLocaleString('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})+' WIB':'-';
