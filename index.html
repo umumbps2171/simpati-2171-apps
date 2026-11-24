@@ -421,6 +421,17 @@ h2.ph{justify-content:flex-start;align-items:center}
 @keyframes fd{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes fh{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 @media(prefers-reduced-motion:reduce){#login .ill *{animation:none!important}}
+
+/* ===== Login: logo di box isian & box sedikit lebih besar ===== */
+#login .lgr{width:60px;height:60px;background:#fff;border-radius:18px;padding:8px;margin:0 0 14px;box-shadow:0 6px 16px rgba(0,0,0,.22)}
+@media(min-width:801px){
+#login{width:min(940px,93vw);min-height:min(550px,82vh);margin:max(2vh,calc((100vh - min(550px,82vh))/2)) auto}
+#login .lr{padding:38px 46px 30px 12%}
+#login h1{font-size:31px}#login .sb{font-size:13px}
+#login label{font-size:13.5px;margin:13px 0 6px}
+#login input{height:44px}#login .p{height:46px;margin-top:20px;font-size:14.5px}
+}
+@media(max-width:800px){#login .lgr{width:52px;height:52px;border-radius:15px;margin-bottom:10px}}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -444,7 +455,8 @@ h2.ph{justify-content:flex-start;align-items:center}
   </svg>
  </div>
  <div class="lr">
-  <h1>Login</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi Badan Pusat Statistik Kota Batam</p>
+   <div class="lgo lgr"><img src="logo-bps.png" alt="Logo Badan Pusat Statistik" onerror="noLogo(this)"></div>
+   <h1>Login</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi Badan Pusat Statistik Kota Batam</p>
   <label for="em">Username / Email</label><input id="em" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Masukkan username atau email">
   <label for="pw">Kata Sandi</label><div class="pw"><input id="pw" type="password" required autocomplete="current-password" placeholder="Masukkan kata sandi"><button type="button" class="eye" id="eye">Lihat</button></div><p id="cl" hidden>Caps Lock sedang aktif</p>
   <div class="row"><button class="p" type="submit">Masuk</button></div>
