@@ -271,7 +271,7 @@ nav a{transition:background .2s,transform .2s}nav a:hover{transform:translateX(3
 
 /* ===== Halaman login: sederhana dan elegan (menimpa gaya sebelumnya) ===== */
 body:has(#gate[hidden]) #lf{display:none}
-/* ===== Kartu Kendali Persediaan ===== */
+/* ===== Form Permintaan Persediaan ===== */
 .prs{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;margin-top:14px}
 .pr{background:var(--card);border-radius:20px;border:1px solid color-mix(in srgb,var(--bd) 70%,transparent);border-top:4px solid var(--c);box-shadow:var(--sh);padding:16px 18px;display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
 .pr:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(16,40,90,.14)}
@@ -465,7 +465,7 @@ const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
 IC.link_app=sv('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>');IC.set_beranda=IC.set_pengumuman;IC.revisi_anggaran=sv('<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>');
 const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan','revisi_anggaran','monumen']],['bmn','BMN dan Persediaan',['ruangan','kartu_persediaan']]];
-const NM={revisi_anggaran:'Ajukan Revisi Anggaran',ruangan:'Peminjaman Ruangan',kartu_persediaan:'Kartu Kendali Persediaan',monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',set_pengguna:'Setting Pengguna',set_nomor:'Setting Penomoran',set_beranda:'Pengumuman dan Anggaran'},nm=v=>J[v]?J[v].t:NM[v];
+const NM={revisi_anggaran:'Ajukan Revisi Anggaran',ruangan:'Peminjaman Ruangan',kartu_persediaan:'Form Permintaan Persediaan',monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',set_pengguna:'Setting Pengguna',set_nomor:'Setting Penomoran',set_beranda:'Pengumuman dan Anggaran'},nm=v=>J[v]?J[v].t:NM[v];
 const DRIVE='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0yS0x5SrNCli?usp=sharing',RLN={admin:'Admin',pegawai:'Pegawai',pegawai_keuangan:'Pegawai Keuangan',pegawai_bmn:'Pegawai BMN dan Persediaan'};
 let TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'];
 const lbl=k=>((J[view]||{}).lb||{})[k]||LB[k];
@@ -886,7 +886,7 @@ function apHit(){apE.forEach((x,i)=>{const c=$('#aq'+i);if(c){const p=+x.anggara
 function apDraw(){
  const cy=new Date().getFullYear(),yrs=[...new Set([cy-1,cy,cy+1,apT])].sort();
  $('#main').innerHTML=`<p class="muted" style="margin:0">Pengaturan</p><h1>${bJudul()}</h1>${bTabs('persediaan')}
- <div class="pn"><b>Anggaran Persediaan</b><p class="muted" style="margin:6px 0 0">Diisi oleh Pegawai Keuangan. Output (contoh: 2904), anggaran, dan sisa anggaran tampil pada Kartu Kendali Persediaan. Isi angka saja, tanpa titik atau koma. Mengganti tahun sebelum menyimpan akan membuang perubahan yang belum disimpan.</p></div>
+ <div class="pn"><b>Anggaran Persediaan</b><p class="muted" style="margin:6px 0 0">Diisi oleh Pegawai Keuangan. Output (contoh: 2904), anggaran, dan sisa anggaran tampil pada Form Permintaan Persediaan. Isi angka saja, tanpa titik atau koma. Mengganti tahun sebelum menyimpan akan membuang perubahan yang belum disimpan.</p></div>
  <div class="yr">${yrs.map(t=>`<button class="${t==apT?'on':''}" data-y="${t}">${t}</button>`).join('')}</div>
  <div class="tw"><table><tr><th>Output</th><th>Anggaran (Rp)</th><th>Sisa Anggaran (Rp)</th><th>Sisa (%)</th><th>Aksi</th></tr>
  ${apE.map((x,i)=>`<tr><td data-l="Output"><input data-k="output" data-i="${i}" value="${esc(x.output)}" placeholder="Mis. 2904" autocomplete="off"></td><td data-l="Anggaran (Rp)"><input data-k="anggaran" data-i="${i}" type="number" min="0" step="1" value="${x.anggaran??''}"></td><td data-l="Sisa Anggaran (Rp)"><input data-k="sisa" data-i="${i}" type="number" min="0" step="1" value="${x.sisa??''}"></td><td data-l="Sisa (%)" id="aq${i}"></td><td class="ac"><button class="d" data-r="${i}">Hapus Baris</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada anggaran persediaan tahun ini. Klik “Tambah Baris”.</td></tr>'}</table></div>
@@ -1164,7 +1164,7 @@ function psExport(){if(me.role!='admin')return;if(typeof XLSX=='undefined')retur
  const R=[['Nama Pegawai','Tanggal Diajukan','Tanggal Pengambilan','Status','Output Anggaran','Anggaran (Rp)','Sisa Anggaran (Rp)','No','Nama Barang','Kuantitas','Satuan']];
  ps.forEach(r=>{const a=apOf(r)||{};(r.items||[]).forEach((x,i)=>R.push([r.pegawai,tglK(r.dibuat_pada),r.tgl_ambil,r.status,r.output||'',a.anggaran??'',a.sisa??'',i+1,x.nama,+x.qty||0,x.satuan||'']))});
  const w=XLSX.utils.book_new(),s=XLSX.utils.aoa_to_sheet(R);s['!cols']=[26,16,18,28,14,16,18,5,34,10,10].map(n=>({wch:n}));
- XLSX.utils.book_append_sheet(w,s,'Kartu Kendali');XLSX.writeFile(w,'kartu_kendali_persediaan_'+hari()+'.xlsx')}
+ XLSX.utils.book_append_sheet(w,s,'Form Permintaan');XLSX.writeFile(w,'kartu_kendali_persediaan_'+hari()+'.xlsx')}
 const isBmn=()=>me.role=='pegawai_bmn';
 const arsipP=r=>{if(r.status!='Selesai')return false;const t=tSt(r);return !!t&&Date.now()-t>=3*36e5};
 const wkt=d=>d?new Date(d).toLocaleString('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})+' WIB':'-';
@@ -1179,7 +1179,7 @@ function psDraw(){
  const s=q.toLowerCase(),bmn=isBmn(),act=ps.filter(r=>!arsipP(r)),cnt={};PS_ST.forEach(x=>cnt[x]=act.filter(r=>r.status==x).length);
  const f=act.filter(r=>(!psf||r.status==psf)&&(!s||[r.pegawai,r.status,(r.items||[]).map(x=>x.nama).join(' ')].join(' ').toLowerCase().includes(s))),tp=Math.max(1,Math.ceil(f.length/6));page=Math.min(page,tp);
  const part=f.slice((page-1)*6,page*6);
- $('#main').innerHTML=`<p class="muted" style="margin:0">BMN dan Persediaan</p><h1>Kartu Kendali Persediaan</h1>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">BMN dan Persediaan</p><h1>Form Permintaan Persediaan</h1>
  ${psBanner()}
  <div class="chips"><button class="${!psf?'on':''}" data-f="">Semua <b>${act.length}</b></button>${PS_ST.map(x=>`<button class="${psf==x?'on':''}" data-f="${x}" style="--c:${PS_C[x]}"><i></i>${x} <b>${cnt[x]}</b></button>`).join('')}</div>
  <div class="bar"><input id="cari" type="search" placeholder="Cari nama pegawai atau nama barang…" value="${esc(q)}"><span class="sp"></span>${me.role=='admin'?'<button id="exp">Ekspor Excel</button>':''}<button id="rp">Riwayat Pengajuan</button><button class="p" id="tambah" ${bukaPs()?'':'disabled title="Pengajuan hanya dibuka hari Senin"'}>Ajukan Barang</button></div>
