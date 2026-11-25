@@ -478,6 +478,67 @@ h2.ph{justify-content:flex-start;align-items:center}
 .hero h1{font-size:38px;margin:8px 0 10px}.hero p{font-size:16.5px}.hsap{font-size:13px}
 }
 @media(max-width:800px){.hero{margin-top:58px;padding:32px 26px}#app.nav-off .hero{margin-top:30px}.hero h1{font-size:27px}}
+
+/* ===== Login: lebar 950px, tinggi menyesuaikan layar laptop/PC ===== */
+@media(min-width:801px){
+#login{width:min(950px,94vw);min-height:min(640px,92vh);margin:max(14px,calc((100vh - min(640px,92vh))/2)) auto}
+#login .ill{width:min(300px,78%)}
+#login .lr{padding:44px 50px 16px 11%}
+}
+@media(min-width:801px) and (max-height:780px){
+#login{min-height:min(580px,94vh);margin:max(10px,calc((100vh - min(580px,94vh))/2)) auto}
+#login .lr{padding:30px 46px 12px 11%}
+#login .lgr{width:50px;height:50px;border-radius:15px;margin-bottom:12px;padding:7px}
+#login h1{font-size:28px;margin-bottom:6px;padding-bottom:11px}
+#login .sb{font-size:12.5px;line-height:1.55;margin:4px 0 12px}
+#login label{margin:13px 0 6px;font-size:13px}
+#login input{height:42px}
+#login .p{height:44px;margin-top:20px;font-size:14px}
+#login .warn{margin-top:16px;padding-top:12px;font-size:12.5px;line-height:1.55}
+#login .lcp{padding-top:12px;font-size:11px}
+#login .ill{width:min(250px,72%)}
+}
+@media(min-width:801px) and (max-height:640px){
+#login .lr{padding:20px 42px 10px 11%}
+#login .lgr{display:none}
+#login h1{font-size:25px}#login .sb{display:none}
+#login label{margin:10px 0 5px}#login .p{margin-top:16px}#login .warn{margin-top:12px;padding-top:9px}
+}
+@media(min-width:1600px) and (min-height:900px){#login{min-height:660px}}
+
+/* ===== Peringatan kata sandi: tidak menimpa menu pojok kanan atas ===== */
+@media(min-width:801px){
+#app:not(.nav-off) .pwb{margin-top:60px}
+#app.nav-off .pwb{margin-top:0}
+#pwb+.hero{margin-top:4px}
+}
+@media(max-width:800px){.pwb{margin-top:0}#pwb+.hero{margin-top:6px}}
+
+/* ===== Sidebar kaca (glass) ala iPhone ===== */
+body{background:
+ radial-gradient(520px 520px at 4% 16%,rgba(47,125,104,.30),transparent),
+ radial-gradient(460px 460px at 14% 78%,rgba(18,181,166,.26),transparent),
+ radial-gradient(900px 520px at 100% -8%,rgba(167,150,255,.16),transparent),
+ radial-gradient(760px 460px at -8% 108%,color-mix(in srgb,var(--sky) 14%,transparent),transparent),var(--bg);background-attachment:fixed}
+nav{background:linear-gradient(165deg,rgba(255,255,255,.66),rgba(255,255,255,.34));
+ -webkit-backdrop-filter:blur(28px) saturate(185%);backdrop-filter:blur(28px) saturate(185%);
+ border:1px solid rgba(255,255,255,.7);
+ box-shadow:0 14px 44px rgba(20,50,40,.18),inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(255,255,255,.3)}
+nav a:hover{background:rgba(255,255,255,.5)}
+.grp.act>a{background:rgba(255,255,255,.5)}
+nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff),var(--ink));box-shadow:0 8px 20px color-mix(in srgb,var(--ink) 32%,transparent),inset 0 1px 0 rgba(255,255,255,.3)}
+#clk{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.6)}#clk:hover{background:rgba(255,255,255,.7)}
+#nc{background:rgba(255,255,255,.55)}#nc:hover{background:rgba(255,255,255,.8)}
+:root[data-theme=dark] nav{background:linear-gradient(165deg,rgba(56,96,86,.5),rgba(14,30,26,.38));border-color:rgba(255,255,255,.14);box-shadow:0 14px 44px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,255,255,.04)}
+:root[data-theme=dark] nav a:hover,:root[data-theme=dark] .grp.act>a{background:rgba(255,255,255,.1)}
+:root[data-theme=dark] #clk,:root[data-theme=dark] #nc{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12)}
+:root[data-theme=dark] #clk:hover,:root[data-theme=dark] #nc:hover{background:rgba(255,255,255,.18)}
+@media(prefers-color-scheme:dark){
+:root:not([data-theme=light]) nav{background:linear-gradient(165deg,rgba(56,96,86,.5),rgba(14,30,26,.38));border-color:rgba(255,255,255,.14);box-shadow:0 14px 44px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,255,255,.04)}
+:root:not([data-theme=light]) nav a:hover,:root:not([data-theme=light]) .grp.act>a{background:rgba(255,255,255,.1)}
+:root:not([data-theme=light]) #clk,:root:not([data-theme=light]) #nc{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12)}
+}
+@media(max-width:800px){nav{background:rgba(255,255,255,.84)}:root[data-theme=dark] nav{background:rgba(18,36,31,.86)}}
 </style></head><body>
 
 <div id="gate" hidden>
