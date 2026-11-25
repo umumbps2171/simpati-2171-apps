@@ -539,6 +539,45 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 :root:not([data-theme=light]) #clk,:root:not([data-theme=light]) #nc{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12)}
 }
 @media(max-width:800px){nav{background:rgba(255,255,255,.84)}:root[data-theme=dark] nav{background:rgba(18,36,31,.86)}}
+
+/* ===== Login 900px ===== */
+@media(min-width:801px){
+#login{width:min(900px,94vw);min-height:min(620px,92vh);margin:max(14px,calc((100vh - min(620px,92vh))/2)) auto}
+#login .ill{width:min(280px,78%)}
+#login .lr{padding:42px 46px 16px 10%}
+}
+@media(min-width:801px) and (max-height:780px){#login{min-height:min(570px,94vh);margin:max(10px,calc((100vh - min(570px,94vh))/2)) auto}#login .ill{width:min(240px,72%)}}
+@media(min-width:1600px) and (min-height:900px){#login{min-height:640px}}
+
+/* ===== Peringatan sandi di samping menu pojok kanan atas ===== */
+.pwt{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:99px;background:#fdecea;color:#912018;border:1px solid #f4b4ae;font-size:13px;font-weight:600;box-shadow:0 6px 18px rgba(145,32,24,.18);white-space:nowrap;animation:pwin .4s both}
+.pwt i{width:9px;height:9px;border-radius:50%;background:#d92d20;flex:none;animation:pwp 1.4s ease-in-out infinite}
+.pwt u{text-decoration:underline;font-weight:700}
+@keyframes pwp{0%,100%{box-shadow:0 0 0 0 rgba(217,45,32,.55)}50%{box-shadow:0 0 0 7px rgba(217,45,32,0)}}
+@keyframes pwin{from{opacity:0;transform:translateX(12px)}}
+:root[data-theme=dark] .pwt{background:#3b1d1a;color:#ffb4ab;border-color:#7a2e27}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .pwt{background:#3b1d1a;color:#ffb4ab;border-color:#7a2e27}}
+@media(max-width:800px){#top{flex-wrap:wrap}.pwt{order:10;width:100%;justify-content:center;margin-top:6px;white-space:normal;text-align:center}}
+
+/* ===== Menu samping tidak menutup otomatis; jam lebih besar ===== */
+#nbar{display:none!important}
+#clk{padding:16px 16px 18px}
+.ct{font-size:34px}.ct b{font-size:13px;padding:3px 10px}
+.cd{font-size:13px;margin-top:4px}
+
+/* ===== Login: tinggi box 600px ===== */
+@media(min-width:801px){
+#login,#login:not(.x){min-height:600px;margin:max(10px,calc((100vh - 600px)/2)) auto}
+#login .lr{padding:34px 46px 14px 10%}
+#login .lgr{width:52px;height:52px;border-radius:16px;margin-bottom:14px;padding:7px}
+#login h1{font-size:29px;margin-bottom:8px;padding-bottom:12px}
+#login .sb{font-size:13px;line-height:1.6;margin:4px 0 14px}
+#login label{margin:15px 0 7px;font-size:13.5px}
+#login input{height:44px}
+#login .p{height:46px;margin-top:22px;font-size:14.5px}
+#login .warn{margin-top:18px;padding-top:13px;font-size:12.5px;line-height:1.6}
+#login .lcp{padding-top:14px;font-size:11px}
+}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -645,7 +684,7 @@ const ZN=[['WIB','Asia/Jakarta'],['WITA','Asia/Makassar'],['WIT','Asia/Jayapura'
 const sapa=()=>{const j=+new Date().toLocaleString('en-GB',{timeZone:'Asia/Jakarta',hour:'2-digit',hourCycle:'h23'});return j<11?'Selamat Pagi':j<15?'Selamat Siang':j<18?'Selamat Sore':'Selamat Malam'};
 const NAV_MS=5*60*1000;let navT;
 function setNav(open){const a=$('#app');a.classList.toggle('nav-off',!open);clearTimeout(navT);
- if(open){const b=$('#nbar');if(b){b.style.animation='none';void b.offsetWidth;b.style.animation=''}if(innerWidth>800)navT=setTimeout(()=>setNav(false),NAV_MS)}}
+ if(open){const b=$('#nbar');if(b){b.style.animation='none';void b.offsetWidth;b.style.animation=''}}}
 function tickClk(){const n=new Date(),z=ZN[zi][1],p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:z,hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(n).map(x=>[x.type,x.value]));
  const set=(id,v)=>{const e=$(id);if(e&&e.textContent!=v){e.textContent=v;e.classList.remove('flip');void e.offsetWidth;e.classList.add('flip')}};
  set('#ch',p.hour);set('#cm',p.minute);set('#cs',p.second);if(!$('#cz'))return;$('#cz').textContent=ZN[zi][0];
@@ -709,11 +748,15 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-desk]');if
 
 // ===== Peringatan jika kata sandi belum diganti (masih 123456 saat login) =====
 const pwFlag=()=>{try{return !!me&&localStorage.getItem('pwdef:'+me.id)=='1'}catch(_){return false}};
-function pwBanner(){const m=$('#main');if(!m||!me)return;const el=$('#pwb');
- if(!pwFlag()){if(el)el.remove();return}
- if(el&&m.firstElementChild===el)return;if(el)el.remove();
- m.insertAdjacentHTML('afterbegin','<div id="pwb" class="pwb" role="alert"><div><b>Peringatan keamanan:</b> Anda masih memakai kata sandi awal (<b>123456</b>). Segera ganti kata sandi agar akun Anda aman.</div><button type="button" class="p" id="pwg">Ganti Sekarang</button></div>');
- $('#pwg').onclick=ubahSandi}
+const PW_MS=5*60*1000;let pwT;
+function pwBanner(){const el=$('#pwt');
+ if(!me||!pwFlag()){if(el)el.remove();clearTimeout(pwT);return}
+ let t0=0;try{t0=+sessionStorage.getItem('pwt0')||0}catch(_){}
+ if(!t0){t0=Date.now();try{sessionStorage.setItem('pwt0',String(t0))}catch(_){}}
+ const left=PW_MS-(Date.now()-t0);
+ if(left<=0){if(el)el.remove();return}
+ if(!el){$('#th').insertAdjacentHTML('beforebegin','<button type="button" id="pwt" class="pwt" role="alert" title="Klik untuk mengganti kata sandi"><i></i><span><b>Kata sandi belum diganti!</b> <u>Ganti sekarang</u></span></button>');$('#pwt').onclick=ubahSandi}
+ clearTimeout(pwT);pwT=setTimeout(()=>{const e=$('#pwt');if(e)e.remove()},left)}
 function pwModal(){modal('<h2>Segera Ganti Kata Sandi</h2><p>Akun Anda masih memakai kata sandi awal (<b>123456</b>) sehingga mudah ditebak orang lain. Ganti kata sandi sekarang untuk menjaga keamanan data.</p><div class="row"><button id="bt">Nanti</button><button class="p" id="ok">Ganti Sekarang</button></div>');
  $('#bt').onclick=closeM;$('#ok').onclick=()=>{closeM();ubahSandi()}}
 new MutationObserver(pwBanner).observe($('#main'),{childList:true});
@@ -774,7 +817,7 @@ $('#pw').addEventListener('keyup',e=>{$('#cl').hidden=!(e.getModifierState&&e.ge
 function shakeLogin(){const f=$('#login');if(f.animate)f.animate([{transform:'translateX(0)'},{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:450,easing:'ease-in-out'})}
 $('#login').addEventListener('submit',()=>{const b=$('#login .p');b.disabled=true;b.textContent='Memproses…';setTimeout(()=>{b.disabled=false;b.textContent='Masuk'},2500)});
 $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();if(!em.includes('@')){const {data:x,error:ex}=await db.rpc('login_email',{p_id:em});if(ex)return toast('Login dengan username belum aktif: '+ex.message,1);if(!x)return toast('Username tidak ditemukan',1);em=x}
- const {data:sd,error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';shakeLogin();return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}try{localStorage.setItem('pwdef:'+sd.user.id,$('#pw').value=='123456'?'1':'0')}catch(_){}boot()};
+ const {data:sd,error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';shakeLogin();return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}try{sessionStorage.removeItem('pwt0');sessionStorage.removeItem('pwmodal')}catch(_){}try{localStorage.setItem('pwdef:'+sd.user.id,$('#pw').value=='123456'?'1':'0')}catch(_){}boot()};
 
 function go(v){view=v;if(v=='set_pengguna')sTab='pengguna';page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
  document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth<=800)});
