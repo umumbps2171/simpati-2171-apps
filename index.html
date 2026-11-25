@@ -581,7 +581,6 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 
 /* ===== Login: tipografi & susunan lebih rapi ===== */
 #login .sb{color:#d9ece4;text-align:left}
-#login .sb b{display:block;margin-top:3px;font-weight:700;color:#fff;letter-spacing:.01em}
 #login label{display:block;font-weight:600;letter-spacing:.02em;color:#eaf5f0;text-align:left}
 #login input{border-radius:14px;font-size:14px;transition:border-color .2s,box-shadow .2s,background .2s}
 #login input::placeholder{opacity:.55;font-weight:400}
@@ -589,7 +588,6 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 #login #cl{margin:8px 0 0;font-size:12px;text-align:left}
 #login .p{border-radius:14px;font-weight:700;letter-spacing:.02em}
 #login .warn{text-align:center;color:#d9ece4}
-#login .warn b{display:block;color:#fff;font-size:13px;margin-bottom:2px}
 #login .lcp{text-align:center;line-height:1.55;font-size:10.5px;opacity:.85;text-wrap:balance;max-width:100%;margin-left:auto;margin-right:auto}
 @media(min-width:801px){#login .lr{padding-right:42px}}
 
@@ -619,12 +617,18 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 #login input::placeholder{opacity:.35;font-weight:400}
 #login input:focus{border-color:rgba(143,211,184,.6);box-shadow:0 0 0 5px rgba(143,211,184,.2),0 0 18px rgba(143,211,184,.18)}
 #login .eye{right:12px;top:50%;transform:translateY(-50%);border-radius:99px}
+
+/* ===== Teks login/startup digabung & dirapikan ===== */
+.gk .gs{text-wrap:balance;line-height:1.6}
+#login .sb{text-wrap:balance;line-height:1.6;text-align:left}
+#login .warn{display:block;width:100%;max-width:100%;margin-left:auto;margin-right:auto;text-align:center;text-wrap:balance;line-height:1.65;font-size:12.5px;color:#d9ece4}
+#login .warn b{display:inline;font-size:inherit;font-weight:700;margin:0;color:#fff}
 </style></head><body>
 
 <div id="gate" hidden>
  <div class="gh gl"></div><div class="gh gr"></div>
  <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi<br>Badan Pusat Statistik Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Masuk ke Aplikasi!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>BMN dan Persediaan</span><span>Link Aplikasi</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
+  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi Badan Pusat Statistik Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Masuk ke Aplikasi!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>BMN dan Persediaan</span><span>Link Aplikasi</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
 </div>
 <form id="login" hidden>
  <div class="lv"><i class="bb b1"></i><i class="bb b2"></i><i class="bb b3"></i>
