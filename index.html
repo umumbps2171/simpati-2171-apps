@@ -803,7 +803,27 @@ nav.nq>*:not(b):not(.ns):not(.sp):not(#clk):not(.cp){display:none!important}
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
 // ===== ISI DUA BARIS INI (Supabase > Project Settings > API) =====
-const SB_URL='https://simpati-api.umum-bps2071.workers.dev', SB_KEY='sb_publishable_KoVY6x4X0DEBO5jN9P7tSw_AxU1Dl-9';
+const SB_DIRECT='https://gqxmaebmujswfurhiijc.supabase.co', SB_PROXY='https://simpati-api.umum-bps2071.workers.dev', SB_KEY='sb_publishable_KoVY6x4X0DEBO5jN9P7tSw_AxU1Dl-9';
+/* Koneksi ganda: coba langsung ke Supabase, bila gagal (DNS/VPN memblokir) otomatis lewat proxy Cloudflare, dan sebaliknya.
+   Jalur yang berhasil diingat di browser agar login berikutnya langsung cepat. */
+let sbCur=SB_DIRECT;try{if(localStorage.getItem('sb_base')===SB_PROXY)sbCur=SB_PROXY}catch(e){}
+const sbFetch=async(input,init)=>{
+ const raw=typeof input==='string'?input:((input&&input.url)||String(input));
+ const mk=b=>b===SB_DIRECT?raw:raw.split(SB_DIRECT).join(b);
+ const other=b=>b===SB_DIRECT?SB_PROXY:SB_DIRECT;
+ const method=String((init&&init.method)||(input&&input.method)||'GET').toUpperCase();
+ const aman=method==='GET'||method==='HEAD'||raw.includes('/auth/v1/')||raw.includes('/rpc/login_email');
+ const once=async(base,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms),sg=init&&init.signal;
+  if(sg){if(sg.aborted)c.abort();else sg.addEventListener('abort',()=>c.abort())}
+  try{return await fetch(mk(base),{...(init||{}),signal:c.signal})}finally{clearTimeout(t)}};
+ try{return await once(sbCur,9000)}
+ catch(e){
+  if(init&&init.signal&&init.signal.aborted)throw e;
+  if(!(e instanceof TypeError)&&!aman)throw e;
+  const alt=other(sbCur),r=await once(alt,20000);
+  sbCur=alt;try{localStorage.setItem('sb_base',alt)}catch(_){}
+  return r}
+};
 // =================================================================
 // Pengumuman dan data anggaran Beranda diatur admin lewat menu Pengaturan > Pengumuman dan Pengaturan > Anggaran.
 // Pilihan Staf Pengelola Keuangan pada menu Pengajuan Keuangan (ubah/tambah nama di sini)
@@ -816,7 +836,7 @@ const PANDUAN_URL='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0
 // Nama PPK yang tampil pada catatan Pengajuan Keuangan
 const PPK_NAMA='Adi Darmanto, S.E';
 // =================================================
-const db=supabase.createClient(new URL(SB_URL.trim()).origin,SB_KEY.trim());
+const db=supabase.createClient(SB_DIRECT,SB_KEY.trim(),{global:{fetch:sbFetch}});
 const J={
  surat_keluar:{t:'Surat Keluar',f:['tanggal','klasifikasi','perihal','link'],c:['nomor','pembuat','tanggal','perihal','link']},
  surat_tugas:{t:'Surat Tugas',f:['tanggal','klasifikasi','perihal','link'],c:['nomor','pembuat','tanggal','perihal','link']},
