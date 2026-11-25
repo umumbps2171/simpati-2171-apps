@@ -623,6 +623,101 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 #login .sb{text-wrap:balance;line-height:1.6;text-align:left}
 #login .warn{display:block;width:100%;max-width:100%;margin-left:auto;margin-right:auto;text-align:center;text-wrap:balance;line-height:1.65;font-size:12.5px;color:#d9ece4}
 #login .warn b{display:inline;font-size:inherit;font-weight:700;margin:0;color:#fff}
+
+/* ===== Login: panel putih lebih besar dengan tepi bergelombang ala "wave" ===== */
+@media(min-width:801px){
+#login{grid-template-columns:1.1fr .9fr}
+#login .lv{margin-right:-5%;border-radius:0;padding:30px 52px 26px 34px;
+ background:radial-gradient(420px 300px at 18% 8%,#ffffff,transparent 70%),radial-gradient(380px 300px at 80% 100%,#d9efe6,transparent 70%),linear-gradient(160deg,#ffffff,#eaf5f0);
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C98 15 79 29 86 45C93 61 79 76 89 88C92 94 91 98 90 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C98 15 79 29 86 45C93 61 79 76 89 88C92 94 91 98 90 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login::before{content:"";position:absolute;left:0;top:0;bottom:0;width:64%;z-index:0;pointer-events:none;
+ background:linear-gradient(180deg,rgba(143,211,184,.34),rgba(143,211,184,.12));
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C98 15 79 29 86 45C93 61 79 76 89 88C92 94 91 98 90 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C98 15 79 29 86 45C93 61 79 76 89 88C92 94 91 98 90 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login .ill{width:min(330px,86%);margin:auto}
+#login .lr{padding:32px 38px 12px 17%}
+#login .sb{font-size:12.5px;line-height:1.55}
+}
+@media(max-width:800px){#login::before{display:none}}
+
+/* ===== Login: bentuk area putih organik (blob) mengikuti contoh ===== */
+@media(min-width:801px){
+#login .lv{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login::before{width:67%;background:linear-gradient(180deg,rgba(143,211,184,.30),rgba(143,211,184,.10));-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login .lv>:not(.bb){position:relative;z-index:1}
+#login .lv::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+ background:radial-gradient(circle at 14% 16%,rgba(47,125,104,.10) 0 26px,transparent 27px),radial-gradient(circle at 62% 9%,rgba(47,125,104,.08) 0 15px,transparent 16px),radial-gradient(circle at 84% 62%,rgba(47,125,104,.09) 0 20px,transparent 21px),radial-gradient(circle at 8% 78%,rgba(47,125,104,.08) 0 34px,transparent 35px),radial-gradient(circle at 46% 90%,rgba(47,125,104,.07) 0 18px,transparent 19px)}
+#login .lv::after{content:"";position:absolute;z-index:0;pointer-events:none;left:7%;top:24%;width:74%;height:60%;border-radius:58% 42% 56% 44%/46% 58% 42% 54%;background:linear-gradient(150deg,rgba(143,211,184,.38),rgba(207,232,222,.55) 55%,rgba(255,255,255,0));filter:blur(.5px)}
+#login .lr{padding-left:19%}
+}
+
+/* ===== Login: gembungan putih dekat "Login" lebih menjorok ke arah teks Badan Pusat Statistik ===== */
+@media(min-width:801px){
+#login .lv{margin-right:-10%;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H78C92 2 100 12 100 24C100 38 88 46 80 52C70 58 70 68 76 76C82 84 96 82 93 94C92 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H78C92 2 100 12 100 24C100 38 88 46 80 52C70 58 70 68 76 76C82 84 96 82 93 94C92 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login::before{width:70%;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H78C92 2 100 12 100 24C100 38 88 46 80 52C70 58 70 68 76 76C82 84 96 82 93 94C92 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H78C92 2 100 12 100 24C100 38 88 46 80 52C70 58 70 68 76 76C82 84 96 82 93 94C92 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login .lr{padding-left:21%;padding-right:32px}
+#login .ill{width:min(320px,82%)}
+}
+
+/* ===== Login: jauhkan area putih dari tulisan Login ===== */
+@media(min-width:801px){
+#login .lv{margin-right:-3%}
+#login .lr{z-index:2;padding-left:max(20%,84px);padding-right:34px}
+#login::before{width:66%}
+}
+
+/* ===== Login: bentuk dibalik, cembung di bagian bawah ===== */
+@media(min-width:801px){
+#login .lv{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100H78C92 98 100 88 100 76C100 62 88 54 80 48C70 42 70 32 76 24C82 16 96 18 93 6C92 3 91 1 88 0H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100H78C92 98 100 88 100 76C100 62 88 54 80 48C70 42 70 32 76 24C82 16 96 18 93 6C92 3 91 1 88 0H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login::before{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100H78C92 98 100 88 100 76C100 62 88 54 80 48C70 42 70 32 76 24C82 16 96 18 93 6C92 3 91 1 88 0H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100H78C92 98 100 88 100 76C100 62 88 54 80 48C70 42 70 32 76 24C82 16 96 18 93 6C92 3 91 1 88 0H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login .lv::after{top:14%;height:62%}
+}
+
+/* ===== Login: area putih cembung sederhana (lebih lega, tidak padat) ===== */
+@media(min-width:801px){
+#login .lv{margin-right:0;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H70C90 0 97 28 97 50C97 72 90 100 70 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H70C90 0 97 28 97 50C97 72 90 100 70 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login::before{width:59%;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H70C90 0 97 28 97 50C97 72 90 100 70 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H70C90 0 97 28 97 50C97 72 90 100 70 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login .lv::after{top:20%;height:60%}
+#login .lr{padding-left:max(18%,76px)}
+}
+
+/* ===== Pencarian menu di sidebar ===== */
+nav .ns{position:relative;margin:0 2px 6px}
+nav .ns>svg{position:absolute;left:14px;top:13px;width:17px;height:17px;fill:none;stroke:var(--mut);stroke-width:2;stroke-linecap:round;pointer-events:none}
+nav #nsq{width:100%;height:42px;padding:0 14px 0 40px;border-radius:99px;border:1px solid rgba(255,255,255,.65);background:rgba(255,255,255,.5);color:var(--tx);font-size:14px;transition:box-shadow .2s,background .2s}
+nav #nsq::placeholder{color:var(--mut);opacity:.8}
+nav #nsq:focus{outline:none;background:rgba(255,255,255,.75);box-shadow:0 0 0 4px color-mix(in srgb,var(--sky) 22%,transparent)}
+nav #nsq::-webkit-search-cancel-button{cursor:pointer}
+#nsr{margin-top:8px;display:flex;flex-direction:column;gap:2px}
+#nsr[hidden]{display:none}
+#nsr a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;font-size:14.5px}
+#nsr a small{margin-left:auto;font-size:11px;opacity:.7;white-space:nowrap}
+#nsr a svg{flex:none}
+.nsn{padding:14px 12px;text-align:center;font-size:13px;color:var(--mut)}
+nav.nq>*:not(b):not(.ns):not(.sp):not(#clk):not(.cp){display:none!important}
+:root[data-theme=dark] nav #nsq{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}
+:root[data-theme=dark] nav #nsq:focus{background:rgba(255,255,255,.14)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) nav #nsq{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}}
+
+/* ===== Peringatan kata sandi berupa popup di kanan atas ===== */
+.pwp{position:fixed;top:78px;right:24px;width:340px;max-width:calc(100vw - 24px);z-index:14;display:flex;gap:12px;padding:16px 16px 16px 14px;border-radius:20px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);border:1px solid rgba(217,45,32,.28);box-shadow:0 18px 44px rgba(20,30,28,.22),inset 0 1px 0 rgba(255,255,255,.9);color:var(--tx);animation:pwpin .45s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes pwpin{from{opacity:0;transform:translateY(-12px) scale(.94)}}
+.pwi{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#fdecea;color:#d92d20;font-weight:800;font-size:20px;animation:pwp 1.6s ease-in-out infinite}
+.pwc b:first-child{display:block;font-size:15px;margin-bottom:3px}
+.pwc p{margin:0;font-size:13px;line-height:1.55;color:var(--mut)}.pwc p b{color:var(--tx)}
+.pwa{display:flex;gap:8px;margin-top:12px}.pwa button{padding:8px 14px;border-radius:99px;font-size:13px}
+.pwx{position:absolute;top:8px;right:10px;border:0;background:none;padding:2px 8px;font-size:20px;line-height:1;color:var(--mut)}
+:root[data-theme=dark] .pwp{background:rgba(32,24,24,.9);border-color:rgba(255,138,128,.35)}
+:root[data-theme=dark] .pwi{background:#3b1d1a;color:#ff8a80}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .pwp{background:rgba(32,24,24,.9);border-color:rgba(255,138,128,.35)}:root:not([data-theme=light]) .pwi{background:#3b1d1a;color:#ff8a80}}
+@media(max-width:800px){.pwp{top:70px;left:12px;right:12px;width:auto}}
+
+/* ===== Login: area putih berbentuk lengkung besar (setengah lingkaran) ===== */
+@media(min-width:801px){
+#login .lv{margin-right:0;-webkit-mask:none;mask:none;border-radius:0 999px 999px 0;padding-right:96px}
+#login::before{width:calc(55% + 30px);-webkit-mask:none;mask:none;border-radius:0 999px 999px 0;background:linear-gradient(180deg,rgba(143,211,184,.30),rgba(143,211,184,.10))}
+#login .lv::after{left:9%;top:22%;width:70%;height:56%}
+#login .lr{padding-left:max(19%,80px)}
+}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -794,14 +889,17 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-desk]');if
 // ===== Peringatan jika kata sandi belum diganti (masih 123456 saat login) =====
 const pwFlag=()=>{try{return !!me&&localStorage.getItem('pwdef:'+me.id)=='1'}catch(_){return false}};
 const PW_MS=5*60*1000;let pwT;
-function pwBanner(){const el=$('#pwt');
- if(!me||!pwFlag()){if(el)el.remove();clearTimeout(pwT);return}
- let t0=0;try{t0=+sessionStorage.getItem('pwt0')||0}catch(_){}
+function pwBanner(){const el=$('#pwp');
+ if(!me||!pwFlag()||$('#app').hidden){if(el)el.remove();clearTimeout(pwT);return}
+ let x=null,t0=0;try{x=sessionStorage.getItem('pwx');t0=+sessionStorage.getItem('pwt0')||0}catch(_){}
+ if(x){if(el)el.remove();return}
  if(!t0){t0=Date.now();try{sessionStorage.setItem('pwt0',String(t0))}catch(_){}}
  const left=PW_MS-(Date.now()-t0);
  if(left<=0){if(el)el.remove();return}
- if(!el){$('#th').insertAdjacentHTML('beforebegin','<button type="button" id="pwt" class="pwt" role="alert" title="Klik untuk mengganti kata sandi"><i></i><span><b>Kata sandi belum diganti!</b> <u>Ganti sekarang</u></span></button>');$('#pwt').onclick=ubahSandi}
- clearTimeout(pwT);pwT=setTimeout(()=>{const e=$('#pwt');if(e)e.remove()},left)}
+ if(!el){document.body.insertAdjacentHTML('beforeend','<div id="pwp" class="pwp" role="alertdialog" aria-label="Peringatan kata sandi"><button type="button" class="pwx" id="pwx" aria-label="Tutup">×</button><div class="pwi">!</div><div class="pwc"><b>Kata sandi belum diganti</b><p>Akun Anda masih memakai kata sandi awal (<b>123456</b>). Ganti sekarang agar akun tetap aman.</p><div class="pwa"><button type="button" class="p" id="pwg">Ganti Sekarang</button><button type="button" id="pwl">Nanti</button></div></div></div>');
+  const cl=()=>{try{sessionStorage.setItem('pwx','1')}catch(_){}const e=$('#pwp');if(e)e.remove()};
+  $('#pwx').onclick=cl;$('#pwl').onclick=cl;$('#pwg').onclick=()=>{cl();ubahSandi()}}
+ clearTimeout(pwT);pwT=setTimeout(()=>{const e=$('#pwp');if(e)e.remove()},left)}
 function pwModal(){modal('<h2>Segera Ganti Kata Sandi</h2><p>Akun Anda masih memakai kata sandi awal (<b>123456</b>) sehingga mudah ditebak orang lain. Ganti kata sandi sekarang untuk menjaga keamanan data.</p><div class="row"><button id="bt">Nanti</button><button class="p" id="ok">Ganti Sekarang</button></div>');
  $('#bt').onclick=closeM;$('#ok').onclick=()=>{closeM();ubahSandi()}}
 new MutationObserver(pwBanner).observe($('#main'),{childList:true});
@@ -833,13 +931,24 @@ async function boot(){
  if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_nomor','set_beranda']]);
  else if(me.role=='pegawai_keuangan'&&!GR.some(g=>g[0]=='pengaturan')){NM.set_beranda='Anggaran Persediaan';GR.push(['pengaturan','Pengaturan',['set_beranda']])}
  const ni=(v,t)=>v=='monumen'?`<a href="${MONUMEN}" target="_blank" rel="noopener" data-x="1">${IC[v]}<span>${t}</span></a>`:`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
- $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+'<div class="nl">Menu</div>'+ni('dashboard','Beranda')+(gh=>'<div class="nl">Layanan</div>'+GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+'<div class="nl">Lainnya</div>'+ni('link_app','Link Aplikasi BPS')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
+ $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+'<div class="ns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="nsq" type="search" placeholder="Cari menu atau submenu…" autocomplete="off" spellcheck="false" aria-label="Cari menu"><div id="nsr" hidden></div></div>'+'<div class="nl">Menu</div>'+ni('dashboard','Beranda')+(gh=>'<div class="nl">Layanan</div>'+GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+'<div class="nl">Lainnya</div>'+ni('link_app','Link Aplikasi BPS')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
   +(ad?'':`<a href="${DRIVE}" target="_blank" rel="noopener" data-x="1">${IC.format}<span>Format Dokumen</span></a>`)
   +`<span class="sp"></span><div id="clk" role="button" tabindex="0" title="Klik untuk mengganti zona waktu"><div class="ct"><span id="ch">--</span><i>:</i><span id="cm">--</span><i>:</i><span id="cs">--</span><b id="cz">WIB</b></div><div class="cd" id="cd"></div><div id="cbar"></div></div><div class="cp">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</div>`;
  const closeNav=()=>{$('#nav').classList.remove('show');$('#ov').classList.remove('show');document.body.classList.remove('lock')};
  $('#nav').onclick=e=>{if(e.target.closest('#nc'))return;if(innerWidth>800)setNav(true);const a=e.target.closest('a');if(!a)return;if(a.dataset.x)return closeNav();if(a.dataset.g){const g=a.closest('.grp'),o=g.classList.contains('open');document.querySelectorAll('.grp').forEach(x=>x.classList.remove('open'));g.classList.toggle('open',!o);if(innerWidth>800&&!o){const r=a.getBoundingClientRect(),n=$('#nav').getBoundingClientRect(),s=g.querySelector('.sub');s.style.left=(n.right+8)+'px';s.style.top=Math.max(12,Math.min(r.top,innerHeight-s.offsetHeight-12))+'px'}return}go(a.dataset.v);closeNav()};
  document.addEventListener('click',e=>{if(innerWidth>800&&!e.target.closest('.grp'))document.querySelectorAll('.grp.open').forEach(g=>g.classList.remove('open'))});
  $('#mb').onclick=()=>{if(innerWidth>800)return setNav(true);const o=$('#nav').classList.toggle('show');$('#ov').classList.toggle('show',o);document.body.classList.toggle('lock',o)};$('#ov').onclick=closeNav;
+ const nsi=[{v:'dashboard',t:'Beranda',g:'Menu'},{v:'link_app',t:'Link Aplikasi BPS',g:'Lainnya'}];
+ GR.forEach(g=>g[2].forEach(v=>nsi.push({v,t:nm(v),g:g[1]})));
+ if(!ad)nsi.push({v:'format',t:'Format Dokumen',g:'Lainnya',x:DRIVE});
+ function nsFilter(){const q=$('#nsq').value.trim().toLowerCase(),r=$('#nsr'),n=$('#nav');
+  if(!q){r.hidden=true;r.innerHTML='';n.classList.remove('nq');return}
+  const hit=nsi.filter(i=>(i.t+' '+i.g).toLowerCase().includes(q));n.classList.add('nq');r.hidden=false;
+  r.innerHTML=hit.length?hit.map(i=>{const inn=`${IC[i.v]||''}<span>${esc(i.t)}</span><small>${esc(i.g)}</small>`;
+   return i.v=='monumen'?`<a href="${MONUMEN}" target="_blank" rel="noopener" data-x="1">${inn}</a>`:i.x?`<a href="${i.x}" target="_blank" rel="noopener" data-x="1">${inn}</a>`:`<a data-v="${i.v}">${inn}</a>`}).join(''):'<div class="nsn">Menu tidak ditemukan</div>'}
+ $('#nsq').oninput=nsFilter;
+ $('#nsq').onkeydown=e=>{if(e.key=='Enter'){const a=$('#nsr a');if(a){e.preventDefault();a.click()}}if(e.key=='Escape'){e.target.value='';nsFilter()}};
+ $('#nsr').addEventListener('click',()=>setTimeout(()=>{$('#nsq').value='';nsFilter()},0));
  $('#uc').innerHTML=`<span class="av2">${ini(me.nama)}</span><span class="un">${esc(me.nama)}</span><em>▾</em>`;
  $('#uc').onclick=e=>{e.stopPropagation();const o=$('#um').hidden;if(o)userPanel();$('#um').hidden=!o;$('#uc').setAttribute('aria-expanded',o)};
  const tutupUm=()=>{$('#um').hidden=true;$('#uc').setAttribute('aria-expanded','false')};
@@ -848,7 +957,7 @@ async function boot(){
  clearInterval(ckt);ckt=setInterval(tickClk,1000);tickClk();
  $('#nc').onclick=()=>setNav(false);setNav(true);
  go('dashboard');
- if(pwFlag()&&!sessionStorage.getItem('pwmodal')){try{sessionStorage.setItem('pwmodal','1')}catch(_){}pwModal()}
+ pwBanner()
 }
 const gj=()=>{const d=new Date(),o={timeZone:'Asia/Jakarta'};$('#gjam').textContent=d.toLocaleDateString('id-ID',{...o,weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString('id-ID',{...o,hour:'2-digit',minute:'2-digit'})+' WIB'};gj();setInterval(gj,20000);
 $('#gbl').innerHTML=[...'Masuk ke Aplikasi!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
@@ -862,7 +971,7 @@ $('#pw').addEventListener('keyup',e=>{$('#cl').hidden=!(e.getModifierState&&e.ge
 function shakeLogin(){const f=$('#login');if(f.animate)f.animate([{transform:'translateX(0)'},{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:450,easing:'ease-in-out'})}
 $('#login').addEventListener('submit',()=>{const b=$('#login .p');b.disabled=true;b.textContent='Memproses…';setTimeout(()=>{b.disabled=false;b.textContent='Masuk'},2500)});
 $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();if(!em.includes('@')){const {data:x,error:ex}=await db.rpc('login_email',{p_id:em});if(ex)return toast('Login dengan username belum aktif: '+ex.message,1);if(!x)return toast('Username tidak ditemukan',1);em=x}
- const {data:sd,error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';shakeLogin();return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}try{sessionStorage.removeItem('pwt0');sessionStorage.removeItem('pwmodal')}catch(_){}try{localStorage.setItem('pwdef:'+sd.user.id,$('#pw').value=='123456'?'1':'0')}catch(_){}boot()};
+ const {data:sd,error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';shakeLogin();return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}try{sessionStorage.removeItem('pwt0');sessionStorage.removeItem('pwmodal');sessionStorage.removeItem('pwx')}catch(_){}try{localStorage.setItem('pwdef:'+sd.user.id,$('#pw').value=='123456'?'1':'0')}catch(_){}boot()};
 
 function go(v){view=v;if(v=='set_pengguna')sTab='pengguna';page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
  document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth<=800)});
