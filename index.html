@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1f4237">
+<meta name="theme-color" content="#1c2e45">
 <title>SIMPATI - 2171</title>
 <meta name="description" content="SIMPATI - 2171: Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi BPS Kota Batam">
 <link rel="icon" href="logo-bps.png">
@@ -10,10 +10,10 @@
 <script>window.noLogo=function(e){var p=e.parentElement;if(p&&p.classList.contains("lgo"))p.remove();else e.replaceWith("U")}</script>
 <script>(function(){try{var t=localStorage.getItem('tema');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}})()</script>
 <style>
-:root{--bg:#eef3f1;--card:#fff;--tx:#14231f;--mut:#6b7c76;--navy:#173a32;--sky:#2f7d68;--sky2:#e8f2ee;--bd:#e2ece8;--err:#d92d20;--up:#0f9d58;--sh:0 1px 2px rgba(20,50,40,.05),0 8px 22px rgba(20,50,40,.07);--ink:#173a32;--inktx:#fff;--pbtn:linear-gradient(135deg,#2f7d68,#1f5446)}
+:root{--bg:#eef1f3;--card:#fff;--tx:#131a24;--mut:#69737e;--navy:#14233d;--sky:#284d84;--sky2:#e7edf3;--bd:#e1e7ed;--err:#d92d20;--up:#0f9d58;--sh:0 1px 2px rgba(17,34,53,.05),0 8px 22px rgba(17,34,53,.07);--ink:#14233d;--inktx:#fff;--pbtn:linear-gradient(135deg,#284d84,#1a3359)}
 :root{color-scheme:light}
-:root[data-theme=dark]{--bg:#0c1613;--card:#13221e;--tx:#e6f0ec;--mut:#93aaa2;--navy:#9fe0cb;--sky:#4fc3a1;--sky2:#1a302a;--bd:#25403a;--err:#ff8a80;--up:#3ddc97;--sh:none;--ink:#4fc3a1;--inktx:#0c1613;--pbtn:linear-gradient(135deg,#3aa384,#277a63);color-scheme:dark}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0c1613;--card:#13221e;--tx:#e6f0ec;--mut:#93aaa2;--navy:#9fe0cb;--sky:#4fc3a1;--sky2:#1a302a;--bd:#25403a;--err:#ff8a80;--up:#3ddc97;--sh:none;--ink:#4fc3a1;--inktx:#0c1613;--pbtn:linear-gradient(135deg,#3aa384,#277a63);color-scheme:dark}}
+:root[data-theme=dark]{--bg:#0b1017;--card:#121923;--tx:#e5ebf1;--mut:#919eac;--navy:#99bce6;--sky:#457fcd;--sky2:#182332;--bd:#232e42;--err:#ff8a80;--up:#3ddc97;--sh:none;--ink:#457fcd;--inktx:#0b1017;--pbtn:linear-gradient(135deg,#3166ac,#204881);color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0b1017;--card:#121923;--tx:#e5ebf1;--mut:#919eac;--navy:#99bce6;--sky:#457fcd;--sky2:#182332;--bd:#232e42;--err:#ff8a80;--up:#3ddc97;--sh:none;--ink:#457fcd;--inktx:#0b1017;--pbtn:linear-gradient(135deg,#3166ac,#204881);color-scheme:dark}}
 *{box-sizing:border-box}body{margin:0;font:15px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;background:var(--bg);color:var(--tx)}
 [hidden]{display:none!important}
 h1{margin:0;font-size:26px;letter-spacing:-.02em}h2{margin:0;font-size:17px}
@@ -197,7 +197,7 @@ nav a[href]{text-decoration:none}body.lock{overflow:hidden}#ov{display:none}
 #lf{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#fff;color:#4a5b78;font-size:11px;line-height:1.4;padding:6px 14px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.25);text-align:center;max-width:calc(100vw - 32px);z-index:5}
 @media(max-width:800px){.bar #arsip{grid-column:1/-1}.bar:not(:has(#exp)) #rw{grid-column:1/-1}.stt{grid-template-columns:1fr 36px}.stt .stb{grid-column:1/-1;grid-row:2}}
 /* ===== Tampilan lebih luwes ===== */
-body{background:radial-gradient(900px 520px at 100% -8%,color-mix(in srgb,var(--sky) 11%,transparent),transparent),radial-gradient(760px 460px at -8% 108%,color-mix(in srgb,#12b5a6 10%,transparent),transparent),var(--bg);background-attachment:fixed}
+body{background:radial-gradient(900px 520px at 100% -8%,color-mix(in srgb,var(--sky) 11%,transparent),transparent),radial-gradient(760px 460px at -8% 108%,color-mix(in srgb,#4a82e6 12%,transparent),transparent),var(--bg);background-attachment:fixed}
 main>*{animation:fup .45s both}@keyframes fup{from{opacity:0;transform:translateY(10px)}}
 .card,.pn,.set{border-radius:20px;border:1px solid color-mix(in srgb,var(--bd) 70%,transparent)}
 .card{position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--cc,var(--sky))}
@@ -306,41 +306,41 @@ nav small{color:var(--mut)}
 .bd{background:rgba(245,165,36,.18);color:#a86a00}
 #mb{background:var(--pbtn);box-shadow:0 6px 18px color-mix(in srgb,var(--sky) 35%,transparent)}
 .av2{background:linear-gradient(135deg,var(--sky),#a796ff)}
-.hero{background:linear-gradient(120deg,#1f4237,#2f7d68 60%,#8fd3b8);box-shadow:0 14px 34px rgba(31,66,55,.22)}
+.hero{background:linear-gradient(120deg,#1c2e45,#284d84 60%,#89b3d9);box-shadow:0 14px 34px rgba(28,46,69,.22)}
 #toast{background:var(--ink);color:var(--inktx)}
 .ur b{text-align:right;white-space:normal;word-break:break-word}
 /* layar awal */
-.gh{background:linear-gradient(160deg,#35665a,#1c3d33)}
-.o1{background:#4fa38a}.o2{background:#2f7d68}.o3{background:#a796ff;opacity:.3}
-.gm,#gb{color:#1f4237}.gk small{color:#bfe3d6}.gs{color:#d6efe5}
-#gc::before{background:radial-gradient(380px circle at var(--px,50%) var(--py,45%),rgba(143,211,184,.16),transparent 65%)}
+.gh{background:linear-gradient(160deg,#31466a,#192a40)}
+.o1{background:#4772ab}.o2{background:#284d84}.o3{background:#a796ff;opacity:.3}
+.gm,#gb{color:#1c2e45}.gk small{color:#bcd1e6}.gs{color:#d4e3f1}
+#gc::before{background:radial-gradient(380px circle at var(--px,50%) var(--py,45%),rgba(137,179,217,.16),transparent 65%)}
 /* halaman login */
-body:has(#login:not([hidden])){background:radial-gradient(520px 520px at 8% 6%,rgba(120,190,165,.22),transparent),radial-gradient(640px 640px at 96% 96%,rgba(120,190,165,.18),transparent),#27483e fixed;min-height:100vh}
-#login{position:relative;display:grid;grid-template-columns:1.08fr .92fr;width:min(1000px,94vw);min-height:min(580px,88vh);margin:6vh auto;padding:0;overflow:hidden;border-radius:34px;background:linear-gradient(155deg,#3b6c5c,#2a5144);box-shadow:0 30px 70px rgba(6,24,18,.45);border:1px solid rgba(255,255,255,.08);animation:lin .6s ease-out backwards;color:#eaf5f0;max-width:none}
+body:has(#login:not([hidden])){background:radial-gradient(520px 520px at 8% 6%,rgba(114,154,196,.22),transparent),radial-gradient(640px 640px at 96% 96%,rgba(114,154,196,.18),transparent),#24354b fixed;min-height:100vh}
+#login{position:relative;display:grid;grid-template-columns:1.08fr .92fr;width:min(1000px,94vw);min-height:min(580px,88vh);margin:6vh auto;padding:0;overflow:hidden;border-radius:34px;background:linear-gradient(155deg,#375170,#263c55);box-shadow:0 30px 70px rgba(6,24,18,.45);border:1px solid rgba(255,255,255,.08);animation:lin .6s ease-out backwards;color:#e9f1f6;max-width:none}
 @keyframes lin{from{opacity:0;transform:translateY(24px) scale(.98)}}
-#login .lv{position:relative;z-index:1;display:flex;flex-direction:column;background:linear-gradient(160deg,#fff,#f0f7f4);border-radius:0 52% 46% 0/0 58% 50% 0;margin-right:-7%;padding:30px 34px 22px;color:#173a32;overflow:hidden}
-#login .bb{position:absolute;border-radius:50%;background:rgba(47,125,104,.09);pointer-events:none}
+#login .lv{position:relative;z-index:1;display:flex;flex-direction:column;background:linear-gradient(160deg,#fff,#eff4f8);border-radius:0 52% 46% 0/0 58% 50% 0;margin-right:-7%;padding:30px 34px 22px;color:#14233d;overflow:hidden}
+#login .bb{position:absolute;border-radius:50%;background:rgba(40,77,132,.09);pointer-events:none}
 #login .b1{width:120px;height:120px;left:-30px;bottom:70px}#login .b2{width:64px;height:64px;right:22%;top:26%}#login .b3{width:90px;height:90px;right:14%;bottom:12%}
 #login .lvh{display:flex;align-items:center;gap:12px;position:relative}
 #login .lgo{width:48px;height:48px;display:grid;place-items:center;flex:none}#login .lgo img{width:100%;height:100%;object-fit:contain}
-#login .lvn{display:flex;flex-direction:column;line-height:1.2}#login .lvn b{font-size:16px;font-weight:700;letter-spacing:.01em}#login .lvn small{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6b7c76;font-weight:600}
+#login .lvn{display:flex;flex-direction:column;line-height:1.2}#login .lvn b{font-size:16px;font-weight:700;letter-spacing:.01em}#login .lvn small{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#69737e;font-weight:600}
 #login .ill{width:min(340px,82%);margin:auto;display:block;position:relative;animation:bob 5s ease-in-out infinite}
-#login .lvc{margin:0;font-size:11px;color:#6b7c76;position:relative}
+#login .lvc{margin:0;font-size:11px;color:#69737e;position:relative}
 #login .lr{position:relative;z-index:0;display:flex;flex-direction:column;justify-content:center;padding:44px 48px 32px 12%}
 #login h1{font-size:34px;font-weight:700;color:#fff;margin:0 0 6px;letter-spacing:-.01em}
-#login .sb{font-size:13.5px;line-height:1.55;color:#cfe5dc;margin:0 0 10px;text-align:left}
-#login label{color:#eaf5f0;font-size:14px;font-weight:600;margin:14px 0 6px}
-#login input{height:46px;border-radius:99px;border:1px solid rgba(255,255,255,.12);background:rgba(10,30,24,.38);color:#fff;padding:0 18px;transition:border-color .2s,box-shadow .2s,background .2s}
-#login input::placeholder{color:rgba(234,245,240,.5)}
-#login input:focus{outline:0;border-color:#8fd3b8;background:rgba(10,30,24,.5);box-shadow:0 0 0 3px rgba(143,211,184,.25)}
+#login .sb{font-size:13.5px;line-height:1.55;color:#cddbe7;margin:0 0 10px;text-align:left}
+#login label{color:#e9f1f6;font-size:14px;font-weight:600;margin:14px 0 6px}
+#login input{height:46px;border-radius:99px;border:1px solid rgba(255,255,255,.12);background:rgba(8,18,32,.38);color:#fff;padding:0 18px;transition:border-color .2s,box-shadow .2s,background .2s}
+#login input::placeholder{color:rgba(233,241,246,.5)}
+#login input:focus{outline:0;border-color:#89b3d9;background:rgba(8,18,32,.5);box-shadow:0 0 0 3px rgba(137,179,217,.25)}
 #login .pw input{padding-right:92px}
-#login .eye{top:50%;right:8px;transform:translateY(-50%);color:#a9dcc8;font-size:12px;font-weight:700;background:none;border:0;padding:6px 10px;box-shadow:none}
+#login .eye{top:50%;right:8px;transform:translateY(-50%);color:#a4c4e1;font-size:12px;font-weight:700;background:none;border:0;padding:6px 10px;box-shadow:none}
 #login #cl{color:#ffd98a;font-size:12px;margin:6px 0 0}
 #login .row{display:block;margin:0}
-#login .p{width:100%;height:48px;margin-top:22px;border-radius:99px;border:0;background:#8cc7b5;color:#173a32;font-size:15px;font-weight:700;letter-spacing:.02em;box-shadow:0 8px 20px rgba(0,0,0,.22)}
-#login .p:hover:not(:disabled){background:#a2d6c6;transform:translateY(-1px)}
-#login .warn{background:none;border:0;color:#cfe5dc;text-align:center;margin:20px 0 0;padding:0;font-size:12.5px}
-#login .lcp{display:none;margin:14px 0 0;text-align:center;font-size:11px;color:#a9cdbf}
+#login .p{width:100%;height:48px;margin-top:22px;border-radius:99px;border:0;background:#87a5cc;color:#14233d;font-size:15px;font-weight:700;letter-spacing:.02em;box-shadow:0 8px 20px rgba(0,0,0,.22)}
+#login .p:hover:not(:disabled){background:#9db8db;transform:translateY(-1px)}
+#login .warn{background:none;border:0;color:#cddbe7;text-align:center;margin:20px 0 0;padding:0;font-size:12.5px}
+#login .lcp{display:none;margin:14px 0 0;text-align:center;font-size:11px;color:#a6bcd0}
 @media(max-width:800px){#login{grid-template-columns:1fr;margin:3vh auto;min-height:0;border-radius:28px}#login .lv{margin:0;border-radius:0 0 40px 40px/0 0 30px 30px;padding:22px}#login .ill,#login .lvc{display:none}#login .lr{padding:26px 24px 24px}#login .lcp{display:block}}
 @media(prefers-reduced-motion:reduce){#login,#login .ill{animation:none!important}}
 /* Link Aplikasi BPS: kartu netral */
@@ -405,7 +405,7 @@ h2.ph{justify-content:flex-start;align-items:center}
 
 /* ===== Login: copyright di bawah "Lupa kata sandi", ilustrasi lebih hidup, pill bawah disembunyikan ===== */
 #lf{display:none!important}
-#login .lcp{display:block;margin:12px 0 0;font-size:11.5px;color:#cfe5dc;text-align:center}
+#login .lcp{display:block;margin:12px 0 0;font-size:11.5px;color:#cddbe7;text-align:center}
 #login .lvn small{letter-spacing:.05em}
 #login .ill{animation:bob2 4.2s ease-in-out infinite}
 @keyframes bob2{0%,100%{transform:translateY(8px) rotate(-1.2deg)}50%{transform:translateY(-14px) rotate(1.2deg)}}
@@ -452,13 +452,13 @@ h2.ph{justify-content:flex-start;align-items:center}
 #login .lr{padding:46px 54px 18px 12%}
 #login .lgr{margin-bottom:20px}
 #login h1{font-size:33px;margin:0 0 10px;position:relative;padding-bottom:14px}
-#login h1::after{content:"";position:absolute;left:0;bottom:0;width:46px;height:4px;border-radius:4px;background:linear-gradient(90deg,#8fd3b8,rgba(143,211,184,.25))}
-#login .sb{font-size:13.5px;line-height:1.7;margin:6px 0 20px;color:#d9ece4}
+#login h1::after{content:"";position:absolute;left:0;bottom:0;width:46px;height:4px;border-radius:4px;background:linear-gradient(90deg,#89b3d9,rgba(137,179,217,.25))}
+#login .sb{font-size:13.5px;line-height:1.7;margin:6px 0 20px;color:#d7e4ee}
 #login label{font-size:13.5px;margin:20px 0 8px;letter-spacing:.01em}
 #login input{height:48px;font-size:14.5px}
 #login #em,#login #pw{background-repeat:no-repeat;background-position:17px 50%;background-size:19px;padding-left:46px}
-#login #em{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238fd3b8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7'/%3E%3C/svg%3E")}
-#login #pw{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238fd3b8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='10' width='16' height='11' rx='2.5'/%3E%3Cpath d='M8 10V7a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E")}
+#login #em{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2389b3d9' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7'/%3E%3C/svg%3E")}
+#login #pw{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2389b3d9' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='10' width='16' height='11' rx='2.5'/%3E%3Cpath d='M8 10V7a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E")}
 #login .p{height:50px;margin-top:30px;font-size:15px}
 #login .warn{margin:28px 0 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);line-height:1.7;font-size:13px}
 #login .lcp{padding-top:22px;font-size:11.5px;opacity:.9}
@@ -516,29 +516,29 @@ h2.ph{justify-content:flex-start;align-items:center}
 
 /* ===== Sidebar kaca (glass) ala iPhone ===== */
 body{background:
- radial-gradient(520px 520px at 4% 16%,rgba(47,125,104,.30),transparent),
- radial-gradient(460px 460px at 14% 78%,rgba(18,181,166,.26),transparent),
+ radial-gradient(520px 520px at 4% 16%,rgba(40,77,132,.30),transparent),
+ radial-gradient(460px 460px at 14% 78%,rgba(70,130,230,.24),transparent),
  radial-gradient(900px 520px at 100% -8%,rgba(167,150,255,.16),transparent),
  radial-gradient(760px 460px at -8% 108%,color-mix(in srgb,var(--sky) 14%,transparent),transparent),var(--bg);background-attachment:fixed}
 nav{background:linear-gradient(165deg,rgba(255,255,255,.66),rgba(255,255,255,.34));
  -webkit-backdrop-filter:blur(28px) saturate(185%);backdrop-filter:blur(28px) saturate(185%);
  border:1px solid rgba(255,255,255,.7);
- box-shadow:0 14px 44px rgba(20,50,40,.18),inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(255,255,255,.3)}
+ box-shadow:0 14px 44px rgba(17,34,53,.18),inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(255,255,255,.3)}
 nav a:hover{background:rgba(255,255,255,.5)}
 .grp.act>a{background:rgba(255,255,255,.5)}
 nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff),var(--ink));box-shadow:0 8px 20px color-mix(in srgb,var(--ink) 32%,transparent),inset 0 1px 0 rgba(255,255,255,.3)}
 #clk{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.6)}#clk:hover{background:rgba(255,255,255,.7)}
 #nc{background:rgba(255,255,255,.55)}#nc:hover{background:rgba(255,255,255,.8)}
-:root[data-theme=dark] nav{background:linear-gradient(165deg,rgba(56,96,86,.5),rgba(14,30,26,.38));border-color:rgba(255,255,255,.14);box-shadow:0 14px 44px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,255,255,.04)}
+:root[data-theme=dark] nav{background:linear-gradient(165deg,rgba(52,70,100,.5),rgba(13,20,31,.38));border-color:rgba(255,255,255,.14);box-shadow:0 14px 44px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,255,255,.04)}
 :root[data-theme=dark] nav a:hover,:root[data-theme=dark] .grp.act>a{background:rgba(255,255,255,.1)}
 :root[data-theme=dark] #clk,:root[data-theme=dark] #nc{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12)}
 :root[data-theme=dark] #clk:hover,:root[data-theme=dark] #nc:hover{background:rgba(255,255,255,.18)}
 @media(prefers-color-scheme:dark){
-:root:not([data-theme=light]) nav{background:linear-gradient(165deg,rgba(56,96,86,.5),rgba(14,30,26,.38));border-color:rgba(255,255,255,.14);box-shadow:0 14px 44px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,255,255,.04)}
+:root:not([data-theme=light]) nav{background:linear-gradient(165deg,rgba(52,70,100,.5),rgba(13,20,31,.38));border-color:rgba(255,255,255,.14);box-shadow:0 14px 44px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,255,255,.04)}
 :root:not([data-theme=light]) nav a:hover,:root:not([data-theme=light]) .grp.act>a{background:rgba(255,255,255,.1)}
 :root:not([data-theme=light]) #clk,:root:not([data-theme=light]) #nc{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12)}
 }
-@media(max-width:800px){nav{background:rgba(255,255,255,.84)}:root[data-theme=dark] nav{background:rgba(18,36,31,.86)}}
+@media(max-width:800px){nav{background:rgba(255,255,255,.84)}:root[data-theme=dark] nav{background:rgba(16,25,38,.86)}}
 
 /* ===== Login 900px ===== */
 @media(min-width:801px){
@@ -561,9 +561,9 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 
 /* ===== Menu samping tidak menutup otomatis; jam lebih besar ===== */
 #nbar{display:none!important}
-#clk{padding:16px 16px 18px}
-.ct{font-size:34px}.ct b{font-size:13px;padding:3px 10px}
-.cd{font-size:13px;margin-top:4px}
+#clk{padding:13px 15px 15px}
+.ct{font-size:28px}.ct b{font-size:12px;padding:2px 9px}
+.cd{font-size:12px;margin-top:3px}
 
 /* ===== Login: tinggi box 600px ===== */
 @media(min-width:801px){
@@ -580,14 +580,14 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 }
 
 /* ===== Login: tipografi & susunan lebih rapi ===== */
-#login .sb{color:#d9ece4;text-align:left}
-#login label{display:block;font-weight:600;letter-spacing:.02em;color:#eaf5f0;text-align:left}
+#login .sb{color:#d7e4ee;text-align:left}
+#login label{display:block;font-weight:600;letter-spacing:.02em;color:#e9f1f6;text-align:left}
 #login input{border-radius:14px;font-size:14px;transition:border-color .2s,box-shadow .2s,background .2s}
 #login input::placeholder{opacity:.55;font-weight:400}
-#login input:focus{outline:none;border-color:#8fd3b8;box-shadow:0 0 0 4px rgba(143,211,184,.22)}
+#login input:focus{outline:none;border-color:#89b3d9;box-shadow:0 0 0 4px rgba(137,179,217,.22)}
 #login #cl{margin:8px 0 0;font-size:12px;text-align:left}
 #login .p{border-radius:14px;font-weight:700;letter-spacing:.02em}
-#login .warn{text-align:center;color:#d9ece4}
+#login .warn{text-align:center;color:#d7e4ee}
 #login .lcp{text-align:center;line-height:1.55;font-size:10.5px;opacity:.85;text-wrap:balance;max-width:100%;margin-left:auto;margin-right:auto}
 @media(min-width:801px){#login .lr{padding-right:42px}}
 
@@ -601,10 +601,10 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 #login .sb b{display:inline;margin:0;font-weight:inherit;color:inherit;letter-spacing:0}
 #login .warn{text-align:center;text-wrap:balance;line-height:1.6;font-size:12.5px}
 #login .warn b{display:inline;font-size:inherit;margin:0;color:#fff}
-#login input{background-color:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#f2faf6;box-shadow:none}
+#login input{background-color:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#f1f7fb;box-shadow:none}
 #login input:hover{border-color:rgba(255,255,255,.22)}
-#login input:focus{background-color:rgba(255,255,255,.1);border-color:rgba(143,211,184,.5);box-shadow:0 0 0 4px rgba(143,211,184,.14)}
-#login input:-webkit-autofill{-webkit-box-shadow:0 0 0 40px #35604f inset;-webkit-text-fill-color:#f2faf6}
+#login input:focus{background-color:rgba(255,255,255,.1);border-color:rgba(137,179,217,.5);box-shadow:0 0 0 4px rgba(137,179,217,.14)}
+#login input:-webkit-autofill{-webkit-box-shadow:0 0 0 40px #314c64 inset;-webkit-text-fill-color:#f1f7fb}
 
 /* ===== Login: panel putih setengah, kolom isian bulat & placeholder samar ===== */
 @media(min-width:801px){
@@ -615,23 +615,23 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 #login #em,#login #pw{padding-left:48px;padding-right:20px}
 #login #pw{padding-right:74px}
 #login input::placeholder{opacity:.35;font-weight:400}
-#login input:focus{border-color:rgba(143,211,184,.6);box-shadow:0 0 0 5px rgba(143,211,184,.2),0 0 18px rgba(143,211,184,.18)}
+#login input:focus{border-color:rgba(137,179,217,.6);box-shadow:0 0 0 5px rgba(137,179,217,.2),0 0 18px rgba(137,179,217,.18)}
 #login .eye{right:12px;top:50%;transform:translateY(-50%);border-radius:99px}
 
 /* ===== Teks login/startup digabung & dirapikan ===== */
 .gk .gs{text-wrap:balance;line-height:1.6}
 #login .sb{text-wrap:balance;line-height:1.6;text-align:left}
-#login .warn{display:block;width:100%;max-width:100%;margin-left:auto;margin-right:auto;text-align:center;text-wrap:balance;line-height:1.65;font-size:12.5px;color:#d9ece4}
+#login .warn{display:block;width:100%;max-width:100%;margin-left:auto;margin-right:auto;text-align:center;text-wrap:balance;line-height:1.65;font-size:12.5px;color:#d7e4ee}
 #login .warn b{display:inline;font-size:inherit;font-weight:700;margin:0;color:#fff}
 
 /* ===== Login: panel putih lebih besar dengan tepi bergelombang ala "wave" ===== */
 @media(min-width:801px){
 #login{grid-template-columns:1.1fr .9fr}
 #login .lv{margin-right:-5%;border-radius:0;padding:30px 52px 26px 34px;
- background:radial-gradient(420px 300px at 18% 8%,#ffffff,transparent 70%),radial-gradient(380px 300px at 80% 100%,#d9efe6,transparent 70%),linear-gradient(160deg,#ffffff,#eaf5f0);
+ background:radial-gradient(420px 300px at 18% 8%,#ffffff,transparent 70%),radial-gradient(380px 300px at 80% 100%,#d7e5f1,transparent 70%),linear-gradient(160deg,#ffffff,#e9f1f6);
  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C98 15 79 29 86 45C93 61 79 76 89 88C92 94 91 98 90 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C98 15 79 29 86 45C93 61 79 76 89 88C92 94 91 98 90 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
 #login::before{content:"";position:absolute;left:0;top:0;bottom:0;width:64%;z-index:0;pointer-events:none;
- background:linear-gradient(180deg,rgba(143,211,184,.34),rgba(143,211,184,.12));
+ background:linear-gradient(180deg,rgba(137,179,217,.34),rgba(137,179,217,.12));
  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C98 15 79 29 86 45C93 61 79 76 89 88C92 94 91 98 90 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C98 15 79 29 86 45C93 61 79 76 89 88C92 94 91 98 90 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
 #login .ill{width:min(330px,86%);margin:auto}
 #login .lr{padding:32px 38px 12px 17%}
@@ -642,11 +642,11 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 /* ===== Login: bentuk area putih organik (blob) mengikuti contoh ===== */
 @media(min-width:801px){
 #login .lv{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
-#login::before{width:67%;background:linear-gradient(180deg,rgba(143,211,184,.30),rgba(143,211,184,.10));-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+#login::before{width:67%;background:linear-gradient(180deg,rgba(137,179,217,.30),rgba(137,179,217,.10));-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H82C95 5 101 25 92 40C86 50 72 54 74 66C76 79 99 79 94 93C93 97 91 99 88 100H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
 #login .lv>:not(.bb){position:relative;z-index:1}
 #login .lv::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
- background:radial-gradient(circle at 14% 16%,rgba(47,125,104,.10) 0 26px,transparent 27px),radial-gradient(circle at 62% 9%,rgba(47,125,104,.08) 0 15px,transparent 16px),radial-gradient(circle at 84% 62%,rgba(47,125,104,.09) 0 20px,transparent 21px),radial-gradient(circle at 8% 78%,rgba(47,125,104,.08) 0 34px,transparent 35px),radial-gradient(circle at 46% 90%,rgba(47,125,104,.07) 0 18px,transparent 19px)}
-#login .lv::after{content:"";position:absolute;z-index:0;pointer-events:none;left:7%;top:24%;width:74%;height:60%;border-radius:58% 42% 56% 44%/46% 58% 42% 54%;background:linear-gradient(150deg,rgba(143,211,184,.38),rgba(207,232,222,.55) 55%,rgba(255,255,255,0));filter:blur(.5px)}
+ background:radial-gradient(circle at 14% 16%,rgba(40,77,132,.10) 0 26px,transparent 27px),radial-gradient(circle at 62% 9%,rgba(40,77,132,.08) 0 15px,transparent 16px),radial-gradient(circle at 84% 62%,rgba(40,77,132,.09) 0 20px,transparent 21px),radial-gradient(circle at 8% 78%,rgba(40,77,132,.08) 0 34px,transparent 35px),radial-gradient(circle at 46% 90%,rgba(40,77,132,.07) 0 18px,transparent 19px)}
+#login .lv::after{content:"";position:absolute;z-index:0;pointer-events:none;left:7%;top:24%;width:74%;height:60%;border-radius:58% 42% 56% 44%/46% 58% 42% 54%;background:linear-gradient(150deg,rgba(137,179,217,.38),rgba(205,220,234,.55) 55%,rgba(255,255,255,0));filter:blur(.5px)}
 #login .lr{padding-left:19%}
 }
 
@@ -699,10 +699,10 @@ nav.nq>*:not(b):not(.ns):not(.sp):not(#clk):not(.cp){display:none!important}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]) nav #nsq{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}}
 
 /* ===== Peringatan kata sandi berupa popup di kanan atas ===== */
-.pwp{position:fixed;top:78px;right:24px;width:340px;max-width:calc(100vw - 24px);z-index:14;display:flex;gap:12px;padding:16px 16px 16px 14px;border-radius:20px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);border:1px solid rgba(217,45,32,.28);box-shadow:0 18px 44px rgba(20,30,28,.22),inset 0 1px 0 rgba(255,255,255,.9);color:var(--tx);animation:pwpin .45s cubic-bezier(.2,.9,.3,1.2) both}
+.pwp{position:fixed;top:78px;right:24px;width:340px;max-width:calc(100vw - 24px);z-index:14;display:flex;gap:12px;padding:16px 16px 16px 14px;border-radius:20px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);border:1px solid rgba(217,45,32,.28);box-shadow:0 18px 44px rgba(19,23,31,.22),inset 0 1px 0 rgba(255,255,255,.9);color:var(--tx);animation:pwpin .45s cubic-bezier(.2,.9,.3,1.2) both}
 @keyframes pwpin{from{opacity:0;transform:translateY(-12px) scale(.94)}}
 .pwi{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#fdecea;color:#d92d20;font-weight:800;font-size:20px;animation:pwp 1.6s ease-in-out infinite}
-.pwc b:first-child{display:block;font-size:15px;margin-bottom:3px}
+.pwc>b{display:block;font-size:15px;margin-bottom:3px}
 .pwc p{margin:0;font-size:13px;line-height:1.55;color:var(--mut)}.pwc p b{color:var(--tx)}
 .pwa{display:flex;gap:8px;margin-top:12px}.pwa button{padding:8px 14px;border-radius:99px;font-size:13px}
 .pwx{position:absolute;top:8px;right:10px;border:0;background:none;padding:2px 8px;font-size:20px;line-height:1;color:var(--mut)}
@@ -714,10 +714,20 @@ nav.nq>*:not(b):not(.ns):not(.sp):not(#clk):not(.cp){display:none!important}
 /* ===== Login: area putih berbentuk lengkung besar (setengah lingkaran) ===== */
 @media(min-width:801px){
 #login .lv{margin-right:0;-webkit-mask:none;mask:none;border-radius:0 999px 999px 0;padding-right:96px}
-#login::before{width:calc(55% + 30px);-webkit-mask:none;mask:none;border-radius:0 999px 999px 0;background:linear-gradient(180deg,rgba(143,211,184,.30),rgba(143,211,184,.10))}
+#login::before{width:calc(55% + 30px);-webkit-mask:none;mask:none;border-radius:0 999px 999px 0;background:linear-gradient(180deg,rgba(137,179,217,.30),rgba(137,179,217,.10))}
 #login .lv::after{left:9%;top:22%;width:70%;height:56%}
 #login .lr{padding-left:max(19%,80px)}
 }
+
+/* ===== Login: kolom isian tanpa cahaya, teks selalu terlihat ===== */
+#login input,#login input:hover,#login input:focus,#login input:active{background-color:rgba(255,255,255,.10)!important;color:#fff!important;-webkit-text-fill-color:#fff;caret-color:#fff;box-shadow:none!important;outline:none!important;text-shadow:none}
+#login input{border:1px solid rgba(255,255,255,.16)!important}
+#login input:focus{border-color:rgba(255,255,255,.42)!important}
+#login input::placeholder{color:#fff;opacity:.38;-webkit-text-fill-color:#fff}
+#login input:-webkit-autofill,#login input:-webkit-autofill:hover,#login input:-webkit-autofill:focus,#login input:-webkit-autofill:active{-webkit-box-shadow:0 0 0 60px #344e67 inset!important;box-shadow:0 0 0 60px #344e67 inset!important;-webkit-text-fill-color:#fff!important;caret-color:#fff;transition:background-color 9999s ease-out 0s}
+
+/* ===== Perapian kecil ===== */
+#login .warn{border:0!important;border-radius:0!important}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -729,15 +739,15 @@ nav.nq>*:not(b):not(.ns):not(.sp):not(#clk):not(.cp){display:none!important}
  <div class="lv"><i class="bb b1"></i><i class="bb b2"></i><i class="bb b3"></i>
   <div class="lvh"><div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><div class="lvn"><b>SIMPATI - 2171</b><small>Badan Pusat Statistik Kota Batam</small></div></div>
   <svg class="ill" viewBox="0 0 360 300" aria-hidden="true">
-   <g class="fh"><circle cx="180" cy="152" r="130" fill="#e4f1eb"/><circle cx="180" cy="152" r="94" fill="#d3e8df"/></g>
-   <rect x="104" y="74" width="112" height="140" rx="12" fill="#fff" stroke="#b7d5c8" stroke-width="2" transform="rotate(-9 160 144)"/>
-   <rect x="148" y="60" width="116" height="150" rx="13" fill="#fff" stroke="#2f6b59" stroke-width="2.5"/>
-   <rect x="165" y="80" width="54" height="9" rx="4.5" fill="#2f6b59"/>
-   <rect x="165" y="102" width="82" height="6" rx="3" fill="#b7d5c8"/><rect x="165" y="118" width="70" height="6" rx="3" fill="#b7d5c8"/><rect x="165" y="134" width="78" height="6" rx="3" fill="#b7d5c8"/>
-   <g class="fc"><circle cx="240" cy="192" r="23" fill="#2f6b59"/><path d="M229 192l8 8 14-16" stroke="#fff" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
-   <g class="fa"><g transform="translate(74 196)"><rect width="80" height="54" rx="10" fill="#fff" stroke="#2f6b59" stroke-width="2.5"/><path d="M5 9l35 25 35-25" fill="none" stroke="#2f6b59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g></g>
-   <g class="fb"><g transform="translate(262 48)"><rect width="58" height="54" rx="11" fill="#1f4237"/><rect x="8" y="22" width="9" height="9" rx="2.5" fill="#8cc7b5"/><rect x="24" y="22" width="9" height="9" rx="2.5" fill="#fff"/><rect x="40" y="22" width="9" height="9" rx="2.5" fill="#fff"/><rect x="8" y="37" width="9" height="9" rx="2.5" fill="#fff"/><rect x="24" y="37" width="9" height="9" rx="2.5" fill="#fff"/><rect x="16" y="-5" width="5" height="14" rx="2.5" fill="#2f6b59"/><rect x="37" y="-5" width="5" height="14" rx="2.5" fill="#2f6b59"/></g></g>
-   <g class="fd"><circle cx="70" cy="92" r="9" fill="#8cc7b5" opacity=".7"/><circle cx="300" cy="226" r="12" fill="#8cc7b5" opacity=".55"/><circle cx="52" cy="150" r="5" fill="#2f6b59" opacity=".4"/></g>
+   <g class="fh"><circle cx="180" cy="152" r="130" fill="#e3ecf2"/><circle cx="180" cy="152" r="94" fill="#d1dfea"/></g>
+   <rect x="104" y="74" width="112" height="140" rx="12" fill="#fff" stroke="#b4c8d8" stroke-width="2" transform="rotate(-9 160 144)"/>
+   <rect x="148" y="60" width="116" height="150" rx="13" fill="#fff" stroke="#2a4870" stroke-width="2.5"/>
+   <rect x="165" y="80" width="54" height="9" rx="4.5" fill="#2a4870"/>
+   <rect x="165" y="102" width="82" height="6" rx="3" fill="#b4c8d8"/><rect x="165" y="118" width="70" height="6" rx="3" fill="#b4c8d8"/><rect x="165" y="134" width="78" height="6" rx="3" fill="#b4c8d8"/>
+   <g class="fc"><circle cx="240" cy="192" r="23" fill="#2a4870"/><path d="M229 192l8 8 14-16" stroke="#fff" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+   <g class="fa"><g transform="translate(74 196)"><rect width="80" height="54" rx="10" fill="#fff" stroke="#2a4870" stroke-width="2.5"/><path d="M5 9l35 25 35-25" fill="none" stroke="#2a4870" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+   <g class="fb"><g transform="translate(262 48)"><rect width="58" height="54" rx="11" fill="#1c2e45"/><rect x="8" y="22" width="9" height="9" rx="2.5" fill="#87a5cc"/><rect x="24" y="22" width="9" height="9" rx="2.5" fill="#fff"/><rect x="40" y="22" width="9" height="9" rx="2.5" fill="#fff"/><rect x="8" y="37" width="9" height="9" rx="2.5" fill="#fff"/><rect x="24" y="37" width="9" height="9" rx="2.5" fill="#fff"/><rect x="16" y="-5" width="5" height="14" rx="2.5" fill="#2a4870"/><rect x="37" y="-5" width="5" height="14" rx="2.5" fill="#2a4870"/></g></g>
+   <g class="fd"><circle cx="70" cy="92" r="9" fill="#87a5cc" opacity=".7"/><circle cx="300" cy="226" r="12" fill="#87a5cc" opacity=".55"/><circle cx="52" cy="150" r="5" fill="#2a4870" opacity=".4"/></g>
   </svg>
  </div>
  <div class="lr">
@@ -931,7 +941,7 @@ async function boot(){
  if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_nomor','set_beranda']]);
  else if(me.role=='pegawai_keuangan'&&!GR.some(g=>g[0]=='pengaturan')){NM.set_beranda='Anggaran Persediaan';GR.push(['pengaturan','Pengaturan',['set_beranda']])}
  const ni=(v,t)=>v=='monumen'?`<a href="${MONUMEN}" target="_blank" rel="noopener" data-x="1">${IC[v]}<span>${t}</span></a>`:`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
- $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+'<div class="ns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="nsq" type="search" placeholder="Cari menu atau submenu…" autocomplete="off" spellcheck="false" aria-label="Cari menu"><div id="nsr" hidden></div></div>'+'<div class="nl">Menu</div>'+ni('dashboard','Beranda')+(gh=>'<div class="nl">Layanan</div>'+GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+'<div class="nl">Lainnya</div>'+ni('link_app','Link Aplikasi BPS')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
+ $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+'<div class="ns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="nsq" type="search" placeholder="Cari menu…" autocomplete="off" spellcheck="false" aria-label="Cari menu"><div id="nsr" hidden></div></div>'+'<div class="nl">Menu</div>'+ni('dashboard','Beranda')+(gh=>'<div class="nl">Layanan</div>'+GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+'<div class="nl">Lainnya</div>'+ni('link_app','Link Aplikasi BPS')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
   +(ad?'':`<a href="${DRIVE}" target="_blank" rel="noopener" data-x="1">${IC.format}<span>Format Dokumen</span></a>`)
   +`<span class="sp"></span><div id="clk" role="button" tabindex="0" title="Klik untuk mengganti zona waktu"><div class="ct"><span id="ch">--</span><i>:</i><span id="cm">--</span><i>:</i><span id="cs">--</span><b id="cz">WIB</b></div><div class="cd" id="cd"></div><div id="cbar"></div></div><div class="cp">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</div>`;
  const closeNav=()=>{$('#nav').classList.remove('show');$('#ov').classList.remove('show');document.body.classList.remove('lock')};
