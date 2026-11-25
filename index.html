@@ -578,6 +578,20 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 #login .warn{margin-top:18px;padding-top:13px;font-size:12.5px;line-height:1.6}
 #login .lcp{padding-top:14px;font-size:11px}
 }
+
+/* ===== Login: tipografi & susunan lebih rapi ===== */
+#login .sb{color:#d9ece4;text-align:left}
+#login .sb b{display:block;margin-top:3px;font-weight:700;color:#fff;letter-spacing:.01em}
+#login label{display:block;font-weight:600;letter-spacing:.02em;color:#eaf5f0;text-align:left}
+#login input{border-radius:14px;font-size:14px;transition:border-color .2s,box-shadow .2s,background .2s}
+#login input::placeholder{opacity:.55;font-weight:400}
+#login input:focus{outline:none;border-color:#8fd3b8;box-shadow:0 0 0 4px rgba(143,211,184,.22)}
+#login #cl{margin:8px 0 0;font-size:12px;text-align:left}
+#login .p{border-radius:14px;font-weight:700;letter-spacing:.02em}
+#login .warn{text-align:center;color:#d9ece4}
+#login .warn b{display:block;color:#fff;font-size:13px;margin-bottom:2px}
+#login .lcp{text-align:center;line-height:1.55;font-size:10.5px;opacity:.85;text-wrap:balance;max-width:100%;margin-left:auto;margin-right:auto}
+@media(min-width:801px){#login .lr{padding-right:42px}}
 </style></head><body>
 
 <div id="gate" hidden>
@@ -602,12 +616,12 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
  </div>
  <div class="lr">
    <div class="lgo lgr"><img src="logo-bps.png" alt="Logo Badan Pusat Statistik" onerror="noLogo(this)"></div>
-   <h1>Login</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi Badan Pusat Statistik Kota Batam</p>
+   <h1>Login</h1><p class="sb">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi<br><b>Badan Pusat Statistik Kota Batam</b></p>
   <label for="em">Username / Email</label><input id="em" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Masukkan username atau email">
   <label for="pw">Kata Sandi</label><div class="pw"><input id="pw" type="password" required autocomplete="current-password" placeholder="Masukkan kata sandi"><button type="button" class="eye" id="eye">Lihat</button></div><p id="cl" hidden>Caps Lock sedang aktif</p>
   <div class="row"><button class="p" type="submit">Masuk</button></div>
-  <p class="warn"><b>Lupa kata sandi?</b> Hubungi Administrator untuk mengubah kata sandi.</p>
-  <p class="lcp">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</p>
+  <p class="warn"><b>Lupa kata sandi?</b><br>Hubungi Administrator untuk mengubah kata sandi.</p>
+  <p class="lcp">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved. · Made by Hogan Sinurat with Claude.ai</p>
  </div>
 </form>
 
