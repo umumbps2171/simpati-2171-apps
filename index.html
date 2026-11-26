@@ -680,23 +680,26 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
 #login .lr{padding-left:max(18%,76px)}
 }
 
-/* ===== Pencarian menu di sidebar ===== */
-nav .ns{position:relative;margin:0 2px 6px}
-nav .ns>svg{position:absolute;left:14px;top:13px;width:17px;height:17px;fill:none;stroke:var(--mut);stroke-width:2;stroke-linecap:round;pointer-events:none}
-nav #nsq{width:100%;height:42px;padding:0 14px 0 40px;border-radius:99px;border:1px solid rgba(255,255,255,.65);background:rgba(255,255,255,.5);color:var(--tx);font-size:14px;transition:box-shadow .2s,background .2s}
-nav #nsq::placeholder{color:var(--mut);opacity:.8}
-nav #nsq:focus{outline:none;background:rgba(255,255,255,.75);box-shadow:0 0 0 4px color-mix(in srgb,var(--sky) 22%,transparent)}
-nav #nsq::-webkit-search-cancel-button{cursor:pointer}
-#nsr{margin-top:8px;display:flex;flex-direction:column;gap:2px}
+/* ===== Pencarian menu: di topbar sisi kiri, seberang menu nama pegawai ===== */
+#top .ns{position:relative;flex:0 1 340px;min-width:0;margin-left:14px}
+#top .ns>svg{position:absolute;left:14px;top:12px;width:17px;height:17px;fill:none;stroke:var(--mut);stroke-width:2;stroke-linecap:round;pointer-events:none}
+#top #nsq{width:100%;height:42px;padding:0 14px 0 40px;border-radius:99px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:14px;box-shadow:var(--sh);transition:box-shadow .2s}
+#top #nsq::placeholder{color:var(--mut);opacity:.8}
+#top #nsq:focus{outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--sky) 22%,transparent)}
+#top #nsq::-webkit-search-cancel-button{cursor:pointer}
+#nsr{position:absolute;left:0;right:0;top:calc(100% + 8px);min-width:270px;max-height:min(60vh,420px);overflow:auto;background:var(--card);border-radius:18px;box-shadow:0 18px 50px rgba(8,20,40,.3);padding:6px;display:flex;flex-direction:column;gap:2px;z-index:30}
 #nsr[hidden]{display:none}
-#nsr a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;font-size:14.5px}
-#nsr a small{margin-left:auto;font-size:11px;opacity:.7;white-space:nowrap}
-#nsr a svg{flex:none}
+#nsr a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-size:14.5px;color:var(--tx);cursor:pointer}
+#nsr a:hover{background:var(--sky2)}
+#nsr a small{margin-left:auto;font-size:11px;color:var(--mut);white-space:nowrap}
+#nsr a svg{flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .nsn{padding:14px 12px;text-align:center;font-size:13px;color:var(--mut)}
-nav.nq>*:not(b):not(.ns):not(.sp):not(#clk):not(.cp){display:none!important}
-:root[data-theme=dark] nav #nsq{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}
-:root[data-theme=dark] nav #nsq:focus{background:rgba(255,255,255,.14)}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]) nav #nsq{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}}
+@media(min-width:801px){
+#app:not(.nav-off) main{padding-top:76px}
+#app:not(.nav-off) .hero{margin-top:2px}
+#app:not(.nav-off) .pwb{margin-top:0}
+}
+@media(max-width:800px){#top{flex-wrap:wrap}#top .ns{order:10;flex:1 1 100%;margin:6px 0 0}}
 
 /* ===== Peringatan kata sandi berupa popup di kanan atas ===== */
 .pwp{position:fixed;top:78px;right:24px;width:340px;max-width:calc(100vw - 24px);z-index:14;display:flex;gap:12px;padding:16px 16px 16px 14px;border-radius:20px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);border:1px solid rgba(217,45,32,.28);box-shadow:0 18px 44px rgba(19,23,31,.22),inset 0 1px 0 rgba(255,255,255,.9);color:var(--tx);animation:pwpin .45s cubic-bezier(.2,.9,.3,1.2) both}
@@ -792,7 +795,7 @@ nav.nq>*:not(b):not(.ns):not(.sp):not(#clk):not(.cp){display:none!important}
 
 <div id="app" hidden>
  <nav id="nav"></nav><div id="ov"></div>
- <header id="top"><button id="mb" aria-label="Menu"><span class="icd">⋮</span><span class="ic3"><i></i><i></i><i></i></span><b>Menu</b></button><span id="tbn"><b>SIMPATI - 2171</b><em>BPS Kota Batam</em></span><button id="th" type="button"></button><button id="uc" aria-expanded="false" aria-haspopup="true"></button><div id="um" hidden></div></header>
+ <header id="top"><button id="mb" aria-label="Menu"><span class="icd">⋮</span><span class="ic3"><i></i><i></i><i></i></span><b>Menu</b></button><span id="tbn"><b>SIMPATI - 2171</b><em>BPS Kota Batam</em></span><div class="ns" id="tns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="nsq" type="search" placeholder="Cari menu…" autocomplete="off" spellcheck="false" aria-label="Cari menu"><div id="nsr" hidden></div></div><button id="th" type="button"></button><button id="uc" aria-expanded="false" aria-haspopup="true"></button><div id="um" hidden></div></header>
  <main id="main"></main>
  <footer>© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</footer>
 </div>
@@ -864,8 +867,9 @@ const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v
  format:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/>'),
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
 IC.link_app=sv('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>');IC.set_beranda=IC.set_pengumuman;IC.revisi_anggaran=sv('<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>');
-const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan','revisi_anggaran','monumen']],['bmn','BMN dan Persediaan',['ruangan','kartu_persediaan']]];
-const NM={revisi_anggaran:'Ajukan Revisi Anggaran',ruangan:'Peminjaman Ruangan',kartu_persediaan:'Form Permintaan Persediaan',monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',set_pengguna:'Setting Pengguna',set_nomor:'Setting Penomoran',set_beranda:'Pengumuman dan Anggaran'},nm=v=>J[v]?J[v].t:NM[v];
+IC.perjadin=sv('<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>');
+const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan','perjadin','revisi_anggaran','monumen']],['bmn','BMN dan Persediaan',['ruangan','kartu_persediaan']]];
+const NM={revisi_anggaran:'Ajukan Revisi Anggaran',ruangan:'Peminjaman Ruangan',kartu_persediaan:'Form Permintaan Persediaan',monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',perjadin:'Perjalanan Dinas Pegawai',set_pengguna:'Setting Pengguna',set_nomor:'Setting Penomoran',set_beranda:'Pengumuman dan Anggaran'},nm=v=>J[v]?J[v].t:NM[v];
 const DRIVE='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0yS0x5SrNCli?usp=sharing',RLN={admin:'Admin',pegawai:'Pegawai',pegawai_keuangan:'Pegawai Keuangan',pegawai_bmn:'Pegawai BMN dan Persediaan'};
 let TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'];
 const lbl=k=>((J[view]||{}).lb||{})[k]||LB[k];
@@ -914,11 +918,12 @@ function ubahSandi(){
 // Format teks: **tebal**, baris diawali "- " jadi poin. Kata dalam {kurung} diganti otomatis oleh aplikasi.
 const DESK_DEF={
  pengajuan:'**Catatan: Standar Pelayanan**\n- Pengecekan sampai OTP PPK oleh SPK maksimal **5 hari kerja** dari tanggal penyerahan ke SPK.\n- OTP PPSPM sejak di-OTP PPK maksimal **3 hari kerja**.\n- Penerbitan SP2D maksimal **3 hari** setelah di-OTP PPSPM.\n\nPejabat Pembuat Komitmen (PPK): **{ppk}**',
+ perjadin:'**Catatan:**\n- Isi form **Ajukan Pencairan Perjadin** setelah perjalanan dinas selesai; periksa kembali data pada layar review sebelum disimpan.\n- Uang harian dihitung **{tarif}** per hari. Lama menginap otomatis = lama perjalanan dikurangi 1 hari bila menginap di hotel.\n- Status diperbarui oleh Pegawai Keuangan: Verifikasi Dokumen, Pencatatan di Aplikasi BOS, Pengajuan ke KPPN, Selesai.',
  revisi_anggaran:'Data yang Bapak/Ibu ubah, di sheet nya tolong di warnain dan konfirmasi ke Bang Adi Darmanto',
  kartu_persediaan:'**Catatan:** pengajuan barang **hanya dibuka setiap hari Senin**{status_pengajuan} Barang tersedia pada Senin minggu depannya (bila hari libur, hari berikutnya). Satu permintaan maksimal {maks} jenis barang. Status diperbarui oleh Pegawai BMN dan Persediaan; permintaan Selesai dipindahkan ke Riwayat Pengajuan setelah 3 jam.',
  link_app:'Menu ini untuk memudahkan pegawai mencari link aplikasi BPS, hubungi Admin Aplikasi untuk menambah atau menghapus link. **Pastikan VPN sudah tersambung!**'};
 let DESK={};
-const DESK_HELP={pengajuan:'Kata {ppk} diganti nama PPK otomatis.',kartu_persediaan:'Kata {status_pengajuan} diganti otomatis dengan info buka/tutup pengajuan; {maks} diganti batas jenis barang. Sebaiknya jangan dihapus.'};
+const DESK_HELP={pengajuan:'Kata {ppk} diganti nama PPK otomatis.',perjadin:'Kata {tarif} diganti otomatis dengan tarif uang harian.',kartu_persediaan:'Kata {status_pengajuan} diganti otomatis dengan info buka/tutup pengajuan; {maks} diganti batas jenis barang. Sebaiknya jangan dihapus.'};
 function deskHTML(t,tok){
  const f=x=>esc(x).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\{(\w+)\}/g,(m,k)=>tok&&k in tok?tok[k]:m);
  let o='',ul=false;
@@ -990,7 +995,7 @@ async function boot(){
  if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_nomor','set_beranda']]);
  else if(me.role=='pegawai_keuangan'&&!GR.some(g=>g[0]=='pengaturan')){NM.set_beranda='Anggaran Persediaan';GR.push(['pengaturan','Pengaturan',['set_beranda']])}
  const ni=(v,t)=>v=='monumen'?`<a href="${MONUMEN}" target="_blank" rel="noopener" data-x="1">${IC[v]}<span>${t}</span></a>`:`<a data-v="${v}">${IC[v]}<span>${t}</span></a>`;
- $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+'<div class="ns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="nsq" type="search" placeholder="Cari menu…" autocomplete="off" spellcheck="false" aria-label="Cari menu"><div id="nsr" hidden></div></div>'+'<div class="nl">Menu</div>'+ni('dashboard','Beranda')+(gh=>'<div class="nl">Layanan</div>'+GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+'<div class="nl">Lainnya</div>'+ni('link_app','Link Aplikasi BPS')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
+ $('#nav').innerHTML='<b><i><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></i><span class="bn">SIMPATI - 2171<em>BPS Kota Batam</em></span><button id="nc" type="button" title="Tutup menu" aria-label="Tutup menu">‹</button><div id="nbar"></div></b>'+'<div class="nl">Menu</div>'+ni('dashboard','Beranda')+(gh=>'<div class="nl">Layanan</div>'+GR.filter(g=>g[0]!='pengaturan').map(gh).join('')+'<div class="nl">Lainnya</div>'+ni('link_app','Link Aplikasi BPS')+GR.filter(g=>g[0]=='pengaturan').map(gh).join(''))(g=>`<div class="grp" data-k="${g[0]}"><a data-g="1">${IC[g[0]]}<span>${g[1]}</span><em>▾</em></a><div class="sub">${g[2].map(v=>ni(v,nm(v))).join('')}</div></div>`)
   +(ad?'':`<a href="${DRIVE}" target="_blank" rel="noopener" data-x="1">${IC.format}<span>Format Dokumen</span></a>`)
   +`<span class="sp"></span><div id="clk" role="button" tabindex="0" title="Klik untuk mengganti zona waktu"><div class="ct"><span id="ch">--</span><i>:</i><span id="cm">--</span><i>:</i><span id="cs">--</span><b id="cz">WIB</b></div><div class="cd" id="cd"></div><div id="cbar"></div></div><div class="cp">© 2026 Subbagian Umum BPS Kota Batam. All Rights Reserved.</div>`;
  const closeNav=()=>{$('#nav').classList.remove('show');$('#ov').classList.remove('show');document.body.classList.remove('lock')};
@@ -1001,14 +1006,16 @@ async function boot(){
  const nsi=[{v:'dashboard',t:'Beranda',g:'Menu'},{v:'link_app',t:'Link Aplikasi BPS',g:'Lainnya'}];
  GR.forEach(g=>g[2].forEach(v=>nsi.push({v,t:nm(v),g:g[1]})));
  if(!ad)nsi.push({v:'format',t:'Format Dokumen',g:'Lainnya',x:DRIVE});
- function nsFilter(){const q=$('#nsq').value.trim().toLowerCase(),r=$('#nsr'),n=$('#nav');
-  if(!q){r.hidden=true;r.innerHTML='';n.classList.remove('nq');return}
-  const hit=nsi.filter(i=>(i.t+' '+i.g).toLowerCase().includes(q));n.classList.add('nq');r.hidden=false;
+ function nsFilter(){const q=$('#nsq').value.trim().toLowerCase(),r=$('#nsr');
+  if(!q){r.hidden=true;r.innerHTML='';return}
+  const hit=nsi.filter(i=>(i.t+' '+i.g).toLowerCase().includes(q));r.hidden=false;
   r.innerHTML=hit.length?hit.map(i=>{const inn=`${IC[i.v]||''}<span>${esc(i.t)}</span><small>${esc(i.g)}</small>`;
    return i.v=='monumen'?`<a href="${MONUMEN}" target="_blank" rel="noopener" data-x="1">${inn}</a>`:i.x?`<a href="${i.x}" target="_blank" rel="noopener" data-x="1">${inn}</a>`:`<a data-v="${i.v}">${inn}</a>`}).join(''):'<div class="nsn">Menu tidak ditemukan</div>'}
- $('#nsq').oninput=nsFilter;
+ $('#nsq').value='';$('#nsr').hidden=true;
+ $('#nsq').oninput=nsFilter;$('#nsq').onfocus=nsFilter;
  $('#nsq').onkeydown=e=>{if(e.key=='Enter'){const a=$('#nsr a');if(a){e.preventDefault();a.click()}}if(e.key=='Escape'){e.target.value='';nsFilter()}};
- $('#nsr').addEventListener('click',()=>setTimeout(()=>{$('#nsq').value='';nsFilter()},0));
+ $('#nsr').onclick=e=>{const a=e.target.closest('a');if(!a)return;if(a.dataset.v){e.preventDefault();go(a.dataset.v)}setTimeout(()=>{$('#nsq').value='';nsFilter()},0)};
+ document.addEventListener('click',e=>{if(!e.target.closest('#tns'))$('#nsr').hidden=true});
  $('#uc').innerHTML=`<span class="av2">${ini(me.nama)}</span><span class="un">${esc(me.nama)}</span><em>▾</em>`;
  $('#uc').onclick=e=>{e.stopPropagation();const o=$('#um').hidden;if(o)userPanel();$('#um').hidden=!o;$('#uc').setAttribute('aria-expanded',o)};
  const tutupUm=()=>{$('#um').hidden=true;$('#uc').setAttribute('aria-expanded','false')};
@@ -1035,7 +1042,7 @@ $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();i
 
 function go(v){view=v;if(v=='set_pengguna')sTab='pengguna';page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
  document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth<=800)});
- v=='dashboard'?dash():v.startsWith('set_')?setelan():v=='pengajuan'?pengajuanPage():v=='ruangan'?ruangPage():v=='kartu_persediaan'?persPage():v=='link_app'?linkPage():v=='revisi_anggaran'?revisiPage():load()}
+ v=='dashboard'?dash():v.startsWith('set_')?setelan():v=='pengajuan'?pengajuanPage():v=='perjadin'?perjadinPage():v=='ruangan'?ruangPage():v=='kartu_persediaan'?persPage():v=='link_app'?linkPage():v=='revisi_anggaran'?revisiPage():load()}
 
 let dy=0,jt,FMT={};
 const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2a62c9',surat_tugas:'#12b5a6',sk_kpa:'#f5a524',form_permintaan:'#8b5cf6'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA',form_permintaan:'FP'};
@@ -1736,6 +1743,126 @@ function psArsip(){
  ${a.map(r=>`<tr><td data-l="Nama Pegawai"><b>${esc(r.pegawai)}</b></td><td data-l="Barang">${esc((r.items||[]).map(x=>x.nama+' ('+x.qty+' '+(x.satuan||'')+')').join(', '))}</td><td data-l="Tanggal Pengambilan" class="tg">${tgl(r.tgl_ambil)}</td><td data-l="Selesai Pada">${wkt(tSt(r))}</td><td class="ac"><button data-ah="${r.id}">Riwayat</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada permintaan di riwayat.</td></tr>'}</table></div>
  <div class="row"><button id="bt">Tutup</button></div>`,980);
  $('#bt').onclick=closeM;$('#modal').querySelectorAll('[data-ah]').forEach(b=>b.onclick=()=>psRiwayat(b.dataset.ah,true))}
+// ===== Perjalanan Dinas Pegawai (menu Keuangan) =====
+// Semua pegawai dapat mengajukan. Mengubah status, menambah catatan, mengubah, dan menghapus hanya Admin dan Pegawai Keuangan.
+// Tarif uang harian: ubah di sini DAN di fungsi pd_trg() pada file SQL (bagian I) agar sama.
+const TARIF_HARIAN=370000,
+ PD_STATUS=['Verifikasi Dokumen','Pencatatan di Aplikasi BOS','Pengajuan ke KPPN','Selesai'],
+ PD_SC={'Verifikasi Dokumen':'#2a62c9','Pencatatan di Aplikasi BOS':'#7a4fd6','Pengajuan ke KPPN':'#f5a524','Selesai':'#0f9d58'};
+let pd=[],pdf='';
+const pdKelola=()=>me.role=='admin'||me.role=='pegawai_keuangan',
+ pdN=v=>Math.max(0,Math.round(Number(v)||0)),
+ pdMen=v=>v===true||v==='Iya';
+function pdHitung(d){
+ const lama=pdN(d.lama_hari),men=pdMen(d.menginap),inap=men?Math.max(lama-1,0):0,uh=pdN(d.hari_uang_harian)*TARIF_HARIAN,hotel=men?pdN(d.biaya_hotel):0;
+ return {inap,uh,hotel,total:pdN(d.biaya_pergi)+pdN(d.biaya_pulang)+pdN(d.taksi_asal)+pdN(d.taksi_tujuan)+uh+hotel}}
+async function perjadinPage(keep){
+ if(!keep)pdf='';
+ $('#main').innerHTML='<p class="muted">Memuat…</p>';
+ const {data,error}=await db.from('perjadin').select('*').order('dibuat_pada',{ascending:false}).limit(5000);
+ if(error)return toast('Gagal memuat data: '+error.message+' (pastikan SQL terbaru bagian I sudah dijalankan)',1);
+ pd=data;pdDraw()}
+function pdDraw(){
+ const s=q.toLowerCase(),kel=pdKelola(),cnt={};PD_STATUS.forEach(x=>cnt[x]=pd.filter(r=>r.status==x).length);
+ const f=pd.filter(r=>(!pdf||r.status==pdf)&&(!s||[r.no_urut,r.pegawai,r.mata_anggaran,r.nama_kegiatan,r.tujuan,r.status,r.catatan].join(' ').toLowerCase().includes(s))),tp=Math.max(1,Math.ceil(f.length/10));page=Math.min(page,tp);
+ const part=f.slice((page-1)*10,page*10);
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Perjalanan Dinas Pegawai</h1>
+ ${deskBox('perjadin',{tarif:rp(TARIF_HARIAN)})}
+ <div class="chips"><button class="${!pdf?'on':''}" data-f="">Semua <b>${pd.length}</b></button>${PD_STATUS.map(x=>`<button class="${pdf==x?'on':''}" data-f="${x}" style="--c:${PD_SC[x]}"><i></i>${x} <b>${cnt[x]}</b></button>`).join('')}</div>
+ <div class="bar"><input id="cari" type="search" placeholder="Cari pegawai, kegiatan, tujuan, mata anggaran…" value="${esc(q)}"><span class="sp"></span><button class="p" id="tambah">Ajukan Pencairan Perjadin</button></div>
+ <div class="tw"><table><tr><th>No</th><th>Nama Pegawai</th><th>Kegiatan</th><th>Tujuan</th><th>Lama</th><th>Total Biaya</th><th>Status</th><th>Catatan</th><th>Aksi</th></tr>
+ ${part.map(r=>`<tr><td data-l="No"><b>${r.no_urut}</b></td><td data-l="Nama Pegawai">${esc(r.pegawai)}</td><td data-l="Kegiatan"><b>${esc(r.nama_kegiatan)}</b><br><small class="muted">${esc(r.mata_anggaran)}</small></td><td data-l="Tujuan">${esc(r.tujuan)}</td><td data-l="Lama">${r.lama_hari} hari</td><td data-l="Total Biaya"><b>${rp(r.total)}</b></td>
+  <td data-l="Status">${kel?`<select class="st" data-s="${r.id}" style="--c:${PD_SC[r.status]}">${PD_STATUS.map(x=>`<option ${x==r.status?'selected':''}>${x}</option>`).join('')}</select>`:`<span class="st" style="--c:${PD_SC[r.status]}">${esc(r.status)}</span>`}</td>
+  <td data-l="Catatan">${r.catatan?esc(r.catatan):'<span class="muted">-</span>'}</td>
+  <td class="ac"><button data-h="${r.id}">Rincian</button>${kel?` <button data-c="${r.id}">Catatan</button> <button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td></tr>`).join('')||`<tr><td colspan="9" class="empty">${s||pdf?'Tidak ada data yang cocok.':'Belum ada pengajuan. Klik “Ajukan Pencairan Perjadin” untuk memulai.'}</td></tr>`}</table></div>
+ <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
+ $('#cari').oninput=e=>{q=e.target.value;page=1;pdDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
+ $('#tambah').onclick=()=>pdForm();$('#pv').onclick=()=>{page--;pdDraw()};$('#nx').onclick=()=>{page++;pdDraw()};
+ $('#main').querySelectorAll('.chips [data-f]').forEach(b=>b.onclick=()=>{pdf=b.dataset.f;page=1;pdDraw()});
+ $('#main').querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>pdRincian(b.dataset.h));
+ $('#main').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>pdCatatan(b.dataset.c));
+ $('#main').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>pdForm(b.dataset.e));
+ $('#main').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>pdHapus(b.dataset.x));
+ $('#main').querySelectorAll('[data-s]').forEach(x=>x.onchange=()=>{const r=pd.find(y=>y.id==x.dataset.s);
+  konfirmasi('Ubah Status Perjadin?',`Status perjadin <b>${esc(r.nama_kegiatan)}</b> (${esc(r.pegawai)}) akan diubah menjadi <b>${esc(x.value)}</b>.`,'Ya, Ubah',async()=>{
+   const {error}=await db.from('perjadin').update({status:x.value}).eq('id',r.id);
+   if(error)return toast('Gagal mengubah status: '+error.message,1);toast('Status diperbarui');perjadinPage(1)},()=>pdDraw())});
+}
+function pdForm(id,pre){
+ const o=id?pd.find(x=>x.id==id):null,r=pre||o||{},nama=id?o.pegawai:me.nama,
+  nb=n=>`<input name="${n}" type="number" min="0" step="1" inputmode="numeric" value="${r[n]==null?'':esc(r[n])}" placeholder="0" required>`,
+  mv=r.menginap===true||r.menginap==='Iya'?'Iya':(r.menginap===false||r.menginap==='Tidak')?'Tidak':'';
+ modal(`<h2>${id?'Ubah':'Ajukan'} Pencairan Perjalanan Dinas</h2><form id="fm">
+ <label>Nama Pegawai</label><input name="pegawai" value="${esc(nama)}" readonly required><small class="muted">Terisi otomatis sesuai akun yang login.</small>
+ <label>Mata Anggaran</label><input name="mata_anggaran" value="${esc(r.mata_anggaran)}" placeholder="Contoh: 2902 BMA 006 530 0A" required autocomplete="off">
+ <label>Nama Kegiatan</label><input name="nama_kegiatan" value="${esc(r.nama_kegiatan)}" placeholder="Contoh: Konsultasi ke BPS Provinsi Kepulauan Riau" required autocomplete="off">
+ <label>Kabupaten/Kota Tujuan Perjalanan</label><input name="tujuan" value="${esc(r.tujuan)}" placeholder="Contoh: Kota Tanjungpinang" required autocomplete="off">
+ <label>Lama Perjalanan (hari)</label><input name="lama_hari" type="number" min="1" step="1" inputmode="numeric" value="${r.lama_hari==null?'':esc(r.lama_hari)}" placeholder="0" required>
+ <label>Biaya Angkutan Pergi (Rp)</label>${nb('biaya_pergi')}
+ <label>Biaya Angkutan Pulang (Rp)</label>${nb('biaya_pulang')}
+ <label>Biaya Taksi Asal (Batam) (Rp)</label>${nb('taksi_asal')}
+ <label>Biaya Taksi Tujuan (Rp)</label>${nb('taksi_tujuan')}
+ <label>Jumlah Hari Uang Harian</label><input name="hari_uang_harian" type="number" min="0" step="1" inputmode="numeric" value="${r.hari_uang_harian==null?'':esc(r.hari_uang_harian)}" placeholder="0" required><small class="muted">Tarif ${rp(TARIF_HARIAN)} per hari. Terisi mengikuti Lama Perjalanan, boleh diubah.</small>
+ <label>Uang Harian (Rp)</label><input id="pd_uh" readonly>
+ <label>Menginap di Hotel?</label><select name="menginap" required><option value="">- Pilih -</option><option ${mv=='Iya'?'selected':''}>Iya</option><option ${mv=='Tidak'?'selected':''}>Tidak</option></select>
+ <div id="pd_h" hidden>
+  <label>Nama Hotel</label><input name="nama_hotel" value="${esc(r.nama_hotel)}" placeholder="Contoh: Hotel Pelangi" autocomplete="off">
+  <label>Lama Menginap</label><input id="pd_inap" readonly><small class="muted">Otomatis: Lama Perjalanan dikurangi 1.</small>
+  <label>Biaya Hotel (Rp)</label><input name="biaya_hotel" type="number" min="0" step="1" inputmode="numeric" value="${r.biaya_hotel==null?'':esc(r.biaya_hotel)}" placeholder="0">
+ </div>
+ <div class="kv" style="margin-top:14px;border-top:1px solid var(--bd)"><span><b>Total Biaya Perjalanan Dinas</b></span><b id="pd_tot" style="font-size:16px">Rp 0</b></div>
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${id?'Simpan Perubahan':'Simpan'}</button></div></form>`,520);
+ $('#bt').onclick=closeM;
+ const fm=$('#fm'),g=n=>fm.elements[n].value;let tch=!!r.hari_uang_harian&&r.hari_uang_harian!=r.lama_hari;
+ const cur=()=>({lama_hari:g('lama_hari'),biaya_pergi:g('biaya_pergi'),biaya_pulang:g('biaya_pulang'),taksi_asal:g('taksi_asal'),taksi_tujuan:g('taksi_tujuan'),hari_uang_harian:g('hari_uang_harian'),menginap:g('menginap')=='Iya',biaya_hotel:g('biaya_hotel')});
+ const upd=()=>{const men=g('menginap')=='Iya';$('#pd_h').hidden=!men;fm.elements.nama_hotel.required=men;
+  if(!tch)fm.elements.hari_uang_harian.value=g('lama_hari');
+  const c=pdHitung(cur());$('#pd_uh').value=rp(c.uh);$('#pd_inap').value=c.inap+' malam';$('#pd_tot').textContent=rp(c.total)};
+ fm.addEventListener('input',e=>{if(e.target.name=='hari_uang_harian')tch=true;upd()});upd();
+ fm.onsubmit=e=>{e.preventDefault();const f=Object.fromEntries(new FormData(fm)),c=pdHitung(cur()),men=f.menginap=='Iya';
+  const d={pegawai:nama,mata_anggaran:f.mata_anggaran.trim(),nama_kegiatan:proper((f.nama_kegiatan||'').trim()),tujuan:proper((f.tujuan||'').trim()),lama_hari:pdN(f.lama_hari),
+   biaya_pergi:pdN(f.biaya_pergi),biaya_pulang:pdN(f.biaya_pulang),taksi_asal:pdN(f.taksi_asal),taksi_tujuan:pdN(f.taksi_tujuan),
+   hari_uang_harian:pdN(f.hari_uang_harian),tarif_harian:TARIF_HARIAN,uang_harian:c.uh,menginap:men,nama_hotel:men?proper((f.nama_hotel||'').trim()):null,
+   lama_menginap:c.inap,biaya_hotel:c.hotel,total:c.total};
+  if(d.lama_hari<1)return toast('Lama perjalanan minimal 1 hari',1);
+  modal(`<h2>Peringatan</h2><p>Harap Cek Kembali Isian Data. Data yang sudah diinput hanya dapat diubah atau dihapus oleh Pegawai Keuangan atau Admin!</p>${rinci([['Nama Pegawai',d.pegawai],['Mata Anggaran',d.mata_anggaran],['Nama Kegiatan',d.nama_kegiatan],['Kabupaten/Kota Tujuan',d.tujuan],['Lama Perjalanan',d.lama_hari+' hari'],
+   ['Biaya Angkutan Pergi',rp(d.biaya_pergi)],['Biaya Angkutan Pulang',rp(d.biaya_pulang)],['Biaya Taksi Asal (Batam)',rp(d.taksi_asal)],['Biaya Taksi Tujuan',rp(d.taksi_tujuan)],
+   ['Uang Harian',d.hari_uang_harian+' hari x '+rp(TARIF_HARIAN)+' = '+rp(d.uang_harian)],['Menginap di Hotel',men?'Iya':'Tidak'],
+   ...(men?[['Nama Hotel',d.nama_hotel],['Lama Menginap',d.lama_menginap+' malam'],['Biaya Hotel',rp(d.biaya_hotel)]]:[]),
+   ['Total Biaya Perjalanan Dinas',rp(d.total)]])}<p><b>Apakah Anda Tetap Ingin Melanjutkan untuk Menyimpan Data?</b></p><div class="row"><button id="bt">Edit Kembali Form</button><button class="p" id="ok">Simpan</button></div>`,520);
+  $('#bt').onclick=()=>pdForm(id,d);$('#ok').onclick=()=>pdSimpan(d,id)}}
+async function pdSimpan(d,id){
+ const b=$('#ok');if(b)b.disabled=true;
+ const {error}=id?await db.from('perjadin').update(d).eq('id',id):await db.from('perjadin').insert(d);
+ if(error){if(b)b.disabled=false;return toast('Gagal menyimpan: '+error.message,1)}
+ closeM();toast(id?'Perubahan disimpan':'Pengajuan perjadin tersimpan');perjadinPage(1)}
+function pdCatatan(id){
+ if(!pdKelola())return;const r=pd.find(x=>x.id==id);if(!r)return;
+ modal(`<h2>Catatan Perjadin</h2><p class="muted" style="margin:2px 0 8px">${esc(r.pegawai)} · ${esc(r.nama_kegiatan)}</p><form id="fm"><label>Catatan</label><textarea class="ta" name="catatan" rows="5" placeholder="Contoh: Kuitansi hotel belum dilampirkan">${esc(r.catatan)}</textarea><small class="muted">Kosongkan untuk menghapus catatan.</small>
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">Simpan Catatan</button></div></form>`,480);
+ $('#bt').onclick=closeM;
+ $('#fm').onsubmit=async e=>{e.preventDefault();const b=e.submitter,v=(e.target.catatan.value||'').trim()||null;b.disabled=true;
+  const {error}=await db.from('perjadin').update({catatan:v}).eq('id',id);
+  if(error){b.disabled=false;return toast('Gagal menyimpan catatan: '+error.message,1)}
+  r.catatan=v;closeM();toast('Catatan disimpan');pdDraw()}}
+function pdRincian(id){
+ const r=pd.find(x=>x.id==id);if(!r)return;
+ modal(`<h2>${esc(r.nama_kegiatan)}</h2><p class="muted" style="margin:2px 0 12px">No ${r.no_urut} · ${esc(r.pegawai)}</p>
+ ${rinci([['Mata Anggaran',r.mata_anggaran],['Kabupaten/Kota Tujuan',r.tujuan],['Lama Perjalanan',r.lama_hari+' hari'],['Biaya Angkutan Pergi',rp(r.biaya_pergi)],['Biaya Angkutan Pulang',rp(r.biaya_pulang)],['Biaya Taksi Asal (Batam)',rp(r.taksi_asal)],['Biaya Taksi Tujuan',rp(r.taksi_tujuan)],
+  ['Uang Harian',r.hari_uang_harian+' hari x '+rp(r.tarif_harian)+' = '+rp(r.uang_harian)],['Menginap di Hotel',r.menginap?'Iya':'Tidak'],
+  ...(r.menginap?[['Nama Hotel',r.nama_hotel],['Lama Menginap',r.lama_menginap+' malam'],['Biaya Hotel',rp(r.biaya_hotel)]]:[]),['Total Biaya Perjalanan Dinas',rp(r.total)],['Status',r.status],['Catatan',r.catatan]])}
+ <h2 style="font-size:15px;margin:16px 0 4px">Riwayat Status</h2>
+ <div class="tl">${(r.riwayat||[]).map(x=>`<div class="ti" style="--c:${PD_SC[x.status]||'#888'}"><i></i><div><b>${esc(x.status)}</b><small>${tgl(x.tgl)} ${esc(x.jam||'')} · ${esc(x.oleh||'')}</small></div></div>`).join('')}</div>
+ <div class="row"><button id="bt">Tutup</button></div>`,520);
+ $('#bt').onclick=closeM}
+function pdHapus(id){
+ if(!pdKelola())return;const r=pd.find(x=>x.id==id);if(!r)return;
+ konfirmasi('Hapus Perjadin?',`Perjadin <b>${esc(r.nama_kegiatan)}</b> (No ${r.no_urut}, ${esc(r.pegawai)}) akan dihapus permanen dan tidak bisa dikembalikan.`,'Ya, Hapus',async()=>{
+  const {error,count}=await db.from('perjadin').delete({count:'exact'}).eq('id',id);
+  if(error)return toast('Gagal menghapus: '+error.message,1);
+  if(!count)return toast('Tidak berhak menghapus, atau SQL terbaru belum dijalankan di Supabase.',1);
+  pd=pd.filter(x=>x.id!=id);toast('Perjadin dihapus');pdDraw()})}
+
 const RL={admin:'admin',administrator:'admin',petugas:'pegawai','petugas persuratan':'pegawai',pegawai:'pegawai','pegawai keuangan':'pegawai_keuangan',pegawai_keuangan:'pegawai_keuangan','pegawai bmn dan persediaan':'pegawai_bmn','pegawai bmn':'pegawai_bmn',pegawai_bmn:'pegawai_bmn'};
 function impor(a){
  const hd=(a[0]||[]).map(x=>String(x).toLowerCase()),ix=k=>hd.findIndex(x=>x.includes(k));
