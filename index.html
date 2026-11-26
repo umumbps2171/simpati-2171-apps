@@ -760,13 +760,32 @@ nav a.on{background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 92%,#fff
  :root:not([data-theme=light]) .grp.open .sub{background:linear-gradient(165deg,rgba(52,70,100,.9),rgba(13,20,31,.82));border-color:rgba(255,255,255,.14);box-shadow:0 14px 44px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.14)}
  :root:not([data-theme=light]) .sub a:hover{background:rgba(255,255,255,.1)}
 }
+
+/* ===== Latar belakang halaman login beranimasi ===== */
+body:has(#login:not([hidden])){background:linear-gradient(125deg,#1a2a42,#24456e,#1c5a72,#2a3f66,#1a2a42) fixed;background-size:300% 300%;animation:lgrad 22s ease-in-out infinite;min-height:100vh}
+@keyframes lgrad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+#lbg{display:none;position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+body:has(#login:not([hidden])) #lbg{display:block}
+#login{z-index:1}
+#lbg .ob1,#lbg .ob2,#lbg .ob3{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;will-change:transform}
+#lbg .ob1{width:46vmax;height:46vmax;left:-12vmax;top:-14vmax;background:radial-gradient(circle,#3f86e0,transparent 68%);animation:ldrift1 26s ease-in-out infinite}
+#lbg .ob2{width:40vmax;height:40vmax;right:-10vmax;bottom:-12vmax;background:radial-gradient(circle,#12b5a6,transparent 68%);animation:ldrift2 30s ease-in-out infinite}
+#lbg .ob3{width:30vmax;height:30vmax;left:38%;top:30%;background:radial-gradient(circle,#7a8cff,transparent 70%);opacity:.32;animation:ldrift3 34s ease-in-out infinite}
+@keyframes ldrift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(18vmax,12vmax) scale(1.18)}}
+@keyframes ldrift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-20vmax,-10vmax) scale(1.2)}}
+@keyframes ldrift3{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-14vmax,10vmax) scale(1.25)}66%{transform:translate(12vmax,-8vmax) scale(.9)}}
+/* batang grafik statistik yang naik turun di dasar layar */
+#lbg .lbars{position:absolute;left:0;right:0;bottom:0;height:34vh;display:flex;align-items:flex-end;justify-content:space-around;gap:1.2vw;padding:0 2vw;opacity:.16}
+#lbg .lbars i{flex:1;max-width:46px;border-radius:10px 10px 0 0;background:linear-gradient(180deg,#bcd8ff,rgba(188,216,255,.1));height:var(--h);transform-origin:bottom;animation:lbar var(--d) ease-in-out infinite;animation-delay:var(--dl)}
+@keyframes lbar{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+/* titik-titik halus yang melayang naik */
+#lbg .lpts i{position:absolute;bottom:-20px;left:var(--x);width:var(--s);height:var(--s);border-radius:50%;background:rgba(255,255,255,.55);animation:lrise var(--d) linear infinite;animation-delay:var(--dl)}
+@keyframes lrise{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:.8}90%{opacity:.6}100%{transform:translateY(-112vh) translateX(var(--dx));opacity:0}}
+@media(max-width:800px){#lbg .lbars{height:22vh}}
+@media(prefers-reduced-motion:reduce){body:has(#login:not([hidden])){animation:none}#lbg *{animation:none!important}}
 </style></head><body>
 
-<div id="gate" hidden>
- <div class="gh gl"></div><div class="gh gr"></div>
- <div id="gc"><div class="ob"><i class="o o1"></i><i class="o o2"></i><i class="o o3"></i></div>
-  <div class="gk"><div class="gm"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><h1 id="gt">SIMPATI - 2171</h1><p class="gs">Sistem Informasi Manajemen Pelayanan Administrasi Terintegrasi Badan Pusat Statistik Kota Batam</p><span class="gbw"><button id="gb" type="button" aria-label="Masuk ke Aplikasi!"><span class="gbl" id="gbl"></span><i>→</i></button></span><div class="gn"><span>Surat Menyurat</span><span>Keuangan</span><span>BMN dan Persediaan</span><span>Link Aplikasi</span></div><div class="gt2"><span id="gjam"></span><span class="kb"> · Tekan <b>Enter</b> untuk masuk</span></div></div></div>
-</div>
+<div id="lbg" aria-hidden="true"><i class="ob1"></i><i class="ob2"></i><i class="ob3"></i><div class="lbars"></div><div class="lpts"></div></div>
 <form id="login" hidden>
  <div class="lv"><i class="bb b1"></i><i class="bb b2"></i><i class="bb b3"></i>
   <div class="lvh"><div class="lgo"><img src="logo-bps.png" alt="Logo BPS" onerror="noLogo(this)"></div><div class="lvn"><b>SIMPATI - 2171</b><small>Badan Pusat Statistik Kota Batam</small></div></div>
@@ -983,14 +1002,14 @@ $('#modal').onclick=e=>{if(e.target.id=='modal')closeM()};
 
 async function boot(){
  const {data:{session}}=await db.auth.getSession();
- if(!session){$('#lf').hidden=false;$('#app').hidden=true;$('#login').hidden=false;$('#gate').hidden=false;return}
+ if(!session){$('#lf').hidden=false;$('#app').hidden=true;$('#login').hidden=false;try{$('#em').focus()}catch(_){}return}
  const {data:p}=await db.from('profiles').select('*').eq('id',session.user.id).single();
  me=p||{role:'pegawai',nama:session.user.email};me.id=session.user.id;
  const [a,b,fx,tm,dk]=await Promise.all([ambilPg(),db.from('klasifikasi').select('*').order('kode'),db.from('format_nomor').select('*'),ambilTim(),db.from('pengaturan').select('kunci,nilai').like('kunci','desk:%')]);
  DESK=Object.fromEntries(((dk&&dk.data)||[]).map(x=>[String(x.kunci).slice(5),x.nilai??'']));
  FMT=Object.fromEntries((fx.data||[]).map(x=>[x.jenis,x.pola]));
  pg=a||[];kl=b.data||[];TIM=tm;
- $('#login').hidden=true;$('#gate').hidden=true;$('#lf').hidden=true;$('#app').hidden=false;
+ $('#login').hidden=true;$('#lf').hidden=true;$('#app').hidden=false;
  if(!['admin','pegawai_keuangan','pegawai_bmn'].includes(me.role))me.role='pegawai';me.email=me.email||session.user.email;const ad=me.role=='admin';
  if(ad&&!GR.some(g=>g[0]=='pengaturan'))GR.push(['pengaturan','Pengaturan',['set_pengguna','set_nomor','set_beranda']]);
  else if(me.role=='pegawai_keuangan'&&!GR.some(g=>g[0]=='pengaturan')){NM.set_beranda='Anggaran Persediaan';GR.push(['pengaturan','Pengaturan',['set_beranda']])}
@@ -1026,13 +1045,6 @@ async function boot(){
  go('dashboard');
  pwBanner()
 }
-const gj=()=>{const d=new Date(),o={timeZone:'Asia/Jakarta'};$('#gjam').textContent=d.toLocaleDateString('id-ID',{...o,weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString('id-ID',{...o,hour:'2-digit',minute:'2-digit'})+' WIB'};gj();setInterval(gj,20000);
-$('#gbl').innerHTML=[...'Masuk ke Aplikasi!'].map((c,i)=>c==' '?'<span style="width:.32em"></span>':`<span style="--i:${i}">${c}</span>`).join('');
-$('#gate').addEventListener('pointermove',e=>{const gb=$('#gb'),b=gb.getBoundingClientRect(),dx=e.clientX-(b.left+b.width/2),dy=e.clientY-(b.top+b.height/2),d=Math.hypot(dx,dy),w=gb.parentElement,k=d<190?(1-d/190)*.28:0;w.style.setProperty('--tx',dx*k+'px');w.style.setProperty('--ty',dy*k+'px')});
-const burstGb=()=>{const b=$('#gb').getBoundingClientRect();for(let i=0;i<26;i++){const p=document.createElement('b'),an=Math.random()*6.28,d=60+Math.random()*110;p.className='spk';p.style.cssText=`left:${b.left+b.width/2}px;top:${b.top+b.height/2}px;--dx:${Math.cos(an)*d}px;--dy:${Math.sin(an)*d}px;background:${i%3?'#ffd36b':'#fff'}`;$('#gate').appendChild(p);setTimeout(()=>p.remove(),700)}};
-$('#gate').onpointermove=e=>{const g=$('#gate');g.style.setProperty('--mx',(e.clientX/innerWidth*2-1).toFixed(2));g.style.setProperty('--my',(e.clientY/innerHeight*2-1).toFixed(2));g.style.setProperty('--px',e.clientX+'px');g.style.setProperty('--py',e.clientY+'px')};
-$('#gb').onclick=()=>{const g=$('#gate');if(g.classList.contains('open'))return;burstGb();g.classList.add('open');setTimeout(()=>{g.hidden=true;$('#em').focus()},950)};
-document.addEventListener('keydown',e=>{const g=$('#gate');if(e.key=='Enter'&&!g.hidden&&!g.classList.contains('open')){e.preventDefault();$('#gb').click()}});
 $('#eye').onclick=()=>{const p=$('#pw'),s=p.type=='password';p.type=s?'text':'password';$('#eye').textContent=s?'Sembunyikan':'Lihat'};
 $('#pw').addEventListener('keyup',e=>{$('#cl').hidden=!(e.getModifierState&&e.getModifierState('CapsLock'))});
 function shakeLogin(){const f=$('#login');if(f.animate)f.animate([{transform:'translateX(0)'},{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:450,easing:'ease-in-out'})}
@@ -1582,7 +1594,7 @@ async function ruangPage(){
 function ruangDraw(){
  const s=q.toLowerCase(),f=rr.filter(r=>!s||[r.tim,r.pegawai,r.ruangan,r.kegiatan,r.tanggal].join(' ').toLowerCase().includes(s)),tp=Math.max(1,Math.ceil(f.length/10));page=Math.min(page,tp);
  const part=f.slice((page-1)*10,page*10),C=[['tanggal','Tanggal Peminjaman'],['ruangan','Ruangan'],['kegiatan','Nama Kegiatan'],['pegawai','Nama Pegawai']];
- $('#main').innerHTML=`<p class="muted" style="margin:0">Fasilitas</p><h1>Peminjaman Ruangan</h1>${deskBox('ruangan')}<div class="bar"><input id="cari" type="search" placeholder="Cari kegiatan, tim, ruangan…" value="${esc(q)}"><span class="sp"></span><button class="p" id="tambah">Ajukan Peminjaman</button></div>
+ $('#main').innerHTML=`<p class="muted" style="margin:0">BMN dan Persediaan</p><h1>Peminjaman Ruangan</h1>${deskBox('ruangan')}<div class="bar"><input id="cari" type="search" placeholder="Cari kegiatan, tim, ruangan…" value="${esc(q)}"><span class="sp"></span><button class="p" id="tambah">Ajukan Peminjaman</button></div>
  <div class="tw"><table><tr>${C.map(c=>`<th>${c[1]}</th>`).join('')}<th>Aksi</th></tr>${part.map(r=>`<tr>${C.map(c=>`<td data-l="${c[1]}">${c[0]=='tanggal'?tgl(r.tanggal):c[0]=='kegiatan'?'<b>'+esc(r.kegiatan)+'</b>':esc(r[c[0]])}</td>`).join('')}<td class="ac">${bolehRu(r)?`<button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td></tr>`).join('')||`<tr><td colspan="5" class="empty">${s?'Tidak ada data yang cocok dengan pencarian.':'Belum ada peminjaman ruangan. Klik “Ajukan Peminjaman” untuk memulai.'}</td></tr>`}</table></div>
  <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
  $('#cari').oninput=e=>{q=e.target.value;page=1;ruangDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
@@ -1889,5 +1901,8 @@ const temaAktif=()=>document.documentElement.dataset.theme||(matchMedia('(prefer
 function ikonTema(){const d=temaAktif()=='dark',b=$('#th');b.innerHTML=d?SVG_S:SVG_M;b.title=d?'Ganti ke tema terang':'Ganti ke tema gelap';b.setAttribute('aria-label',b.title)}
 $('#th').onclick=()=>{const t=temaAktif()=='dark'?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.setItem('tema',t)}catch(_){}ikonTema()};
 ikonTema();
+(function(){var b=document.querySelector('#lbg .lbars'),p=document.querySelector('#lbg .lpts');if(!b||!p)return;
+for(var i=0;i<22;i++){var e=document.createElement('i');e.style.cssText='--h:'+(30+Math.random()*70)+'%;--d:'+(5+Math.random()*6).toFixed(1)+'s;--dl:-'+(Math.random()*8).toFixed(1)+'s';b.appendChild(e)}
+for(var j=0;j<26;j++){var q=document.createElement('i');q.style.cssText='--x:'+(Math.random()*100).toFixed(1)+'%;--s:'+(3+Math.random()*6).toFixed(1)+'px;--d:'+(12+Math.random()*16).toFixed(1)+'s;--dl:-'+(Math.random()*20).toFixed(1)+'s;--dx:'+((Math.random()*80-40)|0)+'px';p.appendChild(q)}})();
 boot();
 </script></body></html>
