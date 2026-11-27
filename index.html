@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>window.noLogo=function(e){var p=e.parentElement;if(p&&p.classList.contains("lgo"))p.remove();else e.replaceWith("U")}</script>
-<script>(function(){try{var t=localStorage.getItem('tema');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}})()</script>
+<script>(function(){try{var z=[.9,1,1.1,1.2,1.35][+localStorage.getItem('fz')];if(z)document.documentElement.style.setProperty('--zm',z)}catch(e){}try{var t=localStorage.getItem('tema');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}})()</script>
 <style>
 :root{--bg:#eef1f3;--card:#fff;--tx:#131a24;--mut:#69737e;--navy:#14233d;--sky:#284d84;--sky2:#e7edf3;--bd:#e1e7ed;--err:#d92d20;--up:#0f9d58;--sh:0 1px 2px rgba(17,34,53,.05),0 8px 22px rgba(17,34,53,.07);--ink:#14233d;--inktx:#fff;--pbtn:linear-gradient(135deg,#284d84,#1a3359)}
 :root{color-scheme:light}
@@ -786,6 +786,47 @@ body:has(#login:not([hidden])) #lbg{display:block}
 
 /* ===== Tombol nama pengguna (dekat tombol tema) diperlebar, tinggi tetap ===== */
 @media(min-width:801px){#uc{min-width:270px;padding-right:20px}#uc .un{flex:1;text-align:left;max-width:none}#uc em{margin-left:auto}}
+
+/* ===== Tombol ukuran tulisan (di sebelah tombol tema) ===== */
+:root{--zm:1}
+#main,#modal .box{zoom:var(--zm)}
+#fsz{margin-left:auto;display:flex;gap:8px}
+#fsz+#th{margin-left:0}
+#fsz button{width:42px;height:42px;padding:0;border-radius:50%;display:grid;place-items:center;font-weight:700;line-height:1}
+#fzm{font-size:13px}#fzp{font-size:17px}
+#fsz button:disabled{opacity:.4;cursor:default}
+@media(max-width:800px){#fsz button{width:38px;height:38px}}
+/* ===== Matriks Pegawai ===== */
+:root{--mxwk:#f6c9c5;--mxme:#eaf1fb}
+:root[data-theme=dark]{--mxwk:#5b2b2e;--mxme:#16263b}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--mxwk:#5b2b2e;--mxme:#16263b}}
+.mxt{min-width:130px;text-align:center;font-size:16px}
+.mxl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:0 0 10px;font-size:13px}
+.mxl span{display:inline-flex;gap:6px;align-items:center}
+.mxl i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.mxl i.t,.mc.t{background:#3b82f6}.mxl i.p,.mc.p{background:#f97316}.mxl i.c,.mc.c{background:#f5b301}.mxl i.wk{background:var(--mxwk);border:1px solid var(--bd)}
+.mxw{overflow:auto;max-height:72vh;border:1px solid var(--bd);border-radius:14px;background:var(--card)}
+table.mx{display:table;border-collapse:separate;border-spacing:0;width:max-content;min-width:0;font-size:11.5px}
+.mx thead{display:table-header-group}.mx tbody{display:table-row-group}
+.mx tr,.mx tr:has(th){display:table-row;background:none;box-shadow:none;padding:0;margin:0;border-radius:0}
+.mx th,.mx td{display:table-cell;padding:0;height:30px;text-align:center;vertical-align:middle;border-right:1px solid var(--bd);border-bottom:1px solid var(--bd);white-space:nowrap}
+.mx td::before{content:none}
+.mx thead th{position:sticky;top:0;z-index:3;background:var(--sky2);font-size:11.5px;height:38px;line-height:1.15}
+.mx th.dh,.mx td.d{min-width:40px;max-width:40px;width:40px}
+.mx th small{font-weight:500;opacity:.75}
+.mx th.wk{background:var(--mxwk);color:var(--tx)}
+.mx th.hi,.mx td.hi{box-shadow:inset 0 0 0 2px var(--sky)}
+.mx th.c1,.mx td.c1{position:sticky;left:0;min-width:34px;width:34px;z-index:2;background:var(--card)}
+.mx th.c2,.mx td.c2{position:sticky;left:34px;min-width:190px;max-width:190px;width:190px;text-align:left;padding:0 8px;overflow:hidden;text-overflow:ellipsis;z-index:2;background:var(--card)}
+.mx thead th.c1,.mx thead th.c2{z-index:4;background:var(--sky2)}
+.mx tr.me td.c1,.mx tr.me td.c2{background:var(--mxme);font-weight:700}
+.mx td.d{padding:0;cursor:pointer;background:transparent}
+.mx td.d.wk{background:var(--mxwk)}
+.mx td.d:hover{box-shadow:inset 0 0 0 2px var(--sky)}
+.mx td.s,.mx th.s{min-width:58px;padding:0 6px;font-weight:600;background:transparent}
+.mc{display:block;height:100%;line-height:30px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;font-weight:700;color:#fff;padding:0 2px}
+.mc.c{color:#3a2a00}
+@media(max-width:800px){.mx th.c1,.mx td.c1{display:none}.mx th.c2,.mx td.c2{left:0;min-width:118px;max-width:118px;width:118px}}
 </style></head><body>
 
 <div id="lbg" aria-hidden="true"><i class="ob1"></i><i class="ob2"></i><i class="ob3"></i><div class="lbars"></div><div class="lpts"></div></div>
@@ -817,7 +858,7 @@ body:has(#login:not([hidden])) #lbg{display:block}
 
 <div id="app" hidden>
  <nav id="nav"></nav><div id="ov"></div>
- <header id="top"><button id="mb" aria-label="Menu"><span class="icd">⋮</span><span class="ic3"><i></i><i></i><i></i></span><b>Menu</b></button><span id="tbn"><b>SIMPATI - 2171</b><em>BPS Kota Batam</em></span><div class="ns" id="tns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="nsq" type="search" placeholder="Cari menu…" autocomplete="off" spellcheck="false" aria-label="Cari menu"><div id="nsr" hidden></div></div><button id="th" type="button"></button><button id="uc" aria-expanded="false" aria-haspopup="true"></button><div id="um" hidden></div></header>
+ <header id="top"><button id="mb" aria-label="Menu"><span class="icd">⋮</span><span class="ic3"><i></i><i></i><i></i></span><b>Menu</b></button><span id="tbn"><b>SIMPATI - 2171</b><em>BPS Kota Batam</em></span><div class="ns" id="tns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="nsq" type="search" placeholder="Cari menu…" autocomplete="off" spellcheck="false" aria-label="Cari menu"><div id="nsr" hidden></div></div><div id="fsz"><button id="fzm" type="button" aria-label="Perkecil tulisan" title="Perkecil tulisan">A−</button><button id="fzp" type="button" aria-label="Perbesar tulisan" title="Perbesar tulisan">A+</button></div><button id="th" type="button"></button><button id="uc" aria-expanded="false" aria-haspopup="true"></button><div id="um" hidden></div></header>
  <main id="main"></main>
  <footer>© 2026 Subbagian Umum BPS Kota Batam, All Rights Reserved. Made by Hogan Sinurat</footer>
 </div>
@@ -889,9 +930,10 @@ const IC={dashboard:sv('<path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 21h8v
  format:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/>'),
  pengaturan:sv('<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>')};
 IC.link_app=sv('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>');IC.set_beranda=IC.set_pengumuman;IC.revisi_anggaran=sv('<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>');
+IC.matriks=sv('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>');
 IC.perjadin=sv('<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>');
-const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan','perjadin','revisi_anggaran','monumen']],['bmn','BMN dan Persediaan',['ruangan','kartu_persediaan']]];
-const NM={revisi_anggaran:'Ajukan Revisi Anggaran',ruangan:'Peminjaman Ruangan',kartu_persediaan:'Form Permintaan Persediaan',monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',perjadin:'Perjalanan Dinas Pegawai',set_pengguna:'Setting Pengguna dan Penomoran',set_beranda:'Pengumuman dan Anggaran'},nm=v=>J[v]?J[v].t:NM[v];
+const GR=[['surat','Surat Menyurat',['surat_keluar','surat_tugas','sk_kpa']],['keuangan','Keuangan',['form_permintaan','pengajuan','perjadin','matriks','revisi_anggaran','monumen']],['bmn','BMN dan Persediaan',['ruangan','kartu_persediaan']]];
+const NM={revisi_anggaran:'Ajukan Revisi Anggaran',ruangan:'Peminjaman Ruangan',kartu_persediaan:'Form Permintaan Persediaan',monumen:'Monumen-PPK',pengajuan:'Pengajuan Keuangan',perjadin:'Perjalanan Dinas Pegawai',matriks:'Matriks Pegawai',set_pengguna:'Setting Pengguna dan Penomoran',set_beranda:'Pengumuman dan Anggaran'},nm=v=>J[v]?J[v].t:NM[v];
 const DRIVE='https://drive.google.com/drive/folders/1cGgOcIyqSTSYfqSmEPPA0yS0x5SrNCli?usp=sharing',RLN={admin:'Admin',pegawai:'Pegawai',pegawai_keuangan:'Pegawai Keuangan',pegawai_bmn:'Pegawai BMN dan Persediaan'};
 let TIM=['Umum','Sosial','Produksi','Nerwilis','Distribusi','IPDS'];
 const lbl=k=>((J[view]||{}).lb||{})[k]||LB[k];
@@ -940,6 +982,7 @@ function ubahSandi(){
 // Format teks: **tebal**, baris diawali "- " jadi poin. Kata dalam {kurung} diganti otomatis oleh aplikasi.
 const DESK_DEF={
  pengajuan:'**Catatan: Standar Pelayanan**\n- Pengecekan sampai OTP PPK oleh SPK maksimal **5 hari kerja** dari tanggal penyerahan ke SPK.\n- OTP PPSPM sejak di-OTP PPK maksimal **3 hari kerja**.\n- Penerbitan SP2D maksimal **3 hari** setelah di-OTP PPSPM.\n\nPejabat Pembuat Komitmen (PPK): **{ppk}**',
+ matriks:'**Aturan Matriks Pegawai:**\n- Satu pegawai hanya boleh **1 translok kegiatan per hari**.\n- Pegawai yang **cuti** tidak dapat melakukan translok maupun perjalanan dinas pada hari cuti.\n- Pegawai yang sedang **perjalanan dinas** tidak dapat mencatat translok atau cuti pada tanggal tersebut.\n- Klik kotak pada baris nama untuk menambah catatan. Perjalanan dinas muncul otomatis dari menu Perjalanan Dinas Pegawai.',
  perjadin:'**Catatan:**\n- Isi form **Ajukan Pencairan Perjadin** setelah perjalanan dinas selesai; periksa kembali data pada layar review sebelum disimpan.\n- Uang harian dihitung **{tarif}** per hari. Lama menginap otomatis = lama perjalanan dikurangi 1 hari bila menginap di hotel.\n- Status diperbarui oleh Pegawai Keuangan: Verifikasi Dokumen, Pencatatan di Aplikasi BOS, Pengajuan ke KPPN, Selesai.',
  revisi_anggaran:'Data yang Bapak/Ibu ubah, di sheet nya tolong di warnain dan konfirmasi ke Bang Adi Darmanto',
  kartu_persediaan:'**Catatan:** pengajuan barang **hanya dibuka setiap hari Senin**{status_pengajuan} Barang tersedia pada Senin minggu depannya (bila hari libur, hari berikutnya). Satu permintaan maksimal {maks} jenis barang. Status diperbarui oleh Pegawai BMN dan Persediaan; permintaan Selesai dipindahkan ke Riwayat Pengajuan setelah 3 jam.',
@@ -1057,7 +1100,7 @@ $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();i
 
 function go(v){view=v;if(v=='set_pengguna')sTab='pengguna';page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
  document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth<=800)});
- v=='dashboard'?dash():v.startsWith('set_')?setelan():v=='pengajuan'?pengajuanPage():v=='perjadin'?perjadinPage():v=='ruangan'?ruangPage():v=='kartu_persediaan'?persPage():v=='link_app'?linkPage():v=='revisi_anggaran'?revisiPage():load()}
+ v=='dashboard'?dash():v.startsWith('set_')?setelan():v=='pengajuan'?pengajuanPage():v=='perjadin'?perjadinPage():v=='matriks'?matriksPage():v=='ruangan'?ruangPage():v=='kartu_persediaan'?persPage():v=='link_app'?linkPage():v=='revisi_anggaran'?revisiPage():load()}
 
 let dy=0,jt,FMT={};
 const BL=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],CL={surat_keluar:'#2a62c9',surat_tugas:'#12b5a6',sk_kpa:'#f5a524',form_permintaan:'#8b5cf6'},IN={surat_keluar:'SK',surat_tugas:'ST',sk_kpa:'KPA',form_permintaan:'FP'};
@@ -1785,11 +1828,11 @@ function pdDraw(){
  ${deskBox('perjadin',{tarif:rp(TARIF_HARIAN)})}
  <div class="chips"><button class="${!pdf?'on':''}" data-f="">Semua <b>${pd.length}</b></button>${PD_STATUS.map(x=>`<button class="${pdf==x?'on':''}" data-f="${x}" style="--c:${PD_SC[x]}"><i></i>${x} <b>${cnt[x]}</b></button>`).join('')}</div>
  <div class="bar"><input id="cari" type="search" placeholder="Cari pegawai, kegiatan, tujuan, mata anggaran…" value="${esc(q)}"><span class="sp"></span><button class="p" id="tambah">Ajukan Pencairan Perjadin</button></div>
- <div class="tw"><table><tr><th>No</th><th>Nama Pegawai</th><th>Kegiatan</th><th>Tujuan</th><th>Lama</th><th>Total Biaya</th><th>Status</th><th>Catatan</th><th>Aksi</th></tr>
- ${part.map(r=>`<tr><td data-l="No"><b>${r.no_urut}</b></td><td data-l="Nama Pegawai">${esc(r.pegawai)}</td><td data-l="Kegiatan"><b>${esc(r.nama_kegiatan)}</b><br><small class="muted">${esc(r.mata_anggaran)}</small></td><td data-l="Tujuan">${esc(r.tujuan)}</td><td data-l="Lama">${r.lama_hari} hari</td><td data-l="Total Biaya"><b>${rp(r.total)}</b></td>
+ <div class="tw"><table><tr><th>No</th><th>Nama Pegawai</th><th>Kegiatan</th><th>Tujuan</th><th>Tanggal</th><th>Lama</th><th>Total Biaya</th><th>Status</th><th>Catatan</th><th>Aksi</th></tr>
+ ${part.map(r=>`<tr><td data-l="No"><b>${r.no_urut}</b></td><td data-l="Nama Pegawai">${esc(r.pegawai)}</td><td data-l="Kegiatan"><b>${esc(r.nama_kegiatan)}</b><br><small class="muted">${esc(r.mata_anggaran)}</small></td><td data-l="Tujuan">${esc(r.tujuan)}</td><td data-l="Tanggal">${r.tgl_mulai?tgl(r.tgl_mulai)+(r.lama_hari>1?' s.d. '+tgl(r.tgl_selesai):''):'<span class="muted">-</span>'}</td><td data-l="Lama">${r.lama_hari} hari</td><td data-l="Total Biaya"><b>${rp(r.total)}</b></td>
   <td data-l="Status">${kel?`<select class="st" data-s="${r.id}" style="--c:${PD_SC[r.status]}">${PD_STATUS.map(x=>`<option ${x==r.status?'selected':''}>${x}</option>`).join('')}</select>`:`<span class="st" style="--c:${PD_SC[r.status]}">${esc(r.status)}</span>`}</td>
   <td data-l="Catatan">${r.catatan?esc(r.catatan):'<span class="muted">-</span>'}</td>
-  <td class="ac"><button data-h="${r.id}">Rincian</button>${kel?` <button data-c="${r.id}">Catatan</button> <button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td></tr>`).join('')||`<tr><td colspan="9" class="empty">${s||pdf?'Tidak ada data yang cocok.':'Belum ada pengajuan. Klik “Ajukan Pencairan Perjadin” untuk memulai.'}</td></tr>`}</table></div>
+  <td class="ac"><button data-h="${r.id}">Rincian</button>${kel?` <button data-c="${r.id}">Catatan</button> <button data-e="${r.id}">Ubah</button> <button class="d" data-x="${r.id}">Hapus</button>`:''}</td></tr>`).join('')||`<tr><td colspan="10" class="empty">${s||pdf?'Tidak ada data yang cocok.':'Belum ada pengajuan. Klik “Ajukan Pencairan Perjadin” untuk memulai.'}</td></tr>`}</table></div>
  <div class="pgn"><span class="muted">${f.length} data</span><button id="pv" ${page<2?'disabled':''}>Sebelumnya</button><span>${page} / ${tp}</span><button id="nx" ${page>=tp?'disabled':''}>Berikutnya</button></div>`;
  $('#cari').oninput=e=>{q=e.target.value;page=1;pdDraw();const i=$('#cari');i.focus();i.setSelectionRange(q.length,q.length)};
  $('#tambah').onclick=()=>pdForm();$('#pv').onclick=()=>{page--;pdDraw()};$('#nx').onclick=()=>{page++;pdDraw()};
@@ -1813,6 +1856,7 @@ function pdForm(id,pre){
  <label>Nama Kegiatan</label><input name="nama_kegiatan" value="${esc(r.nama_kegiatan)}" placeholder="Contoh: Konsultasi ke BPS Provinsi Kepulauan Riau" required autocomplete="off">
  <label>Kabupaten/Kota Tujuan Perjalanan</label><input name="tujuan" value="${esc(r.tujuan)}" placeholder="Contoh: Kota Tanjungpinang" required autocomplete="off">
  <label>Lama Perjalanan (hari)</label><input name="lama_hari" type="number" min="1" step="1" inputmode="numeric" value="${r.lama_hari==null?'':esc(r.lama_hari)}" placeholder="0" required>
+ <label>Tanggal Berangkat</label><input name="tgl_mulai" type="date" value="${esc(r.tgl_mulai)}" required><small class="muted" id="pd_sd"></small>
  <label>Biaya Angkutan Pergi (Rp)</label>${nb('biaya_pergi')}
  <label>Biaya Angkutan Pulang (Rp)</label>${nb('biaya_pulang')}
  <label>Biaya Taksi Asal (Batam) (Rp)</label>${nb('taksi_asal')}
@@ -1832,20 +1876,30 @@ function pdForm(id,pre){
  const cur=()=>({lama_hari:g('lama_hari'),biaya_pergi:g('biaya_pergi'),biaya_pulang:g('biaya_pulang'),taksi_asal:g('taksi_asal'),taksi_tujuan:g('taksi_tujuan'),hari_uang_harian:g('hari_uang_harian'),menginap:g('menginap')=='Iya',biaya_hotel:g('biaya_hotel')});
  const upd=()=>{const men=g('menginap')=='Iya';$('#pd_h').hidden=!men;fm.elements.nama_hotel.required=men;
   if(!tch)fm.elements.hari_uang_harian.value=g('lama_hari');
-  const c=pdHitung(cur());$('#pd_uh').value=rp(c.uh);$('#pd_inap').value=c.inap+' malam';$('#pd_tot').textContent=rp(c.total)};
+  const c=pdHitung(cur()),tm=g('tgl_mulai'),lm=pdN(g('lama_hari'));$('#pd_sd').textContent=tm&&lm?'Perjalanan: '+tgl(tm)+' s.d. '+tgl(addD(tm,lm-1))+'. Pegawai yang cuti atau sudah translok pada tanggal itu tidak bisa perjadin.':'';$('#pd_uh').value=rp(c.uh);$('#pd_inap').value=c.inap+' malam';$('#pd_tot').textContent=rp(c.total)};
  fm.addEventListener('input',e=>{if(e.target.name=='hari_uang_harian')tch=true;upd()});upd();
- fm.onsubmit=e=>{e.preventDefault();const f=Object.fromEntries(new FormData(fm)),c=pdHitung(cur()),men=f.menginap=='Iya';
-  const d={pegawai:nama,mata_anggaran:f.mata_anggaran.trim(),nama_kegiatan:proper((f.nama_kegiatan||'').trim()),tujuan:proper((f.tujuan||'').trim()),lama_hari:pdN(f.lama_hari),
+ fm.onsubmit=async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(fm)),c=pdHitung(cur()),men=f.menginap=='Iya';
+  const d={pegawai:nama,mata_anggaran:f.mata_anggaran.trim(),nama_kegiatan:proper((f.nama_kegiatan||'').trim()),tujuan:proper((f.tujuan||'').trim()),lama_hari:pdN(f.lama_hari),tgl_mulai:f.tgl_mulai,tgl_selesai:f.tgl_mulai?addD(f.tgl_mulai,pdN(f.lama_hari)-1):null,
    biaya_pergi:pdN(f.biaya_pergi),biaya_pulang:pdN(f.biaya_pulang),taksi_asal:pdN(f.taksi_asal),taksi_tujuan:pdN(f.taksi_tujuan),
    hari_uang_harian:pdN(f.hari_uang_harian),tarif_harian:TARIF_HARIAN,uang_harian:c.uh,menginap:men,nama_hotel:men?proper((f.nama_hotel||'').trim()):null,
    lama_menginap:c.inap,biaya_hotel:c.hotel,total:c.total};
   if(d.lama_hari<1)return toast('Lama perjalanan minimal 1 hari',1);
-  modal(`<h2>Peringatan</h2><p>Harap Cek Kembali Isian Data. Data yang sudah diinput hanya dapat diubah atau dihapus oleh Pegawai Keuangan atau Admin!</p>${rinci([['Nama Pegawai',d.pegawai],['Mata Anggaran',d.mata_anggaran],['Nama Kegiatan',d.nama_kegiatan],['Kabupaten/Kota Tujuan',d.tujuan],['Lama Perjalanan',d.lama_hari+' hari'],
+  const bt=await pdCekBentrok(d,id);if(bt)return toast(bt,1);
+  modal(`<h2>Peringatan</h2><p>Harap Cek Kembali Isian Data. Data yang sudah diinput hanya dapat diubah atau dihapus oleh Pegawai Keuangan atau Admin!</p>${rinci([['Nama Pegawai',d.pegawai],['Mata Anggaran',d.mata_anggaran],['Nama Kegiatan',d.nama_kegiatan],['Kabupaten/Kota Tujuan',d.tujuan],['Tanggal Perjalanan',tgl(d.tgl_mulai)+(d.lama_hari>1?' s.d. '+tgl(d.tgl_selesai):'')],['Lama Perjalanan',d.lama_hari+' hari'],
    ['Biaya Angkutan Pergi',rp(d.biaya_pergi)],['Biaya Angkutan Pulang',rp(d.biaya_pulang)],['Biaya Taksi Asal (Batam)',rp(d.taksi_asal)],['Biaya Taksi Tujuan',rp(d.taksi_tujuan)],
    ['Uang Harian',d.hari_uang_harian+' hari x '+rp(TARIF_HARIAN)+' = '+rp(d.uang_harian)],['Menginap di Hotel',men?'Iya':'Tidak'],
    ...(men?[['Nama Hotel',d.nama_hotel],['Lama Menginap',d.lama_menginap+' malam'],['Biaya Hotel',rp(d.biaya_hotel)]]:[]),
    ['Total Biaya Perjalanan Dinas',rp(d.total)]])}<p><b>Apakah Anda Tetap Ingin Melanjutkan untuk Menyimpan Data?</b></p><div class="row"><button id="bt">Edit Kembali Form</button><button class="p" id="ok">Simpan</button></div>`,520);
   $('#bt').onclick=()=>pdForm(id,d);$('#ok').onclick=()=>pdSimpan(d,id)}}
+async function pdCekBentrok(d,id){
+ const a=d.tgl_mulai,b=addD(a,d.lama_hari-1);
+ const [m,p]=await Promise.all([db.from('matriks_kegiatan').select('tanggal,jenis,kegiatan').eq('pegawai',d.pegawai).gte('tanggal',a).lte('tanggal',b).order('tanggal').limit(1),
+  db.from('perjadin').select('id,tgl_mulai,tgl_selesai,nama_kegiatan').eq('pegawai',d.pegawai).lte('tgl_mulai',b).gte('tgl_selesai',a)]);
+ const x=(m.data||[])[0];
+ if(x)return `Pada ${tgl(x.tanggal)} ${d.pegawai} tercatat ${x.jenis=='cuti'?'cuti':'translok kegiatan'+(x.kegiatan?' ('+x.kegiatan+')':'')} di Matriks Pegawai, jadi tidak bisa perjadin di hari yang sama.`;
+ const o=(p.data||[]).find(y=>y.id!=id);
+ if(o)return `${d.pegawai} sudah punya perjalanan dinas lain (${o.nama_kegiatan}, ${tgl(o.tgl_mulai)} s.d. ${tgl(o.tgl_selesai)}) yang tanggalnya bertumpuk.`;
+ return ''}
 async function pdSimpan(d,id){
  const b=$('#ok');if(b)b.disabled=true;
  const {error}=id?await db.from('perjadin').update(d).eq('id',id):await db.from('perjadin').insert(d);
@@ -1863,7 +1917,7 @@ function pdCatatan(id){
 function pdRincian(id){
  const r=pd.find(x=>x.id==id);if(!r)return;
  modal(`<h2>${esc(r.nama_kegiatan)}</h2><p class="muted" style="margin:2px 0 12px">No ${r.no_urut} · ${esc(r.pegawai)}</p>
- ${rinci([['Mata Anggaran',r.mata_anggaran],['Kabupaten/Kota Tujuan',r.tujuan],['Lama Perjalanan',r.lama_hari+' hari'],['Biaya Angkutan Pergi',rp(r.biaya_pergi)],['Biaya Angkutan Pulang',rp(r.biaya_pulang)],['Biaya Taksi Asal (Batam)',rp(r.taksi_asal)],['Biaya Taksi Tujuan',rp(r.taksi_tujuan)],
+ ${rinci([['Mata Anggaran',r.mata_anggaran],['Kabupaten/Kota Tujuan',r.tujuan],['Tanggal Perjalanan',r.tgl_mulai?tgl(r.tgl_mulai)+(r.lama_hari>1?' s.d. '+tgl(r.tgl_selesai):''):'-'],['Lama Perjalanan',r.lama_hari+' hari'],['Biaya Angkutan Pergi',rp(r.biaya_pergi)],['Biaya Angkutan Pulang',rp(r.biaya_pulang)],['Biaya Taksi Asal (Batam)',rp(r.taksi_asal)],['Biaya Taksi Tujuan',rp(r.taksi_tujuan)],
   ['Uang Harian',r.hari_uang_harian+' hari x '+rp(r.tarif_harian)+' = '+rp(r.uang_harian)],['Menginap di Hotel',r.menginap?'Iya':'Tidak'],
   ...(r.menginap?[['Nama Hotel',r.nama_hotel],['Lama Menginap',r.lama_menginap+' malam'],['Biaya Hotel',rp(r.biaya_hotel)]]:[]),['Total Biaya Perjalanan Dinas',rp(r.total)],['Status',r.status],['Catatan',r.catatan]])}
  <h2 style="font-size:15px;margin:16px 0 4px">Riwayat Status</h2>
@@ -1877,6 +1931,114 @@ function pdHapus(id){
   if(error)return toast('Gagal menghapus: '+error.message,1);
   if(!count)return toast('Tidak berhak menghapus, atau SQL terbaru belum dijalankan di Supabase.',1);
   pd=pd.filter(x=>x.id!=id);toast('Perjadin dihapus');pdDraw()})}
+
+// ===== Matriks Pegawai (menu Keuangan) =====
+// Satu sel = satu pegawai pada satu hari: Translok (T), Perjalanan Dinas (PD), atau Cuti.
+// Aturan: 1 hari hanya 1 translok; yang cuti tidak bisa translok/perjadin; yang perjadin tidak bisa translok/cuti.
+// Aturan ditegakkan di database (matriks_kegiatan.unique + trigger mk_trg/pd_trg); pengecekan di sini hanya agar pesannya ramah.
+const MX_BLN=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],MX_HR=['M','S','S','R','K','J','S'];
+let mxY=0,mxM=0,mxData={tl:[],pd:[],lib:[]},mxCell={},mxNames=[];
+const mxKelola=()=>me.role=='admin'||me.role=='pegawai_keuangan',
+ mxIso=(y,m,d)=>y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'),
+ mxJenis=r=>r.jenis=='cuti'?'Cuti':'Translok kegiatan',
+ mxGalat=e=>e&&e.code=='23505'?'Pegawai tersebut sudah punya catatan di tanggal itu. 1 hari hanya 1 translok, dan yang cuti tidak bisa translok.':(e&&e.message)||'Terjadi kesalahan';
+async function matriksPage(keep){
+ if(!keep){const n=hari();mxY=+n.slice(0,4);mxM=+n.slice(5,7)-1}
+ $('#main').innerHTML='<p class="muted">Memuat…</p>';
+ const jml=new Date(Date.UTC(mxY,mxM+1,0)).getUTCDate(),a=mxIso(mxY,mxM,1),b=mxIso(mxY,mxM,jml);
+ const [t,p,l]=await Promise.all([
+  db.from('matriks_kegiatan').select('*').gte('tanggal',a).lte('tanggal',b).limit(5000),
+  db.from('perjadin').select('id,pegawai,nama_kegiatan,tujuan,tgl_mulai,tgl_selesai,status').lte('tgl_mulai',b).gte('tgl_selesai',a).limit(5000),
+  db.from('hari_libur').select('tanggal,keterangan')]);
+ if(t.error)return toast('Gagal memuat matriks: '+t.error.message+' (pastikan SQL bagian L sudah dijalankan)',1);
+ mxData={tl:t.data||[],pd:p.error?[]:(p.data||[]),lib:l.error?[]:(l.data||[])};mxDraw()}
+function mxDraw(){
+ const jml=new Date(Date.UTC(mxY,mxM+1,0)).getUTCDate(),hr=hari(),lib={};
+ mxData.lib.forEach(x=>lib[x.tanggal]=x.keterangan||'Libur');
+ mxNames=pg.map(p=>p.nama).filter(Boolean);
+ mxData.tl.concat(mxData.pd).forEach(r=>{if(r.pegawai&&!mxNames.includes(r.pegawai))mxNames.push(r.pegawai)});
+ mxCell={};
+ mxData.tl.forEach(r=>mxCell[r.pegawai+'|'+r.tanggal]={j:r.jenis=='cuti'?'c':'t',r});
+ mxData.pd.forEach(r=>{for(let d=1;d<=jml;d++){const iso=mxIso(mxY,mxM,d);if(iso>=r.tgl_mulai&&iso<=r.tgl_selesai&&!mxCell[r.pegawai+'|'+iso])mxCell[r.pegawai+'|'+iso]={j:'p',r}}});
+ const hari_=[];for(let d=1;d<=jml;d++){const iso=mxIso(mxY,mxM,d);hari_.push({d,iso,off:isoDow(iso)>5||!!lib[iso],ket:lib[iso]||''})}
+ const head='<tr><th class="c1">No</th><th class="c2">Nama</th>'+hari_.map(h=>`<th class="dh${h.off?' wk':''}${h.iso==hr?' hi':''}" title="${esc(h.ket)}">${h.d}<br><small>${MX_HR[new Date(h.iso+'T00:00:00Z').getUTCDay()]}</small></th>`).join('')+'<th class="s">Translok</th><th class="s">Perjadin</th><th class="s">Cuti</th></tr>';
+ const body=mxNames.map((n,i)=>{let ct=0,cp=0,cc=0;
+  const tds=hari_.map(h=>{const c=mxCell[n+'|'+h.iso];let in_='';
+   if(c){if(c.j=='t'){ct++;in_=`<span class="mc t" title="${esc(n+' - Translok: '+c.r.kegiatan)}">${esc(c.r.kegiatan)}</span>`}
+    else if(c.j=='c'){cc++;in_=`<span class="mc c" title="${esc(n+' - Cuti'+(c.r.keterangan?': '+c.r.keterangan:''))}">Cuti</span>`}
+    else{cp++;in_=`<span class="mc p" title="${esc(n+' - Perjalanan dinas: '+c.r.nama_kegiatan)}">PD</span>`}}
+   return `<td class="d${h.off?' wk':''}${h.iso==hr?' hi':''}" data-n="${i}" data-t="${h.iso}">${in_}</td>`}).join('');
+  return `<tr class="${n==me.nama?'me':''}"><td class="c1">${i+1}</td><td class="c2" title="${esc(n)}">${esc(n)}</td>${tds}<td class="s">${ct||''}</td><td class="s">${cp||''}</td><td class="s">${cc||''}</td></tr>`}).join('');
+ $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Matriks Pegawai</h1>
+ ${deskBox('matriks')}
+ <div class="bar"><button id="mp" aria-label="Bulan sebelumnya">‹</button><b class="mxt">${MX_BLN[mxM]} ${mxY}</b><button id="mn" aria-label="Bulan berikutnya">›</button><button id="mt">Bulan Ini</button><span class="sp"></span><button class="p" id="mtb">Tambah Translok / Cuti</button></div>
+ <div class="mxl"><span><i class="t"></i>Translok kegiatan</span><span><i class="p"></i>Perjalanan dinas (PD)</span><span><i class="c"></i>Cuti</span><span><i class="wk"></i>Akhir pekan / libur</span><small class="muted">Klik kotak untuk menambah atau melihat. Baris Anda diberi tanda warna.</small></div>
+ <div class="mxw"><table class="mx"><thead>${head}</thead><tbody>${body||'<tr><td class="s" colspan="40">Belum ada data pegawai.</td></tr>'}</tbody></table></div>`;
+ const ganti=n=>{mxM+=n;if(mxM<0){mxM=11;mxY--}if(mxM>11){mxM=0;mxY++}matriksPage(1)};
+ $('#mp').onclick=()=>ganti(-1);$('#mn').onclick=()=>ganti(1);$('#mt').onclick=()=>matriksPage(0);$('#mtb').onclick=()=>mxForm({pegawai:me.nama,jenis:'translok',tanggal:hari()});
+ $('#main').querySelectorAll('.mx td.d').forEach(td=>td.onclick=()=>mxKlik(mxNames[+td.dataset.n],td.dataset.t));
+ const wk=$('#main').querySelector('.mx th.hi');if(wk){const w=$('#main').querySelector('.mxw');w.scrollLeft=Math.max(0,wk.offsetLeft-240)}}
+function mxKlik(nama,iso){
+ const c=mxCell[nama+'|'+iso];
+ if(!c){if(mxKelola()||nama==me.nama)return mxForm({pegawai:nama,jenis:'translok',tanggal:iso});return toast('Anda hanya bisa mengisi baris nama Anda sendiri',1)}
+ const r=c.r;
+ if(c.j=='p'){
+  modal(`<h2>Perjalanan Dinas</h2>${rinci([['Pegawai',r.pegawai],['Kegiatan',r.nama_kegiatan],['Tujuan',r.tujuan],['Tanggal',tgl(r.tgl_mulai)+(r.tgl_selesai!=r.tgl_mulai?' s.d. '+tgl(r.tgl_selesai):'')],['Status',r.status]])}
+  <div class="row"><button id="bt">Tutup</button><button class="p" id="bk">Buka Perjalanan Dinas</button></div>`,460);
+  $('#bt').onclick=closeM;$('#bk').onclick=()=>{closeM();go('perjadin')};return}
+ const boleh=mxKelola()||(!!me.id&&r.dibuat_oleh==me.id);
+ modal(`<h2>${mxJenis(r)}</h2>${rinci([['Pegawai',r.pegawai],['Tanggal',tgl(r.tanggal)],['Jenis',mxJenis(r)],...(r.jenis=='translok'?[['Nama Kegiatan',r.kegiatan]]:[]),['Keterangan',r.keterangan]])}
+  <div class="row"><button id="bt">Tutup</button>${boleh?'<button id="hp" class="d">Hapus</button><button class="p" id="ub">Ubah</button>':''}</div>`,460);
+ $('#bt').onclick=closeM;
+ if(boleh){$('#ub').onclick=()=>mxForm(r,r.id);
+  $('#hp').onclick=()=>konfirmasi('Hapus Catatan?',`${mxJenis(r)} <b>${esc(r.pegawai)}</b> pada ${tgl(r.tanggal)} akan dihapus.`,'Ya, Hapus',async()=>{
+   const {error,count}=await db.from('matriks_kegiatan').delete({count:'exact'}).eq('id',r.id);
+   if(error)return toast('Gagal menghapus: '+error.message,1);
+   if(!count)return toast('Tidak berhak menghapus catatan ini',1);
+   toast('Catatan dihapus');matriksPage(1)})}}
+function mxForm(pre,id){
+ const r=pre||{},ed=!!id,kel=mxKelola();
+ modal(`<h2>${ed?'Ubah':'Tambah'} Translok / Cuti</h2><form id="fm">
+ <label>Nama Pegawai</label>${kel&&!ed?`<select name="pegawai" required>${mxNames.map(n=>`<option ${n==r.pegawai?'selected':''}>${esc(n)}</option>`).join('')}</select>`:`<input value="${esc(ed?r.pegawai:me.nama)}" readonly>`}
+ <label>Jenis</label><select name="jenis" required><option value="translok" ${r.jenis!='cuti'?'selected':''}>Translok Kegiatan</option><option value="cuti" ${r.jenis=='cuti'?'selected':''}>Cuti</option></select>
+ ${ed?`<label>Tanggal</label><input value="${esc(tgl(r.tanggal))}" readonly>`:`<label>Tanggal</label><input name="tanggal" type="date" value="${esc(r.tanggal)}" required>
+ <label>Sampai Tanggal (Boleh Dikosongkan)</label><input name="sampai" type="date" value=""><small class="muted">Isi bila lebih dari 1 hari (misalnya cuti). Sabtu, Minggu, dan hari libur dilewati otomatis.</small>`}
+ <div id="mx_k"><label>Nama Kegiatan</label><input name="kegiatan" value="${esc(r.kegiatan)}" placeholder="Contoh: SSN" autocomplete="off"></div>
+ <label>Keterangan (Boleh Dikosongkan)</label><input name="keterangan" value="${esc(r.keterangan)}" autocomplete="off">
+ <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${ed?'Simpan Perubahan':'Simpan'}</button></div></form>`,480);
+ $('#bt').onclick=closeM;
+ const fm=$('#fm'),tog=()=>{const t=fm.elements.jenis.value=='translok';$('#mx_k').hidden=!t;fm.elements.kegiatan.required=t};
+ fm.elements.jenis.onchange=tog;tog();
+ fm.onsubmit=async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(fm)),jenis=f.jenis,nama=ed?r.pegawai:(kel?f.pegawai:me.nama);
+  const kegiatan=jenis=='translok'?(f.kegiatan||'').trim():'',ket=(f.keterangan||'').trim();
+  if(jenis=='translok'&&!kegiatan)return toast('Nama kegiatan translok wajib diisi',1);
+  let dates=[];
+  if(!ed){
+   const a=f.tanggal,b=f.sampai;if(!a)return toast('Tanggal wajib diisi',1);
+   if(b&&b<a)return toast('Tanggal "sampai" tidak boleh sebelum tanggal awal',1);
+   if(b&&b>a){const lb=await db.from('hari_libur').select('tanggal').gte('tanggal',a).lte('tanggal',b),L=new Set((lb.data||[]).map(x=>x.tanggal));
+    for(let d=a;d<=b&&dates.length<366;d=addD(d,1))if(isoDow(d)<=5&&!L.has(d))dates.push(d);
+    if(!dates.length)return toast('Semua tanggal yang dipilih adalah akhir pekan atau hari libur',1)}else dates=[a];
+   const msg=await mxCek(nama,dates);if(msg)return toast(msg,1)}
+  const rows=ed?null:dates.map(t=>({pegawai:nama,tanggal:t,jenis,kegiatan:kegiatan||null,keterangan:ket||null}));
+  modal(`<h2>Peringatan</h2><p>Harap Cek Kembali Isian Data. Catatan ini hanya dapat diubah atau dihapus oleh pembuatnya, Pegawai Keuangan, atau Admin!</p>${rinci([['Nama Pegawai',nama],['Jenis',jenis=='cuti'?'Cuti':'Translok Kegiatan'],
+   ['Tanggal',ed?tgl(r.tanggal):(dates.length>1?tgl(dates[0])+' s.d. '+tgl(dates[dates.length-1])+' ('+dates.length+' hari kerja)':tgl(dates[0]))],...(jenis=='translok'?[['Nama Kegiatan',kegiatan]]:[]),['Keterangan',ket]])}
+   <p><b>Apakah Anda Tetap Ingin Melanjutkan untuk Menyimpan Data?</b></p><div class="row"><button id="bt">Edit Kembali Form</button><button class="p" id="ok">Simpan</button></div>`,480);
+  $('#bt').onclick=()=>mxForm(Object.assign({},r,{pegawai:nama,jenis,kegiatan,keterangan:ket,tanggal:ed?r.tanggal:dates[0]}),id);
+  $('#ok').onclick=async()=>{const b=$('#ok');b.disabled=true;
+   const x=ed?await db.from('matriks_kegiatan').update({jenis,kegiatan:kegiatan||null,keterangan:ket||null}).eq('id',id):await db.from('matriks_kegiatan').insert(rows);
+   if(x.error){b.disabled=false;return toast('Gagal menyimpan: '+mxGalat(x.error),1)}
+   closeM();toast(ed?'Perubahan disimpan':'Catatan tersimpan');matriksPage(1)}}}
+async function mxCek(nama,dates){
+ const a=dates[0],b=dates[dates.length-1];
+ const [m,p]=await Promise.all([db.from('matriks_kegiatan').select('tanggal,jenis,kegiatan').eq('pegawai',nama).gte('tanggal',a).lte('tanggal',b),
+  db.from('perjadin').select('tgl_mulai,tgl_selesai,nama_kegiatan').eq('pegawai',nama).lte('tgl_mulai',b).gte('tgl_selesai',a)]);
+ const ada=new Map((m.data||[]).map(x=>[x.tanggal,x]));
+ for(const t of dates){const x=ada.get(t);
+  if(x)return `${tgl(t)}: ${nama} sudah tercatat ${x.jenis=='cuti'?'cuti':'translok kegiatan'+(x.kegiatan?' ('+x.kegiatan+')':'')}. 1 hari hanya 1 translok, dan yang cuti tidak bisa translok.`;
+  const q=(p.data||[]).find(y=>y.tgl_mulai<=t&&y.tgl_selesai>=t);
+  if(q)return `${tgl(t)}: ${nama} sedang perjalanan dinas (${q.nama_kegiatan}), tidak bisa mencatat translok atau cuti.`}
+ return ''}
 
 const RL={admin:'admin',administrator:'admin',petugas:'pegawai','petugas persuratan':'pegawai',pegawai:'pegawai','pegawai keuangan':'pegawai_keuangan',pegawai_keuangan:'pegawai_keuangan','pegawai bmn dan persediaan':'pegawai_bmn','pegawai bmn':'pegawai_bmn',pegawai_bmn:'pegawai_bmn'};
 function impor(a){
@@ -1902,6 +2064,11 @@ const SVG_M='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0
  SVG_S='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
 const temaAktif=()=>document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
 function ikonTema(){const d=temaAktif()=='dark',b=$('#th');b.innerHTML=d?SVG_S:SVG_M;b.title=d?'Ganti ke tema terang':'Ganti ke tema gelap';b.setAttribute('aria-label',b.title)}
+const FZ=[.9,1,1.1,1.2,1.35];
+function terapFz(i){i=Math.max(0,Math.min(FZ.length-1,i));document.documentElement.style.setProperty('--zm',FZ[i]);try{localStorage.setItem('fz',i)}catch(_){}
+ $('#fzm').disabled=i==0;$('#fzp').disabled=i==FZ.length-1;$('#fzm').title='Perkecil tulisan ('+Math.round(FZ[i]*100)+'%)';$('#fzp').title='Perbesar tulisan ('+Math.round(FZ[i]*100)+'%)';return i}
+let fzI=1;try{const v=localStorage.getItem('fz');if(v!==null&&!isNaN(+v))fzI=+v}catch(_){}
+fzI=terapFz(fzI);$('#fzm').onclick=()=>{fzI=terapFz(fzI-1)};$('#fzp').onclick=()=>{fzI=terapFz(fzI+1)};
 $('#th').onclick=()=>{const t=temaAktif()=='dark'?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.setItem('tema',t)}catch(_){}ikonTema()};
 ikonTema();
 (function(){var b=document.querySelector('#lbg .lbars'),p=document.querySelector('#lbg .lpts');if(!b||!p)return;
