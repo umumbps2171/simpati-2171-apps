@@ -827,6 +827,23 @@ table.mx{display:table;border-collapse:separate;border-spacing:0;width:max-conte
 .mc{display:block;height:100%;line-height:30px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;font-weight:700;color:#fff;padding:0 2px}
 .mc.c{color:#3a2a00}
 @media(max-width:800px){.mx th.c1,.mx td.c1{display:none}.mx th.c2,.mx td.c2{left:0;min-width:118px;max-width:118px;width:118px}}
+
+/* ===== Matriks Pegawai v2: kode, perbesar, rekap ===== */
+.mk{display:inline-block;min-width:32px;padding:2px 8px;border-radius:8px;font-weight:700;font-size:12px;color:#fff;text-align:center}
+.mk.t{background:#3b82f6}.mk.p{background:#f97316}.mk.c{background:#f5b301;color:#3a2a00}
+.mkc{display:inline-flex;gap:6px;align-items:center;padding:6px 14px;border-radius:99px;border:1px solid var(--bd);background:var(--card);font-size:13px}
+.mkc i{width:10px;height:10px;border-radius:3px;display:inline-block}.mkc i.t{background:#3b82f6}.mkc i.p{background:#f97316}.mkc i.c{background:#f5b301}
+.mxbox.full{position:fixed;inset:0;z-index:18;background:var(--bg);padding:14px 16px;display:flex;flex-direction:column;overflow:hidden}
+.mxbox.full .bar{margin:0 0 8px}
+.mxbox.full .mxw{flex:1;max-height:none;min-height:0}
+body.mxlock{overflow:hidden}
+.mxbox.full table.mx{font-size:13px}
+.mxbox.full .mx th.dh,.mxbox.full .mx td.d{min-width:54px;max-width:54px;width:54px}
+.mxbox.full .mx th,.mxbox.full .mx td{height:40px}
+.mxbox.full .mx thead th{height:46px;font-size:13px}
+.mxbox.full .mc{line-height:40px;font-size:13px}
+.mxbox.full .mx th.c2,.mxbox.full .mx td.c2{min-width:240px;max-width:240px;width:240px}
+@media(max-width:800px){.mxbox.full{padding:10px}.mxbox.full .mx th.c2,.mxbox.full .mx td.c2{min-width:130px;max-width:130px;width:130px}}
 </style></head><body>
 
 <div id="lbg" aria-hidden="true"><i class="ob1"></i><i class="ob2"></i><i class="ob3"></i><div class="lbars"></div><div class="lpts"></div></div>
@@ -982,7 +999,7 @@ function ubahSandi(){
 // Format teks: **tebal**, baris diawali "- " jadi poin. Kata dalam {kurung} diganti otomatis oleh aplikasi.
 const DESK_DEF={
  pengajuan:'**Catatan: Standar Pelayanan**\n- Pengecekan sampai OTP PPK oleh SPK maksimal **5 hari kerja** dari tanggal penyerahan ke SPK.\n- OTP PPSPM sejak di-OTP PPK maksimal **3 hari kerja**.\n- Penerbitan SP2D maksimal **3 hari** setelah di-OTP PPSPM.\n\nPejabat Pembuat Komitmen (PPK): **{ppk}**',
- matriks:'**Aturan Matriks Pegawai:**\n- Satu pegawai hanya boleh **1 translok kegiatan per hari**.\n- Pegawai yang **cuti** tidak dapat melakukan translok maupun perjalanan dinas pada hari cuti.\n- Pegawai yang sedang **perjalanan dinas** tidak dapat mencatat translok atau cuti pada tanggal tersebut.\n- Klik kotak pada baris nama untuk menambah catatan. Perjalanan dinas muncul otomatis dari menu Perjalanan Dinas Pegawai.',
+ matriks:'**Aturan Matriks Pegawai:**\n- Setiap pegawai memilih **1 dari 3 jenis** per tanggal: **Translok (TR)**, **Perjadin (PD)**, atau **Cuti (CT)**. Satu tanggal tidak bisa memuat lebih dari satu pilihan.\n- Pegawai yang **cuti** tidak dapat melakukan translok maupun perjalanan dinas pada hari cuti.\n- Klik kotak pada baris nama untuk menambah catatan. Pilih tim sesuai kegiatan yang dilakukan.\n- Rekap pengisian ada di bawah kalender dan hanya dapat diubah oleh Admin.',
  perjadin:'**Catatan:**\n- Isi form **Ajukan Pencairan Perjadin** setelah perjalanan dinas selesai; periksa kembali data pada layar review sebelum disimpan.\n- Uang harian dihitung **{tarif}** per hari. Lama menginap otomatis = lama perjalanan dikurangi 1 hari bila menginap di hotel.\n- Status diperbarui oleh Pegawai Keuangan: Verifikasi Dokumen, Pencatatan di Aplikasi BOS, Pengajuan ke KPPN, Selesai.',
  revisi_anggaran:'Data yang Bapak/Ibu ubah, di sheet nya tolong di warnain dan konfirmasi ke Bang Adi Darmanto',
  kartu_persediaan:'**Catatan:** pengajuan barang **hanya dibuka setiap hari Senin**{status_pengajuan} Barang tersedia pada Senin minggu depannya (bila hari libur, hari berikutnya). Satu permintaan maksimal {maks} jenis barang. Status diperbarui oleh Pegawai BMN dan Persediaan; permintaan Selesai dipindahkan ke Riwayat Pengajuan setelah 3 jam.',
@@ -1098,7 +1115,7 @@ $('#login').addEventListener('submit',()=>{const b=$('#login .p');b.disabled=tru
 $('#login').onsubmit=async e=>{e.preventDefault();let em=$('#em').value.trim();if(!em.includes('@')){const {data:x,error:ex}=await db.rpc('login_email',{p_id:em});if(ex)return toast('Login dengan username belum aktif: '+ex.message,1);if(!x)return toast('Username tidak ditemukan',1);em=x}
  const {data:sd,error}=await db.auth.signInWithPassword({email:em,password:$('#pw').value});if(error){const m=error.message||'';shakeLogin();return toast(/Invalid login/i.test(m)?'Username/email atau kata sandi salah':/not confirmed/i.test(m)?'Email belum dikonfirmasi. Di Supabase, buka Authentication > Users, lalu konfirmasi pengguna ini.':/api key/i.test(m)?'URL atau key Supabase di index.html belum benar':'Gagal masuk: '+m,1)}try{sessionStorage.removeItem('pwt0');sessionStorage.removeItem('pwmodal');sessionStorage.removeItem('pwx')}catch(_){}try{localStorage.setItem('pwdef:'+sd.user.id,$('#pw').value=='123456'?'1':'0')}catch(_){}boot()};
 
-function go(v){view=v;if(v=='set_pengguna')sTab='pengguna';page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
+function go(v){if(typeof mxLepas=='function')mxLepas();view=v;if(v=='set_pengguna')sTab='pengguna';page=1;q='';document.querySelectorAll('#nav a[data-v]').forEach(a=>a.className=a.dataset.v==v?'on':'');
  document.querySelectorAll('.grp').forEach(g=>{const on=GR.find(x=>x[0]==g.dataset.k)[2].includes(v);g.classList.toggle('act',on);g.classList.toggle('open',on&&innerWidth<=800)});
  v=='dashboard'?dash():v.startsWith('set_')?setelan():v=='pengajuan'?pengajuanPage():v=='perjadin'?perjadinPage():v=='matriks'?matriksPage():v=='ruangan'?ruangPage():v=='kartu_persediaan'?persPage():v=='link_app'?linkPage():v=='revisi_anggaran'?revisiPage():load()}
 
@@ -1876,7 +1893,7 @@ function pdForm(id,pre){
  const cur=()=>({lama_hari:g('lama_hari'),biaya_pergi:g('biaya_pergi'),biaya_pulang:g('biaya_pulang'),taksi_asal:g('taksi_asal'),taksi_tujuan:g('taksi_tujuan'),hari_uang_harian:g('hari_uang_harian'),menginap:g('menginap')=='Iya',biaya_hotel:g('biaya_hotel')});
  const upd=()=>{const men=g('menginap')=='Iya';$('#pd_h').hidden=!men;fm.elements.nama_hotel.required=men;
   if(!tch)fm.elements.hari_uang_harian.value=g('lama_hari');
-  const c=pdHitung(cur()),tm=g('tgl_mulai'),lm=pdN(g('lama_hari'));$('#pd_sd').textContent=tm&&lm?'Perjalanan: '+tgl(tm)+' s.d. '+tgl(addD(tm,lm-1))+'. Pegawai yang cuti atau sudah translok pada tanggal itu tidak bisa perjadin.':'';$('#pd_uh').value=rp(c.uh);$('#pd_inap').value=c.inap+' malam';$('#pd_tot').textContent=rp(c.total)};
+  const c=pdHitung(cur()),tm=g('tgl_mulai'),lm=pdN(g('lama_hari'));$('#pd_sd').textContent=tm&&lm?'Perjalanan: '+tgl(tm)+' s.d. '+tgl(addD(tm,lm-1))+'. Pegawai yang tercatat cuti atau translok pada tanggal itu di Matriks Pegawai tidak bisa perjadin.':'';$('#pd_uh').value=rp(c.uh);$('#pd_inap').value=c.inap+' malam';$('#pd_tot').textContent=rp(c.total)};
  fm.addEventListener('input',e=>{if(e.target.name=='hari_uang_harian')tch=true;upd()});upd();
  fm.onsubmit=async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(fm)),c=pdHitung(cur()),men=f.menginap=='Iya';
   const d={pegawai:nama,mata_anggaran:f.mata_anggaran.trim(),nama_kegiatan:proper((f.nama_kegiatan||'').trim()),tujuan:proper((f.tujuan||'').trim()),lama_hari:pdN(f.lama_hari),tgl_mulai:f.tgl_mulai,tgl_selesai:f.tgl_mulai?addD(f.tgl_mulai,pdN(f.lama_hari)-1):null,
@@ -1893,10 +1910,10 @@ function pdForm(id,pre){
   $('#bt').onclick=()=>pdForm(id,d);$('#ok').onclick=()=>pdSimpan(d,id)}}
 async function pdCekBentrok(d,id){
  const a=d.tgl_mulai,b=addD(a,d.lama_hari-1);
- const [m,p]=await Promise.all([db.from('matriks_kegiatan').select('tanggal,jenis,kegiatan').eq('pegawai',d.pegawai).gte('tanggal',a).lte('tanggal',b).order('tanggal').limit(1),
+ const [m,p]=await Promise.all([db.from('matriks_kegiatan').select('tanggal,jenis,kegiatan').eq('pegawai',d.pegawai).in('jenis',['cuti','translok']).gte('tanggal',a).lte('tanggal',b).order('tanggal').limit(1),
   db.from('perjadin').select('id,tgl_mulai,tgl_selesai,nama_kegiatan').eq('pegawai',d.pegawai).lte('tgl_mulai',b).gte('tgl_selesai',a)]);
  const x=(m.data||[])[0];
- if(x)return `Pada ${tgl(x.tanggal)} ${d.pegawai} tercatat ${x.jenis=='cuti'?'cuti':'translok kegiatan'+(x.kegiatan?' ('+x.kegiatan+')':'')} di Matriks Pegawai, jadi tidak bisa perjadin di hari yang sama.`;
+ if(x)return `Pada ${tgl(x.tanggal)} ${d.pegawai} tercatat ${x.jenis=='cuti'?'cuti (CT)':'translok (TR)'+(x.kegiatan?' - '+x.kegiatan:'')} di Matriks Pegawai, jadi tidak bisa perjadin di hari yang sama.`;
  const o=(p.data||[]).find(y=>y.id!=id);
  if(o)return `${d.pegawai} sudah punya perjalanan dinas lain (${o.nama_kegiatan}, ${tgl(o.tgl_mulai)} s.d. ${tgl(o.tgl_selesai)}) yang tanggalnya bertumpuk.`;
  return ''}
@@ -1933,85 +1950,124 @@ function pdHapus(id){
   pd=pd.filter(x=>x.id!=id);toast('Perjadin dihapus');pdDraw()})}
 
 // ===== Matriks Pegawai (menu Keuangan) =====
-// Satu sel = satu pegawai pada satu hari: Translok (T), Perjalanan Dinas (PD), atau Cuti.
-// Aturan: 1 hari hanya 1 translok; yang cuti tidak bisa translok/perjadin; yang perjadin tidak bisa translok/cuti.
-// Aturan ditegakkan di database (matriks_kegiatan.unique + trigger mk_trg/pd_trg); pengecekan di sini hanya agar pesannya ramah.
-const MX_BLN=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],MX_HR=['M','S','S','R','K','J','S'];
-let mxY=0,mxM=0,mxData={tl:[],pd:[],lib:[]},mxCell={},mxNames=[];
-const mxKelola=()=>me.role=='admin'||me.role=='pegawai_keuangan',
+// Satu sel = satu pegawai pada satu tanggal, dan hanya boleh memuat 1 pilihan: Translok (TR), Perjadin (PD), atau Cuti (CT).
+// Aturan itu dijaga di database (unique pegawai+tanggal). Pengecekan di sini hanya agar pesannya ramah.
+// Ubah/hapus catatan hanya untuk Admin. Akun yang bukan pegawai (Admin, Sinkronisasi) tidak ditampilkan; atur di MX_BUKAN.
+const MX_BLN=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],MX_HR=['M','S','S','R','K','J','S'],
+ MX_KODE={translok:'TR',perjadin:'PD',cuti:'CT'},MX_NAMA={translok:'Translok',perjadin:'Perjadin',cuti:'Cuti'},MX_CLS={translok:'t',perjadin:'p',cuti:'c'},
+ MX_BUKAN=/^\s*(admin|administrator|sinkron|sinkronisasi)\b/i;
+let mxY=0,mxM=0,mxData={tl:[],lib:[]},mxCell={},mxNames=[],mxExp=false,mxRq='',mxRt='',mxRj='',mxRp=1,mxEsc=false;
+const mxAdmin=()=>me.role=='admin',
+ mxKelola=()=>me.role=='admin'||me.role=='pegawai_keuangan',
  mxIso=(y,m,d)=>y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'),
- mxJenis=r=>r.jenis=='cuti'?'Cuti':'Translok kegiatan',
- mxGalat=e=>e&&e.code=='23505'?'Pegawai tersebut sudah punya catatan di tanggal itu. 1 hari hanya 1 translok, dan yang cuti tidak bisa translok.':(e&&e.message)||'Terjadi kesalahan';
+ mxJn=j=>(MX_NAMA[j]||j)+' ('+(MX_KODE[j]||'?')+')',
+ mxWaktu=s=>s?new Date(s).toLocaleString('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'-',
+ mxGalat=e=>e&&e.code=='23505'?'Pegawai tersebut sudah punya catatan di tanggal itu. 1 tanggal hanya bisa memuat 1 pilihan: Translok, Perjadin, atau Cuti.':(e&&e.message)||'Terjadi kesalahan';
+function mxBersih(){document.querySelectorAll('body > #mxbox').forEach(e=>e.remove())}
+function mxLepas(){mxBersih();mxExp=false;document.body.classList.remove('mxlock')}   // dipanggil go() saat pindah menu
+function mxExpand(on){
+ const box=document.getElementById('mxbox');if(!box)return;mxExp=on;
+ if(on){if(!document.getElementById('mxph')){const ph=document.createElement('div');ph.id='mxph';box.parentNode.insertBefore(ph,box)}
+  document.body.appendChild(box);box.classList.add('full');document.body.classList.add('mxlock')}
+ else{const ph=document.getElementById('mxph');if(ph){ph.parentNode.insertBefore(box,ph);ph.remove()}box.classList.remove('full');document.body.classList.remove('mxlock')}
+ const b=box.querySelector('#mxx');if(b)b.innerHTML=on?'⤡ Perkecil':'⤢ Perbesar';
+ const w=box.querySelector('.mxw'),h=box.querySelector('.mx th.hi');if(w&&h)w.scrollLeft=Math.max(0,h.offsetLeft-260)}
 async function matriksPage(keep){
- if(!keep){const n=hari();mxY=+n.slice(0,4);mxM=+n.slice(5,7)-1}
+ if(!keep){const n=hari();mxY=+n.slice(0,4);mxM=+n.slice(5,7)-1;mxRq='';mxRt='';mxRj='';mxRp=1}
  $('#main').innerHTML='<p class="muted">Memuat…</p>';
  const jml=new Date(Date.UTC(mxY,mxM+1,0)).getUTCDate(),a=mxIso(mxY,mxM,1),b=mxIso(mxY,mxM,jml);
- const [t,p,l]=await Promise.all([
+ const [t,l]=await Promise.all([
   db.from('matriks_kegiatan').select('*').gte('tanggal',a).lte('tanggal',b).limit(5000),
-  db.from('perjadin').select('id,pegawai,nama_kegiatan,tujuan,tgl_mulai,tgl_selesai,status').lte('tgl_mulai',b).gte('tgl_selesai',a).limit(5000),
   db.from('hari_libur').select('tanggal,keterangan')]);
- if(t.error)return toast('Gagal memuat matriks: '+t.error.message+' (pastikan SQL bagian L sudah dijalankan)',1);
- mxData={tl:t.data||[],pd:p.error?[]:(p.data||[]),lib:l.error?[]:(l.data||[])};mxDraw()}
+ if(t.error)return toast('Gagal memuat matriks: '+t.error.message+' (pastikan SQL bagian L terbaru sudah dijalankan)',1);
+ mxData={tl:t.data||[],lib:l.error?[]:(l.data||[])};mxDraw()}
 function mxDraw(){
+ const was=mxExp;mxBersih();
  const jml=new Date(Date.UTC(mxY,mxM+1,0)).getUTCDate(),hr=hari(),lib={};
  mxData.lib.forEach(x=>lib[x.tanggal]=x.keterangan||'Libur');
- mxNames=pg.map(p=>p.nama).filter(Boolean);
- mxData.tl.concat(mxData.pd).forEach(r=>{if(r.pegawai&&!mxNames.includes(r.pegawai))mxNames.push(r.pegawai)});
- mxCell={};
- mxData.tl.forEach(r=>mxCell[r.pegawai+'|'+r.tanggal]={j:r.jenis=='cuti'?'c':'t',r});
- mxData.pd.forEach(r=>{for(let d=1;d<=jml;d++){const iso=mxIso(mxY,mxM,d);if(iso>=r.tgl_mulai&&iso<=r.tgl_selesai&&!mxCell[r.pegawai+'|'+iso])mxCell[r.pegawai+'|'+iso]={j:'p',r}}});
- const hari_=[];for(let d=1;d<=jml;d++){const iso=mxIso(mxY,mxM,d);hari_.push({d,iso,off:isoDow(iso)>5||!!lib[iso],ket:lib[iso]||''})}
- const head='<tr><th class="c1">No</th><th class="c2">Nama</th>'+hari_.map(h=>`<th class="dh${h.off?' wk':''}${h.iso==hr?' hi':''}" title="${esc(h.ket)}">${h.d}<br><small>${MX_HR[new Date(h.iso+'T00:00:00Z').getUTCDay()]}</small></th>`).join('')+'<th class="s">Translok</th><th class="s">Perjadin</th><th class="s">Cuti</th></tr>';
- const body=mxNames.map((n,i)=>{let ct=0,cp=0,cc=0;
-  const tds=hari_.map(h=>{const c=mxCell[n+'|'+h.iso];let in_='';
-   if(c){if(c.j=='t'){ct++;in_=`<span class="mc t" title="${esc(n+' - Translok: '+c.r.kegiatan)}">${esc(c.r.kegiatan)}</span>`}
-    else if(c.j=='c'){cc++;in_=`<span class="mc c" title="${esc(n+' - Cuti'+(c.r.keterangan?': '+c.r.keterangan:''))}">Cuti</span>`}
-    else{cp++;in_=`<span class="mc p" title="${esc(n+' - Perjalanan dinas: '+c.r.nama_kegiatan)}">PD</span>`}}
-   return `<td class="d${h.off?' wk':''}${h.iso==hr?' hi':''}" data-n="${i}" data-t="${h.iso}">${in_}</td>`}).join('');
-  return `<tr class="${n==me.nama?'me':''}"><td class="c1">${i+1}</td><td class="c2" title="${esc(n)}">${esc(n)}</td>${tds}<td class="s">${ct||''}</td><td class="s">${cp||''}</td><td class="s">${cc||''}</td></tr>`}).join('');
+ mxNames=pg.map(p=>p.nama).filter(n=>n&&!MX_BUKAN.test(n));
+ mxData.tl.forEach(r=>{if(r.pegawai&&!MX_BUKAN.test(r.pegawai)&&!mxNames.includes(r.pegawai))mxNames.push(r.pegawai)});
+ mxCell={};mxData.tl.forEach(r=>mxCell[r.pegawai+'|'+r.tanggal]=r);
+ const hs=[];for(let d=1;d<=jml;d++){const iso=mxIso(mxY,mxM,d);hs.push({d,iso,off:isoDow(iso)>5||!!lib[iso],ket:lib[iso]||''})}
+ const head='<tr><th class="c1">No</th><th class="c2">Nama</th>'+hs.map(h=>`<th class="dh${h.off?' wk':''}${h.iso==hr?' hi':''}" title="${esc(h.ket)}">${h.d}<br><small>${MX_HR[new Date(h.iso+'T00:00:00Z').getUTCDay()]}</small></th>`).join('')+'<th class="s">TR</th><th class="s">PD</th><th class="s">CT</th></tr>';
+ const body=mxNames.map((n,i)=>{const ct={translok:0,perjadin:0,cuti:0};
+  const tds=hs.map(h=>{const r=mxCell[n+'|'+h.iso];let x='';
+   if(r){ct[r.jenis]++;x=`<span class="mc ${MX_CLS[r.jenis]}" title="${esc(n+' - '+MX_NAMA[r.jenis]+(r.kegiatan?': '+r.kegiatan:'')+(r.tim?' ['+r.tim+']':''))}">${MX_KODE[r.jenis]}</span>`}
+   return `<td class="d${h.off?' wk':''}${h.iso==hr?' hi':''}" data-n="${i}" data-t="${h.iso}">${x}</td>`}).join('');
+  return `<tr class="${n==me.nama?'me':''}"><td class="c1">${i+1}</td><td class="c2" title="${esc(n)}">${esc(n)}</td>${tds}<td class="s">${ct.translok||''}</td><td class="s">${ct.perjadin||''}</td><td class="s">${ct.cuti||''}</td></tr>`}).join('');
+ const tot={translok:0,perjadin:0,cuti:0};mxData.tl.forEach(r=>{if(tot[r.jenis]!=null)tot[r.jenis]++});
+ const peg=new Set(mxData.tl.map(r=>r.pegawai)).size;
  $('#main').innerHTML=`<p class="muted" style="margin:0">Keuangan</p><h1>Matriks Pegawai</h1>
  ${deskBox('matriks')}
- <div class="bar"><button id="mp" aria-label="Bulan sebelumnya">‹</button><b class="mxt">${MX_BLN[mxM]} ${mxY}</b><button id="mn" aria-label="Bulan berikutnya">›</button><button id="mt">Bulan Ini</button><span class="sp"></span><button class="p" id="mtb">Tambah Translok / Cuti</button></div>
- <div class="mxl"><span><i class="t"></i>Translok kegiatan</span><span><i class="p"></i>Perjalanan dinas (PD)</span><span><i class="c"></i>Cuti</span><span><i class="wk"></i>Akhir pekan / libur</span><small class="muted">Klik kotak untuk menambah atau melihat. Baris Anda diberi tanda warna.</small></div>
- <div class="mxw"><table class="mx"><thead>${head}</thead><tbody>${body||'<tr><td class="s" colspan="40">Belum ada data pegawai.</td></tr>'}</tbody></table></div>`;
- const ganti=n=>{mxM+=n;if(mxM<0){mxM=11;mxY--}if(mxM>11){mxM=0;mxY++}matriksPage(1)};
- $('#mp').onclick=()=>ganti(-1);$('#mn').onclick=()=>ganti(1);$('#mt').onclick=()=>matriksPage(0);$('#mtb').onclick=()=>mxForm({pegawai:me.nama,jenis:'translok',tanggal:hari()});
- $('#main').querySelectorAll('.mx td.d').forEach(td=>td.onclick=()=>mxKlik(mxNames[+td.dataset.n],td.dataset.t));
- const wk=$('#main').querySelector('.mx th.hi');if(wk){const w=$('#main').querySelector('.mxw');w.scrollLeft=Math.max(0,wk.offsetLeft-240)}}
+ <div id="mxbox" class="mxbox">
+  <div class="bar"><button id="mp" aria-label="Bulan sebelumnya">‹</button><b class="mxt">${MX_BLN[mxM]} ${mxY}</b><button id="mn" aria-label="Bulan berikutnya">›</button><button id="mt">Bulan Ini</button><span class="sp"></span><button id="mxx" type="button">⤢ Perbesar</button><button class="p" id="mtb">Tambah Translok / Perjadin / Cuti</button></div>
+  <div class="mxl"><span><i class="t"></i>TR = Translok</span><span><i class="p"></i>PD = Perjadin</span><span><i class="c"></i>CT = Cuti</span><span><i class="wk"></i>Akhir pekan / libur</span><small class="muted">Klik kotak untuk menambah atau melihat. Baris Anda diberi tanda warna.</small></div>
+  <div class="mxw"><table class="mx"><thead>${head}</thead><tbody>${body||'<tr><td class="s" colspan="40">Belum ada data pegawai.</td></tr>'}</tbody></table></div>
+ </div>
+ <div class="mxrk"><h2 style="margin:22px 0 4px">Rekap Pengisian ${MX_BLN[mxM]} ${mxY}</h2>
+  <p class="muted" style="margin:0 0 8px">Rekap ini hanya dapat diubah atau dihapus oleh Admin.</p>
+  <div class="chips"><span class="mkc"><i class="t"></i>TR <b>${tot.translok}</b></span><span class="mkc"><i class="p"></i>PD <b>${tot.perjadin}</b></span><span class="mkc"><i class="c"></i>CT <b>${tot.cuti}</b></span><span class="mkc">Total <b>${mxData.tl.length}</b></span><span class="mkc">Pegawai mengisi <b>${peg}</b></span></div>
+  <div class="bar"><input id="mxrq" type="search" placeholder="Cari pegawai, tim, kegiatan…" value="${esc(mxRq)}"><select id="mxrt"><option value="">Semua Tim</option>${TIM.map(t=>`<option ${t==mxRt?'selected':''}>${esc(t)}</option>`).join('')}</select><select id="mxrj"><option value="">Semua Jenis</option>${Object.keys(MX_NAMA).map(j=>`<option value="${j}" ${j==mxRj?'selected':''}>${mxJn(j)}</option>`).join('')}</select></div>
+  <div id="mxrtab"></div></div>`;
+ const box=document.getElementById('mxbox');
+ const ganti=n=>{mxM+=n;if(mxM<0){mxM=11;mxY--}if(mxM>11){mxM=0;mxY++}mxRp=1;matriksPage(1)};
+ box.querySelector('#mp').onclick=()=>ganti(-1);box.querySelector('#mn').onclick=()=>ganti(1);box.querySelector('#mt').onclick=()=>{mxRp=1;matriksPage(0)};
+ box.querySelector('#mxx').onclick=()=>mxExpand(!mxExp);
+ box.querySelector('#mtb').onclick=()=>mxForm({pegawai:mxNames.includes(me.nama)||!mxKelola()?me.nama:mxNames[0],jenis:'translok',tanggal:hari()});
+ box.querySelectorAll('.mx td.d').forEach(td=>td.onclick=()=>mxKlik(mxNames[+td.dataset.n],td.dataset.t));
+ $('#mxrq').oninput=e=>{mxRq=e.target.value;mxRp=1;mxRekap()};$('#mxrt').onchange=e=>{mxRt=e.target.value;mxRp=1;mxRekap()};$('#mxrj').onchange=e=>{mxRj=e.target.value;mxRp=1;mxRekap()};
+ if(!mxEsc){mxEsc=true;document.addEventListener('keydown',e=>{if(e.key=='Escape'&&mxExp&&$('#modal').hidden)mxExpand(false)})}
+ mxRekap();
+ const w=box.querySelector('.mxw'),h=box.querySelector('.mx th.hi');if(w&&h)w.scrollLeft=Math.max(0,h.offsetLeft-240);
+ if(was)mxExpand(true)}
+function mxRekap(){
+ const s=mxRq.toLowerCase(),ad=mxAdmin(),PER=15;
+ const f=mxData.tl.filter(r=>(!mxRt||r.tim==mxRt)&&(!mxRj||r.jenis==mxRj)&&(!s||[r.pegawai,r.tim,r.kegiatan,r.keterangan,MX_NAMA[r.jenis],MX_KODE[r.jenis]].join(' ').toLowerCase().includes(s)))
+  .sort((a,b)=>a.tanggal<b.tanggal?-1:a.tanggal>b.tanggal?1:String(a.pegawai).localeCompare(String(b.pegawai))),
+  tp=Math.max(1,Math.ceil(f.length/PER));mxRp=Math.min(mxRp,tp);
+ const part=f.slice((mxRp-1)*PER,mxRp*PER);
+ $('#mxrtab').innerHTML=`<div class="tw"><table><tr><th>No</th><th>Tanggal</th><th>Pegawai</th><th>Tim</th><th>Kode</th><th>Nama Kegiatan</th><th>Keterangan</th><th>Dicatat Pada</th>${ad?'<th>Aksi</th>':''}</tr>
+ ${part.map((r,i)=>`<tr><td data-l="No">${(mxRp-1)*PER+i+1}</td><td data-l="Tanggal">${tgl(r.tanggal)}</td><td data-l="Pegawai">${esc(r.pegawai)}</td><td data-l="Tim">${esc(r.tim||'-')}</td><td data-l="Kode"><span class="mk ${MX_CLS[r.jenis]}">${MX_KODE[r.jenis]}</span></td><td data-l="Nama Kegiatan">${esc(r.kegiatan||'-')}</td><td data-l="Keterangan">${esc(r.keterangan||'-')}</td><td data-l="Dicatat Pada">${mxWaktu(r.dibuat_pada)}</td>${ad?`<td class="ac"><button data-re="${r.id}">Ubah</button> <button class="d" data-rx="${r.id}">Hapus</button></td>`:''}</tr>`).join('')||`<tr><td colspan="${ad?9:8}" class="empty">Belum ada pengisian yang cocok.</td></tr>`}</table></div>
+ <div class="pgn"><span class="muted">${f.length} pengisian</span><button id="mxpv" ${mxRp<2?'disabled':''}>Sebelumnya</button><span>${mxRp} / ${tp}</span><button id="mxnx" ${mxRp>=tp?'disabled':''}>Berikutnya</button></div>`;
+ $('#mxpv').onclick=()=>{mxRp--;mxRekap()};$('#mxnx').onclick=()=>{mxRp++;mxRekap()};
+ $('#mxrtab').querySelectorAll('[data-re]').forEach(b=>b.onclick=()=>{const r=mxData.tl.find(x=>x.id==b.dataset.re);if(r)mxForm(r,r.id)});
+ $('#mxrtab').querySelectorAll('[data-rx]').forEach(b=>b.onclick=()=>{const r=mxData.tl.find(x=>x.id==b.dataset.rx);if(r)mxHapus(r)})}
+function mxHapus(r){
+ if(!mxAdmin())return;
+ konfirmasi('Hapus Catatan?',`${mxJn(r.jenis)} <b>${esc(r.pegawai)}</b> pada ${tgl(r.tanggal)} akan dihapus.`,'Ya, Hapus',async()=>{
+  const {error,count}=await db.from('matriks_kegiatan').delete({count:'exact'}).eq('id',r.id);
+  if(error)return toast('Gagal menghapus: '+error.message,1);
+  if(!count)return toast('Tidak berhak menghapus catatan ini',1);
+  toast('Catatan dihapus');matriksPage(1)})}
 function mxKlik(nama,iso){
- const c=mxCell[nama+'|'+iso];
- if(!c){if(mxKelola()||nama==me.nama)return mxForm({pegawai:nama,jenis:'translok',tanggal:iso});return toast('Anda hanya bisa mengisi baris nama Anda sendiri',1)}
- const r=c.r;
- if(c.j=='p'){
-  modal(`<h2>Perjalanan Dinas</h2>${rinci([['Pegawai',r.pegawai],['Kegiatan',r.nama_kegiatan],['Tujuan',r.tujuan],['Tanggal',tgl(r.tgl_mulai)+(r.tgl_selesai!=r.tgl_mulai?' s.d. '+tgl(r.tgl_selesai):'')],['Status',r.status]])}
-  <div class="row"><button id="bt">Tutup</button><button class="p" id="bk">Buka Perjalanan Dinas</button></div>`,460);
-  $('#bt').onclick=closeM;$('#bk').onclick=()=>{closeM();go('perjadin')};return}
- const boleh=mxKelola()||(!!me.id&&r.dibuat_oleh==me.id);
- modal(`<h2>${mxJenis(r)}</h2>${rinci([['Pegawai',r.pegawai],['Tanggal',tgl(r.tanggal)],['Jenis',mxJenis(r)],...(r.jenis=='translok'?[['Nama Kegiatan',r.kegiatan]]:[]),['Keterangan',r.keterangan]])}
-  <div class="row"><button id="bt">Tutup</button>${boleh?'<button id="hp" class="d">Hapus</button><button class="p" id="ub">Ubah</button>':''}</div>`,460);
+ const r=mxCell[nama+'|'+iso];
+ if(!r){if(mxKelola()||nama==me.nama)return mxForm({pegawai:nama,jenis:'translok',tanggal:iso});return toast('Anda hanya bisa mengisi baris nama Anda sendiri',1)}
+ modal(`<h2>${esc(MX_NAMA[r.jenis])} (${MX_KODE[r.jenis]})</h2>${rinci([['Pegawai',r.pegawai],['Tim',r.tim],['Tanggal',tgl(r.tanggal)],['Jenis',mxJn(r.jenis)],...(r.jenis!='cuti'?[['Nama Kegiatan',r.kegiatan]]:[]),['Keterangan',r.keterangan],['Dicatat Pada',mxWaktu(r.dibuat_pada)]])}
+  <div class="row"><button id="bt">Tutup</button>${mxAdmin()?'<button id="hp" class="d">Hapus</button><button class="p" id="ub">Ubah</button>':''}</div>${mxAdmin()?'':'<p class="muted" style="margin:10px 0 0;font-size:12.5px">Catatan hanya dapat diubah atau dihapus oleh Admin.</p>'}`,460);
  $('#bt').onclick=closeM;
- if(boleh){$('#ub').onclick=()=>mxForm(r,r.id);
-  $('#hp').onclick=()=>konfirmasi('Hapus Catatan?',`${mxJenis(r)} <b>${esc(r.pegawai)}</b> pada ${tgl(r.tanggal)} akan dihapus.`,'Ya, Hapus',async()=>{
-   const {error,count}=await db.from('matriks_kegiatan').delete({count:'exact'}).eq('id',r.id);
-   if(error)return toast('Gagal menghapus: '+error.message,1);
-   if(!count)return toast('Tidak berhak menghapus catatan ini',1);
-   toast('Catatan dihapus');matriksPage(1)})}}
+ if(mxAdmin()){$('#ub').onclick=()=>mxForm(r,r.id);$('#hp').onclick=()=>mxHapus(r)}}
 function mxForm(pre,id){
- const r=pre||{},ed=!!id,kel=mxKelola();
- modal(`<h2>${ed?'Ubah':'Tambah'} Translok / Cuti</h2><form id="fm">
+ const r=pre||{},ed=!!id,kel=mxKelola(),
+  timDef=r.tim||((pg.find(p=>p.nama==r.pegawai)||{}).tim)||(typeof timSaya=='function'?timSaya():'')||'',
+  timOpt=(TIM.includes(timDef)||!timDef?TIM:TIM.concat([timDef]));
+ modal(`<h2>${ed?'Ubah':'Tambah'} Translok / Perjadin / Cuti</h2><form id="fm">
  <label>Nama Pegawai</label>${kel&&!ed?`<select name="pegawai" required>${mxNames.map(n=>`<option ${n==r.pegawai?'selected':''}>${esc(n)}</option>`).join('')}</select>`:`<input value="${esc(ed?r.pegawai:me.nama)}" readonly>`}
- <label>Jenis</label><select name="jenis" required><option value="translok" ${r.jenis!='cuti'?'selected':''}>Translok Kegiatan</option><option value="cuti" ${r.jenis=='cuti'?'selected':''}>Cuti</option></select>
+ <label>Tim</label><select name="tim" required><option value="">- Pilih Tim -</option>${timOpt.map(t=>`<option ${t==timDef?'selected':''}>${esc(t)}</option>`).join('')}</select>
+ <label>Jenis</label><select name="jenis" required><option value="translok" ${r.jenis=='translok'||!r.jenis?'selected':''}>Translok (TR)</option><option value="perjadin" ${r.jenis=='perjadin'?'selected':''}>Perjadin (PD)</option><option value="cuti" ${r.jenis=='cuti'?'selected':''}>Cuti (CT)</option></select>
  ${ed?`<label>Tanggal</label><input value="${esc(tgl(r.tanggal))}" readonly>`:`<label>Tanggal</label><input name="tanggal" type="date" value="${esc(r.tanggal)}" required>
- <label>Sampai Tanggal (Boleh Dikosongkan)</label><input name="sampai" type="date" value=""><small class="muted">Isi bila lebih dari 1 hari (misalnya cuti). Sabtu, Minggu, dan hari libur dilewati otomatis.</small>`}
+ <label>Sampai Tanggal (Boleh Dikosongkan)</label><input name="sampai" type="date" value=""><small class="muted">Isi bila lebih dari 1 hari (misalnya cuti atau perjadin). Sabtu, Minggu, dan hari libur dilewati otomatis.</small>`}
  <div id="mx_k"><label>Nama Kegiatan</label><input name="kegiatan" value="${esc(r.kegiatan)}" placeholder="Contoh: SSN" autocomplete="off"></div>
  <label>Keterangan (Boleh Dikosongkan)</label><input name="keterangan" value="${esc(r.keterangan)}" autocomplete="off">
+ <small class="muted">1 tanggal hanya bisa memuat 1 pilihan: Translok, Perjadin, atau Cuti.</small>
  <div class="row"><button type="button" id="bt">Batal</button><button class="p" type="submit">${ed?'Simpan Perubahan':'Simpan'}</button></div></form>`,480);
  $('#bt').onclick=closeM;
- const fm=$('#fm'),tog=()=>{const t=fm.elements.jenis.value=='translok';$('#mx_k').hidden=!t;fm.elements.kegiatan.required=t};
+ const fm=$('#fm'),tog=()=>{const t=fm.elements.jenis.value!='cuti';$('#mx_k').hidden=!t;fm.elements.kegiatan.required=t};
  fm.elements.jenis.onchange=tog;tog();
- fm.onsubmit=async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(fm)),jenis=f.jenis,nama=ed?r.pegawai:(kel?f.pegawai:me.nama);
-  const kegiatan=jenis=='translok'?(f.kegiatan||'').trim():'',ket=(f.keterangan||'').trim();
-  if(jenis=='translok'&&!kegiatan)return toast('Nama kegiatan translok wajib diisi',1);
+ if(kel&&!ed&&fm.elements.pegawai)fm.elements.pegawai.onchange=e=>{const t=(pg.find(p=>p.nama==e.target.value)||{}).tim;if(t&&TIM.includes(t))fm.elements.tim.value=t};
+ fm.onsubmit=async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(fm)),jenis=f.jenis,nama=ed?r.pegawai:(kel?f.pegawai:me.nama),tim=f.tim;
+  const kegiatan=jenis!='cuti'?(f.kegiatan||'').trim():'',ket=(f.keterangan||'').trim();
+  if(!tim)return toast('Tim wajib dipilih',1);
+  if(jenis!='cuti'&&!kegiatan)return toast('Nama kegiatan wajib diisi',1);
   let dates=[];
   if(!ed){
    const a=f.tanggal,b=f.sampai;if(!a)return toast('Tanggal wajib diisi',1);
@@ -2020,24 +2076,21 @@ function mxForm(pre,id){
     for(let d=a;d<=b&&dates.length<366;d=addD(d,1))if(isoDow(d)<=5&&!L.has(d))dates.push(d);
     if(!dates.length)return toast('Semua tanggal yang dipilih adalah akhir pekan atau hari libur',1)}else dates=[a];
    const msg=await mxCek(nama,dates);if(msg)return toast(msg,1)}
-  const rows=ed?null:dates.map(t=>({pegawai:nama,tanggal:t,jenis,kegiatan:kegiatan||null,keterangan:ket||null}));
-  modal(`<h2>Peringatan</h2><p>Harap Cek Kembali Isian Data. Catatan ini hanya dapat diubah atau dihapus oleh pembuatnya, Pegawai Keuangan, atau Admin!</p>${rinci([['Nama Pegawai',nama],['Jenis',jenis=='cuti'?'Cuti':'Translok Kegiatan'],
-   ['Tanggal',ed?tgl(r.tanggal):(dates.length>1?tgl(dates[0])+' s.d. '+tgl(dates[dates.length-1])+' ('+dates.length+' hari kerja)':tgl(dates[0]))],...(jenis=='translok'?[['Nama Kegiatan',kegiatan]]:[]),['Keterangan',ket]])}
+  const rows=ed?null:dates.map(t=>({pegawai:nama,tim,tanggal:t,jenis,kegiatan:kegiatan||null,keterangan:ket||null}));
+  modal(`<h2>Peringatan</h2><p>Harap Cek Kembali Isian Data. Catatan ini hanya dapat diubah atau dihapus oleh Admin!</p>${rinci([['Nama Pegawai',nama],['Tim',tim],['Jenis',mxJn(jenis)],
+   ['Tanggal',ed?tgl(r.tanggal):(dates.length>1?tgl(dates[0])+' s.d. '+tgl(dates[dates.length-1])+' ('+dates.length+' hari kerja)':tgl(dates[0]))],...(jenis!='cuti'?[['Nama Kegiatan',kegiatan]]:[]),['Keterangan',ket]])}
    <p><b>Apakah Anda Tetap Ingin Melanjutkan untuk Menyimpan Data?</b></p><div class="row"><button id="bt">Edit Kembali Form</button><button class="p" id="ok">Simpan</button></div>`,480);
-  $('#bt').onclick=()=>mxForm(Object.assign({},r,{pegawai:nama,jenis,kegiatan,keterangan:ket,tanggal:ed?r.tanggal:dates[0]}),id);
+  $('#bt').onclick=()=>mxForm(Object.assign({},r,{pegawai:nama,tim,jenis,kegiatan,keterangan:ket,tanggal:ed?r.tanggal:dates[0]}),id);
   $('#ok').onclick=async()=>{const b=$('#ok');b.disabled=true;
-   const x=ed?await db.from('matriks_kegiatan').update({jenis,kegiatan:kegiatan||null,keterangan:ket||null}).eq('id',id):await db.from('matriks_kegiatan').insert(rows);
+   const x=ed?await db.from('matriks_kegiatan').update({tim,jenis,kegiatan:kegiatan||null,keterangan:ket||null}).eq('id',id):await db.from('matriks_kegiatan').insert(rows);
    if(x.error){b.disabled=false;return toast('Gagal menyimpan: '+mxGalat(x.error),1)}
    closeM();toast(ed?'Perubahan disimpan':'Catatan tersimpan');matriksPage(1)}}}
 async function mxCek(nama,dates){
  const a=dates[0],b=dates[dates.length-1];
- const [m,p]=await Promise.all([db.from('matriks_kegiatan').select('tanggal,jenis,kegiatan').eq('pegawai',nama).gte('tanggal',a).lte('tanggal',b),
-  db.from('perjadin').select('tgl_mulai,tgl_selesai,nama_kegiatan').eq('pegawai',nama).lte('tgl_mulai',b).gte('tgl_selesai',a)]);
+ const m=await db.from('matriks_kegiatan').select('tanggal,jenis,kegiatan').eq('pegawai',nama).gte('tanggal',a).lte('tanggal',b);
  const ada=new Map((m.data||[]).map(x=>[x.tanggal,x]));
  for(const t of dates){const x=ada.get(t);
-  if(x)return `${tgl(t)}: ${nama} sudah tercatat ${x.jenis=='cuti'?'cuti':'translok kegiatan'+(x.kegiatan?' ('+x.kegiatan+')':'')}. 1 hari hanya 1 translok, dan yang cuti tidak bisa translok.`;
-  const q=(p.data||[]).find(y=>y.tgl_mulai<=t&&y.tgl_selesai>=t);
-  if(q)return `${tgl(t)}: ${nama} sedang perjalanan dinas (${q.nama_kegiatan}), tidak bisa mencatat translok atau cuti.`}
+  if(x)return `${tgl(t)}: ${nama} sudah tercatat ${mxJn(x.jenis)}${x.kegiatan?' - '+x.kegiatan:''}. 1 tanggal hanya bisa memuat 1 pilihan: Translok, Perjadin, atau Cuti.`}
  return ''}
 
 const RL={admin:'admin',administrator:'admin',petugas:'pegawai','petugas persuratan':'pegawai',pegawai:'pegawai','pegawai keuangan':'pegawai_keuangan',pegawai_keuangan:'pegawai_keuangan','pegawai bmn dan persediaan':'pegawai_bmn','pegawai bmn':'pegawai_bmn',pegawai_bmn:'pegawai_bmn'};
